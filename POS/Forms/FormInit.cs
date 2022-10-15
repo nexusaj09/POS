@@ -20,13 +20,6 @@ namespace POS.Forms
         public FormInit()
         {
             InitializeComponent();
-
-        }
-
-        private void FormInit_Load(object sender, EventArgs e)
-        {
-            txtUsername.Focus();
-            txtUsername.Select();
         }
 
         private void metroButton2_Click(object sender, EventArgs e)
@@ -115,6 +108,12 @@ namespace POS.Forms
             {
                 btnLogin.PerformClick();
             }
+        }
+
+        private void FormInit_Load(object sender, EventArgs e)
+        {
+            this.BringToFront();
+            this.Activate();
         }
     }
 }

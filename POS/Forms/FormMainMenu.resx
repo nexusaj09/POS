@@ -118,6 +118,25 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnCategories.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAAAO4AAADuAQbWsjQAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwa
+        AAAC30lEQVRYR8WXTUgbQRSAp5amQqUElN4KLaVJbOlJ9FjEJKLgQZMsWAKazWylCL3XWy699FjFItYm
+        u7E9WEFasOhJaKK0KjRtsmhMqkKTVIo9KIJWN0zfrmbJJnMc18O35L1v4L3M7M8MIoSgE5lvU5LBGUUO
+        bhZlPETW+urVfIkTGXcoMj+hpPgIO4IjJCk0IvIj4ICAGOHf6g3InAVy+9VjmDCPoNgwRRyR9ECD1sC3
+        gJXimVBMBRNqA+p0GKUcVEiSv2lKA8epQHO15D/qS7AVqIXcYfUYFvALWhElhfshsQzsKTIeJd+F23oD
+        qpeDfiWJZ8HPMWT6WMYtehGN1YErhtgEqEkz0S4hEqpxxcKtKpC4VDnoPEHt89I1V1yMAeSMdWc86i4f
+        5IyL45Avlo1hwYE7LgoIfryoECqrpeKtC1N1FM+KFbWBLxVJDefnyXunDYStNM8CmNkEcsfE9xS52/np
+        5VVTGmiPRZogOKgQz0tLoN2gcXG73DNjUZS0Iq6l8AN3PPLatSiNtS2JLaXiJZxfxXp3TOKci1IvM2Ji
+        FydPWQyFLgJq0ky0y1+//3oe+wYLgvfVL8xVLUGur6c+h30cjOllRe6xr0vmOAsqDDxqyGPvHkBK5ASP
+        fhOSUKgGctvlnhU57JUQ/OtnFLmbedqpPYZbgW4rxbMigWA6PlAE+c1z2ovo3BsoYG83Reiv4j+DXB3F
+        s2IFEY67XBA8IgT/zpLreaHH8DHKY8845ItnnhUHBewT9CI7T3puFLDnITwY5n6OaUkzMQRNY6sXsyVz
+        iNl+u7SxbJcye8CoXVo3bErt0Ywf/Cy4OYZM28R0C7JN/myGgFSgb8tvhbdqIT6s8KxYQLboRoQilDtv
+        strBBBqwUjwrEsgmZoYp4sj2Lq0dzc6/gXDaQRH64fT+lGyBeL/CsyGamT+9yaRsGyRmgE2HlBlyiGuG
+        47k9mu0AN6EuFyugzshdaaPxPxME07+s1xw2AAAAAElFTkSuQmCC
+</value>
+  </data>
   <data name="btnLogout.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8

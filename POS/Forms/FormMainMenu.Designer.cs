@@ -40,6 +40,7 @@
             this.lblRole = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnUsers = new MetroFramework.Controls.MetroPanel();
+            this.btnCategories = new System.Windows.Forms.Button();
             this.metroPanel2.SuspendLayout();
             this.metroPanel4.SuspendLayout();
             this.metroPanel3.SuspendLayout();
@@ -82,6 +83,7 @@
             // 
             // metroPanel4
             // 
+            this.metroPanel4.Controls.Add(this.btnCategories);
             this.metroPanel4.Controls.Add(this.btnLogout);
             this.metroPanel4.Controls.Add(this.button2);
             this.metroPanel4.Controls.Add(this.button1);
@@ -229,6 +231,24 @@
             this.btnUsers.VerticalScrollbarHighlightOnWheel = false;
             this.btnUsers.VerticalScrollbarSize = 13;
             // 
+            // btnCategories
+            // 
+            this.btnCategories.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnCategories.FlatAppearance.BorderSize = 0;
+            this.btnCategories.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCategories.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCategories.Image = ((System.Drawing.Image)(resources.GetObject("btnCategories.Image")));
+            this.btnCategories.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCategories.Location = new System.Drawing.Point(0, 96);
+            this.btnCategories.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCategories.Name = "btnCategories";
+            this.btnCategories.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.btnCategories.Size = new System.Drawing.Size(214, 48);
+            this.btnCategories.TabIndex = 5;
+            this.btnCategories.Text = "Categories";
+            this.btnCategories.UseVisualStyleBackColor = true;
+            this.btnCategories.Click += new System.EventHandler(this.btnCategories_Click);
+            // 
             // FormMainMenu
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -265,5 +285,6 @@
         private System.Windows.Forms.Label lblUser;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btnLogout;
+        private System.Windows.Forms.Button btnCategories;
     }
 }

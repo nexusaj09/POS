@@ -46,5 +46,11 @@ namespace POS.Forms
 
             }
         }
+
+        private void btnCategories_Click(object sender, EventArgs e)
+        {
+            FormCategories formCategories = new FormCategories(currUser);
+            formCategories.Show();
+        }
     }
 }
