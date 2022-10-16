@@ -32,6 +32,10 @@
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
             this.metroPanel2 = new MetroFramework.Controls.MetroPanel();
             this.metroPanel4 = new MetroFramework.Controls.MetroPanel();
+            this.btnDiscounts = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.btnSupplier = new System.Windows.Forms.Button();
+            this.btnCategories = new System.Windows.Forms.Button();
             this.btnLogout = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -40,7 +44,6 @@
             this.lblRole = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnUsers = new MetroFramework.Controls.MetroPanel();
-            this.btnCategories = new System.Windows.Forms.Button();
             this.metroPanel2.SuspendLayout();
             this.metroPanel4.SuspendLayout();
             this.metroPanel3.SuspendLayout();
@@ -83,6 +86,9 @@
             // 
             // metroPanel4
             // 
+            this.metroPanel4.Controls.Add(this.btnDiscounts);
+            this.metroPanel4.Controls.Add(this.button3);
+            this.metroPanel4.Controls.Add(this.btnSupplier);
             this.metroPanel4.Controls.Add(this.btnCategories);
             this.metroPanel4.Controls.Add(this.btnLogout);
             this.metroPanel4.Controls.Add(this.button2);
@@ -99,6 +105,77 @@
             this.metroPanel4.VerticalScrollbarBarColor = true;
             this.metroPanel4.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel4.VerticalScrollbarSize = 13;
+            // 
+            // btnDiscounts
+            // 
+            this.btnDiscounts.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnDiscounts.FlatAppearance.BorderSize = 0;
+            this.btnDiscounts.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDiscounts.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDiscounts.Image = ((System.Drawing.Image)(resources.GetObject("btnDiscounts.Image")));
+            this.btnDiscounts.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnDiscounts.Location = new System.Drawing.Point(0, 240);
+            this.btnDiscounts.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDiscounts.Name = "btnDiscounts";
+            this.btnDiscounts.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.btnDiscounts.Size = new System.Drawing.Size(214, 48);
+            this.btnDiscounts.TabIndex = 8;
+            this.btnDiscounts.Text = "Discounts";
+            this.btnDiscounts.UseVisualStyleBackColor = true;
+            this.btnDiscounts.Click += new System.EventHandler(this.btnDiscounts_Click);
+            // 
+            // button3
+            // 
+            this.button3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button3.FlatAppearance.BorderSize = 0;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
+            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button3.Location = new System.Drawing.Point(0, 192);
+            this.button3.Margin = new System.Windows.Forms.Padding(4);
+            this.button3.Name = "button3";
+            this.button3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.button3.Size = new System.Drawing.Size(214, 48);
+            this.button3.TabIndex = 7;
+            this.button3.Text = "Transaction";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // btnSupplier
+            // 
+            this.btnSupplier.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnSupplier.FlatAppearance.BorderSize = 0;
+            this.btnSupplier.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSupplier.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSupplier.Image = ((System.Drawing.Image)(resources.GetObject("btnSupplier.Image")));
+            this.btnSupplier.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSupplier.Location = new System.Drawing.Point(0, 144);
+            this.btnSupplier.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSupplier.Name = "btnSupplier";
+            this.btnSupplier.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.btnSupplier.Size = new System.Drawing.Size(214, 48);
+            this.btnSupplier.TabIndex = 6;
+            this.btnSupplier.Text = "Suppliers";
+            this.btnSupplier.UseVisualStyleBackColor = true;
+            this.btnSupplier.Click += new System.EventHandler(this.btnSupplier_Click);
+            // 
+            // btnCategories
+            // 
+            this.btnCategories.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnCategories.FlatAppearance.BorderSize = 0;
+            this.btnCategories.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCategories.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCategories.Image = ((System.Drawing.Image)(resources.GetObject("btnCategories.Image")));
+            this.btnCategories.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCategories.Location = new System.Drawing.Point(0, 96);
+            this.btnCategories.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCategories.Name = "btnCategories";
+            this.btnCategories.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.btnCategories.Size = new System.Drawing.Size(214, 48);
+            this.btnCategories.TabIndex = 5;
+            this.btnCategories.Text = "Categories";
+            this.btnCategories.UseVisualStyleBackColor = true;
+            this.btnCategories.Click += new System.EventHandler(this.btnCategories_Click);
             // 
             // btnLogout
             // 
@@ -231,24 +308,6 @@
             this.btnUsers.VerticalScrollbarHighlightOnWheel = false;
             this.btnUsers.VerticalScrollbarSize = 13;
             // 
-            // btnCategories
-            // 
-            this.btnCategories.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnCategories.FlatAppearance.BorderSize = 0;
-            this.btnCategories.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCategories.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCategories.Image = ((System.Drawing.Image)(resources.GetObject("btnCategories.Image")));
-            this.btnCategories.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnCategories.Location = new System.Drawing.Point(0, 96);
-            this.btnCategories.Margin = new System.Windows.Forms.Padding(4);
-            this.btnCategories.Name = "btnCategories";
-            this.btnCategories.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.btnCategories.Size = new System.Drawing.Size(214, 48);
-            this.btnCategories.TabIndex = 5;
-            this.btnCategories.Text = "Categories";
-            this.btnCategories.UseVisualStyleBackColor = true;
-            this.btnCategories.Click += new System.EventHandler(this.btnCategories_Click);
-            // 
             // FormMainMenu
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -286,5 +345,8 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btnLogout;
         private System.Windows.Forms.Button btnCategories;
+        private System.Windows.Forms.Button btnSupplier;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnDiscounts;
     }
 }

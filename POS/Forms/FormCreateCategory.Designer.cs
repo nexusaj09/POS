@@ -50,7 +50,7 @@
             // 
             // 
             this.txtCategory.CustomButton.Image = null;
-            this.txtCategory.CustomButton.Location = new System.Drawing.Point(494, 1);
+            this.txtCategory.CustomButton.Location = new System.Drawing.Point(448, 1);
             this.txtCategory.CustomButton.Name = "";
             this.txtCategory.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.txtCategory.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -81,7 +81,7 @@
             this.btnCancel.Location = new System.Drawing.Point(512, 111);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(109, 30);
-            this.btnCancel.TabIndex = 8;
+            this.btnCancel.TabIndex = 3;
             this.btnCancel.Text = "CANCEL";
             this.btnCancel.UseCustomBackColor = true;
             this.btnCancel.UseCustomForeColor = true;
@@ -95,7 +95,7 @@
             this.btnSave.Location = new System.Drawing.Point(397, 111);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(109, 30);
-            this.btnSave.TabIndex = 7;
+            this.btnSave.TabIndex = 2;
             this.btnSave.Text = "SAVE";
             this.btnSave.UseCustomBackColor = true;
             this.btnSave.UseCustomForeColor = true;

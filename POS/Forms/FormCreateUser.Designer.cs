@@ -79,7 +79,7 @@
             this.chkIsActive.Location = new System.Drawing.Point(176, 199);
             this.chkIsActive.Name = "chkIsActive";
             this.chkIsActive.Size = new System.Drawing.Size(67, 15);
-            this.chkIsActive.TabIndex = 7;
+            this.chkIsActive.TabIndex = 5;
             this.chkIsActive.Text = "Is Active";
             this.chkIsActive.UseSelectable = true;
             // 
@@ -103,7 +103,7 @@
             this.btnCancel.Location = new System.Drawing.Point(485, 213);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(109, 30);
-            this.btnCancel.TabIndex = 6;
+            this.btnCancel.TabIndex = 7;
             this.btnCancel.Text = "CANCEL";
             this.btnCancel.UseCustomBackColor = true;
             this.btnCancel.UseCustomForeColor = true;
@@ -117,7 +117,7 @@
             this.btnSave.Location = new System.Drawing.Point(370, 213);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(109, 30);
-            this.btnSave.TabIndex = 5;
+            this.btnSave.TabIndex = 6;
             this.btnSave.Text = "SAVE";
             this.btnSave.UseCustomBackColor = true;
             this.btnSave.UseCustomForeColor = true;

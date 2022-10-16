@@ -29,7 +29,7 @@ namespace POS.Forms
             txtSearch.Select();
             txtSearch.Focus();
 
-            cateroryHelper.LoadCategories(grdCategoryList,txtSearch.Text);
+            cateroryHelper.LoadCategories(grdCategoryList,"");
 
         }
 
@@ -51,7 +51,7 @@ namespace POS.Forms
                 if (MessageBox.Show(this, "Are you sure to delete this category?", "Delete Category", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     cateroryHelper.DeleteCategory(Convert.ToInt32(grdCategoryList[1, e.RowIndex].Value.ToString()));
-                    cateroryHelper.LoadCategories(grdCategoryList, txtSearch.Text);
+                    cateroryHelper.LoadCategories(grdCategoryList,"");
                     MessageBox.Show("Category Successfully Deleted", "Category Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
@@ -60,10 +60,6 @@ namespace POS.Forms
                 Categories categories = new Categories();
                 categories.ID = Convert.ToInt32(grdCategoryList[1, e.RowIndex].Value.ToString());
                 categories.Category = grdCategoryList[2, e.RowIndex].Value.ToString();
-                categories.CreatedByID = currUser.UserID;
-                categories.CreatedDateTime = DateTime.Now;
-                categories.LastModifiedByID = currUser.UserID;
-                categories.LastModifiedDateTime = DateTime.Now;
 
                 FormCreateCategory createCategory = new FormCreateCategory(currUser, grdCategoryList, categories);
                 createCategory.btnSave.Text = "UPDATE";

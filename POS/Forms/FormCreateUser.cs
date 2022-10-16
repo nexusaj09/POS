@@ -132,8 +132,9 @@ namespace POS.Forms
 
         private void lblChangePass_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            txtPassword.Focus();
+
             txtPassword.Select();
+            txtPassword.Focus();
             txtPassword.Enabled = true;
             txtConfirmPassword.Enabled = true;
         }

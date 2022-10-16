@@ -52,5 +52,17 @@ namespace POS.Forms
             FormCategories formCategories = new FormCategories(currUser);
             formCategories.Show();
         }
+
+        private void btnSupplier_Click(object sender, EventArgs e)
+        {
+            FormSuppliers suppliers = new FormSuppliers(currUser);
+            suppliers.Show();
+        }
+
+        private void btnDiscounts_Click(object sender, EventArgs e)
+        {
+            FormDiscounts discounts = new FormDiscounts();
+            discounts.Show();
+        }
     }
 }
