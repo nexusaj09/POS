@@ -43,6 +43,14 @@ namespace POS.Forms
             if (updateCategory != null)
             {
                 txtCategory.Text = updateCategory.Category.ToString();
+                txtMarkUp.Text = updateCategory.MarkUpPct.ToString();
+            }
+            else
+            {
+                if (txtMarkUp.Text == string.Empty)
+                {
+                    txtMarkUp.Text = "0.00";
+                }
             }
 
         }
@@ -58,6 +66,7 @@ namespace POS.Forms
                         Categories newCategory = new Categories();
 
                         newCategory.Category = txtCategory.Text;
+                        newCategory.MarkUpPct = Convert.ToDecimal(txtMarkUp.Text);
                         newCategory.CreatedByID = currUser.UserID;
                         newCategory.CreatedDateTime = DateTime.Now;
                         newCategory.LastModifiedByID = currUser.UserID;
@@ -70,6 +79,7 @@ namespace POS.Forms
                         categoryHelper.LoadCategories(currView, "");
 
                         txtCategory.Clear();
+                        txtMarkUp.Clear();
                         txtCategory.Select();
                     }
                 }
@@ -79,12 +89,13 @@ namespace POS.Forms
                     {
 
                         updateCategory.Category = txtCategory.Text;
+                        updateCategory.MarkUpPct = Convert.ToDecimal(txtMarkUp.Text);
+
                         updateCategory.LastModifiedByID = currUser.UserID;
                         updateCategory.LastModifiedDateTime = DateTime.Now;
       
                         categoryHelper.UpdateCategory(updateCategory);
                         MessageBox.Show(this, "Category successfully updated!", "Updated Successfully", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        txtCategory.Text = null;
                         categoryHelper.LoadCategories(currView, "");
                         this.Close();
                         this.Dispose();
@@ -95,6 +106,34 @@ namespace POS.Forms
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void txtMarkUp_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtMarkUp_Enter(object sender, EventArgs e)
+        {
+            if (txtMarkUp.Text == "0.00")
+            {
+                txtMarkUp.Text = null;
+            }
+        }
+
+        private void txtMarkUp_Leave(object sender, EventArgs e)
+        {
+            if (txtMarkUp.Text != null && txtMarkUp.Text != string.Empty)
+            {
+                txtMarkUp.Text = string.Format("{0:#,##0.00}", double.Parse(txtMarkUp.Text));
+            }
+            else
+            {
+                txtMarkUp.Text = "0.00";
             }
         }
     }

@@ -88,7 +88,7 @@ namespace POS.Helpers
                 {
                     cmd.Connection = conn;
                     cmd.CommandType = System.Data.CommandType.Text;
-                    cmd.CommandText = @"SELECT ID, Supplier, Address, ContactPerson, ContactNbr,EMail FROM Suppliers WHERE Supplier LIKE '%" + search + "%' OR ContactPerson LIKE '%" + search + "%'";
+                    cmd.CommandText = @"SELECT ID, Supplier, Address, ContactPerson, ContactNbr,EMail FROM Suppliers WHERE Supplier LIKE '%" + search + "%' OR ContactPerson LIKE '%" + search + "%' ORDER BY ID";
                  
                     dr = cmd.ExecuteReader();
 

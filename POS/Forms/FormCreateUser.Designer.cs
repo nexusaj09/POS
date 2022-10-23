@@ -317,6 +317,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormCreateUser";
+            this.Resizable = false;
             this.Text = "Create User Account";
             this.TextAlign = MetroFramework.Forms.MetroFormTextAlign.Center;
             this.Load += new System.EventHandler(this.FormCreateUser_Load);

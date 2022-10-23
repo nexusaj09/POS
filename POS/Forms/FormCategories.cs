@@ -60,6 +60,7 @@ namespace POS.Forms
                 Categories categories = new Categories();
                 categories.ID = Convert.ToInt32(grdCategoryList[1, e.RowIndex].Value.ToString());
                 categories.Category = grdCategoryList[2, e.RowIndex].Value.ToString();
+                categories.MarkUpPct = Convert.ToDecimal(grdCategoryList[3, e.RowIndex].Value.ToString());
 
                 FormCreateCategory createCategory = new FormCreateCategory(currUser, grdCategoryList, categories);
                 createCategory.btnSave.Text = "UPDATE";

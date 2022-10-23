@@ -52,7 +52,7 @@
             this.txtPercentage.CustomButton.Visible = false;
             this.txtPercentage.Lines = new string[0];
             this.txtPercentage.Location = new System.Drawing.Point(126, 91);
-            this.txtPercentage.MaxLength = 32767;
+            this.txtPercentage.MaxLength = 5;
             this.txtPercentage.Name = "txtPercentage";
             this.txtPercentage.PasswordChar = '\0';
             this.txtPercentage.ScrollBars = System.Windows.Forms.ScrollBars.None;
@@ -66,6 +66,8 @@
             this.txtPercentage.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtPercentage.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             this.txtPercentage.Enter += new System.EventHandler(this.txtPercentage_Enter);
+            this.txtPercentage.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPercentage_KeyPress);
+            this.txtPercentage.Leave += new System.EventHandler(this.txtPercentage_Leave);
             // 
             // txtDescr
             // 
@@ -129,6 +131,7 @@
             this.btnCancel.UseCustomBackColor = true;
             this.btnCancel.UseCustomForeColor = true;
             this.btnCancel.UseSelectable = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnSave
             // 
@@ -142,12 +145,14 @@
             this.btnSave.UseCustomBackColor = true;
             this.btnSave.UseCustomForeColor = true;
             this.btnSave.UseSelectable = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // FormCreateDiscount
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(561, 171);
+            this.ControlBox = false;
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.txtPercentage);
@@ -155,6 +160,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "FormCreateDiscount";
+            this.Resizable = false;
             this.Text = "Discount";
             this.Load += new System.EventHandler(this.FormCreateDiscount_Load);
             this.ResumeLayout(false);

@@ -33,7 +33,6 @@
             this.txtPassword = new MetroFramework.Controls.MetroTextBox();
             this.btnLogin = new MetroFramework.Controls.MetroButton();
             this.btnClose = new MetroFramework.Controls.MetroButton();
-            this.metroLink1 = new MetroFramework.Controls.MetroLink();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -139,16 +138,6 @@
             this.btnClose.UseSelectable = true;
             this.btnClose.Click += new System.EventHandler(this.metroButton2_Click);
             // 
-            // metroLink1
-            // 
-            this.metroLink1.Location = new System.Drawing.Point(84, 217);
-            this.metroLink1.Name = "metroLink1";
-            this.metroLink1.Size = new System.Drawing.Size(125, 23);
-            this.metroLink1.TabIndex = 5;
-            this.metroLink1.Text = "Connect To Database";
-            this.metroLink1.UseSelectable = true;
-            this.metroLink1.Click += new System.EventHandler(this.metroLink1_Click);
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
@@ -158,23 +147,25 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // FormInit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(300, 271);
+            this.ClientSize = new System.Drawing.Size(300, 223);
             this.ControlBox = false;
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.metroLink1);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.txtUsername);
             this.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "FormInit";
             this.Padding = new System.Windows.Forms.Padding(37, 115, 37, 38);
+            this.Resizable = false;
             this.TextAlign = MetroFramework.Forms.MetroFormTextAlign.Center;
             this.Load += new System.EventHandler(this.FormInit_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -188,7 +179,6 @@
         private MetroFramework.Controls.MetroTextBox txtPassword;
         private MetroFramework.Controls.MetroButton btnLogin;
         private MetroFramework.Controls.MetroButton btnClose;
-        private MetroFramework.Controls.MetroLink metroLink1;
         private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

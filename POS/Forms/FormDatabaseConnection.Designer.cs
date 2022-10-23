@@ -42,10 +42,9 @@
             // 
             // 
             this.txtServerName.CustomButton.Image = null;
-            this.txtServerName.CustomButton.Location = new System.Drawing.Point(495, 2);
-            this.txtServerName.CustomButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtServerName.CustomButton.Location = new System.Drawing.Point(207, 1);
             this.txtServerName.CustomButton.Name = "";
-            this.txtServerName.CustomButton.Size = new System.Drawing.Size(31, 28);
+            this.txtServerName.CustomButton.Size = new System.Drawing.Size(16, 17);
             this.txtServerName.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.txtServerName.CustomButton.TabIndex = 1;
             this.txtServerName.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
@@ -53,8 +52,7 @@
             this.txtServerName.CustomButton.Visible = false;
             this.txtServerName.FontSize = MetroFramework.MetroTextBoxSize.Medium;
             this.txtServerName.Lines = new string[0];
-            this.txtServerName.Location = new System.Drawing.Point(31, 103);
-            this.txtServerName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtServerName.Location = new System.Drawing.Point(23, 84);
             this.txtServerName.MaxLength = 32767;
             this.txtServerName.Name = "txtServerName";
             this.txtServerName.PasswordChar = '\0';
@@ -64,7 +62,7 @@
             this.txtServerName.SelectionLength = 0;
             this.txtServerName.SelectionStart = 0;
             this.txtServerName.ShortcutsEnabled = true;
-            this.txtServerName.Size = new System.Drawing.Size(397, 28);
+            this.txtServerName.Size = new System.Drawing.Size(298, 23);
             this.txtServerName.TabIndex = 0;
             this.txtServerName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtServerName.UseSelectable = true;
@@ -78,10 +76,9 @@
             // 
             // 
             this.txtDatabaseName.CustomButton.Image = null;
-            this.txtDatabaseName.CustomButton.Location = new System.Drawing.Point(495, 2);
-            this.txtDatabaseName.CustomButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtDatabaseName.CustomButton.Location = new System.Drawing.Point(207, 1);
             this.txtDatabaseName.CustomButton.Name = "";
-            this.txtDatabaseName.CustomButton.Size = new System.Drawing.Size(31, 28);
+            this.txtDatabaseName.CustomButton.Size = new System.Drawing.Size(16, 17);
             this.txtDatabaseName.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.txtDatabaseName.CustomButton.TabIndex = 1;
             this.txtDatabaseName.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
@@ -89,8 +86,7 @@
             this.txtDatabaseName.CustomButton.Visible = false;
             this.txtDatabaseName.FontSize = MetroFramework.MetroTextBoxSize.Medium;
             this.txtDatabaseName.Lines = new string[0];
-            this.txtDatabaseName.Location = new System.Drawing.Point(31, 156);
-            this.txtDatabaseName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtDatabaseName.Location = new System.Drawing.Point(23, 127);
             this.txtDatabaseName.MaxLength = 32767;
             this.txtDatabaseName.Name = "txtDatabaseName";
             this.txtDatabaseName.PasswordChar = '\0';
@@ -100,7 +96,7 @@
             this.txtDatabaseName.SelectionLength = 0;
             this.txtDatabaseName.SelectionStart = 0;
             this.txtDatabaseName.ShortcutsEnabled = true;
-            this.txtDatabaseName.Size = new System.Drawing.Size(397, 28);
+            this.txtDatabaseName.Size = new System.Drawing.Size(298, 23);
             this.txtDatabaseName.TabIndex = 1;
             this.txtDatabaseName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtDatabaseName.UseSelectable = true;
@@ -114,10 +110,9 @@
             // 
             // 
             this.txtUsername.CustomButton.Image = null;
-            this.txtUsername.CustomButton.Location = new System.Drawing.Point(495, 2);
-            this.txtUsername.CustomButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtUsername.CustomButton.Location = new System.Drawing.Point(207, 1);
             this.txtUsername.CustomButton.Name = "";
-            this.txtUsername.CustomButton.Size = new System.Drawing.Size(31, 28);
+            this.txtUsername.CustomButton.Size = new System.Drawing.Size(16, 17);
             this.txtUsername.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.txtUsername.CustomButton.TabIndex = 1;
             this.txtUsername.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
@@ -125,8 +120,7 @@
             this.txtUsername.CustomButton.Visible = false;
             this.txtUsername.FontSize = MetroFramework.MetroTextBoxSize.Medium;
             this.txtUsername.Lines = new string[0];
-            this.txtUsername.Location = new System.Drawing.Point(31, 206);
-            this.txtUsername.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtUsername.Location = new System.Drawing.Point(23, 167);
             this.txtUsername.MaxLength = 32767;
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.PasswordChar = '\0';
@@ -136,7 +130,7 @@
             this.txtUsername.SelectionLength = 0;
             this.txtUsername.SelectionStart = 0;
             this.txtUsername.ShortcutsEnabled = true;
-            this.txtUsername.Size = new System.Drawing.Size(397, 28);
+            this.txtUsername.Size = new System.Drawing.Size(298, 23);
             this.txtUsername.TabIndex = 2;
             this.txtUsername.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtUsername.UseSelectable = true;
@@ -150,10 +144,9 @@
             // 
             // 
             this.txtPassword.CustomButton.Image = null;
-            this.txtPassword.CustomButton.Location = new System.Drawing.Point(495, 2);
-            this.txtPassword.CustomButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtPassword.CustomButton.Location = new System.Drawing.Point(207, 1);
             this.txtPassword.CustomButton.Name = "";
-            this.txtPassword.CustomButton.Size = new System.Drawing.Size(31, 28);
+            this.txtPassword.CustomButton.Size = new System.Drawing.Size(16, 17);
             this.txtPassword.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.txtPassword.CustomButton.TabIndex = 1;
             this.txtPassword.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
@@ -161,8 +154,7 @@
             this.txtPassword.CustomButton.Visible = false;
             this.txtPassword.FontSize = MetroFramework.MetroTextBoxSize.Medium;
             this.txtPassword.Lines = new string[0];
-            this.txtPassword.Location = new System.Drawing.Point(31, 256);
-            this.txtPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtPassword.Location = new System.Drawing.Point(23, 208);
             this.txtPassword.MaxLength = 32767;
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '●';
@@ -172,7 +164,7 @@
             this.txtPassword.SelectionLength = 0;
             this.txtPassword.SelectionStart = 0;
             this.txtPassword.ShortcutsEnabled = true;
-            this.txtPassword.Size = new System.Drawing.Size(397, 28);
+            this.txtPassword.Size = new System.Drawing.Size(298, 23);
             this.txtPassword.TabIndex = 3;
             this.txtPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtPassword.UseSelectable = true;
@@ -185,10 +177,9 @@
             // 
             this.btnCheckConnection.BackColor = System.Drawing.Color.SeaGreen;
             this.btnCheckConnection.ForeColor = System.Drawing.Color.White;
-            this.btnCheckConnection.Location = new System.Drawing.Point(31, 305);
-            this.btnCheckConnection.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCheckConnection.Location = new System.Drawing.Point(23, 248);
             this.btnCheckConnection.Name = "btnCheckConnection";
-            this.btnCheckConnection.Size = new System.Drawing.Size(397, 55);
+            this.btnCheckConnection.Size = new System.Drawing.Size(298, 45);
             this.btnCheckConnection.TabIndex = 4;
             this.btnCheckConnection.Text = "Check Connection";
             this.btnCheckConnection.UseCustomBackColor = true;
@@ -200,10 +191,9 @@
             // 
             this.btnClose.BackColor = System.Drawing.Color.IndianRed;
             this.btnClose.ForeColor = System.Drawing.Color.White;
-            this.btnClose.Location = new System.Drawing.Point(31, 368);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnClose.Location = new System.Drawing.Point(23, 299);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(397, 55);
+            this.btnClose.Size = new System.Drawing.Size(298, 45);
             this.btnClose.TabIndex = 5;
             this.btnClose.Text = "Close";
             this.btnClose.UseCustomBackColor = true;
@@ -213,9 +203,9 @@
             // 
             // FormDatabaseConnection
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(459, 452);
+            this.ClientSize = new System.Drawing.Size(344, 367);
             this.ControlBox = false;
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnCheckConnection);
@@ -223,9 +213,8 @@
             this.Controls.Add(this.txtUsername);
             this.Controls.Add(this.txtDatabaseName);
             this.Controls.Add(this.txtServerName);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FormDatabaseConnection";
-            this.Padding = new System.Windows.Forms.Padding(27, 74, 27, 25);
+            this.Resizable = false;
             this.Text = "Setup Database Connection";
             this.TextAlign = MetroFramework.Forms.MetroFormTextAlign.Center;
             this.Load += new System.EventHandler(this.FormDatabaseConnection_Load);

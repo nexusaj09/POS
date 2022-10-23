@@ -308,6 +308,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormCreateSupplier";
+            this.Resizable = false;
             this.Text = "Supplier ";
             this.Load += new System.EventHandler(this.FormCreateSupplier_Load);
             this.metroPanel1.ResumeLayout(false);

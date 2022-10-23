@@ -60,6 +60,7 @@
     <Compile Include="Classes\Audit.cs" />
     <Compile Include="Classes\Categories.cs" />
     <Compile Include="Classes\Discount.cs" />
+    <Compile Include="Classes\Notes.cs" />
     <Compile Include="Classes\Suppliers.cs" />
     <Compile Include="Classes\User.cs" />
     <Compile Include="Forms\FormCategories.cs">
@@ -79,6 +80,12 @@
     </Compile>
     <Compile Include="Forms\FormCreateDiscount.Designer.cs">
       <DependentUpon>FormCreateDiscount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormCreateNote.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormCreateNote.Designer.cs">
+      <DependentUpon>FormCreateNote.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormCreateSupplier.cs">
       <SubType>Form</SubType>
@@ -116,6 +123,12 @@
     <Compile Include="Forms\FormMainMenu.Designer.cs">
       <DependentUpon>FormMainMenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FormNotes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormNotes.Designer.cs">
+      <DependentUpon>FormNotes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormSuppliers.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -130,7 +143,8 @@
     </Compile>
     <Compile Include="Helpers\CategoryHelper.cs" />
     <Compile Include="Helpers\DatabaseConnection.cs" />
-    <Compile Include="Helpers\PreferenceHelper.cs" />
+    <Compile Include="Helpers\DiscountHelper.cs" />
+    <Compile Include="Helpers\NotesHelper.cs" />
     <Compile Include="Helpers\SupplierHelper.cs" />
     <Compile Include="Helpers\UserHelper.cs" />
     <Compile Include="Program.cs" />
@@ -143,6 +157,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormCreateDiscount.resx">
       <DependentUpon>FormCreateDiscount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormCreateNote.resx">
+      <DependentUpon>FormCreateNote.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormCreateSupplier.resx">
       <DependentUpon>FormCreateSupplier.cs</DependentUpon>
@@ -161,6 +178,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormMainMenu.resx">
       <DependentUpon>FormMainMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormNotes.resx">
+      <DependentUpon>FormNotes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormSuppliers.resx">
       <DependentUpon>FormSuppliers.cs</DependentUpon>

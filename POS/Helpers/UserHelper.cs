@@ -176,7 +176,7 @@ namespace POS.Helpers
                     cmd.Connection = conn;
                     cmd.CommandType = System.Data.CommandType.Text;
                     cmd.CommandText = @"DELETE FROM Users WHERE ID = @userID";
-                    cmd.Parameters.AddWithValue("@userID", userID);
+                    cmd.Parameters.AddWithValue(@"userID", userID);
                     cmd.ExecuteNonQuery();
                 }
             }

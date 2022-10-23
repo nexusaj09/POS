@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace POS.Classes
 {
-    public class Categories: Audit
+    public class Notes : Audit
     {
-
         public virtual int ID { get; set; }
-        public virtual string Category { get; set; }
+        public virtual string Title { get; set; }
+        public virtual string Description { get; set; }
 
-        public virtual decimal MarkUpPct { get; set; }
 
     }
 }

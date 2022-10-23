@@ -29,8 +29,7 @@ namespace POS.Forms
 
         private void metroLink1_Click(object sender, EventArgs e)
         {
-            FormDatabaseConnection frmDatabaseConn = new FormDatabaseConnection();
-            frmDatabaseConn.ShowDialog();
+
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -114,6 +113,12 @@ namespace POS.Forms
         {
             this.BringToFront();
             this.Activate();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            FormDatabaseConnection frmDatabaseConn = new FormDatabaseConnection();
+            frmDatabaseConn.ShowDialog();
         }
     }
 }

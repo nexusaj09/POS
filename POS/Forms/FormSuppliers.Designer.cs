@@ -245,6 +245,7 @@
             this.Controls.Add(this.panel1);
             this.MaximizeBox = false;
             this.Name = "FormSuppliers";
+            this.Resizable = false;
             this.Text = "Supplier List";
             this.Load += new System.EventHandler(this.FormSuppliers_Load);
             this.panel1.ResumeLayout(false);

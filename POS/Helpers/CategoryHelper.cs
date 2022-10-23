@@ -27,17 +27,20 @@ namespace POS.Helpers
                     cmd.CommandType = System.Data.CommandType.Text;
                     cmd.CommandText = @"INSERT INTO Categories
                                                               (Category,
+                                                               MarkUpPct,
                                                                CreatedbyID,
                                                                CreatedDateTime,
                                                                LastModifiedByID,
                                                                LastModifiedDateTime)
                                                             VALUES
                                                                   (@Category,
+                                                                   @MarkUpPct,
                                                                    @CreatedbyID,
                                                                    @CreatedDateTime,
                                                                    @LastModifiedByID,
                                                                    @LastModifiedDateTime)";
                     cmd.Parameters.AddWithValue(@"Category", currCategory.Category);
+                    cmd.Parameters.AddWithValue(@"MarkUpPct", currCategory.MarkUpPct);
                     cmd.Parameters.AddWithValue(@"CreatedbyID", currCategory.CreatedByID);
                     cmd.Parameters.AddWithValue(@"CreatedDateTime", currCategory.CreatedDateTime);
                     cmd.Parameters.AddWithValue(@"LastModifiedByID", currCategory.LastModifiedByID);
@@ -74,14 +77,14 @@ namespace POS.Helpers
                 {
                     cmd.Connection = conn;
                     cmd.CommandType = System.Data.CommandType.Text;
-                    cmd.CommandText = @"SELECT * FROM Categories WHERE Category LIKE '%" + search + "%' ORDER BY ID";
+                    cmd.CommandText = @"SELECT ID, Category, MarkUpPct FROM Categories WHERE Category LIKE '%" + search + "%' ORDER BY ID";
 
                     dr = cmd.ExecuteReader();
 
                     while (dr.Read())
                     {
                         count += 1;
-                        grid.Rows.Add(count, dr["ID"].ToString(), dr["Category"].ToString());
+                        grid.Rows.Add(count, dr["ID"].ToString(), dr["Category"].ToString(), dr["MarkUpPct"].ToString());
                     }
 
 
@@ -141,9 +144,10 @@ namespace POS.Helpers
                 {
                     cmd.Connection = conn;
                     cmd.CommandType = System.Data.CommandType.Text;
-                    cmd.CommandText = @"UPDATE Categories SET Category = @Category, LastModifiedByID = @LastModifiedByID, LastModifiedDateTime = @LastModifiedDateTime WHERE ID = @ID";
+                    cmd.CommandText = @"UPDATE Categories SET Category = @Category, MarkUpPct = @MarkUpPct, LastModifiedByID = @LastModifiedByID, LastModifiedDateTime = @LastModifiedDateTime WHERE ID = @ID";
                     cmd.Parameters.AddWithValue(@"ID", categories.ID);
                     cmd.Parameters.AddWithValue(@"Category", categories.Category);
+                    cmd.Parameters.AddWithValue(@"MarkUpPct", categories.MarkUpPct);
                     cmd.Parameters.AddWithValue(@"LastModifiedByID", categories.LastModifiedByID);
                     cmd.Parameters.AddWithValue(@"LastModifiedDateTime", categories.LastModifiedDateTime);
 

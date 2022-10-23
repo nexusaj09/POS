@@ -61,8 +61,14 @@ namespace POS.Forms
 
         private void btnDiscounts_Click(object sender, EventArgs e)
         {
-            FormDiscounts discounts = new FormDiscounts();
+            FormDiscounts discounts = new FormDiscounts(currUser);
             discounts.Show();
+        }
+
+        private void btnNotes_Click(object sender, EventArgs e)
+        {
+            FormNotes notes = new FormNotes(currUser);
+            notes.Show();
         }
     }
 }
