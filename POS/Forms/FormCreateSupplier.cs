@@ -42,28 +42,38 @@ namespace POS.Forms
 
                 if (btnSave.Text == "SAVE")
                 {
-                    if (MessageBox.Show(this, "Add this supplier?", "Add Supplier", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                    if (MessageBox.Show(this, "Add this supplier?", "Add Supplier", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes && txtSupplierName.Text != String.Empty)
                     {
-                        Suppliers newSupplier = new Suppliers();
+                        if (supplierHelper.IsExisting(txtSupplierName.Text) == false)
+                        {
+                            Suppliers newSupplier = new Suppliers();
 
-                        newSupplier.Supplier = txtSupplierName.Text;
-                        newSupplier.Address = txtAddress.Text;
-                        newSupplier.ContactPerson = txtContactPerson.Text;
-                        newSupplier.ContactNbr = txtContactNbr.Text;
-                        newSupplier.Email = txtEmail.Text;
-                        newSupplier.CreatedByID = currUser.UserID;
-                        newSupplier.CreatedDateTime = DateTime.Now;
-                        newSupplier.LastModifiedByID = currUser.UserID;
-                        newSupplier.LastModifiedDateTime = DateTime.Now;
+                            newSupplier.Supplier = txtSupplierName.Text;
+                            newSupplier.Address = txtAddress.Text;
+                            newSupplier.ContactPerson = txtContactPerson.Text;
+                            newSupplier.ContactNbr = txtContactNbr.Text;
+                            newSupplier.Email = txtEmail.Text;
+                            newSupplier.CreatedByID = currUser.UserID;
+                            newSupplier.CreatedDateTime = DateTime.Now;
+                            newSupplier.LastModifiedByID = currUser.UserID;
+                            newSupplier.LastModifiedDateTime = DateTime.Now;
 
-                        supplierHelper.CreateSupplier(newSupplier);
+                            supplierHelper.CreateSupplier(newSupplier);
 
-                        MessageBox.Show(this, "New Supplier Added", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show(this, "New Supplier Added", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                        supplierHelper.LoadSupplier(dataGrid, "");
+                            supplierHelper.LoadSupplier(dataGrid, "");
 
-                        Clear();
-
+                            Clear();
+                        }
+                        else
+                            MessageBox.Show("Supplier Already Exists!", "Existing", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        txtSupplierName.Select();
+                    }
+                    else if (txtSupplierName.Text == string.Empty)
+                    {
+                        MessageBox.Show("Supplier Name shoudn't be empty!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        txtSupplierName.Select();
                     }
                 }
                 else if (btnSave.Text == "UPDATE")

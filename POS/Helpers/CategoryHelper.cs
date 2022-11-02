@@ -26,21 +26,18 @@ namespace POS.Helpers
                     cmd.Connection = conn;
                     cmd.CommandType = System.Data.CommandType.Text;
                     cmd.CommandText = @"INSERT INTO Categories
-                                                              (Category,
-                                                               MarkUpPct,
+                                                              (Category,                                                              
                                                                CreatedbyID,
                                                                CreatedDateTime,
                                                                LastModifiedByID,
                                                                LastModifiedDateTime)
                                                             VALUES
-                                                                  (@Category,
-                                                                   @MarkUpPct,
+                                                                  (@Category,                                                                 
                                                                    @CreatedbyID,
                                                                    @CreatedDateTime,
                                                                    @LastModifiedByID,
                                                                    @LastModifiedDateTime)";
                     cmd.Parameters.AddWithValue(@"Category", currCategory.Category);
-                    cmd.Parameters.AddWithValue(@"MarkUpPct", currCategory.MarkUpPct);
                     cmd.Parameters.AddWithValue(@"CreatedbyID", currCategory.CreatedByID);
                     cmd.Parameters.AddWithValue(@"CreatedDateTime", currCategory.CreatedDateTime);
                     cmd.Parameters.AddWithValue(@"LastModifiedByID", currCategory.LastModifiedByID);
@@ -77,14 +74,14 @@ namespace POS.Helpers
                 {
                     cmd.Connection = conn;
                     cmd.CommandType = System.Data.CommandType.Text;
-                    cmd.CommandText = @"SELECT ID, Category, MarkUpPct FROM Categories WHERE Category LIKE '%" + search + "%' ORDER BY ID";
+                    cmd.CommandText = @"SELECT ID, Category FROM Categories WHERE Category LIKE '%" + search + "%' ORDER BY ID";
 
                     dr = cmd.ExecuteReader();
 
                     while (dr.Read())
                     {
                         count += 1;
-                        grid.Rows.Add(count, dr["ID"].ToString(), dr["Category"].ToString(), dr["MarkUpPct"].ToString());
+                        grid.Rows.Add(count, dr["ID"].ToString(), dr["Category"].ToString());
                     }
 
 
@@ -144,10 +141,9 @@ namespace POS.Helpers
                 {
                     cmd.Connection = conn;
                     cmd.CommandType = System.Data.CommandType.Text;
-                    cmd.CommandText = @"UPDATE Categories SET Category = @Category, MarkUpPct = @MarkUpPct, LastModifiedByID = @LastModifiedByID, LastModifiedDateTime = @LastModifiedDateTime WHERE ID = @ID";
+                    cmd.CommandText = @"UPDATE Categories SET Category = @Category, LastModifiedByID = @LastModifiedByID, LastModifiedDateTime = @LastModifiedDateTime WHERE ID = @ID";
                     cmd.Parameters.AddWithValue(@"ID", categories.ID);
                     cmd.Parameters.AddWithValue(@"Category", categories.Category);
-                    cmd.Parameters.AddWithValue(@"MarkUpPct", categories.MarkUpPct);
                     cmd.Parameters.AddWithValue(@"LastModifiedByID", categories.LastModifiedByID);
                     cmd.Parameters.AddWithValue(@"LastModifiedDateTime", categories.LastModifiedDateTime);
 
@@ -160,6 +156,41 @@ namespace POS.Helpers
             }
             finally
             {
+                conn.Close();
+                conn.Dispose();
+            }
+        }
+
+        public bool IsExisting(string category)
+        {
+            try
+            {
+                conn.Close();
+                conn.Dispose();
+
+                connection();
+
+                using (cmd = new SqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandType = System.Data.CommandType.Text;
+                    cmd.CommandText = @"SELECT Category FROM Categories WHERE LTRIM(RTRIM(Category)) = LTRIM(RTRIM('" + category + "')) ";
+                    dr = cmd.ExecuteReader();
+                    if (dr.HasRows)
+                    {
+                        return true;
+                    }
+                    else return false;
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return true;
+            }
+            finally
+            {
+                dr.Close();
                 conn.Close();
                 conn.Dispose();
             }

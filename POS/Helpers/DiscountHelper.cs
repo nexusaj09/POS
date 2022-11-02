@@ -108,7 +108,7 @@ namespace POS.Helpers
             }
         }
 
-        public void DeleteDiscount (int ID)
+        public void DeleteDiscount(int ID)
         {
             try
             {
@@ -126,7 +126,7 @@ namespace POS.Helpers
                     cmd.ExecuteNonQuery();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -137,7 +137,7 @@ namespace POS.Helpers
             }
         }
 
-        public void UpdateDiscount (Discount updateDiscount)
+        public void UpdateDiscount(Discount updateDiscount)
         {
             try
             {
@@ -167,6 +167,41 @@ namespace POS.Helpers
             }
             finally
             {
+                conn.Close();
+                conn.Dispose();
+            }
+        }
+
+        public bool IsExisting(string discount)
+        {
+            try
+            {
+                conn.Close();
+                conn.Dispose();
+
+                connection();
+
+                using (cmd = new SqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandType = System.Data.CommandType.Text;
+                    cmd.CommandText = @"SELECT Description FROM Discounts WHERE LTRIM(RTRIM(Description)) = LTRIM(RTRIM('" + discount + "')) ";
+                    dr = cmd.ExecuteReader();
+                    if (dr.HasRows)
+                    {
+                        return true;
+                    }
+                    else return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return true;
+            }
+            finally
+            {
+                dr.Close();
                 conn.Close();
                 conn.Dispose();
             }

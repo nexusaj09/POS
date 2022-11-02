@@ -76,28 +76,36 @@ namespace POS.Forms
 
                     if (MessageBox.Show(this, "Add this Discount?", "Add Discount", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes && (txtDescr.Text != null && txtDescr.Text != string.Empty))
                     {
-                        Discount newDiscount = new Discount();
+                        if (discountHelper.IsExisting(txtDescr.Text) == false)
+                        {
 
-                        newDiscount.Description = txtDescr.Text;
-                        newDiscount.DiscountPercentage = txtPercentage.Text;
-                        newDiscount.CreatedByID = currUser.UserID;
-                        newDiscount.CreatedDateTime = DateTime.Now;
-                        newDiscount.LastModifiedByID = currUser.UserID;
-                        newDiscount.LastModifiedDateTime = DateTime.Now;
+                            Discount newDiscount = new Discount();
 
-                        discountHelper.CreateDiscount(newDiscount);
+                            newDiscount.Description = txtDescr.Text;
+                            newDiscount.DiscountPercentage = txtPercentage.Text;
+                            newDiscount.CreatedByID = currUser.UserID;
+                            newDiscount.CreatedDateTime = DateTime.Now;
+                            newDiscount.LastModifiedByID = currUser.UserID;
+                            newDiscount.LastModifiedDateTime = DateTime.Now;
 
-                        MessageBox.Show(this, "New Discount Added", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            discountHelper.CreateDiscount(newDiscount);
 
-                        discountHelper.LoadDiscount(grdDiscount, "");
+                            MessageBox.Show(this, "New Discount Added", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                        txtDescr.Text = string.Empty;
-                        txtPercentage.Text = string.Empty;
+                            discountHelper.LoadDiscount(grdDiscount, "");
+
+                            txtDescr.Text = string.Empty;
+                            txtPercentage.Text = string.Empty;
+                        }
+                        else
+                            MessageBox.Show("Discount Already Exists!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        txtDescr.Select();
 
                     }
                     else if (txtDescr.Text == null || txtDescr.Text == string.Empty)
                     {
                         MessageBox.Show(this, "Please enter a description!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        txtDescr.Select();
                     }
                 }
                 else if (btnSave.Text == "UPDATE")

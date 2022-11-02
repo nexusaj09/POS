@@ -12,7 +12,5 @@ namespace POS.Classes
         public virtual int ID { get; set; }
         public virtual string Category { get; set; }
 
-        public virtual decimal MarkUpPct { get; set; }
-
     }
 }

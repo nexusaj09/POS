@@ -43,14 +43,6 @@ namespace POS.Forms
             if (updateCategory != null)
             {
                 txtCategory.Text = updateCategory.Category.ToString();
-                txtMarkUp.Text = updateCategory.MarkUpPct.ToString();
-            }
-            else
-            {
-                if (txtMarkUp.Text == string.Empty)
-                {
-                    txtMarkUp.Text = "0.00";
-                }
             }
 
         }
@@ -61,27 +53,41 @@ namespace POS.Forms
             {
                 if (btnSave.Text == "SAVE")
                 {
-                    if (MessageBox.Show(this, "Add this category?", "Add Category", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                    if (MessageBox.Show(this, "Add this category?", "Add Category", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes && txtCategory.Text != String.Empty)
                     {
-                        Categories newCategory = new Categories();
 
-                        newCategory.Category = txtCategory.Text;
-                        newCategory.MarkUpPct = Convert.ToDecimal(txtMarkUp.Text);
-                        newCategory.CreatedByID = currUser.UserID;
-                        newCategory.CreatedDateTime = DateTime.Now;
-                        newCategory.LastModifiedByID = currUser.UserID;
-                        newCategory.LastModifiedDateTime = DateTime.Now;
+                        if (categoryHelper.IsExisting(txtCategory.Text) == true)
+                        {
+                            MessageBox.Show("Category Already Exist!", "Existing", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            txtCategory.Select();
+                        }
 
-                        categoryHelper.CreateCategory(newCategory);
+                        else
+                        {
+                            Categories newCategory = new Categories();
 
-                        MessageBox.Show(this, "New Category Added", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            newCategory.Category = txtCategory.Text;
+                            newCategory.CreatedByID = currUser.UserID;
+                            newCategory.CreatedDateTime = DateTime.Now;
+                            newCategory.LastModifiedByID = currUser.UserID;
+                            newCategory.LastModifiedDateTime = DateTime.Now;
 
-                        categoryHelper.LoadCategories(currView, "");
+                            categoryHelper.CreateCategory(newCategory);
 
-                        txtCategory.Clear();
-                        txtMarkUp.Clear();
+                            MessageBox.Show(this, "New Category Added", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            categoryHelper.LoadCategories(currView, "");
+
+                            txtCategory.Clear();
+                            txtCategory.Select();
+                        }
+                    }
+                    else if (txtCategory.Text == String.Empty)
+                    {
+                        MessageBox.Show("Category shoudn't be empty!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         txtCategory.Select();
                     }
+
                 }
                 else if (btnSave.Text == "UPDATE")
                 {
@@ -89,11 +95,9 @@ namespace POS.Forms
                     {
 
                         updateCategory.Category = txtCategory.Text;
-                        updateCategory.MarkUpPct = Convert.ToDecimal(txtMarkUp.Text);
-
                         updateCategory.LastModifiedByID = currUser.UserID;
                         updateCategory.LastModifiedDateTime = DateTime.Now;
-      
+
                         categoryHelper.UpdateCategory(updateCategory);
                         MessageBox.Show(this, "Category successfully updated!", "Updated Successfully", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         categoryHelper.LoadCategories(currView, "");
@@ -109,32 +113,10 @@ namespace POS.Forms
             }
         }
 
-        private void txtMarkUp_KeyPress(object sender, KeyPressEventArgs e)
+        private void txtCategory_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void txtMarkUp_Enter(object sender, EventArgs e)
-        {
-            if (txtMarkUp.Text == "0.00")
-            {
-                txtMarkUp.Text = null;
-            }
-        }
-
-        private void txtMarkUp_Leave(object sender, EventArgs e)
-        {
-            if (txtMarkUp.Text != null && txtMarkUp.Text != string.Empty)
-            {
-                txtMarkUp.Text = string.Format("{0:#,##0.00}", double.Parse(txtMarkUp.Text));
-            }
-            else
-            {
-                txtMarkUp.Text = "0.00";
-            }
+            e.Handled = !char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar);
         }
     }
 }
+

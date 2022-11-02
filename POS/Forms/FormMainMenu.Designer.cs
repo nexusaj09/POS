@@ -32,19 +32,21 @@
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
             this.metroPanel2 = new MetroFramework.Controls.MetroPanel();
             this.metroPanel4 = new MetroFramework.Controls.MetroPanel();
+            this.btnProducts = new System.Windows.Forms.Button();
+            this.btnUserRoles = new System.Windows.Forms.Button();
+            this.btnNotes = new System.Windows.Forms.Button();
             this.btnDiscounts = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.btnSupplier = new System.Windows.Forms.Button();
             this.btnCategories = new System.Windows.Forms.Button();
             this.btnLogout = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnDashboard = new System.Windows.Forms.Button();
             this.metroPanel3 = new MetroFramework.Controls.MetroPanel();
             this.lblUser = new System.Windows.Forms.Label();
             this.lblRole = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnUsers = new MetroFramework.Controls.MetroPanel();
-            this.btnNotes = new System.Windows.Forms.Button();
             this.metroPanel2.SuspendLayout();
             this.metroPanel4.SuspendLayout();
             this.metroPanel3.SuspendLayout();
@@ -88,13 +90,15 @@
             // metroPanel4
             // 
             this.metroPanel4.Controls.Add(this.btnNotes);
-            this.metroPanel4.Controls.Add(this.btnDiscounts);
-            this.metroPanel4.Controls.Add(this.button3);
-            this.metroPanel4.Controls.Add(this.btnSupplier);
-            this.metroPanel4.Controls.Add(this.btnCategories);
-            this.metroPanel4.Controls.Add(this.btnLogout);
+            this.metroPanel4.Controls.Add(this.btnUserRoles);
             this.metroPanel4.Controls.Add(this.button2);
-            this.metroPanel4.Controls.Add(this.button1);
+            this.metroPanel4.Controls.Add(this.btnDiscounts);
+            this.metroPanel4.Controls.Add(this.btnLogout);
+            this.metroPanel4.Controls.Add(this.btnCategories);
+            this.metroPanel4.Controls.Add(this.btnSupplier);
+            this.metroPanel4.Controls.Add(this.btnProducts);
+            this.metroPanel4.Controls.Add(this.button3);
+            this.metroPanel4.Controls.Add(this.btnDashboard);
             this.metroPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.metroPanel4.HorizontalScrollbarBarColor = true;
             this.metroPanel4.HorizontalScrollbarHighlightOnWheel = false;
@@ -107,6 +111,60 @@
             this.metroPanel4.VerticalScrollbarBarColor = true;
             this.metroPanel4.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel4.VerticalScrollbarSize = 13;
+            // 
+            // btnProducts
+            // 
+            this.btnProducts.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnProducts.FlatAppearance.BorderSize = 0;
+            this.btnProducts.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnProducts.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnProducts.Image = ((System.Drawing.Image)(resources.GetObject("btnProducts.Image")));
+            this.btnProducts.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnProducts.Location = new System.Drawing.Point(0, 70);
+            this.btnProducts.Margin = new System.Windows.Forms.Padding(4);
+            this.btnProducts.Name = "btnProducts";
+            this.btnProducts.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.btnProducts.Size = new System.Drawing.Size(214, 35);
+            this.btnProducts.TabIndex = 11;
+            this.btnProducts.Text = "Products";
+            this.btnProducts.UseVisualStyleBackColor = true;
+            this.btnProducts.Click += new System.EventHandler(this.btnProducts_Click);
+            // 
+            // btnUserRoles
+            // 
+            this.btnUserRoles.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnUserRoles.FlatAppearance.BorderSize = 0;
+            this.btnUserRoles.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUserRoles.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUserRoles.Image = ((System.Drawing.Image)(resources.GetObject("btnUserRoles.Image")));
+            this.btnUserRoles.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnUserRoles.Location = new System.Drawing.Point(0, 245);
+            this.btnUserRoles.Margin = new System.Windows.Forms.Padding(4);
+            this.btnUserRoles.Name = "btnUserRoles";
+            this.btnUserRoles.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.btnUserRoles.Size = new System.Drawing.Size(214, 35);
+            this.btnUserRoles.TabIndex = 10;
+            this.btnUserRoles.Text = "User Roles";
+            this.btnUserRoles.UseVisualStyleBackColor = true;
+            this.btnUserRoles.Click += new System.EventHandler(this.btnUserRoles_Click);
+            // 
+            // btnNotes
+            // 
+            this.btnNotes.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnNotes.FlatAppearance.BorderSize = 0;
+            this.btnNotes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNotes.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNotes.Image = ((System.Drawing.Image)(resources.GetObject("btnNotes.Image")));
+            this.btnNotes.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnNotes.Location = new System.Drawing.Point(0, 280);
+            this.btnNotes.Margin = new System.Windows.Forms.Padding(4);
+            this.btnNotes.Name = "btnNotes";
+            this.btnNotes.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.btnNotes.Size = new System.Drawing.Size(214, 35);
+            this.btnNotes.TabIndex = 9;
+            this.btnNotes.Text = "Notes";
+            this.btnNotes.UseVisualStyleBackColor = true;
+            this.btnNotes.Click += new System.EventHandler(this.btnNotes_Click);
             // 
             // btnDiscounts
             // 
@@ -134,7 +192,7 @@
             this.button3.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
             this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button3.Location = new System.Drawing.Point(0, 140);
+            this.button3.Location = new System.Drawing.Point(0, 35);
             this.button3.Margin = new System.Windows.Forms.Padding(4);
             this.button3.Name = "button3";
             this.button3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -169,7 +227,7 @@
             this.btnCategories.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCategories.Image = ((System.Drawing.Image)(resources.GetObject("btnCategories.Image")));
             this.btnCategories.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnCategories.Location = new System.Drawing.Point(0, 70);
+            this.btnCategories.Location = new System.Drawing.Point(0, 140);
             this.btnCategories.Margin = new System.Windows.Forms.Padding(4);
             this.btnCategories.Name = "btnCategories";
             this.btnCategories.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -205,7 +263,7 @@
             this.button2.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
             this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button2.Location = new System.Drawing.Point(0, 35);
+            this.button2.Location = new System.Drawing.Point(0, 210);
             this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -215,23 +273,26 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button1
+            // btnDashboard
             // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.Location = new System.Drawing.Point(0, 0);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
-            this.button1.Name = "button1";
-            this.button1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.button1.Size = new System.Drawing.Size(214, 35);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Dashboard";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnDashboard.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnDashboard.FlatAppearance.BorderSize = 0;
+            this.btnDashboard.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(112)))), ((int)(((byte)(202)))));
+            this.btnDashboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDashboard.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDashboard.Image = ((System.Drawing.Image)(resources.GetObject("btnDashboard.Image")));
+            this.btnDashboard.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnDashboard.Location = new System.Drawing.Point(0, 0);
+            this.btnDashboard.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDashboard.Name = "btnDashboard";
+            this.btnDashboard.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.btnDashboard.Size = new System.Drawing.Size(214, 35);
+            this.btnDashboard.TabIndex = 2;
+            this.btnDashboard.Text = "Dashboard";
+            this.btnDashboard.UseVisualStyleBackColor = true;
+            this.btnDashboard.MouseEnter += new System.EventHandler(this.btnDashboard_MouseEnter);
+            this.btnDashboard.MouseLeave += new System.EventHandler(this.btnDashboard_MouseLeave);
+            this.btnDashboard.MouseHover += new System.EventHandler(this.btnDashboard_MouseHover);
             // 
             // metroPanel3
             // 
@@ -310,24 +371,6 @@
             this.btnUsers.VerticalScrollbarHighlightOnWheel = false;
             this.btnUsers.VerticalScrollbarSize = 13;
             // 
-            // btnNotes
-            // 
-            this.btnNotes.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnNotes.FlatAppearance.BorderSize = 0;
-            this.btnNotes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNotes.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNotes.Image = ((System.Drawing.Image)(resources.GetObject("btnNotes.Image")));
-            this.btnNotes.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnNotes.Location = new System.Drawing.Point(0, 210);
-            this.btnNotes.Margin = new System.Windows.Forms.Padding(4);
-            this.btnNotes.Name = "btnNotes";
-            this.btnNotes.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.btnNotes.Size = new System.Drawing.Size(214, 35);
-            this.btnNotes.TabIndex = 9;
-            this.btnNotes.Text = "Notes";
-            this.btnNotes.UseVisualStyleBackColor = true;
-            this.btnNotes.Click += new System.EventHandler(this.btnNotes_Click);
-            // 
             // FormMainMenu
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -357,7 +400,7 @@
         private MetroFramework.Controls.MetroPanel metroPanel2;
         private MetroFramework.Controls.MetroPanel metroPanel4;
         private MetroFramework.Controls.MetroPanel metroPanel3;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnDashboard;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lblRole;
         private MetroFramework.Controls.MetroPanel btnUsers;
@@ -369,5 +412,7 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button btnDiscounts;
         private System.Windows.Forms.Button btnNotes;
+        private System.Windows.Forms.Button btnUserRoles;
+        private System.Windows.Forms.Button btnProducts;
     }
 }

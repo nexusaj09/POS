@@ -179,5 +179,40 @@ namespace POS.Helpers
             }
         }
 
+        public bool IsExisting(string supplier)
+        {
+            try
+            {
+                conn.Close();
+                conn.Dispose();
+
+                connection();
+
+                using (cmd = new SqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandType = System.Data.CommandType.Text;
+                    cmd.CommandText = @"SELECT Supplier FROM Suppliers WHERE LTRIM(RTRIM(Supplier)) = LTRIM(RTRIM('" + supplier + "')) ";
+                    dr = cmd.ExecuteReader();
+                    if (dr.HasRows)
+                    {
+                        return true;
+                    }
+                    else return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return true;
+            }
+            finally
+            {
+                dr.Close();
+                conn.Close();
+                conn.Dispose();
+            }
+        }
+
     }
 }

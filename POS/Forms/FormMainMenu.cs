@@ -70,5 +70,32 @@ namespace POS.Forms
             FormNotes notes = new FormNotes(currUser);
             notes.Show();
         }
+
+        private void btnUserRoles_Click(object sender, EventArgs e)
+        {
+            FormUserRoles formUserRoles = new FormUserRoles();
+            formUserRoles.Show();
+        }
+
+        private void btnProducts_Click(object sender, EventArgs e)
+        {
+            FormProduct formProduct = new FormProduct(currUser);
+            formProduct.Show();
+        }
+
+        private void btnDashboard_MouseHover(object sender, EventArgs e)
+        {
+            btnDashboard.ForeColor = Color.White;
+        }
+
+        private void btnDashboard_MouseLeave(object sender, EventArgs e)
+        {
+            btnDashboard.ForeColor = Color.Black;
+        }
+
+        private void btnDashboard_MouseEnter(object sender, EventArgs e)
+        {
+            btnDashboard.ForeColor = Color.White;
+        }
     }
 }
