@@ -157,6 +157,7 @@
             this.txtContactNbr.UseSelectable = true;
             this.txtContactNbr.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtContactNbr.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.txtContactNbr.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtContactNbr_KeyPress);
             // 
             // txtContactPerson
             // 
@@ -187,6 +188,7 @@
             this.txtContactPerson.UseSelectable = true;
             this.txtContactPerson.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtContactPerson.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.txtContactPerson.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtContactPerson_KeyPress);
             // 
             // txtAddress
             // 
@@ -302,6 +304,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
             this.ClientSize = new System.Drawing.Size(643, 315);
             this.ControlBox = false;
             this.Controls.Add(this.metroPanel1);
@@ -309,6 +312,7 @@
             this.MinimizeBox = false;
             this.Name = "FormCreateSupplier";
             this.Resizable = false;
+            this.ShadowType = MetroFramework.Forms.MetroFormShadowType.None;
             this.Text = "Supplier ";
             this.Load += new System.EventHandler(this.FormCreateSupplier_Load);
             this.metroPanel1.ResumeLayout(false);

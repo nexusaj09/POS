@@ -33,9 +33,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormNotes));
             this.grdNoteList = new MetroFramework.Controls.MetroGrid();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.txtSearch = new MetroFramework.Controls.MetroTextBox();
-            this.btnCreate = new MetroFramework.Controls.MetroButton();
             this.Count = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Title = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -43,6 +40,9 @@
             this.CreatedDateTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EDIT = new System.Windows.Forms.DataGridViewImageColumn();
             this.DELETE = new System.Windows.Forms.DataGridViewImageColumn();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.txtSearch = new MetroFramework.Controls.MetroTextBox();
+            this.btnCreate = new MetroFramework.Controls.MetroButton();
             ((System.ComponentModel.ISupportInitialize)(this.grdNoteList)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -76,7 +76,7 @@
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
@@ -103,6 +103,60 @@
             this.grdNoteList.Size = new System.Drawing.Size(1025, 617);
             this.grdNoteList.TabIndex = 7;
             this.grdNoteList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdNoteList_CellContentClick);
+            // 
+            // Count
+            // 
+            this.Count.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Count.HeaderText = "#";
+            this.Count.Name = "Count";
+            this.Count.ReadOnly = true;
+            this.Count.Width = 39;
+            // 
+            // ID
+            // 
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Visible = false;
+            // 
+            // Title
+            // 
+            this.Title.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Title.HeaderText = "TITLE";
+            this.Title.Name = "Title";
+            this.Title.ReadOnly = true;
+            // 
+            // Description
+            // 
+            this.Description.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Description.HeaderText = "DESCRIPTION";
+            this.Description.Name = "Description";
+            this.Description.ReadOnly = true;
+            // 
+            // CreatedDateTime
+            // 
+            this.CreatedDateTime.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CreatedDateTime.HeaderText = "CREATED DATE AND TIME";
+            this.CreatedDateTime.Name = "CreatedDateTime";
+            this.CreatedDateTime.ReadOnly = true;
+            // 
+            // EDIT
+            // 
+            this.EDIT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.EDIT.HeaderText = "";
+            this.EDIT.Image = ((System.Drawing.Image)(resources.GetObject("EDIT.Image")));
+            this.EDIT.Name = "EDIT";
+            this.EDIT.ReadOnly = true;
+            this.EDIT.Width = 5;
+            // 
+            // DELETE
+            // 
+            this.DELETE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.DELETE.HeaderText = "";
+            this.DELETE.Image = ((System.Drawing.Image)(resources.GetObject("DELETE.Image")));
+            this.DELETE.Name = "DELETE";
+            this.DELETE.ReadOnly = true;
+            this.DELETE.Width = 5;
             // 
             // panel1
             // 
@@ -161,72 +215,21 @@
             this.btnCreate.UseCustomBackColor = true;
             this.btnCreate.UseCustomForeColor = true;
             this.btnCreate.UseSelectable = true;
+            this.btnCreate.TextChanged += new System.EventHandler(this.btnCreate_TextChanged);
             this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
-            // 
-            // Count
-            // 
-            this.Count.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Count.HeaderText = "#";
-            this.Count.Name = "Count";
-            this.Count.ReadOnly = true;
-            this.Count.Width = 39;
-            // 
-            // ID
-            // 
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Visible = false;
-            // 
-            // Title
-            // 
-            this.Title.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Title.HeaderText = "TITLE";
-            this.Title.Name = "Title";
-            this.Title.ReadOnly = true;
-            // 
-            // Description
-            // 
-            this.Description.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Description.HeaderText = "DESCRIPTION";
-            this.Description.Name = "Description";
-            this.Description.ReadOnly = true;
-            // 
-            // CreatedDateTime
-            // 
-            this.CreatedDateTime.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CreatedDateTime.HeaderText = "CREATED DATE AND TIME";
-            this.CreatedDateTime.Name = "CreatedDateTime";
-            this.CreatedDateTime.ReadOnly = true;
-            // 
-            // EDIT
-            // 
-            this.EDIT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.EDIT.HeaderText = "";
-            this.EDIT.Image = ((System.Drawing.Image)(resources.GetObject("EDIT.Image")));
-            this.EDIT.Name = "EDIT";
-            this.EDIT.ReadOnly = true;
-            this.EDIT.Width = 5;
-            // 
-            // DELETE
-            // 
-            this.DELETE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.DELETE.HeaderText = "";
-            this.DELETE.Image = ((System.Drawing.Image)(resources.GetObject("DELETE.Image")));
-            this.DELETE.Name = "DELETE";
-            this.DELETE.ReadOnly = true;
-            this.DELETE.Width = 5;
             // 
             // FormNotes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
             this.ClientSize = new System.Drawing.Size(1065, 733);
             this.Controls.Add(this.grdNoteList);
             this.Controls.Add(this.panel1);
             this.MaximizeBox = false;
             this.Name = "FormNotes";
             this.Resizable = false;
+            this.ShadowType = MetroFramework.Forms.MetroFormShadowType.None;
             this.Text = "Note List";
             this.Load += new System.EventHandler(this.FormNotes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grdNoteList)).EndInit();

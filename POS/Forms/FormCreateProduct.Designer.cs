@@ -684,6 +684,7 @@
             this.txtBarcode.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             this.txtBarcode.TextChanged += new System.EventHandler(this.txtBarcode_TextChanged);
             this.txtBarcode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBarcode_KeyPress);
+            this.txtBarcode.Leave += new System.EventHandler(this.txtBarcode_Leave);
             // 
             // txtProductCode
             // 
@@ -715,6 +716,7 @@
             this.txtProductCode.UseSelectable = true;
             this.txtProductCode.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtProductCode.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.txtProductCode.Leave += new System.EventHandler(this.txtProductCode_Leave);
             // 
             // label5
             // 
@@ -770,11 +772,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
             this.ClientSize = new System.Drawing.Size(994, 500);
             this.ControlBox = false;
             this.Controls.Add(this.metroPanel1);
             this.Name = "FormCreateProduct";
             this.Resizable = false;
+            this.ShadowType = MetroFramework.Forms.MetroFormShadowType.None;
             this.Text = "Product Information";
             this.Load += new System.EventHandler(this.FormCreateProduct_Load);
             this.metroPanel1.ResumeLayout(false);

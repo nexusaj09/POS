@@ -25,6 +25,10 @@ namespace POS.Panels
             InitializeComponent();
 
             currUser = user;
+
+            lblStockOnHand.Select();
+
+            this.grdProductList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
         }
 
         private void btnImport_Click(object sender, EventArgs e)
@@ -60,13 +64,18 @@ namespace POS.Panels
 
                         descr = ConcatDescription(xlRange, xlRow);
 
-                        i++;
 
-                        grdProductList.Rows.Add(i, xlRange.Cells[xlRow, 1].Text, xlRange.Cells[xlRow, 2].Text, descr, xlRange.Cells[xlRow, 3].Text,
-                                xlRange.Cells[xlRow, 4].Text, xlRange.Cells[xlRow, 5].Text, xlRange.Cells[xlRow, 6].Text, xlRange.Cells[xlRow, 7].Text,
-                                xlRange.Cells[xlRow, 8].Text, xlRange.Cells[xlRow, 9].Text, xlRange.Cells[xlRow, 10].Text, xlRange.Cells[xlRow, 11].Text,
-                                xlRange.Cells[xlRow, 12].Text, xlRange.Cells[xlRow, 13].Text, xlRange.Cells[xlRow, 14].Text);
+                        if ((productHelper.IsExisting(xlRange.Cells[xlRow, 1].Text) == false && !string.IsNullOrEmpty(xlRange.Cells[xlRow, 1].Text)) && (productHelper.IsExistingBarcode(xlRange.Cells[xlRow, 2].Text) == false || string.IsNullOrEmpty(xlRange.Cells[xlRow, 2].Text)))
+                        {
 
+                            i++;
+                            grdProductList.Rows.Add(i, xlRange.Cells[xlRow, 1].Text, xlRange.Cells[xlRow, 2].Text, descr, xlRange.Cells[xlRow, 3].Text,
+                                    xlRange.Cells[xlRow, 4].Text, xlRange.Cells[xlRow, 5].Text, xlRange.Cells[xlRow, 6].Text, xlRange.Cells[xlRow, 7].Text,
+                                    xlRange.Cells[xlRow, 8].Text, xlRange.Cells[xlRow, 9].Text, xlRange.Cells[xlRow, 10].Text, xlRange.Cells[xlRow, 11].Text,
+                                    xlRange.Cells[xlRow, 12].Text, xlRange.Cells[xlRow, 13].Text, xlRange.Cells[xlRow, 14].Text);
+                        }
+                        else
+                            continue;
 
                     }
 
@@ -75,38 +84,43 @@ namespace POS.Panels
 
                     lblStockOnHand.Text = i.ToString();
 
-                    if (MessageBox.Show(this, "Add this Products?", "Add Products", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                    if (i >= 1)
                     {
-
-                        foreach (DataGridViewRow row in grdProductList.Rows)
+                        if (MessageBox.Show(this, "Add this Products?", "Add Products", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                         {
 
+                            foreach (DataGridViewRow row in grdProductList.Rows)
+                            {
+                                Product newProduct = new Product();
+                                newProduct.ProductCode = grdProductList[1, row.Index].Value.ToString();
+                                newProduct.ProductBarcode = grdProductList[2, row.Index].Value.ToString();
+                                newProduct.Description = grdProductList[3, row.Index].Value.ToString();
+                                newProduct.BrandName = grdProductList[4, row.Index].Value.ToString();
+                                newProduct.GenericName = grdProductList[5, row.Index].Value.ToString();
+                                newProduct.Classification = grdProductList[6, row.Index].Value.ToString();
+                                newProduct.Formulation = grdProductList[7, row.Index].Value.ToString();
+                                newProduct.Category = grdProductList[8, row.Index].Value.ToString();
+                                newProduct.UOM = grdProductList[9, row.Index].Value.ToString();
+                                newProduct.Qty = Convert.ToInt32(grdProductList[10, row.Index].Value.ToString());
+                                newProduct.ReOrderQty = Convert.ToInt32(grdProductList[11, row.Index].Value.ToString());
+                                newProduct.SupplierPrice = Convert.ToDecimal(grdProductList[12, row.Index].Value.ToString());
+                                newProduct.SRP = Convert.ToDecimal(grdProductList[13, row.Index].Value.ToString());
+                                newProduct.FinalPrice = Convert.ToDecimal(grdProductList[14, row.Index].Value.ToString());
+                                newProduct.MarkUp = Convert.ToInt32(grdProductList[15, row.Index].Value.ToString());
+                                newProduct.CreatedByID = currUser.UserID;
+                                newProduct.CreatedDateTime = DateTime.Now;
+                                newProduct.LastModifiedByID = currUser.UserID;
+                                newProduct.LastModifiedDateTime = DateTime.Now;
 
-                            Product newProduct = new Product();
-                            newProduct.ProductCode = grdProductList[1, row.Index].Value.ToString();
-                            newProduct.ProductBarcode = grdProductList[2, row.Index].Value.ToString();
-                            newProduct.Description = grdProductList[3, row.Index].Value.ToString();
-                            newProduct.BrandName = grdProductList[4, row.Index].Value.ToString();
-                            newProduct.GenericName = grdProductList[5, row.Index].Value.ToString();
-                            newProduct.Classification = grdProductList[6, row.Index].Value.ToString();
-                            newProduct.Formulation = grdProductList[7, row.Index].Value.ToString();
-                            newProduct.Category = grdProductList[8, row.Index].Value.ToString();
-                            newProduct.UOM = grdProductList[9, row.Index].Value.ToString();
-                            newProduct.Qty = Convert.ToInt32(grdProductList[10, row.Index].Value.ToString());
-                            newProduct.ReOrderQty = Convert.ToInt32(grdProductList[11, row.Index].Value.ToString());
-                            newProduct.SupplierPrice = Convert.ToDecimal(grdProductList[12, row.Index].Value.ToString());
-                            newProduct.SRP = Convert.ToDecimal(grdProductList[13, row.Index].Value.ToString());
-                            newProduct.FinalPrice = Convert.ToDecimal(grdProductList[14, row.Index].Value.ToString());
-                            newProduct.MarkUp = Convert.ToInt32(grdProductList[15, row.Index].Value.ToString());
-                            newProduct.CreatedByID = currUser.UserID;
-                            newProduct.CreatedDateTime = DateTime.Now;
-                            newProduct.LastModifiedByID = currUser.UserID;
-                            newProduct.LastModifiedDateTime = DateTime.Now;
+                                productHelper.CreateProduct(newProduct);
+                            }
 
-                            productHelper.CreateProduct(newProduct);
+                            MessageBox.Show(this, "New Products Added", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
-
-                        MessageBox.Show(this, "New Products Added", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        else
+                            grdProductList.Rows.Clear();
+                        lblStockOnHand.Text = "0";
+                        lblStockOnHand.Select();
                     }
                 }
             }
@@ -121,9 +135,6 @@ namespace POS.Panels
 
 
 
-
-
-
         public string ConcatDescription(Microsoft.Office.Interop.Excel.Range xlRange, int row)
         {
             string descr = "";
@@ -133,6 +144,11 @@ namespace POS.Panels
 
             return descr;
 
+        }
+
+        private void PanelImportProduct_Load(object sender, EventArgs e)
+        {
+            this.grdProductList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
         }
     }
 }

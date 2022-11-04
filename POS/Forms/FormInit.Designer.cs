@@ -153,6 +153,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
             this.ClientSize = new System.Drawing.Size(300, 223);
             this.ControlBox = false;
             this.Controls.Add(this.pictureBox1);
@@ -166,6 +167,7 @@
             this.Name = "FormInit";
             this.Padding = new System.Windows.Forms.Padding(37, 115, 37, 38);
             this.Resizable = false;
+            this.ShadowType = MetroFramework.Forms.MetroFormShadowType.None;
             this.TextAlign = MetroFramework.Forms.MetroFormTextAlign.Center;
             this.Load += new System.EventHandler(this.FormInit_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

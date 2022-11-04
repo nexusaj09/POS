@@ -31,7 +31,7 @@ namespace POS.Forms
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
-            FormCreateProduct formCreateProduct = new FormCreateProduct(this,null);
+            FormCreateProduct formCreateProduct = new FormCreateProduct(this, null);
             formCreateProduct.ShowDialog();
             txtSearch.Select();
         }
@@ -60,7 +60,7 @@ namespace POS.Forms
             {
                 if (MessageBox.Show(this, "Are you sure to delete this product?", "Delete Product", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    productHelper.DeleteProdut(Convert.ToInt32(grdProductList[1, e.RowIndex].Value.ToString()));
+                    productHelper.DeleteProdut(grdProductList[1, e.RowIndex].Value.ToString());
                     Init();
                     MessageBox.Show("Product Successfully Deleted", "Product Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -68,22 +68,21 @@ namespace POS.Forms
             else if (grdProductList.Columns[e.ColumnIndex].Name == "EDIT")
             {
                 Product updateProduct = new Product();
-                updateProduct.ID = Convert.ToInt32(grdProductList[1, e.RowIndex].Value.ToString());
-                updateProduct.ProductCode = grdProductList[2, e.RowIndex].Value.ToString();
-                updateProduct.ProductBarcode = grdProductList[3, e.RowIndex].Value.ToString();
-                updateProduct.Description = grdProductList[4, e.RowIndex].Value.ToString();
-                updateProduct.BrandName = grdProductList[5, e.RowIndex].Value.ToString();
-                updateProduct.GenericName = grdProductList[6, e.RowIndex].Value.ToString();
-                updateProduct.Classification = grdProductList[7, e.RowIndex].Value.ToString();
-                updateProduct.Formulation = grdProductList[8, e.RowIndex].Value.ToString();
-                updateProduct.Category = grdProductList[9, e.RowIndex].Value.ToString();
-                updateProduct.UOM = grdProductList[10, e.RowIndex].Value.ToString();
-                updateProduct.Qty = Convert.ToInt32(grdProductList[11, e.RowIndex].Value.ToString());
-                updateProduct.ReOrderQty = Convert.ToInt32(grdProductList[12, e.RowIndex].Value.ToString());
-                updateProduct.SupplierPrice = Convert.ToDecimal(grdProductList[13, e.RowIndex].Value.ToString());
-                updateProduct.SRP = Convert.ToDecimal(grdProductList[14, e.RowIndex].Value.ToString());
-                updateProduct.FinalPrice = Convert.ToDecimal(grdProductList[15, e.RowIndex].Value.ToString());
-                updateProduct.MarkUp = Convert.ToInt32(grdProductList[16, e.RowIndex].Value.ToString());
+                updateProduct.ProductCode = grdProductList[1, e.RowIndex].Value.ToString();
+                updateProduct.ProductBarcode = grdProductList[2, e.RowIndex].Value.ToString();
+                updateProduct.Description = grdProductList[3, e.RowIndex].Value.ToString();
+                updateProduct.BrandName = grdProductList[4, e.RowIndex].Value.ToString();
+                updateProduct.GenericName = grdProductList[5, e.RowIndex].Value.ToString();
+                updateProduct.Classification = grdProductList[6, e.RowIndex].Value.ToString();
+                updateProduct.Formulation = grdProductList[7, e.RowIndex].Value.ToString();
+                updateProduct.Category = grdProductList[8, e.RowIndex].Value.ToString();
+                updateProduct.UOM = grdProductList[9, e.RowIndex].Value.ToString();
+                updateProduct.Qty = Convert.ToInt32(grdProductList[10, e.RowIndex].Value.ToString());
+                updateProduct.ReOrderQty = Convert.ToInt32(grdProductList[11, e.RowIndex].Value.ToString());
+                updateProduct.SupplierPrice = Convert.ToDecimal(grdProductList[12, e.RowIndex].Value.ToString());
+                updateProduct.SRP = Convert.ToDecimal(grdProductList[13, e.RowIndex].Value.ToString());
+                updateProduct.FinalPrice = Convert.ToDecimal(grdProductList[14, e.RowIndex].Value.ToString());
+                updateProduct.MarkUp = Convert.ToInt32(grdProductList[15, e.RowIndex].Value.ToString());
                 updateProduct.LastModifiedByID = currUser.UserID;
 
                 FormCreateProduct form = new FormCreateProduct(this, updateProduct);
@@ -95,7 +94,11 @@ namespace POS.Forms
         private void btnImport_Click(object sender, EventArgs e)
         {
             PanelImportProduct panelImport = new PanelImportProduct(currUser);
-            panelImport.Show();
+            panelImport.ShowDialog();
+            this.BringToFront();
+            txtSearch.Select();
+
+
         }
     }
 }

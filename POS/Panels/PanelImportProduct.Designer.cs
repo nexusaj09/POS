@@ -28,17 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.grdProductList = new MetroFramework.Controls.MetroGrid();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.btnImport = new MetroFramework.Controls.MetroButton();
-            this.metroPanel3 = new MetroFramework.Controls.MetroPanel();
-            this.lblStockOnHand = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.Count = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PRODUCTCODE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BARCODE = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,6 +48,13 @@
             this.SRP = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FINALPRICE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MARKUP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnImport = new MetroFramework.Controls.MetroButton();
+            this.metroPanel3 = new MetroFramework.Controls.MetroPanel();
+            this.lblStockOnHand = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.grdProductList)).BeginInit();
             this.panel1.SuspendLayout();
             this.metroPanel3.SuspendLayout();
@@ -69,14 +69,14 @@
             this.grdProductList.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.grdProductList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.grdProductList.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(114)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(114)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdProductList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(114)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(114)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdProductList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.grdProductList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdProductList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Count,
@@ -95,34 +95,134 @@
             this.SRP,
             this.FINALPRICE,
             this.MARKUP});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdProductList.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdProductList.DefaultCellStyle = dataGridViewCellStyle5;
             this.grdProductList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grdProductList.EnableHeadersVisualStyles = false;
             this.grdProductList.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.grdProductList.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.grdProductList.Location = new System.Drawing.Point(20, 135);
             this.grdProductList.Name = "grdProductList";
+            this.grdProductList.ReadOnly = true;
             this.grdProductList.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdProductList.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdProductList.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.grdProductList.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.grdProductList.RowTemplate.Height = 24;
+            this.grdProductList.RowTemplate.Height = 26;
             this.grdProductList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdProductList.Size = new System.Drawing.Size(1501, 698);
             this.grdProductList.TabIndex = 10;
+            // 
+            // Count
+            // 
+            this.Count.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Count.HeaderText = "#";
+            this.Count.Name = "Count";
+            this.Count.ReadOnly = true;
+            this.Count.Width = 39;
+            // 
+            // PRODUCTCODE
+            // 
+            this.PRODUCTCODE.HeaderText = "PRODUCT CODE";
+            this.PRODUCTCODE.Name = "PRODUCTCODE";
+            this.PRODUCTCODE.ReadOnly = true;
+            // 
+            // BARCODE
+            // 
+            this.BARCODE.HeaderText = "BARCODE";
+            this.BARCODE.Name = "BARCODE";
+            this.BARCODE.ReadOnly = true;
+            // 
+            // Description
+            // 
+            this.Description.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Description.HeaderText = "DESCRIPTION";
+            this.Description.Name = "Description";
+            this.Description.ReadOnly = true;
+            // 
+            // BRAND
+            // 
+            this.BRAND.HeaderText = "BRAND";
+            this.BRAND.Name = "BRAND";
+            this.BRAND.ReadOnly = true;
+            // 
+            // GENERIC
+            // 
+            this.GENERIC.HeaderText = "GENERIC";
+            this.GENERIC.Name = "GENERIC";
+            this.GENERIC.ReadOnly = true;
+            // 
+            // CLASS
+            // 
+            this.CLASS.HeaderText = "CLASS";
+            this.CLASS.Name = "CLASS";
+            this.CLASS.ReadOnly = true;
+            // 
+            // FORM
+            // 
+            this.FORM.HeaderText = "FORM";
+            this.FORM.Name = "FORM";
+            this.FORM.ReadOnly = true;
+            // 
+            // CATEGORY
+            // 
+            this.CATEGORY.HeaderText = "CATEGORY";
+            this.CATEGORY.Name = "CATEGORY";
+            this.CATEGORY.ReadOnly = true;
+            // 
+            // UOM
+            // 
+            this.UOM.HeaderText = "UOM";
+            this.UOM.Name = "UOM";
+            this.UOM.ReadOnly = true;
+            // 
+            // QTY
+            // 
+            this.QTY.HeaderText = "QTY";
+            this.QTY.Name = "QTY";
+            this.QTY.ReadOnly = true;
+            // 
+            // REORDERLVL
+            // 
+            this.REORDERLVL.HeaderText = "RE-ORDER";
+            this.REORDERLVL.Name = "REORDERLVL";
+            this.REORDERLVL.ReadOnly = true;
+            // 
+            // SUPPLIERPRC
+            // 
+            this.SUPPLIERPRC.HeaderText = "SUP PRICE";
+            this.SUPPLIERPRC.Name = "SUPPLIERPRC";
+            this.SUPPLIERPRC.ReadOnly = true;
+            // 
+            // SRP
+            // 
+            this.SRP.HeaderText = "SRP";
+            this.SRP.Name = "SRP";
+            this.SRP.ReadOnly = true;
+            // 
+            // FINALPRICE
+            // 
+            this.FINALPRICE.HeaderText = "FINAL PRICE";
+            this.FINALPRICE.Name = "FINALPRICE";
+            this.FINALPRICE.ReadOnly = true;
+            // 
+            // MARKUP
+            // 
+            this.MARKUP.HeaderText = "MARKUP";
+            this.MARKUP.Name = "MARKUP";
+            this.MARKUP.ReadOnly = true;
             // 
             // panel1
             // 
@@ -206,93 +306,11 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // Count
-            // 
-            this.Count.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Count.HeaderText = "#";
-            this.Count.Name = "Count";
-            this.Count.Width = 39;
-            // 
-            // PRODUCTCODE
-            // 
-            this.PRODUCTCODE.HeaderText = "PRODUCT CODE";
-            this.PRODUCTCODE.Name = "PRODUCTCODE";
-            // 
-            // BARCODE
-            // 
-            this.BARCODE.HeaderText = "BARCODE";
-            this.BARCODE.Name = "BARCODE";
-            // 
-            // Description
-            // 
-            this.Description.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Description.HeaderText = "DESCRIPTION";
-            this.Description.Name = "Description";
-            // 
-            // BRAND
-            // 
-            this.BRAND.HeaderText = "BRAND";
-            this.BRAND.Name = "BRAND";
-            // 
-            // GENERIC
-            // 
-            this.GENERIC.HeaderText = "GENERIC";
-            this.GENERIC.Name = "GENERIC";
-            // 
-            // CLASS
-            // 
-            this.CLASS.HeaderText = "CLASS";
-            this.CLASS.Name = "CLASS";
-            // 
-            // FORM
-            // 
-            this.FORM.HeaderText = "FORM";
-            this.FORM.Name = "FORM";
-            // 
-            // CATEGORY
-            // 
-            this.CATEGORY.HeaderText = "CATEGORY";
-            this.CATEGORY.Name = "CATEGORY";
-            // 
-            // UOM
-            // 
-            this.UOM.HeaderText = "UOM";
-            this.UOM.Name = "UOM";
-            // 
-            // QTY
-            // 
-            this.QTY.HeaderText = "QTY";
-            this.QTY.Name = "QTY";
-            // 
-            // REORDERLVL
-            // 
-            this.REORDERLVL.HeaderText = "RE-ORDER";
-            this.REORDERLVL.Name = "REORDERLVL";
-            // 
-            // SUPPLIERPRC
-            // 
-            this.SUPPLIERPRC.HeaderText = "SUP PRICE";
-            this.SUPPLIERPRC.Name = "SUPPLIERPRC";
-            // 
-            // SRP
-            // 
-            this.SRP.HeaderText = "SRP";
-            this.SRP.Name = "SRP";
-            // 
-            // FINALPRICE
-            // 
-            this.FINALPRICE.HeaderText = "FINAL PRICE";
-            this.FINALPRICE.Name = "FINALPRICE";
-            // 
-            // MARKUP
-            // 
-            this.MARKUP.HeaderText = "MARKUP";
-            this.MARKUP.Name = "MARKUP";
-            // 
             // PanelImportProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
             this.ClientSize = new System.Drawing.Size(1541, 853);
             this.Controls.Add(this.grdProductList);
             this.Controls.Add(this.metroPanel3);
@@ -300,8 +318,10 @@
             this.MaximizeBox = false;
             this.Name = "PanelImportProduct";
             this.Resizable = false;
+            this.ShadowType = MetroFramework.Forms.MetroFormShadowType.None;
             this.Text = "Import Products";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.PanelImportProduct_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grdProductList)).EndInit();
             this.panel1.ResumeLayout(false);
             this.metroPanel3.ResumeLayout(false);

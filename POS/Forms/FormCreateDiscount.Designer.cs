@@ -151,6 +151,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
             this.ClientSize = new System.Drawing.Size(561, 171);
             this.ControlBox = false;
             this.Controls.Add(this.btnCancel);
@@ -161,6 +162,7 @@
             this.Controls.Add(this.label1);
             this.Name = "FormCreateDiscount";
             this.Resizable = false;
+            this.ShadowType = MetroFramework.Forms.MetroFormShadowType.None;
             this.Text = "Discount";
             this.Load += new System.EventHandler(this.FormCreateDiscount_Load);
             this.ResumeLayout(false);

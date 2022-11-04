@@ -36,8 +36,13 @@ namespace POS.Forms
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
-            FormCreateSupplier formCreate = new FormCreateSupplier(currUser, grdSupplierList,null);
-            formCreate.ShowDialog();
+            using (FormCreateSupplier formCreate = new FormCreateSupplier(currUser, grdSupplierList, null))
+            {
+                formCreate.ShowDialog();
+                formCreate.Dispose();
+                this.BringToFront();
+                txtSearch.Select();
+            }
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
@@ -67,9 +72,14 @@ namespace POS.Forms
                 supplier.ContactNbr = grdSupplierList[5, e.RowIndex].Value.ToString();
                 supplier.Email = grdSupplierList[6, e.RowIndex].Value.ToString();
 
-                FormCreateSupplier createSupplier = new FormCreateSupplier(currUser, grdSupplierList, supplier);
-                createSupplier.btnSave.Text = "UPDATE";
-                createSupplier.ShowDialog();
+                using (FormCreateSupplier createSupplier = new FormCreateSupplier(currUser, grdSupplierList, supplier))
+                {
+                    createSupplier.btnSave.Text = "UPDATE";
+                    createSupplier.ShowDialog();
+                    createSupplier.Dispose();
+                    this.BringToFront();
+                    txtSearch.Select();
+                }
             }
         }
     }

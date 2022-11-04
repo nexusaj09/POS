@@ -27,16 +27,22 @@ namespace POS.Forms
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
-            FormCreateDiscount createDiscount = new FormCreateDiscount(currUser, grdDiscountList,null);
-            createDiscount.Show();
+
+            using (FormCreateDiscount createDiscount = new FormCreateDiscount(currUser, grdDiscountList, null))
+            {
+                createDiscount.ShowDialog();
+                createDiscount.Dispose();
+                this.BringToFront();
+                txtSearch.Select();
+            }
         }
 
         private void FormDiscounts_Load(object sender, EventArgs e)
         {
-            discountHelper.LoadDiscount(grdDiscountList,txtSearch.Text);
+            discountHelper.LoadDiscount(grdDiscountList, txtSearch.Text);
             txtSearch.Select();
             txtSearch.Focus();
-                
+
         }
 
         private void grdDiscountList_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -57,10 +63,19 @@ namespace POS.Forms
                 updateDiscount.Description = grdDiscountList[2, e.RowIndex].Value.ToString();
                 updateDiscount.DiscountPercentage = grdDiscountList[3, e.RowIndex].Value.ToString();
 
-                FormCreateDiscount createDiscount = new FormCreateDiscount(currUser, grdDiscountList, updateDiscount);
-                createDiscount.btnSave.Text = "UPDATE";
-                createDiscount.ShowDialog();
+                using (FormCreateDiscount createDiscount = new FormCreateDiscount(currUser, grdDiscountList, updateDiscount))
+                {
+                    createDiscount.btnSave.Text = "UPDATE";
+                    createDiscount.ShowDialog();
+                    createDiscount.Dispose();
+                    txtSearch.Select();
+                }
             }
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            discountHelper.LoadDiscount(grdDiscountList, txtSearch.Text);
         }
     }
 }

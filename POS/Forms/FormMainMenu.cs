@@ -27,13 +27,31 @@ namespace POS.Forms
 
         private void FormMainMenu_Load(object sender, EventArgs e)
         {
-
+            Init();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            FormUsers formUsers = new FormUsers(currUser);
-            formUsers.Show();
+            bool isOpen = false;
+
+            foreach (Form f in Application.OpenForms)
+            {
+                if (f.Name == "FormUsers")
+                {
+                    isOpen = true;
+                    f.BringToFront();
+                    break;
+                }
+            }
+
+            if (isOpen == false)
+            {
+                FormUsers formUsers = new FormUsers(currUser);
+                formUsers.Show(this);
+
+            }
+
+
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -49,38 +67,141 @@ namespace POS.Forms
 
         private void btnCategories_Click(object sender, EventArgs e)
         {
-            FormCategories formCategories = new FormCategories(currUser);
-            formCategories.Show();
+
+            bool isOpen = false;
+
+            foreach (Form f in Application.OpenForms)
+            {
+                if (f.Name == "FormCategories")
+                {
+                    isOpen = true;
+                    f.BringToFront();
+                    break;
+                }
+            }
+
+            if (isOpen == false)
+            {
+                FormCategories formCategories = new FormCategories(currUser);
+                formCategories.Show(this);
+
+            }
+
         }
 
         private void btnSupplier_Click(object sender, EventArgs e)
         {
-            FormSuppliers suppliers = new FormSuppliers(currUser);
-            suppliers.Show();
+
+            bool isOpen = false;
+
+            foreach (Form f in Application.OpenForms)
+            {
+                if (f.Name == "FormSuppliers")
+                {
+                    isOpen = true;
+                    f.BringToFront();
+                    break;
+                }
+            }
+
+            if (isOpen == false)
+            {
+                FormSuppliers suppliers = new FormSuppliers(currUser);
+                suppliers.Show(this);
+
+            }
+
         }
 
         private void btnDiscounts_Click(object sender, EventArgs e)
         {
-            FormDiscounts discounts = new FormDiscounts(currUser);
-            discounts.Show();
+
+            bool isOpen = false;
+
+            foreach (Form f in Application.OpenForms)
+            {
+                if (f.Text == "Discount List")
+                {
+                    isOpen = true;
+                    f.BringToFront();
+                    break;
+                }
+            }
+
+            if (isOpen == false)
+            {
+                FormDiscounts discounts = new FormDiscounts(currUser);
+                discounts.Show(this);
+            }
         }
 
         private void btnNotes_Click(object sender, EventArgs e)
         {
-            FormNotes notes = new FormNotes(currUser);
-            notes.Show();
+
+            bool isOpen = false;
+
+            foreach (Form f in Application.OpenForms)
+            {
+                if (f.Name == "FormNotes")
+                {
+                    isOpen = true;
+                    f.BringToFront();
+                    break;
+                }
+            }
+
+            if (isOpen == false)
+            {
+                FormNotes notes = new FormNotes(currUser);
+                notes.Show(this);
+
+            }
+
+
         }
 
         private void btnUserRoles_Click(object sender, EventArgs e)
         {
-            FormUserRoles formUserRoles = new FormUserRoles();
-            formUserRoles.Show();
+            bool isOpen = false;
+
+            foreach (Form f in Application.OpenForms)
+            {
+                if (f.Text == "User Roles")
+                {
+                    isOpen = true;
+                    f.BringToFront();
+                    break;
+                }
+            }
+
+            if (isOpen == false)
+            {
+                FormUserRoles formUserRoles = new FormUserRoles();
+                formUserRoles.Show(this);
+
+            }
         }
 
         private void btnProducts_Click(object sender, EventArgs e)
         {
-            FormProduct formProduct = new FormProduct(currUser);
-            formProduct.Show();
+            bool isOpen = false;
+
+            foreach (Form f in Application.OpenForms)
+            {
+                if (f.Name == "FormProduct")
+                {
+                    isOpen = true;
+                    f.BringToFront();
+                    break;
+                }
+            }
+
+            if (isOpen == false)
+            {
+                FormProduct formProduct = new FormProduct(currUser);
+                formProduct.Show(this);
+            }
+
         }
 
         private void btnDashboard_MouseHover(object sender, EventArgs e)
@@ -97,5 +218,13 @@ namespace POS.Forms
         {
             btnDashboard.ForeColor = Color.White;
         }
+
+
+        private void Init()
+        {
+            this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
+            this.WindowState = FormWindowState.Maximized;
+        }
+
     }
 }

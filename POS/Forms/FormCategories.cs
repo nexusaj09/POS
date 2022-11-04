@@ -29,14 +29,21 @@ namespace POS.Forms
             txtSearch.Select();
             txtSearch.Focus();
 
-            cateroryHelper.LoadCategories(grdCategoryList,"");
+            cateroryHelper.LoadCategories(grdCategoryList, "");
 
         }
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
-            FormCreateCategory createCategory = new FormCreateCategory(currUser, grdCategoryList,null);
-            createCategory.ShowDialog();
+            using (FormCreateCategory createCategory = new FormCreateCategory(currUser, grdCategoryList, null))
+            {
+                createCategory.ShowDialog();
+                createCategory.Dispose();
+                this.BringToFront();
+                txtSearch.Select();
+                txtSearch.Focus();
+            }
+
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
@@ -51,19 +58,25 @@ namespace POS.Forms
                 if (MessageBox.Show(this, "Are you sure to delete this category?", "Delete Category", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     cateroryHelper.DeleteCategory(Convert.ToInt32(grdCategoryList[1, e.RowIndex].Value.ToString()));
-                    cateroryHelper.LoadCategories(grdCategoryList,"");
+                    cateroryHelper.LoadCategories(grdCategoryList, "");
                     MessageBox.Show("Category Successfully Deleted", "Category Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-           else if (grdCategoryList.Columns[e.ColumnIndex].Name == "EDIT")
+            else if (grdCategoryList.Columns[e.ColumnIndex].Name == "EDIT")
             {
                 Categories categories = new Categories();
                 categories.ID = Convert.ToInt32(grdCategoryList[1, e.RowIndex].Value.ToString());
                 categories.Category = grdCategoryList[2, e.RowIndex].Value.ToString();
 
-                FormCreateCategory createCategory = new FormCreateCategory(currUser, grdCategoryList, categories);
-                createCategory.btnSave.Text = "UPDATE";
-                createCategory.ShowDialog();
+                using (FormCreateCategory createCategory = new FormCreateCategory(currUser, grdCategoryList, categories))
+                {
+                    createCategory.btnSave.Text = "UPDATE";
+                    createCategory.ShowDialog();
+                    createCategory.Dispose();
+                    this.BringToFront();
+                    txtSearch.Select();
+                    txtSearch.Focus();
+                }
             }
         }
     }

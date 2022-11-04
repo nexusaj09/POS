@@ -28,8 +28,13 @@ namespace POS.Forms
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
-            FormCreateUser createUser = new FormCreateUser(currUser,grdUserList);
-            createUser.Show();
+            using (FormCreateUser createUser = new FormCreateUser(currUser, grdUserList))
+            {
+                createUser.ShowDialog();
+                createUser.Dispose();
+                this.BringToFront();
+                txtSearch.Select();
+            }
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
@@ -41,16 +46,22 @@ namespace POS.Forms
         {
             if (grdUserList.Columns[e.ColumnIndex].Name == "EDIT")
             {
-                FormCreateUser createUser = new FormCreateUser(currUser, grdUserList);
-                createUser.newUser.UserID = Convert.ToInt32(grdUserList[1, e.RowIndex].Value.ToString());
-                createUser.newUser.Fullname = grdUserList[4, e.RowIndex].Value.ToString();
-                createUser.newUser.Username = grdUserList[2, e.RowIndex].Value.ToString();
-                createUser.newUser.Role = grdUserList[5, e.RowIndex].Value.ToString();
-                createUser.newUser.IsActive = Convert.ToBoolean(grdUserList[6, e.RowIndex].Value);
-                createUser.newUser.Password = grdUserList[3, e.RowIndex].Value.ToString();
-                createUser.btnSave.Text = "UPDATE";
-                createUser.txtUsername.Select();
-                createUser.ShowDialog();
+                using (FormCreateUser createUser = new FormCreateUser(currUser, grdUserList))
+                {
+                    createUser.newUser.UserID = Convert.ToInt32(grdUserList[1, e.RowIndex].Value.ToString());
+                    createUser.newUser.Fullname = grdUserList[4, e.RowIndex].Value.ToString();
+                    createUser.newUser.Username = grdUserList[2, e.RowIndex].Value.ToString();
+                    createUser.newUser.Role = grdUserList[5, e.RowIndex].Value.ToString();
+                    createUser.newUser.IsActive = Convert.ToBoolean(grdUserList[6, e.RowIndex].Value);
+                    createUser.newUser.Password = grdUserList[3, e.RowIndex].Value.ToString();
+                    createUser.btnSave.Text = "UPDATE";
+                    createUser.txtUsername.Select();
+                    createUser.ShowDialog();
+
+                    createUser.Dispose();
+                    this.BringToFront();
+                    txtSearch.Select();
+                }
             }
             else if (grdUserList.Columns[e.ColumnIndex].Name == "DELETE")
             {

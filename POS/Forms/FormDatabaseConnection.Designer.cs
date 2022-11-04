@@ -42,9 +42,9 @@
             // 
             // 
             this.txtServerName.CustomButton.Image = null;
-            this.txtServerName.CustomButton.Location = new System.Drawing.Point(207, 1);
+            this.txtServerName.CustomButton.Location = new System.Drawing.Point(276, 1);
             this.txtServerName.CustomButton.Name = "";
-            this.txtServerName.CustomButton.Size = new System.Drawing.Size(16, 17);
+            this.txtServerName.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.txtServerName.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.txtServerName.CustomButton.TabIndex = 1;
             this.txtServerName.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
@@ -76,9 +76,9 @@
             // 
             // 
             this.txtDatabaseName.CustomButton.Image = null;
-            this.txtDatabaseName.CustomButton.Location = new System.Drawing.Point(207, 1);
+            this.txtDatabaseName.CustomButton.Location = new System.Drawing.Point(276, 1);
             this.txtDatabaseName.CustomButton.Name = "";
-            this.txtDatabaseName.CustomButton.Size = new System.Drawing.Size(16, 17);
+            this.txtDatabaseName.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.txtDatabaseName.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.txtDatabaseName.CustomButton.TabIndex = 1;
             this.txtDatabaseName.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
@@ -110,9 +110,9 @@
             // 
             // 
             this.txtUsername.CustomButton.Image = null;
-            this.txtUsername.CustomButton.Location = new System.Drawing.Point(207, 1);
+            this.txtUsername.CustomButton.Location = new System.Drawing.Point(276, 1);
             this.txtUsername.CustomButton.Name = "";
-            this.txtUsername.CustomButton.Size = new System.Drawing.Size(16, 17);
+            this.txtUsername.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.txtUsername.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.txtUsername.CustomButton.TabIndex = 1;
             this.txtUsername.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
@@ -144,9 +144,9 @@
             // 
             // 
             this.txtPassword.CustomButton.Image = null;
-            this.txtPassword.CustomButton.Location = new System.Drawing.Point(207, 1);
+            this.txtPassword.CustomButton.Location = new System.Drawing.Point(276, 1);
             this.txtPassword.CustomButton.Name = "";
-            this.txtPassword.CustomButton.Size = new System.Drawing.Size(16, 17);
+            this.txtPassword.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.txtPassword.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.txtPassword.CustomButton.TabIndex = 1;
             this.txtPassword.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
@@ -205,6 +205,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
             this.ClientSize = new System.Drawing.Size(344, 367);
             this.ControlBox = false;
             this.Controls.Add(this.btnClose);
@@ -215,6 +216,7 @@
             this.Controls.Add(this.txtServerName);
             this.Name = "FormDatabaseConnection";
             this.Resizable = false;
+            this.ShadowType = MetroFramework.Forms.MetroFormShadowType.None;
             this.Text = "Setup Database Connection";
             this.TextAlign = MetroFramework.Forms.MetroFormTextAlign.Center;
             this.Load += new System.EventHandler(this.FormDatabaseConnection_Load);

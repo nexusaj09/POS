@@ -29,7 +29,7 @@ namespace POS.Forms
         private void btnCancel_Click(object sender, EventArgs e)
         {
             Clear();
-            this.Dispose();
+            this.Close();
         }
 
         private void Clear()
@@ -74,7 +74,6 @@ namespace POS.Forms
                             Clear();
                             userHelper.LoadUsers(grdUsers, "");
                             this.Close();
-                            this.Dispose();
                         }
 
                     }
@@ -103,7 +102,6 @@ namespace POS.Forms
                             Clear();
                             userHelper.LoadUsers(grdUsers, "");
                             this.Close();
-                            this.Dispose();
                         }
                     }
                 }

@@ -32,7 +32,6 @@ namespace POS.Forms
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
-            this.Dispose();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -79,7 +78,6 @@ namespace POS.Forms
 
                         noteHelper.LoadNotes(dataGrid, "");
                         this.Close();
-                        this.Dispose();
 
                     }
 

@@ -47,7 +47,7 @@ namespace POS.Forms
                     if (currentUser.IsActive)
                     {
                         this.Hide();
-                        MessageBox.Show(this, "Welcome " + currentUser.Fullname.ToString(), "User Successfully Logged In!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(this, "Welcome " + currentUser.Fullname.ToString(), "Access Granted!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         // helperLogin.InsertLogin(login.ID);
                         if (currentUser.Role == "System Administrator")
                         {
@@ -113,6 +113,7 @@ namespace POS.Forms
         {
             this.BringToFront();
             this.Activate();
+            userHelper.DisplayConnSetup();
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)

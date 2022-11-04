@@ -32,7 +32,6 @@ namespace POS.Forms
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
-            this.Dispose();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -94,7 +93,6 @@ namespace POS.Forms
 
                         supplierHelper.LoadSupplier(dataGrid, "");
                         this.Close();
-                        this.Dispose();
 
                     }
                 }
@@ -129,6 +127,16 @@ namespace POS.Forms
                 txtEmail.Text = updateSupplier.Email;
                 txtSupplierName.Select();
             }
+        }
+
+        private void txtContactPerson_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ';
+        }
+
+        private void txtContactNbr_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != '+' && e.KeyChar != '-';
         }
     }
 }

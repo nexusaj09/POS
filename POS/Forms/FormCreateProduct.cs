@@ -20,6 +20,8 @@ namespace POS.Forms
         public User currUser = new User();
         FormProduct form = null;
         public Product updateProduct = new Product();
+        bool isBarcodeExisting = false;
+        bool isProductCodeExisting = false;
 
         public FormCreateProduct(FormProduct formProduct, Product product)
         {
@@ -32,7 +34,6 @@ namespace POS.Forms
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
-            this.Dispose();
         }
 
         private void txtBarcode_TextChanged(object sender, EventArgs e)
@@ -188,7 +189,7 @@ namespace POS.Forms
             else
             {
                 MessageBox.Show("No Barcode Entered", "Empty Barcode", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                txtProductCode.Select();
+                txtBarcode.Select();
             }
         }
 
@@ -211,7 +212,7 @@ namespace POS.Forms
                         newProduct.Formulation = txtFormulation.Text;
                         newProduct.Category = cmbCategory.Text;
                         newProduct.UOM = txtUOM.Text;
-                        newProduct.ReOrderQty = txtReOrderQty.Text != string.Empty ? Convert.ToInt32(txtReOrderQty.Text) :0 ;
+                        newProduct.ReOrderQty = txtReOrderQty.Text != string.Empty ? Convert.ToInt32(txtReOrderQty.Text) : 0;
                         newProduct.Qty = txtInitialQty.Text != string.Empty ? Convert.ToInt32(txtInitialQty.Text) : 0;
                         newProduct.SupplierPrice = txtSupplierPrice.Text != string.Empty ? Convert.ToDecimal(txtSupplierPrice.Text) : 0;
                         newProduct.FinalPrice = txtFinalPrice.Text != string.Empty ? Convert.ToDecimal(txtFinalPrice.Text) : 0;
@@ -235,7 +236,7 @@ namespace POS.Forms
                 {
                     if (MessageBox.Show(this, "Are you sure to update this product?", "Updating product", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        
+
                         updateProduct.ProductBarcode = txtBarcode.Text;
                         updateProduct.ProductCode = txtProductCode.Text;
                         updateProduct.Description = txtDescription.Text;
@@ -258,16 +259,15 @@ namespace POS.Forms
                         MessageBox.Show(this, "Product successfully updated!", "Updated Successfully", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         form.Init();
                         this.Close();
-                        this.Dispose();
 
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            }
+        }
 
         private void Clear()
         {
@@ -287,6 +287,9 @@ namespace POS.Forms
             txtSRP.Clear();
             txtMarkUp.Clear();
             txtProductCode.Select();
+            txtProductCode.Focus();
+            isBarcodeExisting = false;
+            isProductCodeExisting = false;
         }
 
         private void Init()
@@ -315,6 +318,63 @@ namespace POS.Forms
                 txtMarkUp.Text = updateProduct.MarkUp.ToString();
             }
 
+        }
+
+        private void txtProductCode_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+
+                isProductCodeExisting = productHelper.IsExisting(txtProductCode.Text);
+
+
+                if (isProductCodeExisting && btnSave.Text == "SAVE")
+                {
+                    MessageBox.Show("Product Code Already Exists!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    btnSave.Enabled = false;
+                    txtProductCode.Focus();
+                }
+                else if (isBarcodeExisting && btnSave.Text == "SAVE")
+                {
+                    btnSave.Enabled = false;
+                }
+                else
+                {
+                    btnSave.Enabled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void txtBarcode_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+
+                isBarcodeExisting = productHelper.IsExistingBarcode(txtBarcode.Text);
+
+                if (txtBarcode.Text != "" && isBarcodeExisting && btnSave.Text == "SAVE")
+                {
+                    MessageBox.Show("Barcode Already Exists!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtBarcode.Focus();
+                    btnSave.Enabled = false;
+                }
+                else if (isProductCodeExisting && btnSave.Text == "SAVE")
+                {
+                    btnSave.Enabled = false;
+                }
+                else
+                {
+                    btnSave.Enabled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

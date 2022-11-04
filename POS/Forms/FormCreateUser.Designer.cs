@@ -310,6 +310,7 @@
             // FormCreateUser
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
             this.ClientSize = new System.Drawing.Size(655, 332);
             this.ControlBox = false;
             this.Controls.Add(this.lblChangePass);
@@ -318,6 +319,7 @@
             this.MinimizeBox = false;
             this.Name = "FormCreateUser";
             this.Resizable = false;
+            this.ShadowType = MetroFramework.Forms.MetroFormShadowType.None;
             this.Text = "Create User Account";
             this.TextAlign = MetroFramework.Forms.MetroFormTextAlign.Center;
             this.Load += new System.EventHandler(this.FormCreateUser_Load);

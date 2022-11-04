@@ -107,6 +107,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
             this.ClientSize = new System.Drawing.Size(550, 137);
             this.ControlBox = false;
             this.Controls.Add(this.btnCancel);
@@ -115,6 +116,7 @@
             this.Controls.Add(this.label1);
             this.Name = "FormCreateCategory";
             this.Resizable = false;
+            this.ShadowType = MetroFramework.Forms.MetroFormShadowType.None;
             this.Text = "Category";
             this.Load += new System.EventHandler(this.FormCreateCategory_Load);
             this.ResumeLayout(false);

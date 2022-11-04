@@ -158,15 +158,15 @@ namespace POS.Helpers
                 {
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = @"SELECT ID,ProductCode,Barcode,Description,
+                    cmd.CommandText = @"SELECT ProductCode,Barcode,Description,
                                 BrandName,GenericName,Classification,Formulation,
                                 Category, UOM,QTY,ReOrderQty,SupplierPrice,SRP,FinalPrice,MarkUp 
-                                FROM Products WHERE ProductCode LIKE '%" + search + "%' OR Barcode LIKE '%" + search + "%' OR Description LIKE '%" + search + "%' ORDER BY ID";
+                                FROM Products WHERE ProductCode LIKE '%" + search + "%' OR Barcode LIKE '%" + search + "%' OR Description LIKE '%" + search + "%' ORDER BY ProductCode";
                     dr = cmd.ExecuteReader();
                     while (dr.Read())
                     {
                         count++;
-                        formProduct.grdProductList.Rows.Add(count, dr["ID"].ToString(), dr["ProductCode"].ToString(), dr["Barcode"].ToString(), dr["Description"].ToString(),
+                        formProduct.grdProductList.Rows.Add(count, dr["ProductCode"].ToString(), dr["Barcode"].ToString(), dr["Description"].ToString(),
                                 dr["BrandName"].ToString(), dr["GenericName"].ToString(), dr["Classification"].ToString(), dr["Formulation"].ToString(), dr["Category"].ToString(),
                                 dr["UOM"].ToString(), dr["QTY"].ToString(), dr["ReOrderQty"].ToString(), dr["SupplierPrice"].ToString(), dr["SRP"].ToString(), dr["FinalPrice"].ToString(), dr["MarkUp"].ToString());
                     }
@@ -337,7 +337,7 @@ namespace POS.Helpers
             }
         }
 
-        public void DeleteProdut(int ID)
+        public void DeleteProdut(string productCode)
         {
             try
             {
@@ -350,8 +350,8 @@ namespace POS.Helpers
                 {
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = @"DELETE FROM PRODUCTS WHERE ID = @ID";
-                    cmd.Parameters.AddWithValue(@"ID", ID.ToString());
+                    cmd.CommandText = @"DELETE FROM PRODUCTS WHERE ProductCode = @ProductCode";
+                    cmd.Parameters.AddWithValue(@"ProductCode", productCode);
                     cmd.ExecuteNonQuery();
                 }
             }
@@ -417,5 +417,74 @@ namespace POS.Helpers
             }
         }
 
+
+        public bool IsExisting(string productCode)
+        {
+            try
+            {
+                conn.Close();
+                conn.Dispose();
+
+                connection();
+
+                using (cmd = new SqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandType = System.Data.CommandType.Text;
+                    cmd.CommandText = @"SELECT ProductCode FROM Products WHERE LTRIM(RTRIM(ProductCode)) = LTRIM(RTRIM('" + productCode + "')) ";
+                    dr = cmd.ExecuteReader();
+                    if (dr.HasRows)
+                    {
+                        return true;
+                    }
+                    else return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return true;
+            }
+            finally
+            {
+                dr.Close();
+                conn.Close();
+                conn.Dispose();
+            }
+        }
+        public bool IsExistingBarcode(string Barcode)
+        {
+            try
+            {
+                conn.Close();
+                conn.Dispose();
+
+                connection();
+
+                using (cmd = new SqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandType = System.Data.CommandType.Text;
+                    cmd.CommandText = @"SELECT Barcode FROM Products WHERE LTRIM(RTRIM(Barcode)) = LTRIM(RTRIM('" + Barcode + "')) ";
+                    dr = cmd.ExecuteReader();
+                    if (dr.HasRows)
+                    {
+                        return true;
+                    }
+                    else return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return true;
+            }
+            finally
+            {
+                dr.Close();
+                conn.Close();
+                conn.Dispose();
+            }
+        }
     }
 }

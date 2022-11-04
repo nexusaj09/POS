@@ -34,7 +34,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormProduct));
             this.grdProductList = new MetroFramework.Controls.MetroGrid();
             this.Count = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PRODUCTCODE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BARCODE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -99,7 +98,6 @@
             this.grdProductList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdProductList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Count,
-            this.ID,
             this.PRODUCTCODE,
             this.BARCODE,
             this.Description,
@@ -120,7 +118,7 @@
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Info;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
@@ -132,7 +130,7 @@
             this.grdProductList.Location = new System.Drawing.Point(20, 163);
             this.grdProductList.Name = "grdProductList";
             this.grdProductList.ReadOnly = true;
-            this.grdProductList.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.grdProductList.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
@@ -142,7 +140,7 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.grdProductList.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.grdProductList.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.grdProductList.RowTemplate.Height = 24;
+            this.grdProductList.RowTemplate.Height = 26;
             this.grdProductList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdProductList.Size = new System.Drawing.Size(1326, 585);
             this.grdProductList.TabIndex = 8;
@@ -155,13 +153,6 @@
             this.Count.Name = "Count";
             this.Count.ReadOnly = true;
             this.Count.Width = 39;
-            // 
-            // ID
-            // 
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Visible = false;
             // 
             // PRODUCTCODE
             // 
@@ -311,7 +302,7 @@
             this.metroPanel4.HorizontalScrollbarBarColor = true;
             this.metroPanel4.HorizontalScrollbarHighlightOnWheel = false;
             this.metroPanel4.HorizontalScrollbarSize = 10;
-            this.metroPanel4.Location = new System.Drawing.Point(682, 3);
+            this.metroPanel4.Location = new System.Drawing.Point(683, 3);
             this.metroPanel4.Name = "metroPanel4";
             this.metroPanel4.Size = new System.Drawing.Size(155, 64);
             this.metroPanel4.TabIndex = 4;
@@ -354,7 +345,7 @@
             this.metroPanel3.HorizontalScrollbarBarColor = true;
             this.metroPanel3.HorizontalScrollbarHighlightOnWheel = false;
             this.metroPanel3.HorizontalScrollbarSize = 10;
-            this.metroPanel3.Location = new System.Drawing.Point(843, 3);
+            this.metroPanel3.Location = new System.Drawing.Point(844, 3);
             this.metroPanel3.Name = "metroPanel3";
             this.metroPanel3.Size = new System.Drawing.Size(155, 64);
             this.metroPanel3.TabIndex = 4;
@@ -409,7 +400,7 @@
             this.metroPanel2.HorizontalScrollbarBarColor = true;
             this.metroPanel2.HorizontalScrollbarHighlightOnWheel = false;
             this.metroPanel2.HorizontalScrollbarSize = 10;
-            this.metroPanel2.Location = new System.Drawing.Point(1004, 3);
+            this.metroPanel2.Location = new System.Drawing.Point(1005, 3);
             this.metroPanel2.Name = "metroPanel2";
             this.metroPanel2.Size = new System.Drawing.Size(155, 64);
             this.metroPanel2.TabIndex = 3;
@@ -464,7 +455,7 @@
             this.metroPanel1.HorizontalScrollbarBarColor = true;
             this.metroPanel1.HorizontalScrollbarHighlightOnWheel = false;
             this.metroPanel1.HorizontalScrollbarSize = 10;
-            this.metroPanel1.Location = new System.Drawing.Point(1165, 3);
+            this.metroPanel1.Location = new System.Drawing.Point(1166, 3);
             this.metroPanel1.Name = "metroPanel1";
             this.metroPanel1.Size = new System.Drawing.Size(156, 64);
             this.metroPanel1.TabIndex = 2;
@@ -525,7 +516,7 @@
             this.txtSearch.CustomButton.UseSelectable = true;
             this.txtSearch.CustomButton.Visible = false;
             this.txtSearch.Lines = new string[0];
-            this.txtSearch.Location = new System.Drawing.Point(874, 73);
+            this.txtSearch.Location = new System.Drawing.Point(875, 73);
             this.txtSearch.MaxLength = 32767;
             this.txtSearch.Multiline = true;
             this.txtSearch.Name = "txtSearch";
@@ -549,7 +540,7 @@
             this.btnCreate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCreate.BackColor = System.Drawing.Color.SeaGreen;
             this.btnCreate.ForeColor = System.Drawing.Color.White;
-            this.btnCreate.Location = new System.Drawing.Point(1218, 73);
+            this.btnCreate.Location = new System.Drawing.Point(1219, 73);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(103, 23);
             this.btnCreate.TabIndex = 0;
@@ -561,13 +552,16 @@
             // 
             // FormProduct
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
             this.ClientSize = new System.Drawing.Size(1366, 768);
             this.Controls.Add(this.grdProductList);
             this.Controls.Add(this.panel1);
             this.MaximizeBox = false;
+            this.Movable = false;
             this.Name = "FormProduct";
+            this.Resizable = false;
+            this.ShadowType = MetroFramework.Forms.MetroFormShadowType.None;
             this.Text = "PRODUCT LIST";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FormProduct_Load);
@@ -602,8 +596,8 @@
         private System.Windows.Forms.Label lblOutOfStock;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label4;
+        private MetroFramework.Controls.MetroButton btnImport;
         private System.Windows.Forms.DataGridViewTextBoxColumn Count;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn PRODUCTCODE;
         private System.Windows.Forms.DataGridViewTextBoxColumn BARCODE;
         private System.Windows.Forms.DataGridViewTextBoxColumn Description;
@@ -621,6 +615,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn MARKUP;
         private System.Windows.Forms.DataGridViewImageColumn EDIT;
         private System.Windows.Forms.DataGridViewImageColumn DELETE;
-        private MetroFramework.Controls.MetroButton btnImport;
     }
 }

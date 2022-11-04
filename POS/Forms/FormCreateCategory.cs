@@ -33,7 +33,6 @@ namespace POS.Forms
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
-            this.Dispose();
         }
 
         private void FormCreateCategory_Load(object sender, EventArgs e)
@@ -102,7 +101,6 @@ namespace POS.Forms
                         MessageBox.Show(this, "Category successfully updated!", "Updated Successfully", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         categoryHelper.LoadCategories(currView, "");
                         this.Close();
-                        this.Dispose();
 
                     }
                 }

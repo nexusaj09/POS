@@ -124,7 +124,6 @@ namespace POS.Forms
 
                         discountHelper.LoadDiscount(grdDiscount, "");
                         this.Close();
-                        this.Dispose();
 
                     }
 
@@ -153,7 +152,6 @@ namespace POS.Forms
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
-            this.Dispose();
         }
     }
 }

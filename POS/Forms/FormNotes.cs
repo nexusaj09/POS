@@ -36,8 +36,13 @@ namespace POS.Forms
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
-            FormCreateNote createNote = new FormCreateNote(currUser, grdNoteList, null);
-            createNote.ShowDialog();
+            using (FormCreateNote createNote = new FormCreateNote(currUser, grdNoteList, null))
+            {
+                createNote.ShowDialog();
+                createNote.Dispose();
+                this.BringToFront();
+                txtSearch.Select();
+            }
         }
 
         private void grdNoteList_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -58,10 +63,20 @@ namespace POS.Forms
                 updateNote.Title = grdNoteList[2, e.RowIndex].Value.ToString();
                 updateNote.Description = grdNoteList[3, e.RowIndex].Value.ToString();
 
-                FormCreateNote createNote = new FormCreateNote(currUser, grdNoteList, updateNote);
-                createNote.btnSave.Text = "UPDATE";
-                createNote.ShowDialog();
+                using (FormCreateNote createNote = new FormCreateNote(currUser, grdNoteList, updateNote))
+                {
+                    createNote.btnSave.Text = "UPDATE";
+                    createNote.ShowDialog();
+                    createNote.Dispose();
+                    this.BringToFront();
+                    txtSearch.Select();
+                }
             }
+        }
+
+        private void btnCreate_TextChanged(object sender, EventArgs e)
+        {
+            notesHelper.LoadNotes(grdNoteList, "");
         }
     }
 }
