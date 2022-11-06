@@ -38,9 +38,8 @@ namespace POS.Forms
         {
             using (FormCreateNote createNote = new FormCreateNote(currUser, grdNoteList, null))
             {
-                createNote.ShowDialog();
+                createNote.ShowDialog(this);
                 createNote.Dispose();
-                this.BringToFront();
                 txtSearch.Select();
             }
         }
@@ -66,9 +65,8 @@ namespace POS.Forms
                 using (FormCreateNote createNote = new FormCreateNote(currUser, grdNoteList, updateNote))
                 {
                     createNote.btnSave.Text = "UPDATE";
-                    createNote.ShowDialog();
+                    createNote.ShowDialog(this);
                     createNote.Dispose();
-                    this.BringToFront();
                     txtSearch.Select();
                 }
             }

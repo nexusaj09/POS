@@ -30,9 +30,8 @@ namespace POS.Forms
 
             using (FormCreateDiscount createDiscount = new FormCreateDiscount(currUser, grdDiscountList, null))
             {
-                createDiscount.ShowDialog();
+                createDiscount.ShowDialog(this);
                 createDiscount.Dispose();
-                this.BringToFront();
                 txtSearch.Select();
             }
         }
@@ -66,7 +65,7 @@ namespace POS.Forms
                 using (FormCreateDiscount createDiscount = new FormCreateDiscount(currUser, grdDiscountList, updateDiscount))
                 {
                     createDiscount.btnSave.Text = "UPDATE";
-                    createDiscount.ShowDialog();
+                    createDiscount.ShowDialog(this);
                     createDiscount.Dispose();
                     txtSearch.Select();
                 }

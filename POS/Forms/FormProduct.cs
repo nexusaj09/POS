@@ -31,9 +31,12 @@ namespace POS.Forms
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
-            FormCreateProduct formCreateProduct = new FormCreateProduct(this, null);
-            formCreateProduct.ShowDialog();
-            txtSearch.Select();
+            using (FormCreateProduct formCreateProduct = new FormCreateProduct(this, null))
+            {
+                formCreateProduct.ShowDialog(this);
+                formCreateProduct.Dispose();
+                txtSearch.Select();
+            }
         }
 
 
@@ -93,12 +96,13 @@ namespace POS.Forms
 
         private void btnImport_Click(object sender, EventArgs e)
         {
-            PanelImportProduct panelImport = new PanelImportProduct(currUser);
-            panelImport.ShowDialog();
-            this.BringToFront();
-            txtSearch.Select();
 
-
+            using (PanelImportProduct panelImport = new PanelImportProduct(currUser))
+            {
+                panelImport.ShowDialog(this);
+                panelImport.Dispose();
+                txtSearch.Select();
+            }
         }
     }
 }

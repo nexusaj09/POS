@@ -30,9 +30,8 @@ namespace POS.Forms
         {
             using (FormCreateUser createUser = new FormCreateUser(currUser, grdUserList))
             {
-                createUser.ShowDialog();
+                createUser.ShowDialog(this);
                 createUser.Dispose();
-                this.BringToFront();
                 txtSearch.Select();
             }
         }
@@ -56,10 +55,8 @@ namespace POS.Forms
                     createUser.newUser.Password = grdUserList[3, e.RowIndex].Value.ToString();
                     createUser.btnSave.Text = "UPDATE";
                     createUser.txtUsername.Select();
-                    createUser.ShowDialog();
-
+                    createUser.ShowDialog(this);
                     createUser.Dispose();
-                    this.BringToFront();
                     txtSearch.Select();
                 }
             }

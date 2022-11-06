@@ -1,5 +1,6 @@
 ﻿using POS.Classes;
 using POS.Forms;
+using POS.Panels;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -486,5 +487,47 @@ namespace POS.Helpers
                 conn.Dispose();
             }
         }
+
+        public void LoadProductPanel(PanelProducts panelProduct,string search)
+        {
+            try
+            {
+                conn.Close();
+                conn.Dispose();
+
+                connection();
+
+                int count = 0;
+
+                panelProduct.grdProductList.Rows.Clear();
+
+                using (cmd = new SqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = @"SELECT ProductCode,Barcode,Description,                                
+                                Category, QTY,ReOrderQty,SupplierPrice,SRP,FinalPrice
+                                FROM Products WHERE ProductCode LIKE '%" + search + "%' OR Barcode LIKE '%" + search + "%' OR Description LIKE '%" + search + "%' ORDER BY ProductCode";
+                    dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        count++;
+                        panelProduct.grdProductList.Rows.Add(count, dr["ProductCode"].ToString(), dr["Barcode"].ToString(), dr["Description"].ToString(),
+                                dr["Category"].ToString(),dr["QTY"].ToString(), dr["ReOrderQty"].ToString(), dr["SupplierPrice"].ToString(), dr["SRP"].ToString(), dr["FinalPrice"].ToString());
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+                conn.Dispose();
+            }
+        }
+
     }
 }

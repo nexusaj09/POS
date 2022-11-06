@@ -184,6 +184,8 @@
             this.txtSearch.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.txtSearch.CustomButton.UseSelectable = true;
             this.txtSearch.CustomButton.Visible = false;
+            this.txtSearch.DisplayIcon = true;
+            this.txtSearch.Icon = ((System.Drawing.Image)(resources.GetObject("txtSearch.Icon")));
             this.txtSearch.Lines = new string[0];
             this.txtSearch.Location = new System.Drawing.Point(639, 7);
             this.txtSearch.MaxLength = 32767;
@@ -211,7 +213,7 @@
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(103, 23);
             this.btnCreate.TabIndex = 0;
-            this.btnCreate.Text = "Create Note";
+            this.btnCreate.Text = "CREATE NOTE";
             this.btnCreate.UseCustomBackColor = true;
             this.btnCreate.UseCustomForeColor = true;
             this.btnCreate.UseSelectable = true;

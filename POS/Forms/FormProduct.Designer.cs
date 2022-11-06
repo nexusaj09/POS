@@ -285,9 +285,9 @@
             this.btnImport.ForeColor = System.Drawing.Color.White;
             this.btnImport.Location = new System.Drawing.Point(4, 73);
             this.btnImport.Name = "btnImport";
-            this.btnImport.Size = new System.Drawing.Size(103, 23);
+            this.btnImport.Size = new System.Drawing.Size(124, 23);
             this.btnImport.TabIndex = 5;
-            this.btnImport.Text = "Import Products";
+            this.btnImport.Text = "IMPORT PRODUCTS";
             this.btnImport.UseCustomBackColor = true;
             this.btnImport.UseCustomForeColor = true;
             this.btnImport.UseSelectable = true;
@@ -515,8 +515,10 @@
             this.txtSearch.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.txtSearch.CustomButton.UseSelectable = true;
             this.txtSearch.CustomButton.Visible = false;
+            this.txtSearch.DisplayIcon = true;
+            this.txtSearch.Icon = ((System.Drawing.Image)(resources.GetObject("txtSearch.Icon")));
             this.txtSearch.Lines = new string[0];
-            this.txtSearch.Location = new System.Drawing.Point(875, 73);
+            this.txtSearch.Location = new System.Drawing.Point(850, 74);
             this.txtSearch.MaxLength = 32767;
             this.txtSearch.Multiline = true;
             this.txtSearch.Name = "txtSearch";
@@ -540,11 +542,11 @@
             this.btnCreate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCreate.BackColor = System.Drawing.Color.SeaGreen;
             this.btnCreate.ForeColor = System.Drawing.Color.White;
-            this.btnCreate.Location = new System.Drawing.Point(1219, 73);
+            this.btnCreate.Location = new System.Drawing.Point(1194, 73);
             this.btnCreate.Name = "btnCreate";
-            this.btnCreate.Size = new System.Drawing.Size(103, 23);
+            this.btnCreate.Size = new System.Drawing.Size(128, 23);
             this.btnCreate.TabIndex = 0;
-            this.btnCreate.Text = "Create Product";
+            this.btnCreate.Text = "CREATE PRODUCT";
             this.btnCreate.UseCustomBackColor = true;
             this.btnCreate.UseCustomForeColor = true;
             this.btnCreate.UseSelectable = true;
@@ -562,7 +564,7 @@
             this.Name = "FormProduct";
             this.Resizable = false;
             this.ShadowType = MetroFramework.Forms.MetroFormShadowType.None;
-            this.Text = "PRODUCT LIST";
+            this.Text = "Product List";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FormProduct_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grdProductList)).EndInit();

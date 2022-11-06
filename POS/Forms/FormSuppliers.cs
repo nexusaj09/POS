@@ -38,9 +38,8 @@ namespace POS.Forms
         {
             using (FormCreateSupplier formCreate = new FormCreateSupplier(currUser, grdSupplierList, null))
             {
-                formCreate.ShowDialog();
+                formCreate.ShowDialog(this);
                 formCreate.Dispose();
-                this.BringToFront();
                 txtSearch.Select();
             }
         }
@@ -75,9 +74,8 @@ namespace POS.Forms
                 using (FormCreateSupplier createSupplier = new FormCreateSupplier(currUser, grdSupplierList, supplier))
                 {
                     createSupplier.btnSave.Text = "UPDATE";
-                    createSupplier.ShowDialog();
+                    createSupplier.ShowDialog(this);
                     createSupplier.Dispose();
-                    this.BringToFront();
                     txtSearch.Select();
                 }
             }

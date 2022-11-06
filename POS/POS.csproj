@@ -98,6 +98,7 @@
     <Compile Include="Classes\Audit.cs" />
     <Compile Include="Classes\Categories.cs" />
     <Compile Include="Classes\Discount.cs" />
+    <Compile Include="Classes\Invoice.cs" />
     <Compile Include="Classes\Notes.cs" />
     <Compile Include="Classes\Product.cs" />
     <Compile Include="Classes\Suppliers.cs" />
@@ -119,6 +120,12 @@
     </Compile>
     <Compile Include="Forms\FormCreateDiscount.Designer.cs">
       <DependentUpon>FormCreateDiscount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormCreateInvoice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormCreateInvoice.Designer.cs">
+      <DependentUpon>FormCreateInvoice.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormCreateNote.cs">
       <SubType>Form</SubType>
@@ -168,6 +175,12 @@
     <Compile Include="Forms\FormInit.Designer.cs">
       <DependentUpon>FormInit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FormInvoice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormInvoice.Designer.cs">
+      <DependentUpon>FormInvoice.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormMainMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -207,6 +220,7 @@
     <Compile Include="Helpers\CategoryHelper.cs" />
     <Compile Include="Helpers\DatabaseConnection.cs" />
     <Compile Include="Helpers\DiscountHelper.cs" />
+    <Compile Include="Helpers\InvoiceHelper.cs" />
     <Compile Include="Helpers\NotesHelper.cs" />
     <Compile Include="Helpers\ProductHelper.cs" />
     <Compile Include="Helpers\SupplierHelper.cs" />
@@ -216,6 +230,18 @@
     </Compile>
     <Compile Include="Panels\PanelImportProduct.Designer.cs">
       <DependentUpon>PanelImportProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Panels\PanelProducts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Panels\PanelProducts.Designer.cs">
+      <DependentUpon>PanelProducts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Panels\PanelSearchSupplier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Panels\PanelSearchSupplier.Designer.cs">
+      <DependentUpon>PanelSearchSupplier.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -227,6 +253,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormCreateDiscount.resx">
       <DependentUpon>FormCreateDiscount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormCreateInvoice.resx">
+      <DependentUpon>FormCreateInvoice.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormCreateNote.resx">
       <DependentUpon>FormCreateNote.cs</DependentUpon>
@@ -252,6 +281,9 @@
     <EmbeddedResource Include="Forms\FormInit.resx">
       <DependentUpon>FormInit.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormInvoice.resx">
+      <DependentUpon>FormInvoice.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormMainMenu.resx">
       <DependentUpon>FormMainMenu.cs</DependentUpon>
     </EmbeddedResource>
@@ -272,6 +304,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Panels\PanelImportProduct.resx">
       <DependentUpon>PanelImportProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panels\PanelProducts.resx">
+      <DependentUpon>PanelProducts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panels\PanelSearchSupplier.resx">
+      <DependentUpon>PanelSearchSupplier.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

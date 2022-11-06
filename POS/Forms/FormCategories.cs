@@ -37,7 +37,7 @@ namespace POS.Forms
         {
             using (FormCreateCategory createCategory = new FormCreateCategory(currUser, grdCategoryList, null))
             {
-                createCategory.ShowDialog();
+                createCategory.ShowDialog(this);
                 createCategory.Dispose();
                 this.BringToFront();
                 txtSearch.Select();
@@ -71,7 +71,7 @@ namespace POS.Forms
                 using (FormCreateCategory createCategory = new FormCreateCategory(currUser, grdCategoryList, categories))
                 {
                     createCategory.btnSave.Text = "UPDATE";
-                    createCategory.ShowDialog();
+                    createCategory.ShowDialog(this);
                     createCategory.Dispose();
                     this.BringToFront();
                     txtSearch.Select();

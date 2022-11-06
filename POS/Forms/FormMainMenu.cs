@@ -226,5 +226,25 @@ namespace POS.Forms
             this.WindowState = FormWindowState.Maximized;
         }
 
+        private void btnStockInvoice_Click(object sender, EventArgs e)
+        {
+            bool isOpen = false;
+
+            foreach (Form f in Application.OpenForms)
+            {
+                if (f.Name == "FormInvoice")
+                {
+                    isOpen = true;
+                    f.BringToFront();
+                    break;
+                }
+            }
+
+            if (isOpen == false)
+            {
+                FormInvoice formInvoice = new FormInvoice(currUser);
+                formInvoice.Show(this);
+            }
+        }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace POS.Forms
 {
-    partial class FormDiscounts
+    partial class FormInvoice
     {
         /// <summary>
         /// Required designer variable.
@@ -31,30 +31,33 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDiscounts));
-            this.grdDiscountList = new MetroFramework.Controls.MetroGrid();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormInvoice));
+            this.grdProductList = new MetroFramework.Controls.MetroGrid();
             this.Count = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DiscountPercent = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.REFNBR = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SUPPLIER = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CONTACTPERSON = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CREATEDBY = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QTY = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TOTALINVOICE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EDIT = new System.Windows.Forms.DataGridViewImageColumn();
             this.DELETE = new System.Windows.Forms.DataGridViewImageColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.txtSearch = new MetroFramework.Controls.MetroTextBox();
             this.btnCreate = new MetroFramework.Controls.MetroButton();
-            ((System.ComponentModel.ISupportInitialize)(this.grdDiscountList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdProductList)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // grdDiscountList
+            // grdProductList
             // 
-            this.grdDiscountList.AllowUserToAddRows = false;
-            this.grdDiscountList.AllowUserToDeleteRows = false;
-            this.grdDiscountList.AllowUserToResizeRows = false;
-            this.grdDiscountList.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.grdDiscountList.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.grdDiscountList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.grdDiscountList.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.grdProductList.AllowUserToAddRows = false;
+            this.grdProductList.AllowUserToDeleteRows = false;
+            this.grdProductList.AllowUserToResizeRows = false;
+            this.grdProductList.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.grdProductList.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.grdProductList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.grdProductList.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(114)))), ((int)(((byte)(192)))));
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -62,31 +65,34 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(114)))), ((int)(((byte)(192)))));
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdDiscountList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.grdDiscountList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdDiscountList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.grdProductList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.grdProductList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grdProductList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Count,
-            this.ID,
-            this.Description,
-            this.DiscountPercent,
+            this.REFNBR,
+            this.SUPPLIER,
+            this.CONTACTPERSON,
+            this.CREATEDBY,
+            this.QTY,
+            this.TOTALINVOICE,
             this.EDIT,
             this.DELETE});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Info;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdDiscountList.DefaultCellStyle = dataGridViewCellStyle2;
-            this.grdDiscountList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grdDiscountList.EnableHeadersVisualStyles = false;
-            this.grdDiscountList.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.grdDiscountList.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.grdDiscountList.Location = new System.Drawing.Point(20, 96);
-            this.grdDiscountList.Name = "grdDiscountList";
-            this.grdDiscountList.ReadOnly = true;
-            this.grdDiscountList.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.grdProductList.DefaultCellStyle = dataGridViewCellStyle2;
+            this.grdProductList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grdProductList.EnableHeadersVisualStyles = false;
+            this.grdProductList.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.grdProductList.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.grdProductList.Location = new System.Drawing.Point(20, 97);
+            this.grdProductList.Name = "grdProductList";
+            this.grdProductList.ReadOnly = true;
+            this.grdProductList.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
@@ -94,13 +100,12 @@
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdDiscountList.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.grdDiscountList.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.grdDiscountList.RowTemplate.Height = 24;
-            this.grdDiscountList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdDiscountList.Size = new System.Drawing.Size(1025, 617);
-            this.grdDiscountList.TabIndex = 6;
-            this.grdDiscountList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDiscountList_CellContentClick);
+            this.grdProductList.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.grdProductList.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.grdProductList.RowTemplate.Height = 26;
+            this.grdProductList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdProductList.Size = new System.Drawing.Size(1340, 658);
+            this.grdProductList.TabIndex = 10;
             // 
             // Count
             // 
@@ -110,26 +115,49 @@
             this.Count.ReadOnly = true;
             this.Count.Width = 39;
             // 
-            // ID
+            // REFNBR
             // 
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Visible = false;
+            this.REFNBR.HeaderText = "REFERENCE NBR";
+            this.REFNBR.Name = "REFNBR";
+            this.REFNBR.ReadOnly = true;
+            this.REFNBR.Width = 208;
             // 
-            // Description
+            // SUPPLIER
             // 
-            this.Description.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Description.HeaderText = "DESCRIPTION";
-            this.Description.Name = "Description";
-            this.Description.ReadOnly = true;
+            this.SUPPLIER.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.SUPPLIER.HeaderText = "SUPPLIER";
+            this.SUPPLIER.Name = "SUPPLIER";
+            this.SUPPLIER.ReadOnly = true;
             // 
-            // DiscountPercent
+            // CONTACTPERSON
             // 
-            this.DiscountPercent.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.DiscountPercent.HeaderText = "DISCOUNT PERCENTAGE";
-            this.DiscountPercent.Name = "DiscountPercent";
-            this.DiscountPercent.ReadOnly = true;
+            this.CONTACTPERSON.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CONTACTPERSON.HeaderText = "CONTACT PERSON";
+            this.CONTACTPERSON.Name = "CONTACTPERSON";
+            this.CONTACTPERSON.ReadOnly = true;
+            // 
+            // CREATEDBY
+            // 
+            this.CREATEDBY.HeaderText = "CREATED BY";
+            this.CREATEDBY.Name = "CREATEDBY";
+            this.CREATEDBY.ReadOnly = true;
+            this.CREATEDBY.Width = 208;
+            // 
+            // QTY
+            // 
+            this.QTY.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.QTY.HeaderText = "QTY";
+            this.QTY.Name = "QTY";
+            this.QTY.ReadOnly = true;
+            this.QTY.Width = 54;
+            // 
+            // TOTALINVOICE
+            // 
+            this.TOTALINVOICE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.TOTALINVOICE.HeaderText = "TOTAL INVOICE";
+            this.TOTALINVOICE.Name = "TOTALINVOICE";
+            this.TOTALINVOICE.ReadOnly = true;
+            this.TOTALINVOICE.Width = 109;
             // 
             // EDIT
             // 
@@ -156,13 +184,12 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(20, 60);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1025, 36);
-            this.panel1.TabIndex = 5;
+            this.panel1.Size = new System.Drawing.Size(1340, 37);
+            this.panel1.TabIndex = 9;
             // 
             // txtSearch
             // 
-            this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             // 
             // 
             // 
@@ -178,8 +205,9 @@
             this.txtSearch.DisplayIcon = true;
             this.txtSearch.Icon = ((System.Drawing.Image)(resources.GetObject("txtSearch.Icon")));
             this.txtSearch.Lines = new string[0];
-            this.txtSearch.Location = new System.Drawing.Point(626, 7);
+            this.txtSearch.Location = new System.Drawing.Point(956, 7);
             this.txtSearch.MaxLength = 32767;
+            this.txtSearch.Multiline = true;
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.PasswordChar = '\0';
             this.txtSearch.PromptText = "Search Here";
@@ -194,38 +222,36 @@
             this.txtSearch.WaterMark = "Search Here";
             this.txtSearch.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtSearch.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // btnCreate
             // 
             this.btnCreate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCreate.BackColor = System.Drawing.Color.SeaGreen;
             this.btnCreate.ForeColor = System.Drawing.Color.White;
-            this.btnCreate.Location = new System.Drawing.Point(904, 7);
+            this.btnCreate.Location = new System.Drawing.Point(1234, 7);
             this.btnCreate.Name = "btnCreate";
-            this.btnCreate.Size = new System.Drawing.Size(116, 23);
+            this.btnCreate.Size = new System.Drawing.Size(103, 23);
             this.btnCreate.TabIndex = 0;
-            this.btnCreate.Text = "CREATE DISCOUNT";
+            this.btnCreate.Text = "STOCK IN";
             this.btnCreate.UseCustomBackColor = true;
             this.btnCreate.UseCustomForeColor = true;
             this.btnCreate.UseSelectable = true;
             this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
             // 
-            // FormDiscounts
+            // FormInvoice
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
-            this.ClientSize = new System.Drawing.Size(1065, 733);
-            this.Controls.Add(this.grdDiscountList);
+            this.ClientSize = new System.Drawing.Size(1380, 775);
+            this.Controls.Add(this.grdProductList);
             this.Controls.Add(this.panel1);
-            this.MaximizeBox = false;
-            this.Name = "FormDiscounts";
+            this.Name = "FormInvoice";
             this.Resizable = false;
             this.ShadowType = MetroFramework.Forms.MetroFormShadowType.None;
-            this.Text = "Discount List";
-            this.Load += new System.EventHandler(this.FormDiscounts_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.grdDiscountList)).EndInit();
+            this.Text = "Stock Invoice";
+            this.Load += new System.EventHandler(this.FormInvoice_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.grdProductList)).EndInit();
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -233,15 +259,18 @@
 
         #endregion
 
-        public MetroFramework.Controls.MetroGrid grdDiscountList;
+        public MetroFramework.Controls.MetroGrid grdProductList;
         private System.Windows.Forms.Panel panel1;
+        private MetroFramework.Controls.MetroTextBox txtSearch;
         private MetroFramework.Controls.MetroButton btnCreate;
         private System.Windows.Forms.DataGridViewTextBoxColumn Count;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Description;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DiscountPercent;
+        private System.Windows.Forms.DataGridViewTextBoxColumn REFNBR;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SUPPLIER;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CONTACTPERSON;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CREATEDBY;
+        private System.Windows.Forms.DataGridViewTextBoxColumn QTY;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TOTALINVOICE;
         private System.Windows.Forms.DataGridViewImageColumn EDIT;
         private System.Windows.Forms.DataGridViewImageColumn DELETE;
-        public MetroFramework.Controls.MetroTextBox txtSearch;
     }
 }

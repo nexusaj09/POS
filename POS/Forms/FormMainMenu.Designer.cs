@@ -47,6 +47,7 @@
             this.lblRole = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pnlShow = new MetroFramework.Controls.MetroPanel();
+            this.btnStockInvoice = new System.Windows.Forms.Button();
             this.metroPanel2.SuspendLayout();
             this.metroPanel4.SuspendLayout();
             this.metroPanel3.SuspendLayout();
@@ -89,6 +90,7 @@
             // 
             // metroPanel4
             // 
+            this.metroPanel4.Controls.Add(this.btnStockInvoice);
             this.metroPanel4.Controls.Add(this.btnNotes);
             this.metroPanel4.Controls.Add(this.btnUserRoles);
             this.metroPanel4.Controls.Add(this.button2);
@@ -371,6 +373,24 @@
             this.pnlShow.VerticalScrollbarHighlightOnWheel = false;
             this.pnlShow.VerticalScrollbarSize = 13;
             // 
+            // btnStockInvoice
+            // 
+            this.btnStockInvoice.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnStockInvoice.FlatAppearance.BorderSize = 0;
+            this.btnStockInvoice.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStockInvoice.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStockInvoice.Image = ((System.Drawing.Image)(resources.GetObject("btnStockInvoice.Image")));
+            this.btnStockInvoice.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnStockInvoice.Location = new System.Drawing.Point(0, 315);
+            this.btnStockInvoice.Margin = new System.Windows.Forms.Padding(4);
+            this.btnStockInvoice.Name = "btnStockInvoice";
+            this.btnStockInvoice.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.btnStockInvoice.Size = new System.Drawing.Size(214, 35);
+            this.btnStockInvoice.TabIndex = 12;
+            this.btnStockInvoice.Text = "Stock Invoice";
+            this.btnStockInvoice.UseVisualStyleBackColor = true;
+            this.btnStockInvoice.Click += new System.EventHandler(this.btnStockInvoice_Click);
+            // 
             // FormMainMenu
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -413,5 +433,6 @@
         private System.Windows.Forms.Button btnNotes;
         private System.Windows.Forms.Button btnUserRoles;
         private System.Windows.Forms.Button btnProducts;
+        private System.Windows.Forms.Button btnStockInvoice;
     }
 }
