@@ -84,6 +84,7 @@
             this.grdDiscountList.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.grdDiscountList.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.grdDiscountList.Location = new System.Drawing.Point(20, 96);
+            this.grdDiscountList.MultiSelect = false;
             this.grdDiscountList.Name = "grdDiscountList";
             this.grdDiscountList.ReadOnly = true;
             this.grdDiscountList.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
@@ -101,6 +102,7 @@
             this.grdDiscountList.Size = new System.Drawing.Size(1025, 617);
             this.grdDiscountList.TabIndex = 6;
             this.grdDiscountList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDiscountList_CellContentClick);
+            this.grdDiscountList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.grdDiscountList_KeyDown);
             // 
             // Count
             // 

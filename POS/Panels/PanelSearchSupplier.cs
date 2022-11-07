@@ -31,6 +31,9 @@ namespace POS.Panels
         private void Init()
         {
             supplierHelper.LoadSupplier(grdSupplierList,null);
+
+            txtSearch.Select();
+            txtSearch.Focus();
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
@@ -64,6 +67,28 @@ namespace POS.Panels
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void PanelSearchSupplier_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F1)
+            {
+                txtSearch.Select();
+                txtSearch.Focus();
+            }
+            else if (e.KeyCode == Keys.Enter && grdSupplierList.Rows.Count > 0 && grdSupplierList.ContainsFocus)
+            {
+                SelectSupplier(grdSupplierList.CurrentRow.Index);
+                e.Handled = true;
+            }
+            else if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+            else if (e.KeyCode == Keys.Down && txtSearch.ContainsFocus)
+            {
+                grdSupplierList.Select();
             }
         }
     }

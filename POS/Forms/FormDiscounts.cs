@@ -76,5 +76,17 @@ namespace POS.Forms
         {
             discountHelper.LoadDiscount(grdDiscountList, txtSearch.Text);
         }
+
+        private void grdDiscountList_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+            else if (e.KeyCode == Keys.F1)
+            {
+                txtSearch.Select();
+            }
+        }
     }
 }

@@ -26,8 +26,7 @@ namespace POS.Forms
 
         private void FormCategories_Load(object sender, EventArgs e)
         {
-            txtSearch.Select();
-            txtSearch.Focus();
+            txtFocus();
 
             cateroryHelper.LoadCategories(grdCategoryList, "");
 
@@ -39,9 +38,7 @@ namespace POS.Forms
             {
                 createCategory.ShowDialog(this);
                 createCategory.Dispose();
-                this.BringToFront();
-                txtSearch.Select();
-                txtSearch.Focus();
+                txtFocus();
             }
 
         }
@@ -73,10 +70,22 @@ namespace POS.Forms
                     createCategory.btnSave.Text = "UPDATE";
                     createCategory.ShowDialog(this);
                     createCategory.Dispose();
-                    this.BringToFront();
-                    txtSearch.Select();
-                    txtSearch.Focus();
+                    txtFocus();
                 }
+            }
+        }
+
+        public void txtFocus()
+        {
+            txtSearch.Select();
+            txtSearch.Focus();
+        }
+
+        private void FormCategories_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F1)
+            {
+                txtFocus();
             }
         }
     }
