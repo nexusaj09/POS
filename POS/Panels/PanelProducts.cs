@@ -27,12 +27,18 @@ namespace POS.Panels
         private void PanelProducts_Load(object sender, EventArgs e)
         {
             productHelper.LoadProductPanel(this, txtSearch.Text);
-            txtSearch.Select();
+
+            Init();
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             productHelper.LoadProductPanel(this, txtSearch.Text);
+
+            if (grdProductList.Rows.Count > 0)
+            {
+                Init();
+            }
         }
 
         private void grdProductList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -45,17 +51,19 @@ namespace POS.Panels
             bool isFound = false;
 
 
-            if (formCreateInvoice.grdProductList.Rows.Count == 0)
+            if (formCreateInvoice.grdInvoiceList.Rows.Count == 0)
             {
-                formCreateInvoice.grdProductList.Rows.Add(index += 1, grdProductList[1,row].Value.ToString(),
+                formCreateInvoice.grdInvoiceList.Rows.Add(index += 1,"", grdProductList[1,row].Value.ToString(),
                     grdProductList[3, row].Value.ToString(), "0.00", "0", "0.00");
+
+                MessageBox.Show("Product Added", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                for (int i = 1; i <= formCreateInvoice.grdProductList.Rows.Count; i++)
+                for (int i = 1; i <= formCreateInvoice.grdInvoiceList.Rows.Count; i++)
                 {
                     //GridView.Rows[Index].Cells[ColumnName]               // GridView[ColumnIndex,Current Row Index] 
-                    if (formCreateInvoice.grdProductList.Rows[i - 1].Cells["PRODUCTCODE"].Value.ToString() == grdProductList[1, row].Value.ToString())
+                    if (formCreateInvoice.grdInvoiceList.Rows[i - 1].Cells["PRODUCTCODE"].Value.ToString() == grdProductList[1, row].Value.ToString())
                     {
                         isFound = true;
                         break;
@@ -68,13 +76,16 @@ namespace POS.Panels
 
                 if (isFound)
                 {
-                    MessageBox.Show("Item is already in the list", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Product is already in the list", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 else
                 {
-                    index = Convert.ToInt32(formCreateInvoice.grdProductList.Rows.Count);
-                    formCreateInvoice.grdProductList.Rows.Add(index += 1, grdProductList[1, row].Value.ToString(),
+                    index = Convert.ToInt32(formCreateInvoice.grdInvoiceList.Rows.Count);
+                    formCreateInvoice.grdInvoiceList.Rows.Add(index += 1,"", grdProductList[1, row].Value.ToString(),
                 grdProductList[3, row].Value.ToString(), "0.00", "0", "0.00");
+
+                    MessageBox.Show("Product Added", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                 }
             }
 
@@ -92,17 +103,43 @@ namespace POS.Panels
                 SelectProduct(grdProductList.CurrentCell.RowIndex);
                 e.Handled = true;
             }
-            else if (e.KeyCode == Keys.Down)
+            else if (e.KeyCode == Keys.Down && txtSearch.ContainsFocus && grdProductList.Rows.Count > 0)
             {
-                if (txtSearch.ContainsFocus == true)
-                {
-                    grdProductList.Select();
-                }
+
+                grdProductList.Select();
+                grdProductList.Rows[0].Selected = true;
+
             }
             else if (e.KeyCode == Keys.F1)
             {
-                txtSearch.Select();
+                Init();
             }
+        }
+
+        private void grdProductList_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            var dataGridView = sender as DataGridView;
+            if (dataGridView.Rows[e.RowIndex].Selected)
+            {
+                e.CellStyle.Font = new Font(e.CellStyle.Font, FontStyle.Bold);
+                // edit: to change the background color:
+                e.CellStyle.SelectionBackColor = Color.Coral;
+            }
+        }
+
+        public void txtFocus()
+        {
+            txtSearch.Select();
+            txtSearch.Focus();
+        }
+
+        public void Init()
+        {
+            txtFocus();
+
+            grdProductList.ClearSelection();
+
+            grdProductList.CurrentCell = null;
         }
     }
 }

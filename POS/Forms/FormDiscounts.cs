@@ -32,15 +32,14 @@ namespace POS.Forms
             {
                 createDiscount.ShowDialog(this);
                 createDiscount.Dispose();
-                txtSearch.Select();
+                Init();
             }
         }
 
         private void FormDiscounts_Load(object sender, EventArgs e)
         {
             discountHelper.LoadDiscount(grdDiscountList, txtSearch.Text);
-            txtSearch.Select();
-            txtSearch.Focus();
+            Init();
 
         }
 
@@ -67,7 +66,7 @@ namespace POS.Forms
                     createDiscount.btnSave.Text = "UPDATE";
                     createDiscount.ShowDialog(this);
                     createDiscount.Dispose();
-                    txtSearch.Select();
+                    Init();
                 }
             }
         }
@@ -75,9 +74,27 @@ namespace POS.Forms
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             discountHelper.LoadDiscount(grdDiscountList, txtSearch.Text);
+
+            if (grdDiscountList.Rows.Count > 0)
+            {
+                Init();
+            }
         }
 
-        private void grdDiscountList_KeyDown(object sender, KeyEventArgs e)
+
+        private void grdDiscountList_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+
+            var dataGridView = sender as DataGridView;
+            if (dataGridView.Rows[e.RowIndex].Selected)
+            {
+                e.CellStyle.Font = new Font(e.CellStyle.Font, FontStyle.Bold);
+                // edit: to change the background color:
+                e.CellStyle.SelectionBackColor = Color.Coral;
+            }
+        }
+
+        private void FormDiscounts_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
             {
@@ -85,8 +102,29 @@ namespace POS.Forms
             }
             else if (e.KeyCode == Keys.F1)
             {
-                txtSearch.Select();
+                Init();
             }
+            else if (e.KeyCode == Keys.Down && txtSearch.ContainsFocus && grdDiscountList.Rows.Count > 0)
+            {
+                grdDiscountList.Select();
+                grdDiscountList.Rows[0].Selected = true;
+            }
+
+        }
+
+        public void txtFocus()
+        {
+            txtSearch.Select();
+            txtSearch.Focus();
+        }
+
+        public void Init()
+        {
+            txtFocus();
+
+            grdDiscountList.ClearSelection();
+
+            grdDiscountList.CurrentCell = null;
         }
     }
 }

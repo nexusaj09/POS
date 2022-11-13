@@ -22,8 +22,6 @@ namespace POS.Forms
         {
             InitializeComponent();
             this.currUser = currentUser;
-            userHelper.LoadUsers(grdUserList, txtSearch.Text);
-            txtSearch.Select();
         }
 
         private void btnCreate_Click(object sender, EventArgs e)
@@ -32,13 +30,18 @@ namespace POS.Forms
             {
                 createUser.ShowDialog(this);
                 createUser.Dispose();
-                txtSearch.Select();
-            }
+                Init();
+            }             
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             userHelper.LoadUsers(grdUserList, txtSearch.Text);
+            if (grdUserList.Rows.Count > 0)
+            {
+                Init();
+            }
+
         }
 
         private void grdUserList_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -57,7 +60,7 @@ namespace POS.Forms
                     createUser.txtUsername.Select();
                     createUser.ShowDialog(this);
                     createUser.Dispose();
-                    txtSearch.Select();
+                    Init();
                 }
             }
             else if (grdUserList.Columns[e.ColumnIndex].Name == "DELETE")
@@ -68,6 +71,59 @@ namespace POS.Forms
                     userHelper.LoadUsers(grdUserList, txtSearch.Text);
                     MessageBox.Show("User Successfully Deleted", "User Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+            }
+        }
+
+        private void FormUsers_Load(object sender, EventArgs e)
+        {
+            userHelper.LoadUsers(grdUserList, txtSearch.Text);
+
+            Init();
+        }
+
+        public void txtFocus()
+        {
+            txtSearch.Select();
+            txtSearch.Focus();
+        }
+
+        public void Init()
+        {
+            txtFocus();
+
+            grdUserList.ClearSelection();
+
+            grdUserList.CurrentCell = null;
+        }
+
+        private void grdUserList_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            var dataGridView = sender as DataGridView;
+            if (dataGridView.Rows[e.RowIndex].Selected)
+            {
+                e.CellStyle.Font = new Font(e.CellStyle.Font, FontStyle.Bold);
+                // edit: to change the background color:
+                e.CellStyle.SelectionBackColor = Color.Coral;
+            }
+        }
+
+        private void FormUsers_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F1)
+            {
+                Init();
+
+            }
+            else if (e.KeyCode == Keys.Down && txtSearch.ContainsFocus && grdUserList.Rows.Count > 0)
+            {
+
+                grdUserList.Select();
+                grdUserList.Rows[0].Selected = true;
+
+            }
+            else if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
             }
         }
     }

@@ -28,10 +28,9 @@ namespace POS.Forms
 
         private void FormSuppliers_Load(object sender, EventArgs e)
         {
-            txtSearch.Select();
-            txtSearch.Focus();
-
             supplierHelper.LoadSupplier(grdSupplierList, "");
+
+            Init();
         }
 
         private void btnCreate_Click(object sender, EventArgs e)
@@ -40,7 +39,7 @@ namespace POS.Forms
             {
                 formCreate.ShowDialog(this);
                 formCreate.Dispose();
-                txtSearch.Select();
+                Init();
             }
         }
 
@@ -48,6 +47,12 @@ namespace POS.Forms
         {
 
             supplierHelper.LoadSupplier(grdSupplierList, txtSearch.Text);
+
+            if (grdSupplierList.Rows.Count > 0)
+            {
+                Init();
+            }
+
         }
 
         private void grdSupplierList_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -76,9 +81,54 @@ namespace POS.Forms
                     createSupplier.btnSave.Text = "UPDATE";
                     createSupplier.ShowDialog(this);
                     createSupplier.Dispose();
-                    txtSearch.Select();
+                    Init();
                 }
             }
         }
+
+        private void grdSupplierList_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+
+            var dataGridView = sender as DataGridView;
+            if (dataGridView.Rows[e.RowIndex].Selected)
+            {
+                e.CellStyle.Font = new Font(e.CellStyle.Font, FontStyle.Bold);
+                // edit: to change the background color:
+                e.CellStyle.SelectionBackColor = Color.Coral;
+            }
+        }
+
+        private void FormSuppliers_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }    
+            else if (e.KeyCode == Keys.Down && txtSearch.ContainsFocus && grdSupplierList.Rows.Count > 0)
+            {
+                grdSupplierList.Select();
+                grdSupplierList.Rows[0].Selected = true;
+            }
+            else if (e.KeyCode == Keys.F1)
+            {
+                Init();
+            }
+        }
+
+        public void txtFocus()
+        {
+            txtSearch.Select();
+            txtSearch.Focus();
+        }
+
+        public void Init()
+        {
+            txtFocus();
+
+            grdSupplierList.ClearSelection();
+
+            grdSupplierList.CurrentCell = null;
+        }
+
     }
 }

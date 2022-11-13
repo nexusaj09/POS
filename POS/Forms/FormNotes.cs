@@ -27,11 +27,11 @@ namespace POS.Forms
         }
 
         private void FormNotes_Load(object sender, EventArgs e)
-        {
-            txtSearch.Select();
-            txtSearch.Focus();
+        {            
 
             notesHelper.LoadNotes(grdNoteList, "");
+
+            Init();
         }
 
         private void btnCreate_Click(object sender, EventArgs e)
@@ -40,7 +40,7 @@ namespace POS.Forms
             {
                 createNote.ShowDialog(this);
                 createNote.Dispose();
-                txtSearch.Select();
+                Init();
             }
         }
 
@@ -67,14 +67,66 @@ namespace POS.Forms
                     createNote.btnSave.Text = "UPDATE";
                     createNote.ShowDialog(this);
                     createNote.Dispose();
-                    txtSearch.Select();
+                    Init();
                 }
             }
         }
 
-        private void btnCreate_TextChanged(object sender, EventArgs e)
+
+        public void txtFocus()
+        {
+            txtSearch.Select();
+            txtSearch.Focus();
+        }
+
+        public void Init()
+        {
+            txtFocus();
+
+            grdNoteList.ClearSelection();
+
+            grdNoteList.CurrentCell = null;
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             notesHelper.LoadNotes(grdNoteList, "");
+
+            if (grdNoteList.Rows.Count > 0)
+            {
+                Init();
+            }
+        }
+
+        private void grdNoteList_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            var dataGridView = sender as DataGridView;
+            if (dataGridView.Rows[e.RowIndex].Selected)
+            {
+                e.CellStyle.Font = new Font(e.CellStyle.Font, FontStyle.Bold);
+                // edit: to change the background color:
+                e.CellStyle.SelectionBackColor = Color.Coral;
+            }
+        }
+
+        private void FormNotes_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F1)
+            {
+                Init();
+
+            }
+            else if (e.KeyCode == Keys.Down && txtSearch.ContainsFocus && grdNoteList.Rows.Count > 0)
+            {
+
+                grdNoteList.Select();
+                grdNoteList.Rows[0].Selected = true;
+
+            }
+            else if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
         }
     }
 }

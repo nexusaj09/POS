@@ -310,6 +310,44 @@ namespace POS.Helpers
             }
         }
 
+        public int UserCount()
+        {
+            int count = 0;
+            try
+            {
+                conn.Close();
+                conn.Dispose();
+
+                connection();
+
+                using (cmd = new SqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandType = System.Data.CommandType.Text;
+                    cmd.CommandText = @"SELECT Count(ID) as Count FROM Users";
+                    dr = cmd.ExecuteReader();
+                    if (dr.Read())
+                    {
+                        count = Convert.ToInt32(dr["Count"].ToString());
+
+                        return count;
+                    }
+                    else return count;
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return count;
+            }
+            finally
+            {
+                dr.Close();
+                conn.Close();
+                conn.Dispose();
+            }
+        }
+
 
     }
 }

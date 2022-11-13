@@ -50,12 +50,9 @@ namespace POS.Forms
             lblUnderStock.Text = productHelper.CountTotalReStockQty().ToString();
             lblOutOfStock.Text = productHelper.CountTotalOutofStock().ToString();
             grdProductList.ClearSelection();
+            grdProductList.CurrentCell = null;
         }
 
-        private void txtSearch_TextChanged(object sender, EventArgs e)
-        {
-            productHelper.LoadProducts(this, txtSearch.Text);
-        }
 
         private void grdProductList_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -90,7 +87,8 @@ namespace POS.Forms
 
                 FormCreateProduct form = new FormCreateProduct(this, updateProduct);
                 form.btnSave.Text = "UPDATE";
-                form.ShowDialog();
+                form.ShowDialog(this);
+                form.Dispose();
             }
         }
 
@@ -102,6 +100,47 @@ namespace POS.Forms
                 panelImport.ShowDialog(this);
                 panelImport.Dispose();
                 txtSearch.Select();
+            }
+        }
+
+        private void grdProductList_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            var dataGridView = sender as DataGridView;
+            if (dataGridView.Rows[e.RowIndex].Selected)
+            {
+                e.CellStyle.Font = new Font(e.CellStyle.Font, FontStyle.Bold);
+             //   edit: to change the background color:
+                e.CellStyle.SelectionBackColor = Color.Coral;
+            }
+        }
+
+        private void FormProduct_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F1)
+            {
+                Init();
+
+            }
+            else if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+            else if (e.KeyCode == Keys.Down && txtSearch.ContainsFocus == true && grdProductList.Rows.Count > 0)
+            {
+                grdProductList.Select();
+                grdProductList.Rows[0].Selected = true;
+
+            }
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            productHelper.LoadProducts(this, txtSearch.Text);
+
+            if (grdProductList.Rows.Count > 0)
+            {
+                grdProductList.ClearSelection();
+                grdProductList.CurrentCell = null;
             }
         }
     }

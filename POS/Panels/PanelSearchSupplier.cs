@@ -28,21 +28,20 @@ namespace POS.Panels
         }
 
 
-        private void Init()
-        {
-            supplierHelper.LoadSupplier(grdSupplierList,null);
-
-            txtSearch.Select();
-            txtSearch.Focus();
-        }
-
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             supplierHelper.LoadSupplier(grdSupplierList, txtSearch.Text);
+
+            if (grdSupplierList.Rows.Count > 0)
+            {
+                Init();
+            }
         }
 
         private void PanelSearchSupplier_Load(object sender, EventArgs e)
         {
+            supplierHelper.LoadSupplier(grdSupplierList, txtSearch.Text);
+
             Init();
         }
 
@@ -74,8 +73,7 @@ namespace POS.Panels
         {
             if (e.KeyCode == Keys.F1)
             {
-                txtSearch.Select();
-                txtSearch.Focus();
+                Init();
             }
             else if (e.KeyCode == Keys.Enter && grdSupplierList.Rows.Count > 0 && grdSupplierList.ContainsFocus)
             {
@@ -86,10 +84,38 @@ namespace POS.Panels
             {
                 this.Close();
             }
-            else if (e.KeyCode == Keys.Down && txtSearch.ContainsFocus)
+            else if (e.KeyCode == Keys.Down && txtSearch.ContainsFocus && grdSupplierList.Rows.Count > 0)
             {
+
                 grdSupplierList.Select();
+                grdSupplierList.Rows[0].Selected = true;
             }
+        }
+
+        private void grdSupplierList_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            var dataGridView = sender as DataGridView;
+            if (dataGridView.Rows[e.RowIndex].Selected)
+            {
+                e.CellStyle.Font = new Font(e.CellStyle.Font, FontStyle.Bold);
+                // edit: to change the background color:
+                e.CellStyle.SelectionBackColor = Color.Coral;
+            }
+        }
+
+        public void Init()
+        {
+            txtFocus();
+
+            grdSupplierList.ClearSelection();
+
+            grdSupplierList.CurrentCell = null;
+        }
+
+        public void txtFocus()
+        {
+            txtSearch.Select();
+            txtSearch.Focus();
         }
     }
 }

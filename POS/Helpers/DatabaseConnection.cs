@@ -82,12 +82,13 @@ namespace POS.Helpers
             }
         }
 
-        public void DisplayConnSetup()
+        public bool DisplayConnSetup()
         {
             KeyValue = Conversions.ToString(Registry.GetValue("HKEY_CURRENT_USER\\Software\\POS\\System\\Settings", "POS", "Default Value"));
             if (Strings.Trim(KeyValue) == "")
             {
                 MessageBox.Show("Please Set Up Server Connection", "Server not set up", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
             else
             {
@@ -96,6 +97,7 @@ namespace POS.Helpers
                 password = builder.Password;
                 dataSource = builder.DataSource;
                 initialCatalog = builder.InitialCatalog;
+                return true;
             }
         }
 

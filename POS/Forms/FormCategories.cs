@@ -26,9 +26,11 @@ namespace POS.Forms
 
         private void FormCategories_Load(object sender, EventArgs e)
         {
-            txtFocus();
+
 
             cateroryHelper.LoadCategories(grdCategoryList, "");
+
+            Init();
 
         }
 
@@ -38,7 +40,7 @@ namespace POS.Forms
             {
                 createCategory.ShowDialog(this);
                 createCategory.Dispose();
-                txtFocus();
+                Init();
             }
 
         }
@@ -46,6 +48,12 @@ namespace POS.Forms
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             cateroryHelper.LoadCategories(grdCategoryList, txtSearch.Text);
+
+            if (grdCategoryList.Rows.Count > 0)
+            {
+                Init();
+            }
+
         }
 
         private void grdCategoryList_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -70,7 +78,7 @@ namespace POS.Forms
                     createCategory.btnSave.Text = "UPDATE";
                     createCategory.ShowDialog(this);
                     createCategory.Dispose();
-                    txtFocus();
+                    Init();
                 }
             }
         }
@@ -85,8 +93,42 @@ namespace POS.Forms
         {
             if (e.KeyCode == Keys.F1)
             {
-                txtFocus();
+                Init();
+
+            }
+            else if (e.KeyCode == Keys.Down && txtSearch.ContainsFocus && grdCategoryList.Rows.Count > 0)
+            {
+
+                grdCategoryList.Select();
+                grdCategoryList.Rows[0].Selected = true;
+
+            }
+            else if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
             }
         }
+
+        private void grdCategoryList_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+
+            var dataGridView = sender as DataGridView;
+            if (dataGridView.Rows[e.RowIndex].Selected)
+            {
+                e.CellStyle.Font = new Font(e.CellStyle.Font, FontStyle.Bold);
+                // edit: to change the background color:
+                e.CellStyle.SelectionBackColor = Color.Coral;
+            }
+        }
+
+        public void Init()
+        {
+            txtFocus();
+
+            grdCategoryList.ClearSelection();
+
+            grdCategoryList.CurrentCell = null;
+        }
+
     }
 }

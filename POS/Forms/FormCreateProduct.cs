@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MetroFramework.Forms;
-using MessagingToolkit.Barcode;
 using POS.Helpers;
 using POS.Classes;
+using System.Drawing;
+using BarcodeLib;
 
 namespace POS.Forms
 {
@@ -40,15 +40,14 @@ namespace POS.Forms
         {
 
 
-            BarcodeEncoder barcode = new BarcodeEncoder();
+            Barcode barcode = new Barcode();
             barcode.IncludeLabel = true;
-
-            barcode.CustomLabel = txtBarcode.Text;
-            barcode.Height = 80;
-            barcode.Width = pictureBox1.Width;
+         
+            barcode.Height = (int)(pictureBox1.Height * 0.8);
+            barcode.Width = (int)(pictureBox1.Width * 0.8);
             if (txtBarcode.Text != null && txtBarcode.Text != String.Empty)
             {
-                pictureBox1.Image = new Bitmap(barcode.Encode(BarcodeFormat.Code39, txtBarcode.Text));
+                pictureBox1.Image = new Bitmap(barcode.Encode(TYPE.CODE39, txtBarcode.Text));
             }
             else
             {
@@ -374,6 +373,24 @@ namespace POS.Forms
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void FormCreateProduct_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+
+            if (txtProductCode.Text != String.Empty)
+            {
+                if (MessageBox.Show("Are you sure to leave this form?", "Leaving", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    e.Cancel = false;
+                }
+                else
+                {
+                    e.Cancel = true;
+                    txtProductCode.Select();
+                }
             }
         }
     }

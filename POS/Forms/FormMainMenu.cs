@@ -180,6 +180,13 @@ namespace POS.Forms
                 formUserRoles.Show(this);
 
             }
+
+            //FormUserRoles myForm = new FormUserRoles();
+            //myForm.TopLevel = false;
+            //myForm.AutoScroll = true;
+            //myForm.Dock = DockStyle.Fill;
+            //this.pnlShow.Controls.Add(myForm);
+            //myForm.Show();
         }
 
         private void btnProducts_Click(object sender, EventArgs e)

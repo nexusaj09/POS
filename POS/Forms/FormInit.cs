@@ -10,13 +10,14 @@ using System.Windows.Forms;
 using MetroFramework.Forms;
 using POS.Classes;
 using POS.Helpers;
-
+using POS.Panels;
 namespace POS.Forms
 {
     public partial class FormInit : MetroForm
     {
         public User currentUser = new User();
         public UserHelper userHelper = new UserHelper();
+        public bool isEstablished = false;
         public FormInit()
         {
             InitializeComponent();
@@ -48,7 +49,6 @@ namespace POS.Forms
                     {
                         this.Hide();
                         MessageBox.Show(this, "Welcome " + currentUser.Fullname.ToString(), "Access Granted!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        // helperLogin.InsertLogin(login.ID);
                         if (currentUser.Role == "System Administrator")
                         {
                             FormMainMenu mainMenu = new FormMainMenu(currentUser);
@@ -74,9 +74,9 @@ namespace POS.Forms
                 }
                 else
                 {
-                    MessageBox.Show(this, "User Doesn't Exisit", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(this, "User Doesn't Exisit", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtUsername.Focus();
-                    txtUsername.Select(); 
+                    txtUsername.Select();
                 }
             }
             catch (Exception ex)
@@ -113,13 +113,37 @@ namespace POS.Forms
         {
             this.BringToFront();
             this.Activate();
-            userHelper.DisplayConnSetup();
+
+            isEstablished = userHelper.DisplayConnSetup();
+
+            if (isEstablished == true)
+            {
+
+                InitialSetup();
+            }
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            FormDatabaseConnection frmDatabaseConn = new FormDatabaseConnection();
-            frmDatabaseConn.ShowDialog();
+            FormDatabaseConnection frmDatabaseConn = new FormDatabaseConnection(this);
+            frmDatabaseConn.ShowDialog(this);
+
+            txtUsername.Select();
+
+            if (isEstablished == true)
+            {
+                InitialSetup();
+            }
         }
+
+        public void InitialSetup()
+        {
+            if (userHelper.UserCount() == 0)
+            {
+                PanelCreateAdmin createAdmin = new PanelCreateAdmin();
+                createAdmin.ShowDialog();
+            }
+        }
+
     }
 }

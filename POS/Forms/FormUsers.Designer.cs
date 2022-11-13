@@ -80,7 +80,7 @@
             this.txtSearch.MaxLength = 32767;
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.PasswordChar = '\0';
-            this.txtSearch.PromptText = "Search Here";
+            this.txtSearch.PromptText = "[F1] Search Here";
             this.txtSearch.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.txtSearch.SelectedText = "";
             this.txtSearch.SelectionLength = 0;
@@ -89,7 +89,7 @@
             this.txtSearch.Size = new System.Drawing.Size(272, 23);
             this.txtSearch.TabIndex = 1;
             this.txtSearch.UseSelectable = true;
-            this.txtSearch.WaterMark = "Search Here";
+            this.txtSearch.WaterMark = "[F1] Search Here";
             this.txtSearch.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtSearch.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
@@ -142,7 +142,7 @@
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.grdUserList.DefaultCellStyle = dataGridViewCellStyle2;
             this.grdUserList.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -150,6 +150,7 @@
             this.grdUserList.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.grdUserList.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.grdUserList.Location = new System.Drawing.Point(20, 96);
+            this.grdUserList.MultiSelect = false;
             this.grdUserList.Name = "grdUserList";
             this.grdUserList.ReadOnly = true;
             this.grdUserList.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
@@ -161,46 +162,55 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.grdUserList.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.grdUserList.RowHeadersWidth = 51;
             this.grdUserList.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.grdUserList.RowTemplate.Height = 24;
             this.grdUserList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdUserList.Size = new System.Drawing.Size(913, 539);
             this.grdUserList.TabIndex = 3;
             this.grdUserList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdUserList_CellContentClick);
+            this.grdUserList.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.grdUserList_CellFormatting);
             // 
             // Count
             // 
             this.Count.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.Count.HeaderText = "#";
+            this.Count.MinimumWidth = 6;
             this.Count.Name = "Count";
             this.Count.ReadOnly = true;
-            this.Count.Width = 39;
+            this.Count.Width = 47;
             // 
             // ID
             // 
             this.ID.HeaderText = "ID";
+            this.ID.MinimumWidth = 6;
             this.ID.Name = "ID";
             this.ID.ReadOnly = true;
             this.ID.Visible = false;
+            this.ID.Width = 125;
             // 
             // USERNAME
             // 
             this.USERNAME.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.USERNAME.HeaderText = "USERNAME";
+            this.USERNAME.MinimumWidth = 6;
             this.USERNAME.Name = "USERNAME";
             this.USERNAME.ReadOnly = true;
             // 
             // PASSWORD
             // 
             this.PASSWORD.HeaderText = "PASSWORD";
+            this.PASSWORD.MinimumWidth = 6;
             this.PASSWORD.Name = "PASSWORD";
             this.PASSWORD.ReadOnly = true;
             this.PASSWORD.Visible = false;
+            this.PASSWORD.Width = 125;
             // 
             // FULLNAME
             // 
             this.FULLNAME.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.FULLNAME.HeaderText = "FULL NAME";
+            this.FULLNAME.MinimumWidth = 6;
             this.FULLNAME.Name = "FULLNAME";
             this.FULLNAME.ReadOnly = true;
             // 
@@ -208,35 +218,40 @@
             // 
             this.ROLE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.ROLE.HeaderText = "ROLE";
+            this.ROLE.MinimumWidth = 6;
             this.ROLE.Name = "ROLE";
             this.ROLE.ReadOnly = true;
             // 
             // ISACTIVE
             // 
-            this.ISACTIVE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ISACTIVE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.ISACTIVE.HeaderText = "ACTIVE";
+            this.ISACTIVE.MinimumWidth = 6;
             this.ISACTIVE.Name = "ISACTIVE";
             this.ISACTIVE.ReadOnly = true;
             this.ISACTIVE.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.ISACTIVE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.ISACTIVE.Width = 93;
             // 
             // EDIT
             // 
             this.EDIT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.EDIT.HeaderText = "";
             this.EDIT.Image = ((System.Drawing.Image)(resources.GetObject("EDIT.Image")));
+            this.EDIT.MinimumWidth = 6;
             this.EDIT.Name = "EDIT";
             this.EDIT.ReadOnly = true;
-            this.EDIT.Width = 5;
+            this.EDIT.Width = 6;
             // 
             // DELETE
             // 
             this.DELETE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.DELETE.HeaderText = "";
             this.DELETE.Image = ((System.Drawing.Image)(resources.GetObject("DELETE.Image")));
+            this.DELETE.MinimumWidth = 6;
             this.DELETE.Name = "DELETE";
             this.DELETE.ReadOnly = true;
-            this.DELETE.Width = 5;
+            this.DELETE.Width = 6;
             // 
             // FormUsers
             // 
@@ -245,11 +260,14 @@
             this.ClientSize = new System.Drawing.Size(953, 655);
             this.Controls.Add(this.grdUserList);
             this.Controls.Add(this.panel1);
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.Name = "FormUsers";
             this.Resizable = false;
             this.ShadowType = MetroFramework.Forms.MetroFormShadowType.None;
             this.Text = "User Accounts";
+            this.Load += new System.EventHandler(this.FormUsers_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormUsers_KeyDown);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdUserList)).EndInit();
             this.ResumeLayout(false);
@@ -260,6 +278,7 @@
         private System.Windows.Forms.Panel panel1;
         private MetroFramework.Controls.MetroButton btnCreate;
         private MetroFramework.Controls.MetroTextBox txtSearch;
+        public MetroFramework.Controls.MetroGrid grdUserList;
         private System.Windows.Forms.DataGridViewTextBoxColumn Count;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn USERNAME;
@@ -269,6 +288,5 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn ISACTIVE;
         private System.Windows.Forms.DataGridViewImageColumn EDIT;
         private System.Windows.Forms.DataGridViewImageColumn DELETE;
-        public MetroFramework.Controls.MetroGrid grdUserList;
     }
 }

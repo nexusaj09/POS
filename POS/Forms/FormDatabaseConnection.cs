@@ -16,10 +16,11 @@ namespace POS.Forms
     {
 
         DatabaseConnection dbcon = new DatabaseConnection();
-
-        public FormDatabaseConnection()
+        FormInit formInit  = new FormInit();
+        public FormDatabaseConnection(FormInit form)
         {
             InitializeComponent();
+            formInit = form;
         }
 
         private void FormDatabaseConnection_Load(object sender, EventArgs e)
@@ -45,12 +46,18 @@ namespace POS.Forms
                 txtPassword.Text = null;
                 txtServerName.Text = null;
                 txtUsername.Text = null;
+
+                formInit.isEstablished = true;
+
                 this.Dispose();
             }
             else
             {
                 MessageBox.Show("Connection Error","Unsuccessful", MessageBoxButtons.OK,MessageBoxIcon.Error);
+
+                formInit.isEstablished = false;
             }
+
         }
     }
 }
