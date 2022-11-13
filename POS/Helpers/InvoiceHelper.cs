@@ -17,7 +17,7 @@ namespace POS.Helpers
         {
             int count = 0;
 
-            form.grdInvoiceList.Rows.Clear();   
+            form.grdInvoiceList.Rows.Clear();
 
             try
             {
@@ -39,7 +39,7 @@ namespace POS.Helpers
                     dr = cmd.ExecuteReader();
                     while (dr.Read())
                     {
-                        count += 1;;
+                        count += 1; ;
 
                         form.grdInvoiceList.Rows.Add(count, dr["RefNbr"].ToString(), dr["Supplier"].ToString(), dr["SupplierContact"].ToString(), dr["FullName"].ToString(), Convert.ToDateTime(dr["TransactionDate"].ToString()).ToShortDateString(), dr["TotalQty"].ToString(), dr["TotalAmt"].ToString());
                     }
@@ -171,8 +171,42 @@ namespace POS.Helpers
                 conn.Dispose();
             }
         }
-        
-        public void CreateInvoiceDetail(InvoiceDetail invoiceDetail)
+
+        public void UpdateProduct(InvoiceDetail detail)
+        {
+            try
+            {
+                conn.Close();
+                conn.Dispose();
+
+
+                connection();
+
+                using (cmd = new SqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandType = System.Data.CommandType.Text;
+                    cmd.CommandText = @"UPDATE Products SET QTY += @Qty, LastModifiedByID = @LastModifiedByID, LastModifiedDateTime = @LastModifiedDateTime WHERE ProductCode = @ProductCode";
+                    cmd.Parameters.AddWithValue(@"Qty", detail.Qty);
+                    cmd.Parameters.AddWithValue(@"LastModifiedByID", detail.LastModifiedByID);
+                    cmd.Parameters.AddWithValue(@"LastModifiedDateTime", detail.LastModifiedDateTime);
+                    cmd.Parameters.AddWithValue(@"ProductCode", detail.ProductCode);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+                conn.Dispose();
+            }
+
+        }
+
+        public bool CreateInvoiceDetail(InvoiceDetail invoiceDetail)
         {
             try
             {
@@ -187,24 +221,92 @@ namespace POS.Helpers
                     cmd.CommandType = System.Data.CommandType.Text;
                     cmd.CommandText = @"INSERT INTO InvoiceDetails 
                                                                 (
-                                                                
-                                                                
-                                                                
-                                                                
-                                                                
-                                                                
-                                                                
+                                                                RefNbr,
+                                                                ProductCode,
+                                                                SupplierPrice,
+                                                                Qty,
+                                                                TotalPerItem,
+                                                                CreatedByID,
+                                                                CreatedDateTime,
+                                                                LastModifiedByID,
+                                                                LastModifiedDateTime
+                                                                )
+                                                            VALUES 
+                                                                (
+                                                                @RefNbr,
+                                                                @ProductCode,
+                                                                @SupplierPrice,
+                                                                @Qty,
+                                                                @TotalPerItem,
+                                                                @CreatedByID,
+                                                                @CreatedDateTime,
+                                                                @LastModifiedByID,
+                                                                @LastModifiedDateTime
                                                                 )";
+                    cmd.Parameters.AddWithValue(@"RefNbr", invoiceDetail.RefNbr);
+                    cmd.Parameters.AddWithValue(@"ProductCode", invoiceDetail.ProductCode);
+                    cmd.Parameters.AddWithValue(@"SupplierPrice", invoiceDetail.SupplierPrice);
+                    cmd.Parameters.AddWithValue(@"Qty", invoiceDetail.Qty);
+                    cmd.Parameters.AddWithValue(@"TotalPerItem", invoiceDetail.TotalPerItem);
+                    cmd.Parameters.AddWithValue(@"CreatedByID", invoiceDetail.CreatedByID);
+                    cmd.Parameters.AddWithValue(@"CreatedDateTime", invoiceDetail.CreatedDateTime);
+                    cmd.Parameters.AddWithValue(@"LastModifiedByID", invoiceDetail.LastModifiedByID);
+                    cmd.Parameters.AddWithValue(@"LastModifiedDateTime", invoiceDetail.LastModifiedDateTime);
+                    cmd.ExecuteNonQuery();
+
+                    return true;
                 }
             }
             catch (Exception ex)
             {
-                
+                MessageBox.Show(ex.Message);
+                return false;
             }
             finally
             {
                 conn.Close();
                 conn.Dispose();
+            }
+        }
+
+        public void LoadInvoiceDetail(FormCreateInvoice form, string RefNbr)
+        {
+            int count = 0;
+            try
+            {
+                conn.Close();
+                conn.Dispose();
+
+                connection();
+
+                using (cmd = new SqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandType = System.Data.CommandType.Text;
+                    cmd.CommandText = @"SELECT A.InvoiceDetailID,A.ProductCode, B.Description, A.SupplierPrice,A.Qty,A.TotalPerItem
+                                    FROM InvoiceDetails A INNER JOIN Products B
+                                    ON A.ProductCode = B.ProductCode
+                                    WHERE RefNbr = @RefNbr ORDER BY A.InvoiceDetailID";
+                    cmd.Parameters.AddWithValue(@"RefNbr",RefNbr);
+                        dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        count++;
+                        form.grdInvoiceList.Rows.Add(count, dr["InvoiceDetailID"].ToString(), dr["ProductCode"].ToString()
+                            , dr["Description"].ToString(), dr["SupplierPrice"].ToString(), dr["Qty"].ToString(), dr["TotalPerItem"].ToString());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                dr.Close();
+                conn.Close();
+                conn.Dispose();
+
             }
         }
 

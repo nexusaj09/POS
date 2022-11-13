@@ -44,6 +44,7 @@ namespace POS.Forms
         {
             using (FormCreateInvoice formCreateInvoice = new FormCreateInvoice(this))
             {
+                formCreateInvoice.invoice = null;
                 formCreateInvoice.ShowDialog(this);
                 formCreateInvoice.Dispose();
                 txtSearch.Select();
@@ -97,6 +98,28 @@ namespace POS.Forms
             if (grdInvoiceList.Rows.Count > 0)
             {
                 Init();
+            }
+        }
+
+        private void grdInvoiceList_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (grdInvoiceList.Columns[e.ColumnIndex].Name == "VIEW")
+            {
+                using (FormCreateInvoice formCreateInvoice = new FormCreateInvoice(this))
+                {
+                    formCreateInvoice.invoice.RefNbr = grdInvoiceList[1, e.RowIndex].Value.ToString();
+                    formCreateInvoice.invoice.Supplier = grdInvoiceList[2, e.RowIndex].Value.ToString();
+                    formCreateInvoice.invoice.ContactPerson = grdInvoiceList[3, e.RowIndex].Value.ToString();
+                    formCreateInvoice.invoice.CreatedBy = grdInvoiceList[4, e.RowIndex].Value.ToString();
+                    formCreateInvoice.invoice.TransactionDate =Convert.ToDateTime( grdInvoiceList[5, e.RowIndex].Value.ToString());
+                    formCreateInvoice.invoice.TotalQty = Convert.ToInt32(grdInvoiceList[6, e.RowIndex].Value.ToString());
+                    formCreateInvoice.invoice.TotalAmt = Convert.ToDecimal(grdInvoiceList[7, e.RowIndex].Value.ToString());
+                    formCreateInvoice.ShowDialog(this);
+                    formCreateInvoice.Dispose();
+
+                    Init();
+
+                }
             }
         }
     }

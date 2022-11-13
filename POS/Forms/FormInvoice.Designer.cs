@@ -47,8 +47,7 @@
             this.TRANSACTIONDATE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.QTY = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TOTALINVOICE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EDIT = new System.Windows.Forms.DataGridViewImageColumn();
-            this.DELETE = new System.Windows.Forms.DataGridViewImageColumn();
+            this.VIEW = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdInvoiceList)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -81,8 +80,7 @@
             this.TRANSACTIONDATE,
             this.QTY,
             this.TOTALINVOICE,
-            this.EDIT,
-            this.DELETE});
+            this.VIEW});
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -115,6 +113,7 @@
             this.grdInvoiceList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdInvoiceList.Size = new System.Drawing.Size(1786, 809);
             this.grdInvoiceList.TabIndex = 10;
+            this.grdInvoiceList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdInvoiceList_CellContentClick);
             this.grdInvoiceList.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.grdProductList_CellFormatting);
             // 
             // panel1
@@ -142,6 +141,8 @@
             this.txtSearch.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.txtSearch.CustomButton.UseSelectable = true;
             this.txtSearch.CustomButton.Visible = false;
+            this.txtSearch.DisplayIcon = true;
+            this.txtSearch.Icon = ((System.Drawing.Image)(resources.GetObject("txtSearch.Icon")));
             this.txtSearch.Lines = new string[0];
             this.txtSearch.Location = new System.Drawing.Point(1274, 9);
             this.txtSearch.MaxLength = 32767;
@@ -251,25 +252,15 @@
             this.TOTALINVOICE.ReadOnly = true;
             this.TOTALINVOICE.Width = 156;
             // 
-            // EDIT
+            // VIEW
             // 
-            this.EDIT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.EDIT.HeaderText = "";
-            this.EDIT.Image = ((System.Drawing.Image)(resources.GetObject("EDIT.Image")));
-            this.EDIT.MinimumWidth = 6;
-            this.EDIT.Name = "EDIT";
-            this.EDIT.ReadOnly = true;
-            this.EDIT.Width = 6;
-            // 
-            // DELETE
-            // 
-            this.DELETE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.DELETE.HeaderText = "";
-            this.DELETE.Image = ((System.Drawing.Image)(resources.GetObject("DELETE.Image")));
-            this.DELETE.MinimumWidth = 6;
-            this.DELETE.Name = "DELETE";
-            this.DELETE.ReadOnly = true;
-            this.DELETE.Width = 6;
+            this.VIEW.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.VIEW.HeaderText = "";
+            this.VIEW.Image = ((System.Drawing.Image)(resources.GetObject("VIEW.Image")));
+            this.VIEW.MinimumWidth = 6;
+            this.VIEW.Name = "VIEW";
+            this.VIEW.ReadOnly = true;
+            this.VIEW.Width = 6;
             // 
             // FormInvoice
             // 
@@ -308,7 +299,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn TRANSACTIONDATE;
         private System.Windows.Forms.DataGridViewTextBoxColumn QTY;
         private System.Windows.Forms.DataGridViewTextBoxColumn TOTALINVOICE;
-        private System.Windows.Forms.DataGridViewImageColumn EDIT;
-        private System.Windows.Forms.DataGridViewImageColumn DELETE;
+        private System.Windows.Forms.DataGridViewImageColumn VIEW;
     }
 }

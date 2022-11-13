@@ -24,6 +24,7 @@ namespace POS.Forms
         {
             InitializeComponent();
             this.formInvoice = formInvoice;
+
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -49,23 +50,53 @@ namespace POS.Forms
 
         public void Init()
         {
-            txtCreatedBy.Text = formInvoice.currUser.Fullname.ToString();
 
-            if (btnSave.Text == "SAVE")
+            if (invoice == null)
             {
                 txtRefNbr.Text = invoiceHelper.GetRefNbr();
+                txtCreatedBy.Text = formInvoice.currUser.Fullname.ToString();
+
+
+                grdInvoiceList.Rows.Clear();
+
+                invoice = new Invoice();
+
+                txtContactPerson.Clear();
+                txtSupplier.Clear();
+                dtTranDate.Value = DateTime.Now;
+                lblTotalInvoice.Text = "0.00";
+                lblTotalQTY.Text = "0";
+                lblTotalQTY.Select();
             }
+            else
+            {
+                txtRefNbr.Text = invoice.RefNbr.ToString();
+                txtContactPerson.Text = invoice.ContactPerson.ToString();
+                txtCreatedBy.Text = invoice.CreatedBy.ToString();
+                txtSupplier.Text = invoice.Supplier.ToString();
+                dtTranDate.Value = invoice.TransactionDate;
 
-            grdInvoiceList.Rows.Clear();
+                lblTotalInvoice.Text = invoice.TotalAmt.ToString();
+                lblTotalQTY.Text = invoice.TotalQty.ToString();
 
-            invoice = new Invoice();
+                dtTranDate.Enabled = false;
+                txtContactPerson.Enabled = false;
+                btnSave.Visible = false;
+                btnSearchProduct.Enabled = false;
+                btnSearchSupplier.Enabled = false;
+                lblTotalInvoice.Select();
 
-            txtContactPerson.Clear();
-            txtSupplier.Clear();
-            dtTranDate.Value = DateTime.Now;
-            lblTotalInvoice.Text = "0.00";
-            lblTotalQTY.Text = "0";
-            lblTotalQTY.Select();
+                grdInvoiceList.Enabled = false;
+
+                invoiceHelper.LoadInvoiceDetail(this, invoice.RefNbr.ToString());
+
+                grdInvoiceList.ClearSelection();
+
+                grdInvoiceList.CurrentCell = null;
+
+                grdInvoiceList.Columns[7].Visible = false;
+
+            }
         }
 
         private void FormCreateInvoice_Load(object sender, EventArgs e)
@@ -88,7 +119,7 @@ namespace POS.Forms
 
         private void grdProductList_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 3)
+            if (e.ColumnIndex == 4)
             {
                 grdInvoiceList.Rows[e.RowIndex].Cells["SUPPLIERPRICE"].Value = string.Format("{0:#,##0.00}", double.Parse(grdInvoiceList.Rows[e.RowIndex].Cells["SUPPLIERPRICE"].Value.ToString()));
             }
@@ -153,6 +184,8 @@ namespace POS.Forms
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            bool isSuccess = false;
+
             try
             {
 
@@ -184,15 +217,37 @@ namespace POS.Forms
                             invoice.LastModifiedDateTime = DateTime.Now;
                             invoiceHelper.CreateInvoice(invoice);
 
-                            foreach (var row in grdInvoiceList.Rows)
+                            foreach (DataGridViewRow row in grdInvoiceList.Rows)
                             {
+                                InvoiceDetail detail = new InvoiceDetail();
+                                detail.RefNbr = txtRefNbr.Text;
+                                detail.ProductCode = grdInvoiceList.Rows[row.Index].Cells[2].Value.ToString();
+                                detail.SupplierPrice = Convert.ToDecimal(grdInvoiceList.Rows[row.Index].Cells[4].Value.ToString());
+                                detail.Qty = Convert.ToInt32(grdInvoiceList.Rows[row.Index].Cells[5].Value.ToString());
+                                detail.TotalPerItem = Convert.ToDecimal(grdInvoiceList.Rows[row.Index].Cells[6].Value.ToString());
+                                detail.CreatedByID = formInvoice.currUser.UserID;
+                                detail.CreatedDateTime = DateTime.Now;
+                                detail.LastModifiedByID = formInvoice.currUser.UserID;
+                                detail.LastModifiedDateTime = DateTime.Now;
 
+                                isSuccess = invoiceHelper.CreateInvoiceDetail(detail);
+
+                                if (isSuccess)
+                                {
+                                    invoiceHelper.UpdateProduct(detail);
+                                }
                             }
 
 
                             MessageBox.Show(this, "Invoice Successfully Saved", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                            invoice = null;
+
                             Init();
+
+                            invoiceHelper.LoadInvoices(formInvoice, "");
+
+                            formInvoice.Init();
                         }
                     }
 

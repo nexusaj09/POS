@@ -16,6 +16,7 @@ namespace POS.Classes
         public virtual decimal TotalAmt { get; set; }
         public virtual int TotalQty { get; set; }
 
+        public virtual string CreatedBy { get; set; }
         public virtual DateTime TransactionDate { get; set; }
 
     }

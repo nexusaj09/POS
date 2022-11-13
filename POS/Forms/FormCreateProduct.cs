@@ -22,7 +22,7 @@ namespace POS.Forms
         public Product updateProduct = new Product();
         bool isBarcodeExisting = false;
         bool isProductCodeExisting = false;
-
+        bool isSkip = false;
         public FormCreateProduct(FormProduct formProduct, Product product)
         {
             InitializeComponent();
@@ -257,6 +257,9 @@ namespace POS.Forms
 
                         MessageBox.Show(this, "Product successfully updated!", "Updated Successfully", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         form.Init();
+
+                        isSkip = true;
+
                         this.Close();
 
                     }
@@ -380,7 +383,7 @@ namespace POS.Forms
         {
 
 
-            if (txtProductCode.Text != String.Empty)
+            if (txtProductCode.Text != String.Empty && isSkip == false)
             {
                 if (MessageBox.Show("Are you sure to leave this form?", "Leaving", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {

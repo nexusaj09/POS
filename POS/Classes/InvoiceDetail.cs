@@ -16,8 +16,5 @@ namespace POS.Classes
         public virtual int Qty { get; set; }
         public virtual decimal TotalPerItem { get; set; }
 
-        public virtual string Status { get; set; }
-
-
     }
 }
