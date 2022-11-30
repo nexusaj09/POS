@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
+            this.label17 = new System.Windows.Forms.Label();
+            this.dtExpirationDate = new MetroFramework.Controls.MetroDateTime();
             this.txtFinalPrice = new MetroFramework.Controls.MetroTextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.txtMarkUp = new MetroFramework.Controls.MetroTextBox();
@@ -69,6 +71,8 @@
             // 
             // metroPanel1
             // 
+            this.metroPanel1.Controls.Add(this.label17);
+            this.metroPanel1.Controls.Add(this.dtExpirationDate);
             this.metroPanel1.Controls.Add(this.txtFinalPrice);
             this.metroPanel1.Controls.Add(this.label15);
             this.metroPanel1.Controls.Add(this.txtMarkUp);
@@ -106,15 +110,32 @@
             this.metroPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.metroPanel1.HorizontalScrollbarBarColor = true;
             this.metroPanel1.HorizontalScrollbarHighlightOnWheel = false;
-            this.metroPanel1.HorizontalScrollbarSize = 12;
-            this.metroPanel1.Location = new System.Drawing.Point(27, 74);
-            this.metroPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.metroPanel1.HorizontalScrollbarSize = 10;
+            this.metroPanel1.Location = new System.Drawing.Point(20, 60);
             this.metroPanel1.Name = "metroPanel1";
-            this.metroPanel1.Size = new System.Drawing.Size(1271, 516);
+            this.metroPanel1.Size = new System.Drawing.Size(954, 420);
             this.metroPanel1.TabIndex = 2;
             this.metroPanel1.VerticalScrollbarBarColor = true;
             this.metroPanel1.VerticalScrollbarHighlightOnWheel = false;
-            this.metroPanel1.VerticalScrollbarSize = 13;
+            this.metroPanel1.VerticalScrollbarSize = 10;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(538, 110);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(104, 15);
+            this.label17.TabIndex = 32;
+            this.label17.Text = "EXPIRATION DATE:";
+            // 
+            // dtExpirationDate
+            // 
+            this.dtExpirationDate.Location = new System.Drawing.Point(648, 101);
+            this.dtExpirationDate.MinimumSize = new System.Drawing.Size(0, 29);
+            this.dtExpirationDate.Name = "dtExpirationDate";
+            this.dtExpirationDate.Size = new System.Drawing.Size(297, 29);
+            this.dtExpirationDate.TabIndex = 11;
             // 
             // txtFinalPrice
             // 
@@ -122,18 +143,16 @@
             // 
             // 
             this.txtFinalPrice.CustomButton.Image = null;
-            this.txtFinalPrice.CustomButton.Location = new System.Drawing.Point(493, 2);
-            this.txtFinalPrice.CustomButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtFinalPrice.CustomButton.Location = new System.Drawing.Point(275, 1);
             this.txtFinalPrice.CustomButton.Name = "";
-            this.txtFinalPrice.CustomButton.Size = new System.Drawing.Size(31, 28);
+            this.txtFinalPrice.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.txtFinalPrice.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.txtFinalPrice.CustomButton.TabIndex = 1;
             this.txtFinalPrice.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.txtFinalPrice.CustomButton.UseSelectable = true;
             this.txtFinalPrice.CustomButton.Visible = false;
             this.txtFinalPrice.Lines = new string[0];
-            this.txtFinalPrice.Location = new System.Drawing.Point(851, 196);
-            this.txtFinalPrice.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtFinalPrice.Location = new System.Drawing.Point(648, 194);
             this.txtFinalPrice.MaxLength = 32767;
             this.txtFinalPrice.Name = "txtFinalPrice";
             this.txtFinalPrice.PasswordChar = '\0';
@@ -142,7 +161,7 @@
             this.txtFinalPrice.SelectionLength = 0;
             this.txtFinalPrice.SelectionStart = 0;
             this.txtFinalPrice.ShortcutsEnabled = true;
-            this.txtFinalPrice.Size = new System.Drawing.Size(396, 28);
+            this.txtFinalPrice.Size = new System.Drawing.Size(297, 23);
             this.txtFinalPrice.TabIndex = 14;
             this.txtFinalPrice.UseSelectable = true;
             this.txtFinalPrice.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -153,10 +172,9 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(717, 202);
-            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label15.Location = new System.Drawing.Point(538, 198);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(93, 20);
+            this.label15.Size = new System.Drawing.Size(76, 15);
             this.label15.TabIndex = 29;
             this.label15.Text = "FINAL PRICE:";
             // 
@@ -166,18 +184,16 @@
             // 
             // 
             this.txtMarkUp.CustomButton.Image = null;
-            this.txtMarkUp.CustomButton.Location = new System.Drawing.Point(161, 2);
-            this.txtMarkUp.CustomButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtMarkUp.CustomButton.Location = new System.Drawing.Point(88, 1);
             this.txtMarkUp.CustomButton.Name = "";
-            this.txtMarkUp.CustomButton.Size = new System.Drawing.Size(31, 28);
+            this.txtMarkUp.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.txtMarkUp.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.txtMarkUp.CustomButton.TabIndex = 1;
             this.txtMarkUp.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.txtMarkUp.CustomButton.UseSelectable = true;
             this.txtMarkUp.CustomButton.Visible = false;
             this.txtMarkUp.Lines = new string[0];
-            this.txtMarkUp.Location = new System.Drawing.Point(1100, 160);
-            this.txtMarkUp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtMarkUp.Location = new System.Drawing.Point(835, 165);
             this.txtMarkUp.MaxLength = 2;
             this.txtMarkUp.Name = "txtMarkUp";
             this.txtMarkUp.PasswordChar = '\0';
@@ -186,7 +202,7 @@
             this.txtMarkUp.SelectionLength = 0;
             this.txtMarkUp.SelectionStart = 0;
             this.txtMarkUp.ShortcutsEnabled = true;
-            this.txtMarkUp.Size = new System.Drawing.Size(147, 28);
+            this.txtMarkUp.Size = new System.Drawing.Size(110, 23);
             this.txtMarkUp.TabIndex = 13;
             this.txtMarkUp.UseSelectable = true;
             this.txtMarkUp.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -198,10 +214,9 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(993, 166);
-            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label14.Location = new System.Drawing.Point(755, 170);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(91, 20);
+            this.label14.Size = new System.Drawing.Size(74, 15);
             this.label14.TabIndex = 26;
             this.label14.Text = "MARK UP %:";
             // 
@@ -211,10 +226,9 @@
             // 
             // 
             this.txtSRP.CustomButton.Image = null;
-            this.txtSRP.CustomButton.Location = new System.Drawing.Point(145, 2);
-            this.txtSRP.CustomButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtSRP.CustomButton.Location = new System.Drawing.Point(79, 1);
             this.txtSRP.CustomButton.Name = "";
-            this.txtSRP.CustomButton.Size = new System.Drawing.Size(31, 28);
+            this.txtSRP.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.txtSRP.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.txtSRP.CustomButton.TabIndex = 1;
             this.txtSRP.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
@@ -222,8 +236,7 @@
             this.txtSRP.CustomButton.Visible = false;
             this.txtSRP.Enabled = false;
             this.txtSRP.Lines = new string[0];
-            this.txtSRP.Location = new System.Drawing.Point(851, 160);
-            this.txtSRP.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtSRP.Location = new System.Drawing.Point(648, 165);
             this.txtSRP.MaxLength = 32767;
             this.txtSRP.Name = "txtSRP";
             this.txtSRP.PasswordChar = '\0';
@@ -232,7 +245,7 @@
             this.txtSRP.SelectionLength = 0;
             this.txtSRP.SelectionStart = 0;
             this.txtSRP.ShortcutsEnabled = true;
-            this.txtSRP.Size = new System.Drawing.Size(135, 28);
+            this.txtSRP.Size = new System.Drawing.Size(101, 23);
             this.txtSRP.TabIndex = 12;
             this.txtSRP.UseSelectable = true;
             this.txtSRP.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -242,10 +255,9 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(717, 166);
-            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label13.Location = new System.Drawing.Point(538, 172);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(37, 20);
+            this.label13.Size = new System.Drawing.Size(30, 15);
             this.label13.TabIndex = 25;
             this.label13.Text = "SRP:";
             // 
@@ -255,18 +267,16 @@
             // 
             // 
             this.txtSupplierPrice.CustomButton.Image = null;
-            this.txtSupplierPrice.CustomButton.Location = new System.Drawing.Point(493, 2);
-            this.txtSupplierPrice.CustomButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtSupplierPrice.CustomButton.Location = new System.Drawing.Point(275, 1);
             this.txtSupplierPrice.CustomButton.Name = "";
-            this.txtSupplierPrice.CustomButton.Size = new System.Drawing.Size(31, 28);
+            this.txtSupplierPrice.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.txtSupplierPrice.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.txtSupplierPrice.CustomButton.TabIndex = 1;
             this.txtSupplierPrice.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.txtSupplierPrice.CustomButton.UseSelectable = true;
             this.txtSupplierPrice.CustomButton.Visible = false;
             this.txtSupplierPrice.Lines = new string[0];
-            this.txtSupplierPrice.Location = new System.Drawing.Point(851, 124);
-            this.txtSupplierPrice.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtSupplierPrice.Location = new System.Drawing.Point(648, 136);
             this.txtSupplierPrice.MaxLength = 32767;
             this.txtSupplierPrice.Name = "txtSupplierPrice";
             this.txtSupplierPrice.PasswordChar = '\0';
@@ -275,8 +285,8 @@
             this.txtSupplierPrice.SelectionLength = 0;
             this.txtSupplierPrice.SelectionStart = 0;
             this.txtSupplierPrice.ShortcutsEnabled = true;
-            this.txtSupplierPrice.Size = new System.Drawing.Size(396, 28);
-            this.txtSupplierPrice.TabIndex = 11;
+            this.txtSupplierPrice.Size = new System.Drawing.Size(297, 23);
+            this.txtSupplierPrice.TabIndex = 12;
             this.txtSupplierPrice.UseSelectable = true;
             this.txtSupplierPrice.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtSupplierPrice.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
@@ -288,10 +298,9 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(717, 130);
-            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label11.Location = new System.Drawing.Point(538, 141);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(116, 20);
+            this.label11.Size = new System.Drawing.Size(94, 15);
             this.label11.TabIndex = 23;
             this.label11.Text = "SUPPLIER PRICE:";
             // 
@@ -301,18 +310,16 @@
             // 
             // 
             this.txtInitialQty.CustomButton.Image = null;
-            this.txtInitialQty.CustomButton.Location = new System.Drawing.Point(493, 2);
-            this.txtInitialQty.CustomButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtInitialQty.CustomButton.Location = new System.Drawing.Point(275, 1);
             this.txtInitialQty.CustomButton.Name = "";
-            this.txtInitialQty.CustomButton.Size = new System.Drawing.Size(31, 28);
+            this.txtInitialQty.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.txtInitialQty.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.txtInitialQty.CustomButton.TabIndex = 1;
             this.txtInitialQty.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.txtInitialQty.CustomButton.UseSelectable = true;
             this.txtInitialQty.CustomButton.Visible = false;
             this.txtInitialQty.Lines = new string[0];
-            this.txtInitialQty.Location = new System.Drawing.Point(851, 89);
-            this.txtInitialQty.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtInitialQty.Location = new System.Drawing.Point(648, 72);
             this.txtInitialQty.MaxLength = 32767;
             this.txtInitialQty.Name = "txtInitialQty";
             this.txtInitialQty.PasswordChar = '\0';
@@ -321,7 +328,7 @@
             this.txtInitialQty.SelectionLength = 0;
             this.txtInitialQty.SelectionStart = 0;
             this.txtInitialQty.ShortcutsEnabled = true;
-            this.txtInitialQty.Size = new System.Drawing.Size(396, 28);
+            this.txtInitialQty.Size = new System.Drawing.Size(297, 23);
             this.txtInitialQty.TabIndex = 10;
             this.txtInitialQty.UseSelectable = true;
             this.txtInitialQty.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -332,10 +339,9 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(717, 95);
-            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label12.Location = new System.Drawing.Point(538, 77);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(90, 20);
+            this.label12.Size = new System.Drawing.Size(72, 15);
             this.label12.TabIndex = 21;
             this.label12.Text = "INITIAL QTY:";
             // 
@@ -345,18 +351,16 @@
             // 
             // 
             this.txtReOrderQty.CustomButton.Image = null;
-            this.txtReOrderQty.CustomButton.Location = new System.Drawing.Point(493, 2);
-            this.txtReOrderQty.CustomButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtReOrderQty.CustomButton.Location = new System.Drawing.Point(275, 1);
             this.txtReOrderQty.CustomButton.Name = "";
-            this.txtReOrderQty.CustomButton.Size = new System.Drawing.Size(31, 28);
+            this.txtReOrderQty.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.txtReOrderQty.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.txtReOrderQty.CustomButton.TabIndex = 1;
             this.txtReOrderQty.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.txtReOrderQty.CustomButton.UseSelectable = true;
             this.txtReOrderQty.CustomButton.Visible = false;
             this.txtReOrderQty.Lines = new string[0];
-            this.txtReOrderQty.Location = new System.Drawing.Point(851, 49);
-            this.txtReOrderQty.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtReOrderQty.Location = new System.Drawing.Point(648, 40);
             this.txtReOrderQty.MaxLength = 32767;
             this.txtReOrderQty.Name = "txtReOrderQty";
             this.txtReOrderQty.PasswordChar = '\0';
@@ -365,7 +369,7 @@
             this.txtReOrderQty.SelectionLength = 0;
             this.txtReOrderQty.SelectionStart = 0;
             this.txtReOrderQty.ShortcutsEnabled = true;
-            this.txtReOrderQty.Size = new System.Drawing.Size(396, 28);
+            this.txtReOrderQty.Size = new System.Drawing.Size(297, 23);
             this.txtReOrderQty.TabIndex = 9;
             this.txtReOrderQty.UseSelectable = true;
             this.txtReOrderQty.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -376,10 +380,9 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(717, 59);
-            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Location = new System.Drawing.Point(538, 48);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(113, 20);
+            this.label10.Size = new System.Drawing.Size(89, 15);
             this.label10.TabIndex = 19;
             this.label10.Text = "RE-ORDER QTY:";
             // 
@@ -387,10 +390,9 @@
             // 
             this.btnSaveBarcode.BackColor = System.Drawing.Color.SteelBlue;
             this.btnSaveBarcode.ForeColor = System.Drawing.Color.White;
-            this.btnSaveBarcode.Location = new System.Drawing.Point(235, 196);
-            this.btnSaveBarcode.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSaveBarcode.Location = new System.Drawing.Point(176, 159);
             this.btnSaveBarcode.Name = "btnSaveBarcode";
-            this.btnSaveBarcode.Size = new System.Drawing.Size(457, 37);
+            this.btnSaveBarcode.Size = new System.Drawing.Size(343, 30);
             this.btnSaveBarcode.TabIndex = 17;
             this.btnSaveBarcode.Text = "SAVE BARCODE";
             this.btnSaveBarcode.UseCustomBackColor = true;
@@ -401,11 +403,10 @@
             // cmbCategory
             // 
             this.cmbCategory.FormattingEnabled = true;
-            this.cmbCategory.ItemHeight = 24;
-            this.cmbCategory.Location = new System.Drawing.Point(235, 416);
-            this.cmbCategory.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbCategory.ItemHeight = 23;
+            this.cmbCategory.Location = new System.Drawing.Point(176, 338);
             this.cmbCategory.Name = "cmbCategory";
-            this.cmbCategory.Size = new System.Drawing.Size(456, 30);
+            this.cmbCategory.Size = new System.Drawing.Size(343, 29);
             this.cmbCategory.Style = MetroFramework.MetroColorStyle.Teal;
             this.cmbCategory.TabIndex = 7;
             this.cmbCategory.UseSelectable = true;
@@ -416,18 +417,16 @@
             // 
             // 
             this.txtUOM.CustomButton.Image = null;
-            this.txtUOM.CustomButton.Location = new System.Drawing.Point(493, 2);
-            this.txtUOM.CustomButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtUOM.CustomButton.Location = new System.Drawing.Point(275, 1);
             this.txtUOM.CustomButton.Name = "";
-            this.txtUOM.CustomButton.Size = new System.Drawing.Size(31, 28);
+            this.txtUOM.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.txtUOM.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.txtUOM.CustomButton.TabIndex = 1;
             this.txtUOM.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.txtUOM.CustomButton.UseSelectable = true;
             this.txtUOM.CustomButton.Visible = false;
             this.txtUOM.Lines = new string[0];
-            this.txtUOM.Location = new System.Drawing.Point(851, 14);
-            this.txtUOM.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtUOM.Location = new System.Drawing.Point(648, 11);
             this.txtUOM.MaxLength = 32767;
             this.txtUOM.Name = "txtUOM";
             this.txtUOM.PasswordChar = '\0';
@@ -436,7 +435,7 @@
             this.txtUOM.SelectionLength = 0;
             this.txtUOM.SelectionStart = 0;
             this.txtUOM.ShortcutsEnabled = true;
-            this.txtUOM.Size = new System.Drawing.Size(396, 28);
+            this.txtUOM.Size = new System.Drawing.Size(297, 23);
             this.txtUOM.TabIndex = 8;
             this.txtUOM.UseSelectable = true;
             this.txtUOM.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -447,10 +446,9 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(717, 23);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Location = new System.Drawing.Point(538, 19);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(46, 20);
+            this.label8.Size = new System.Drawing.Size(38, 15);
             this.label8.TabIndex = 15;
             this.label8.Text = "UOM:";
             // 
@@ -458,10 +456,9 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(31, 428);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Location = new System.Drawing.Point(23, 348);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(84, 20);
+            this.label9.Size = new System.Drawing.Size(68, 15);
             this.label9.TabIndex = 14;
             this.label9.Text = "CATEGORY:";
             // 
@@ -471,18 +468,16 @@
             // 
             // 
             this.txtFormulation.CustomButton.Image = null;
-            this.txtFormulation.CustomButton.Location = new System.Drawing.Point(575, 2);
-            this.txtFormulation.CustomButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtFormulation.CustomButton.Location = new System.Drawing.Point(321, 1);
             this.txtFormulation.CustomButton.Name = "";
-            this.txtFormulation.CustomButton.Size = new System.Drawing.Size(31, 28);
+            this.txtFormulation.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.txtFormulation.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.txtFormulation.CustomButton.TabIndex = 1;
             this.txtFormulation.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.txtFormulation.CustomButton.UseSelectable = true;
             this.txtFormulation.CustomButton.Visible = false;
             this.txtFormulation.Lines = new string[0];
-            this.txtFormulation.Location = new System.Drawing.Point(235, 380);
-            this.txtFormulation.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtFormulation.Location = new System.Drawing.Point(176, 309);
             this.txtFormulation.MaxLength = 32767;
             this.txtFormulation.Name = "txtFormulation";
             this.txtFormulation.PasswordChar = '\0';
@@ -491,7 +486,7 @@
             this.txtFormulation.SelectionLength = 0;
             this.txtFormulation.SelectionStart = 0;
             this.txtFormulation.ShortcutsEnabled = true;
-            this.txtFormulation.Size = new System.Drawing.Size(457, 28);
+            this.txtFormulation.Size = new System.Drawing.Size(343, 23);
             this.txtFormulation.TabIndex = 6;
             this.txtFormulation.UseSelectable = true;
             this.txtFormulation.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -504,18 +499,16 @@
             // 
             // 
             this.txtClass.CustomButton.Image = null;
-            this.txtClass.CustomButton.Location = new System.Drawing.Point(575, 2);
-            this.txtClass.CustomButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtClass.CustomButton.Location = new System.Drawing.Point(321, 1);
             this.txtClass.CustomButton.Name = "";
-            this.txtClass.CustomButton.Size = new System.Drawing.Size(31, 28);
+            this.txtClass.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.txtClass.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.txtClass.CustomButton.TabIndex = 1;
             this.txtClass.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.txtClass.CustomButton.UseSelectable = true;
             this.txtClass.CustomButton.Visible = false;
             this.txtClass.Lines = new string[0];
-            this.txtClass.Location = new System.Drawing.Point(235, 345);
-            this.txtClass.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtClass.Location = new System.Drawing.Point(176, 280);
             this.txtClass.MaxLength = 32767;
             this.txtClass.Name = "txtClass";
             this.txtClass.PasswordChar = '\0';
@@ -524,7 +517,7 @@
             this.txtClass.SelectionLength = 0;
             this.txtClass.SelectionStart = 0;
             this.txtClass.ShortcutsEnabled = true;
-            this.txtClass.Size = new System.Drawing.Size(457, 28);
+            this.txtClass.Size = new System.Drawing.Size(343, 23);
             this.txtClass.TabIndex = 5;
             this.txtClass.UseSelectable = true;
             this.txtClass.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -535,10 +528,9 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(31, 386);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(23, 314);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(112, 20);
+            this.label6.Size = new System.Drawing.Size(91, 15);
             this.label6.TabIndex = 11;
             this.label6.Text = "FORMULATION:";
             // 
@@ -546,20 +538,18 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(31, 351);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Location = new System.Drawing.Point(23, 285);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(121, 20);
+            this.label7.Size = new System.Drawing.Size(98, 15);
             this.label7.TabIndex = 10;
             this.label7.Text = "CLASSIFICATION:";
             // 
             // pictureBox1
             // 
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox1.Location = new System.Drawing.Point(235, 89);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Location = new System.Drawing.Point(176, 72);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(457, 99);
+            this.pictureBox1.Size = new System.Drawing.Size(343, 81);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 7;
             this.pictureBox1.TabStop = false;
@@ -570,18 +560,16 @@
             // 
             // 
             this.txtGeneric.CustomButton.Image = null;
-            this.txtGeneric.CustomButton.Location = new System.Drawing.Point(575, 2);
-            this.txtGeneric.CustomButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtGeneric.CustomButton.Location = new System.Drawing.Point(321, 1);
             this.txtGeneric.CustomButton.Name = "";
-            this.txtGeneric.CustomButton.Size = new System.Drawing.Size(31, 28);
+            this.txtGeneric.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.txtGeneric.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.txtGeneric.CustomButton.TabIndex = 1;
             this.txtGeneric.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.txtGeneric.CustomButton.UseSelectable = true;
             this.txtGeneric.CustomButton.Visible = false;
             this.txtGeneric.Lines = new string[0];
-            this.txtGeneric.Location = new System.Drawing.Point(235, 309);
-            this.txtGeneric.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtGeneric.Location = new System.Drawing.Point(176, 251);
             this.txtGeneric.MaxLength = 32767;
             this.txtGeneric.Name = "txtGeneric";
             this.txtGeneric.PasswordChar = '\0';
@@ -590,7 +578,7 @@
             this.txtGeneric.SelectionLength = 0;
             this.txtGeneric.SelectionStart = 0;
             this.txtGeneric.ShortcutsEnabled = true;
-            this.txtGeneric.Size = new System.Drawing.Size(457, 28);
+            this.txtGeneric.Size = new System.Drawing.Size(343, 23);
             this.txtGeneric.TabIndex = 4;
             this.txtGeneric.UseSelectable = true;
             this.txtGeneric.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -601,10 +589,9 @@
             // 
             this.btnCancel.BackColor = System.Drawing.Color.IndianRed;
             this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Location = new System.Drawing.Point(1101, 459);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCancel.Location = new System.Drawing.Point(826, 373);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(145, 37);
+            this.btnCancel.Size = new System.Drawing.Size(109, 30);
             this.btnCancel.TabIndex = 16;
             this.btnCancel.Text = "CANCEL";
             this.btnCancel.UseCustomBackColor = true;
@@ -616,10 +603,9 @@
             // 
             this.btnSave.BackColor = System.Drawing.Color.SeaGreen;
             this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(947, 459);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSave.Location = new System.Drawing.Point(710, 373);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(145, 37);
+            this.btnSave.Size = new System.Drawing.Size(109, 30);
             this.btnSave.TabIndex = 15;
             this.btnSave.Text = "SAVE";
             this.btnSave.UseCustomBackColor = true;
@@ -633,18 +619,16 @@
             // 
             // 
             this.txtBrandName.CustomButton.Image = null;
-            this.txtBrandName.CustomButton.Location = new System.Drawing.Point(575, 2);
-            this.txtBrandName.CustomButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBrandName.CustomButton.Location = new System.Drawing.Point(321, 1);
             this.txtBrandName.CustomButton.Name = "";
-            this.txtBrandName.CustomButton.Size = new System.Drawing.Size(31, 28);
+            this.txtBrandName.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.txtBrandName.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.txtBrandName.CustomButton.TabIndex = 1;
             this.txtBrandName.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.txtBrandName.CustomButton.UseSelectable = true;
             this.txtBrandName.CustomButton.Visible = false;
             this.txtBrandName.Lines = new string[0];
-            this.txtBrandName.Location = new System.Drawing.Point(235, 273);
-            this.txtBrandName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBrandName.Location = new System.Drawing.Point(176, 222);
             this.txtBrandName.MaxLength = 32767;
             this.txtBrandName.Name = "txtBrandName";
             this.txtBrandName.PasswordChar = '\0';
@@ -653,7 +637,7 @@
             this.txtBrandName.SelectionLength = 0;
             this.txtBrandName.SelectionStart = 0;
             this.txtBrandName.ShortcutsEnabled = true;
-            this.txtBrandName.Size = new System.Drawing.Size(457, 28);
+            this.txtBrandName.Size = new System.Drawing.Size(343, 23);
             this.txtBrandName.TabIndex = 3;
             this.txtBrandName.UseSelectable = true;
             this.txtBrandName.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -666,10 +650,9 @@
             // 
             // 
             this.txtDescription.CustomButton.Image = null;
-            this.txtDescription.CustomButton.Location = new System.Drawing.Point(575, 2);
-            this.txtDescription.CustomButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtDescription.CustomButton.Location = new System.Drawing.Point(321, 1);
             this.txtDescription.CustomButton.Name = "";
-            this.txtDescription.CustomButton.Size = new System.Drawing.Size(31, 28);
+            this.txtDescription.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.txtDescription.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.txtDescription.CustomButton.TabIndex = 1;
             this.txtDescription.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
@@ -677,8 +660,7 @@
             this.txtDescription.CustomButton.Visible = false;
             this.txtDescription.Enabled = false;
             this.txtDescription.Lines = new string[0];
-            this.txtDescription.Location = new System.Drawing.Point(235, 238);
-            this.txtDescription.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtDescription.Location = new System.Drawing.Point(176, 193);
             this.txtDescription.MaxLength = 32767;
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.PasswordChar = '\0';
@@ -687,7 +669,7 @@
             this.txtDescription.SelectionLength = 0;
             this.txtDescription.SelectionStart = 0;
             this.txtDescription.ShortcutsEnabled = true;
-            this.txtDescription.Size = new System.Drawing.Size(457, 28);
+            this.txtDescription.Size = new System.Drawing.Size(343, 23);
             this.txtDescription.TabIndex = 2;
             this.txtDescription.UseSelectable = true;
             this.txtDescription.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -699,18 +681,16 @@
             // 
             // 
             this.txtBarcode.CustomButton.Image = null;
-            this.txtBarcode.CustomButton.Location = new System.Drawing.Point(575, 2);
-            this.txtBarcode.CustomButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBarcode.CustomButton.Location = new System.Drawing.Point(321, 1);
             this.txtBarcode.CustomButton.Name = "";
-            this.txtBarcode.CustomButton.Size = new System.Drawing.Size(31, 28);
+            this.txtBarcode.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.txtBarcode.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.txtBarcode.CustomButton.TabIndex = 1;
             this.txtBarcode.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.txtBarcode.CustomButton.UseSelectable = true;
             this.txtBarcode.CustomButton.Visible = false;
             this.txtBarcode.Lines = new string[0];
-            this.txtBarcode.Location = new System.Drawing.Point(235, 53);
-            this.txtBarcode.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBarcode.Location = new System.Drawing.Point(176, 43);
             this.txtBarcode.MaxLength = 32767;
             this.txtBarcode.Name = "txtBarcode";
             this.txtBarcode.PasswordChar = '\0';
@@ -719,7 +699,7 @@
             this.txtBarcode.SelectionLength = 0;
             this.txtBarcode.SelectionStart = 0;
             this.txtBarcode.ShortcutsEnabled = true;
-            this.txtBarcode.Size = new System.Drawing.Size(457, 28);
+            this.txtBarcode.Size = new System.Drawing.Size(343, 23);
             this.txtBarcode.TabIndex = 1;
             this.txtBarcode.UseSelectable = true;
             this.txtBarcode.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -735,18 +715,16 @@
             // 
             // 
             this.txtProductCode.CustomButton.Image = null;
-            this.txtProductCode.CustomButton.Location = new System.Drawing.Point(575, 2);
-            this.txtProductCode.CustomButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtProductCode.CustomButton.Location = new System.Drawing.Point(321, 1);
             this.txtProductCode.CustomButton.Name = "";
-            this.txtProductCode.CustomButton.Size = new System.Drawing.Size(31, 28);
+            this.txtProductCode.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.txtProductCode.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.txtProductCode.CustomButton.TabIndex = 1;
             this.txtProductCode.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.txtProductCode.CustomButton.UseSelectable = true;
             this.txtProductCode.CustomButton.Visible = false;
             this.txtProductCode.Lines = new string[0];
-            this.txtProductCode.Location = new System.Drawing.Point(235, 17);
-            this.txtProductCode.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtProductCode.Location = new System.Drawing.Point(176, 14);
             this.txtProductCode.MaxLength = 32767;
             this.txtProductCode.Name = "txtProductCode";
             this.txtProductCode.PasswordChar = '\0';
@@ -755,7 +733,7 @@
             this.txtProductCode.SelectionLength = 0;
             this.txtProductCode.SelectionStart = 0;
             this.txtProductCode.ShortcutsEnabled = true;
-            this.txtProductCode.Size = new System.Drawing.Size(457, 28);
+            this.txtProductCode.Size = new System.Drawing.Size(343, 23);
             this.txtProductCode.TabIndex = 0;
             this.txtProductCode.UseSelectable = true;
             this.txtProductCode.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -766,10 +744,9 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(31, 315);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(23, 256);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(117, 20);
+            this.label5.Size = new System.Drawing.Size(94, 15);
             this.label5.TabIndex = 6;
             this.label5.Text = "GENERIC NAME:";
             // 
@@ -777,10 +754,9 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(31, 279);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(23, 227);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(108, 20);
+            this.label4.Size = new System.Drawing.Size(86, 15);
             this.label4.TabIndex = 5;
             this.label4.Text = "BRAND NAME:";
             // 
@@ -788,10 +764,9 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(31, 246);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(23, 200);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(103, 20);
+            this.label3.Size = new System.Drawing.Size(82, 15);
             this.label3.TabIndex = 4;
             this.label3.Text = "DESCRIPTION:";
             // 
@@ -799,10 +774,9 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(31, 59);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(23, 48);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(79, 20);
+            this.label2.Size = new System.Drawing.Size(63, 15);
             this.label2.TabIndex = 3;
             this.label2.Text = "BARCODE:";
             // 
@@ -810,24 +784,21 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(31, 27);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(23, 22);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(121, 20);
+            this.label1.Size = new System.Drawing.Size(97, 15);
             this.label1.TabIndex = 2;
             this.label1.Text = "PRODUCT CODE:";
             // 
             // FormCreateProduct
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
-            this.ClientSize = new System.Drawing.Size(1325, 615);
+            this.ClientSize = new System.Drawing.Size(994, 500);
             this.ControlBox = false;
             this.Controls.Add(this.metroPanel1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FormCreateProduct";
-            this.Padding = new System.Windows.Forms.Padding(27, 74, 27, 25);
             this.Resizable = false;
             this.ShadowType = MetroFramework.Forms.MetroFormShadowType.None;
             this.Text = "Product Information";
@@ -877,5 +848,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label17;
+        private MetroFramework.Controls.MetroDateTime dtExpirationDate;
     }
 }

@@ -80,6 +80,11 @@ namespace POS.Forms
             {
                 this.Close();
             }
+            else if (e.KeyCode == Keys.Enter && grdInvoiceList.ContainsFocus)
+            {
+                SelectInvoice(grdInvoiceList.CurrentCell.RowIndex);
+                e.Handled = true;
+            }
         }
 
         public void Init()
@@ -105,21 +110,26 @@ namespace POS.Forms
         {
             if (grdInvoiceList.Columns[e.ColumnIndex].Name == "VIEW")
             {
-                using (FormCreateInvoice formCreateInvoice = new FormCreateInvoice(this))
-                {
-                    formCreateInvoice.invoice.RefNbr = grdInvoiceList[1, e.RowIndex].Value.ToString();
-                    formCreateInvoice.invoice.Supplier = grdInvoiceList[2, e.RowIndex].Value.ToString();
-                    formCreateInvoice.invoice.ContactPerson = grdInvoiceList[3, e.RowIndex].Value.ToString();
-                    formCreateInvoice.invoice.CreatedBy = grdInvoiceList[4, e.RowIndex].Value.ToString();
-                    formCreateInvoice.invoice.TransactionDate =Convert.ToDateTime( grdInvoiceList[5, e.RowIndex].Value.ToString());
-                    formCreateInvoice.invoice.TotalQty = Convert.ToInt32(grdInvoiceList[6, e.RowIndex].Value.ToString());
-                    formCreateInvoice.invoice.TotalAmt = Convert.ToDecimal(grdInvoiceList[7, e.RowIndex].Value.ToString());
-                    formCreateInvoice.ShowDialog(this);
-                    formCreateInvoice.Dispose();
+                SelectInvoice(e.RowIndex);
+            }
+        }
 
-                    Init();
+        private void SelectInvoice(int row)
+        {
+            using (FormCreateInvoice formCreateInvoice = new FormCreateInvoice(this))
+            {
+                formCreateInvoice.invoice.RefNbr = grdInvoiceList[1, row].Value.ToString();
+                formCreateInvoice.invoice.Supplier = grdInvoiceList[2, row].Value.ToString();
+                formCreateInvoice.invoice.ContactPerson = grdInvoiceList[3, row].Value.ToString();
+                formCreateInvoice.invoice.CreatedBy = grdInvoiceList[4, row].Value.ToString();
+                formCreateInvoice.invoice.TransactionDate = Convert.ToDateTime(grdInvoiceList[5, row].Value.ToString());
+                formCreateInvoice.invoice.TotalQty = Convert.ToInt32(grdInvoiceList[6, row].Value.ToString());
+                formCreateInvoice.invoice.TotalAmt = Convert.ToDecimal(grdInvoiceList[7, row].Value.ToString());
+                formCreateInvoice.ShowDialog(this);
+                formCreateInvoice.Dispose();
 
-                }
+                Init();
+
             }
         }
     }

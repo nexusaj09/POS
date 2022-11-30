@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,7 @@ using System.Windows.Forms;
 using MetroFramework.Forms;
 using POS.Classes;
 using POS.Helpers;
+using POS.Properties;
 
 namespace POS.Forms
 {
@@ -17,6 +19,7 @@ namespace POS.Forms
     {
         public User currUser = new User();
         private UserHelper userHelper = new UserHelper();
+        int count = 0;
         public FormMainMenu(User currentUser)
         {
             InitializeComponent();
@@ -28,6 +31,9 @@ namespace POS.Forms
         private void FormMainMenu_Load(object sender, EventArgs e)
         {
             Init();
+            timer1.Enabled = true;
+            promptWarning();
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -60,7 +66,21 @@ namespace POS.Forms
             {
                 userHelper.CreateLogoutLog(currUser.UserID);
                 MessageBox.Show("Logout Successfully", "Logged Out", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Application.Exit();
+
+                List<Form> openForms = new List<Form>();
+
+                foreach (Form f in Application.OpenForms)
+                    openForms.Add(f);
+
+                foreach (Form f in openForms)
+                {
+                    if (f.Name != "FormInit")
+                        f.Close();
+                }
+
+                FormInit login = new FormInit();
+                login.Show();
+
 
             }
         }
@@ -206,7 +226,7 @@ namespace POS.Forms
             if (isOpen == false)
             {
                 FormProduct formProduct = new FormProduct(currUser);
-                formProduct.Show(this);
+                formProduct.Show();
             }
 
         }
@@ -251,6 +271,99 @@ namespace POS.Forms
             {
                 FormInvoice formInvoice = new FormInvoice(currUser);
                 formInvoice.Show(this);
+            }
+        }
+
+        private void btnStockAdjustments_Click(object sender, EventArgs e)
+        {
+
+            bool isOpen = false;
+
+            foreach (Form f in Application.OpenForms)
+            {
+                if (f.Name == "FormStockAdjustments")
+                {
+                    isOpen = true;
+                    f.BringToFront();
+                    break;
+                }
+            }
+
+            if (isOpen == false)
+            {
+                FormStockAdjustments form = new FormStockAdjustments(currUser);
+                form.Show(this);
+            }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+
+
+
+            //count += 1000;
+
+            //if (count == 3000)
+            //{
+            //    promptWarning();
+            //    count = 0;
+            //}
+
+        }
+
+
+
+        public void promptWarning()
+        {
+            var t = new Timer();
+            t.Interval = 1000;
+
+            ProductHelper helper = new ProductHelper();
+
+            int lowQty = helper.CountTotalReStockQty();
+            int outOfStock = helper.CountTotalOutofStock();
+            int expired = helper.CountTotalExpiredStock();
+
+
+            if (lowQty > 0 || expired > 0 || outOfStock > 0)
+            {
+
+            }
+
+        }
+
+        private void btnDashboard_Click(object sender, EventArgs e)
+        {
+            promptWarning();
+        }
+
+        private void btnTransaction_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                bool isOpen = false;
+
+                foreach (Form f in Application.OpenForms)
+                {
+                    if (f.Name == "FormTransaction")
+                    {
+                        isOpen = true;
+                        f.BringToFront();
+                        break;
+                    }
+                }
+
+                if (isOpen == false)
+                {
+                    FormTransaction form = new FormTransaction(currUser);
+                    form.Show();
+
+                }
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     }

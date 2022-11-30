@@ -35,27 +35,37 @@ namespace POS.Forms
 
         private void btnCheckConnection_Click(object sender, EventArgs e)
         {
-            dbcon.user = txtUsername.Text;
-            dbcon.password = txtPassword.Text;
-            dbcon.dataSource = txtServerName.Text;
-            dbcon.initialCatalog = txtDatabaseName.Text;
-            if (dbcon.SaveConnectionStringRegistry() == true)
+            if (string.IsNullOrEmpty(txtUsername.Text) || string.IsNullOrEmpty(txtServerName.Text) || string.IsNullOrEmpty(txtPassword.Text) || string.IsNullOrEmpty(txtDatabaseName.Text))
             {
-                MessageBox.Show("Connection Successful", "Success", MessageBoxButtons.OK,MessageBoxIcon.Information);
-                txtDatabaseName.Text = null;
-                txtPassword.Text = null;
-                txtServerName.Text = null;
-                txtUsername.Text = null;
-
-                formInit.isEstablished = true;
-
-                this.Dispose();
+                MessageBox.Show("Fill up all the fields", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-                MessageBox.Show("Connection Error","Unsuccessful", MessageBoxButtons.OK,MessageBoxIcon.Error);
+                dbcon.user = txtUsername.Text;
+                dbcon.password = txtPassword.Text;
+                dbcon.dataSource = txtServerName.Text;
+                dbcon.initialCatalog = txtDatabaseName.Text;
 
-                formInit.isEstablished = false;
+                if (dbcon.SaveConnectionStringRegistry() == true)
+                {
+
+
+                    MessageBox.Show("Connection Successful", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtDatabaseName.Text = null;
+                    txtPassword.Text = null;
+                    txtServerName.Text = null;
+                    txtUsername.Text = null;
+
+                    formInit.isEstablished = true;
+
+                    this.Dispose();
+                }
+                else
+                {
+                    MessageBox.Show("Connection Error", "Unsuccessful", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    formInit.isEstablished = false;
+                }
             }
 
         }

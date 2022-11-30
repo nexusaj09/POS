@@ -106,6 +106,7 @@ namespace POS.Helpers
             }
             finally
             {
+                dr.Close();
                 conn.Close();
                 conn.Dispose();
             }

@@ -26,6 +26,7 @@ namespace POS.Classes
         public virtual decimal FinalPrice { get; set; }
         public virtual decimal SRP { get; set; }
         public virtual int MarkUp { get; set; }
+        public virtual DateTime ExpirationDate { get; set; }
 
 
 

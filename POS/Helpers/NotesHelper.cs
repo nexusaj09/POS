@@ -87,7 +87,7 @@ namespace POS.Helpers
                     {
                         count++;
 
-                        dataGrid.Rows.Add(count, dr["ID"].ToString(), dr["Title"].ToString(), dr["Description"].ToString(), string.Format("{0:MM/dd/yyyy hh:mm TT}", dr["CreatedDateTime"].ToString()));
+                        dataGrid.Rows.Add(count, dr["ID"].ToString(), dr["Title"].ToString(), dr["Description"].ToString(), Convert.ToDateTime(dr["CreatedDateTime"]).ToString("dd/MM/yyyy hh:mm tt"));
                     }
                 }
 

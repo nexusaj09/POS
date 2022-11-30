@@ -104,6 +104,7 @@
     <Compile Include="Classes\InvoiceDetail.cs" />
     <Compile Include="Classes\Notes.cs" />
     <Compile Include="Classes\Product.cs" />
+    <Compile Include="Classes\StockAdjustment.cs" />
     <Compile Include="Classes\Suppliers.cs" />
     <Compile Include="Classes\User.cs" />
     <Compile Include="Forms\FormCategories.cs">
@@ -111,6 +112,12 @@
     </Compile>
     <Compile Include="Forms\FormCategories.Designer.cs">
       <DependentUpon>FormCategories.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormCreateAdjustments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormCreateAdjustments.Designer.cs">
+      <DependentUpon>FormCreateAdjustments.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormCreateCategory.cs">
       <SubType>Form</SubType>
@@ -202,11 +209,23 @@
     <Compile Include="Forms\FormProduct.Designer.cs">
       <DependentUpon>FormProduct.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FormStockAdjustments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormStockAdjustments.Designer.cs">
+      <DependentUpon>FormStockAdjustments.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormSuppliers.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\FormSuppliers.Designer.cs">
       <DependentUpon>FormSuppliers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormTransaction.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormTransaction.Designer.cs">
+      <DependentUpon>FormTransaction.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormUserRoles.cs">
       <SubType>Form</SubType>
@@ -226,7 +245,9 @@
     <Compile Include="Helpers\InvoiceHelper.cs" />
     <Compile Include="Helpers\NotesHelper.cs" />
     <Compile Include="Helpers\ProductHelper.cs" />
+    <Compile Include="Helpers\StockAdjustmentHelper.cs" />
     <Compile Include="Helpers\SupplierHelper.cs" />
+    <Compile Include="Helpers\TransactionHelper.cs" />
     <Compile Include="Helpers\UserHelper.cs" />
     <Compile Include="Panels\PanelCreateAdmin.cs">
       <SubType>Form</SubType>
@@ -252,10 +273,25 @@
     <Compile Include="Panels\PanelSearchSupplier.Designer.cs">
       <DependentUpon>PanelSearchSupplier.cs</DependentUpon>
     </Compile>
+    <Compile Include="Panels\PanelSupplierPrice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Panels\PanelSupplierPrice.Designer.cs">
+      <DependentUpon>PanelSupplierPrice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Panels\PanelSupplierPriceAndQty.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Panels\PanelSupplierPriceAndQty.Designer.cs">
+      <DependentUpon>PanelSupplierPriceAndQty.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\FormCategories.resx">
       <DependentUpon>FormCategories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormCreateAdjustments.resx">
+      <DependentUpon>FormCreateAdjustments.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormCreateCategory.resx">
       <DependentUpon>FormCreateCategory.cs</DependentUpon>
@@ -302,8 +338,14 @@
     <EmbeddedResource Include="Forms\FormProduct.resx">
       <DependentUpon>FormProduct.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormStockAdjustments.resx">
+      <DependentUpon>FormStockAdjustments.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormSuppliers.resx">
       <DependentUpon>FormSuppliers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormTransaction.resx">
+      <DependentUpon>FormTransaction.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormUserRoles.resx">
       <DependentUpon>FormUserRoles.cs</DependentUpon>
@@ -323,6 +365,12 @@
     <EmbeddedResource Include="Panels\PanelSearchSupplier.resx">
       <DependentUpon>PanelSearchSupplier.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Panels\PanelSupplierPrice.resx">
+      <DependentUpon>PanelSupplierPrice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panels\PanelSupplierPriceAndQty.resx">
+      <DependentUpon>PanelSupplierPriceAndQty.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -331,6 +379,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -346,6 +395,10 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Resources\pos-terminal.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

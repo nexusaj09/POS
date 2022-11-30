@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -49,6 +50,7 @@ namespace POS.Forms
             lblStockOnHand.Text = productHelper.CountTotalProducts().ToString();
             lblUnderStock.Text = productHelper.CountTotalReStockQty().ToString();
             lblOutOfStock.Text = productHelper.CountTotalOutofStock().ToString();
+            lblExpired.Text = productHelper.CountTotalExpiredStock().ToString();
             grdProductList.ClearSelection();
             grdProductList.CurrentCell = null;
         }
@@ -58,12 +60,7 @@ namespace POS.Forms
         {
             if (grdProductList.Columns[e.ColumnIndex].Name == "DELETE")
             {
-                if (MessageBox.Show(this, "Are you sure to delete this product?", "Delete Product", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    productHelper.DeleteProdut(grdProductList[1, e.RowIndex].Value.ToString());
-                    Init();
-                    MessageBox.Show("Product Successfully Deleted", "Product Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                DeleteProduct(e.RowIndex);
             }
             else if (grdProductList.Columns[e.ColumnIndex].Name == "EDIT")
             {
@@ -84,7 +81,7 @@ namespace POS.Forms
                 updateProduct.FinalPrice = Convert.ToDecimal(grdProductList[14, e.RowIndex].Value.ToString());
                 updateProduct.MarkUp = Convert.ToInt32(grdProductList[15, e.RowIndex].Value.ToString());
                 updateProduct.LastModifiedByID = currUser.UserID;
-
+                updateProduct.ExpirationDate = DateTime.ParseExact(grdProductList[16, e.RowIndex].Value.ToString(), @"dd/MM/yyyy", CultureInfo.InvariantCulture);
                 FormCreateProduct form = new FormCreateProduct(this, updateProduct);
                 form.btnSave.Text = "UPDATE";
                 form.ShowDialog(this);
@@ -109,7 +106,7 @@ namespace POS.Forms
             if (dataGridView.Rows[e.RowIndex].Selected)
             {
                 e.CellStyle.Font = new Font(e.CellStyle.Font, FontStyle.Bold);
-             //   edit: to change the background color:
+                //   edit: to change the background color:
                 e.CellStyle.SelectionBackColor = Color.Coral;
             }
         }
@@ -131,6 +128,10 @@ namespace POS.Forms
                 grdProductList.Rows[0].Selected = true;
 
             }
+            else if (e.KeyCode == Keys.Delete && grdProductList.Rows.Count > 0 && grdProductList.ContainsFocus)
+            {
+                DeleteProduct(grdProductList.CurrentCell.RowIndex);
+            }
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
@@ -141,6 +142,15 @@ namespace POS.Forms
             {
                 grdProductList.ClearSelection();
                 grdProductList.CurrentCell = null;
+            }
+        }
+        private void DeleteProduct(int row)
+        {
+            if (MessageBox.Show(this, "Are you sure to delete this product?", "Delete Product", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                productHelper.DeleteProduct(grdProductList[1, row].Value.ToString());
+                Init();
+                MessageBox.Show("Product Successfully Deleted", "Product Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }

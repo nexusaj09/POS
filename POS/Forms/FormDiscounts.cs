@@ -47,12 +47,7 @@ namespace POS.Forms
         {
             if (grdDiscountList.Columns[e.ColumnIndex].Name == "DELETE")
             {
-                if (MessageBox.Show(this, "Are you sure to delete this discount?", "Delete Discount", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    discountHelper.DeleteDiscount(Convert.ToInt32(grdDiscountList[1, e.RowIndex].Value.ToString()));
-                    discountHelper.LoadDiscount(grdDiscountList, "");
-                    MessageBox.Show("Discount Successfully Deleted", "Discount Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                DeleteDiscount(e.RowIndex);
             }
             else if (grdDiscountList.Columns[e.ColumnIndex].Name == "EDIT")
             {
@@ -109,6 +104,10 @@ namespace POS.Forms
                 grdDiscountList.Select();
                 grdDiscountList.Rows[0].Selected = true;
             }
+            else if (e.KeyCode == Keys.Delete && grdDiscountList.ContainsFocus && grdDiscountList.Rows.Count > 0)
+            {
+                DeleteDiscount(grdDiscountList.CurrentCell.RowIndex);
+            }
 
         }
 
@@ -125,6 +124,18 @@ namespace POS.Forms
             grdDiscountList.ClearSelection();
 
             grdDiscountList.CurrentCell = null;
+        }
+
+        private void DeleteDiscount(int row)
+        {
+
+            if (MessageBox.Show(this, "Are you sure to delete this discount?", "Delete Discount", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                discountHelper.DeleteDiscount(Convert.ToInt32(grdDiscountList[1,row].Value.ToString()));
+                discountHelper.LoadDiscount(grdDiscountList, "");
+                MessageBox.Show("Discount Successfully Deleted", "Discount Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
         }
     }
 }

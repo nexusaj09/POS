@@ -28,10 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMainMenu));
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
             this.metroPanel2 = new MetroFramework.Controls.MetroPanel();
             this.metroPanel4 = new MetroFramework.Controls.MetroPanel();
+            this.btnStockAdjustments = new System.Windows.Forms.Button();
             this.btnStockInvoice = new System.Windows.Forms.Button();
             this.btnNotes = new System.Windows.Forms.Button();
             this.btnUserRoles = new System.Windows.Forms.Button();
@@ -41,13 +43,14 @@
             this.btnCategories = new System.Windows.Forms.Button();
             this.btnSupplier = new System.Windows.Forms.Button();
             this.btnProducts = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnTransaction = new System.Windows.Forms.Button();
             this.btnDashboard = new System.Windows.Forms.Button();
             this.metroPanel3 = new MetroFramework.Controls.MetroPanel();
             this.lblUser = new System.Windows.Forms.Label();
             this.lblRole = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pnlShow = new MetroFramework.Controls.MetroPanel();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.metroPanel2.SuspendLayout();
             this.metroPanel4.SuspendLayout();
             this.metroPanel3.SuspendLayout();
@@ -90,6 +93,7 @@
             // 
             // metroPanel4
             // 
+            this.metroPanel4.Controls.Add(this.btnStockAdjustments);
             this.metroPanel4.Controls.Add(this.btnStockInvoice);
             this.metroPanel4.Controls.Add(this.btnNotes);
             this.metroPanel4.Controls.Add(this.btnUserRoles);
@@ -99,7 +103,7 @@
             this.metroPanel4.Controls.Add(this.btnCategories);
             this.metroPanel4.Controls.Add(this.btnSupplier);
             this.metroPanel4.Controls.Add(this.btnProducts);
-            this.metroPanel4.Controls.Add(this.button3);
+            this.metroPanel4.Controls.Add(this.btnTransaction);
             this.metroPanel4.Controls.Add(this.btnDashboard);
             this.metroPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.metroPanel4.HorizontalScrollbarBarColor = true;
@@ -113,6 +117,24 @@
             this.metroPanel4.VerticalScrollbarBarColor = true;
             this.metroPanel4.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel4.VerticalScrollbarSize = 13;
+            // 
+            // btnStockAdjustments
+            // 
+            this.btnStockAdjustments.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnStockAdjustments.FlatAppearance.BorderSize = 0;
+            this.btnStockAdjustments.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStockAdjustments.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStockAdjustments.Image = ((System.Drawing.Image)(resources.GetObject("btnStockAdjustments.Image")));
+            this.btnStockAdjustments.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnStockAdjustments.Location = new System.Drawing.Point(0, 350);
+            this.btnStockAdjustments.Margin = new System.Windows.Forms.Padding(4);
+            this.btnStockAdjustments.Name = "btnStockAdjustments";
+            this.btnStockAdjustments.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.btnStockAdjustments.Size = new System.Drawing.Size(214, 35);
+            this.btnStockAdjustments.TabIndex = 13;
+            this.btnStockAdjustments.Text = "Stock Adjustments";
+            this.btnStockAdjustments.UseVisualStyleBackColor = true;
+            this.btnStockAdjustments.Click += new System.EventHandler(this.btnStockAdjustments_Click);
             // 
             // btnStockInvoice
             // 
@@ -276,22 +298,23 @@
             this.btnProducts.UseVisualStyleBackColor = true;
             this.btnProducts.Click += new System.EventHandler(this.btnProducts_Click);
             // 
-            // button3
+            // btnTransaction
             // 
-            this.button3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
-            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button3.Location = new System.Drawing.Point(0, 35);
-            this.button3.Margin = new System.Windows.Forms.Padding(4);
-            this.button3.Name = "button3";
-            this.button3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.button3.Size = new System.Drawing.Size(214, 35);
-            this.button3.TabIndex = 7;
-            this.button3.Text = "Transaction";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnTransaction.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnTransaction.FlatAppearance.BorderSize = 0;
+            this.btnTransaction.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTransaction.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTransaction.Image = ((System.Drawing.Image)(resources.GetObject("btnTransaction.Image")));
+            this.btnTransaction.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnTransaction.Location = new System.Drawing.Point(0, 35);
+            this.btnTransaction.Margin = new System.Windows.Forms.Padding(4);
+            this.btnTransaction.Name = "btnTransaction";
+            this.btnTransaction.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.btnTransaction.Size = new System.Drawing.Size(214, 35);
+            this.btnTransaction.TabIndex = 7;
+            this.btnTransaction.Text = "Transaction";
+            this.btnTransaction.UseVisualStyleBackColor = true;
+            this.btnTransaction.Click += new System.EventHandler(this.btnTransaction_Click);
             // 
             // btnDashboard
             // 
@@ -310,6 +333,7 @@
             this.btnDashboard.TabIndex = 2;
             this.btnDashboard.Text = "Dashboard";
             this.btnDashboard.UseVisualStyleBackColor = true;
+            this.btnDashboard.Click += new System.EventHandler(this.btnDashboard_Click);
             this.btnDashboard.MouseEnter += new System.EventHandler(this.btnDashboard_MouseEnter);
             this.btnDashboard.MouseLeave += new System.EventHandler(this.btnDashboard_MouseLeave);
             this.btnDashboard.MouseHover += new System.EventHandler(this.btnDashboard_MouseHover);
@@ -391,6 +415,10 @@
             this.pnlShow.VerticalScrollbarHighlightOnWheel = false;
             this.pnlShow.VerticalScrollbarSize = 13;
             // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // FormMainMenu
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -430,11 +458,13 @@
         private System.Windows.Forms.Button btnLogout;
         private System.Windows.Forms.Button btnCategories;
         private System.Windows.Forms.Button btnSupplier;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnTransaction;
         private System.Windows.Forms.Button btnDiscounts;
         private System.Windows.Forms.Button btnNotes;
         private System.Windows.Forms.Button btnUserRoles;
         private System.Windows.Forms.Button btnProducts;
         private System.Windows.Forms.Button btnStockInvoice;
+        private System.Windows.Forms.Button btnStockAdjustments;
+        private System.Windows.Forms.Timer timer1;
     }
 }

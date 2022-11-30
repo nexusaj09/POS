@@ -15,6 +15,7 @@ namespace POS.Classes
         public virtual decimal SupplierPrice { get; set; }
         public virtual int Qty { get; set; }
         public virtual decimal TotalPerItem { get; set; }
+        public virtual string Descr { get; set; }
 
     }
 }

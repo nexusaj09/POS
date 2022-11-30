@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MetroFramework.Forms;
+using POS.Classes;
 using POS.Forms;
 using POS.Helpers;
 
@@ -17,11 +18,27 @@ namespace POS.Panels
     {
         ProductHelper productHelper = new ProductHelper();
         FormCreateInvoice formCreateInvoice;
+        FormTransaction formTransaction;
+        bool isFromTransaction;
         int index = 0;
         public PanelProducts(FormCreateInvoice form)
         {
             InitializeComponent();
+
             formCreateInvoice = form;
+
+            this.grdProductList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+        }
+
+        public PanelProducts(FormTransaction fromTran,bool isTran)
+        {
+            InitializeComponent();
+
+            formTransaction = fromTran;
+
+            isFromTransaction = isTran;
+
+            this.grdProductList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
         }
 
         private void PanelProducts_Load(object sender, EventArgs e)
@@ -29,6 +46,8 @@ namespace POS.Panels
             productHelper.LoadProductPanel(this, txtSearch.Text);
 
             Init();
+
+            this.grdProductList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
@@ -50,13 +69,9 @@ namespace POS.Panels
         {
             bool isFound = false;
 
-
             if (formCreateInvoice.grdInvoiceList.Rows.Count == 0)
             {
-                formCreateInvoice.grdInvoiceList.Rows.Add(index += 1,"", grdProductList[1,row].Value.ToString(),
-                    grdProductList[3, row].Value.ToString(), "0.00", "0", "0.00");
-
-                MessageBox.Show("Product Added", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                AddProduct(row);
             }
             else
             {
@@ -80,17 +95,39 @@ namespace POS.Panels
                 }
                 else
                 {
-                    index = Convert.ToInt32(formCreateInvoice.grdInvoiceList.Rows.Count);
-                    formCreateInvoice.grdInvoiceList.Rows.Add(index += 1,"", grdProductList[1, row].Value.ToString(),
-                grdProductList[3, row].Value.ToString(), "0.00", "0", "0.00");
-
-                    MessageBox.Show("Product Added", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    AddProduct(row);
 
                 }
             }
-
-
         }
+
+        public void AddProduct(int row)
+        {
+            index = Convert.ToInt32(formCreateInvoice.grdInvoiceList.Rows.Count);
+
+            InvoiceDetail detail = new InvoiceDetail();
+
+            detail.ProductCode = grdProductList[1, row].Value.ToString();
+            detail.Descr = grdProductList[3, row].Value.ToString();
+
+            using (PanelSupplierPriceAndQty panelSupplierPriceAndQty = new PanelSupplierPriceAndQty(detail))
+            {
+                panelSupplierPriceAndQty.ShowDialog();
+
+                detail = panelSupplierPriceAndQty.invoice;
+
+                panelSupplierPriceAndQty.Dispose();
+            }
+
+            detail.TotalPerItem = detail?.SupplierPrice != null && detail?.Qty != null ? detail.SupplierPrice * detail.Qty : 0;
+
+            formCreateInvoice.grdInvoiceList.Rows.Add(index += 1, "", detail.ProductCode,
+                  detail.Descr, string.Format("{0:#,##0.00}",detail.SupplierPrice), string.Format("{0:#,###}", detail.Qty), string.Format("{0:#,##0.00}", detail.TotalPerItem));
+
+            MessageBox.Show("Product Added", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+
 
         private void PanelProducts_KeyDown(object sender, KeyEventArgs e)
         {
@@ -141,5 +178,7 @@ namespace POS.Panels
 
             grdProductList.CurrentCell = null;
         }
+
+
     }
 }

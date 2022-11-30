@@ -59,12 +59,7 @@ namespace POS.Forms
         {
             if (grdSupplierList.Columns[e.ColumnIndex].Name == "DELETE")
             {
-                if (MessageBox.Show(this, "Are you sure to delete this supplier?", "Delete Supplier", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    supplierHelper.DeleteSupplier(Convert.ToInt32(grdSupplierList[1, e.RowIndex].Value.ToString()));
-                    supplierHelper.LoadSupplier(grdSupplierList, "");
-                    MessageBox.Show("Supplier Successfully Deleted", "Supplier Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                DeleteSupplier(e.RowIndex);
             }
             else if (grdSupplierList.Columns[e.ColumnIndex].Name == "EDIT")
             {
@@ -103,7 +98,7 @@ namespace POS.Forms
             if (e.KeyCode == Keys.Escape)
             {
                 this.Close();
-            }    
+            }
             else if (e.KeyCode == Keys.Down && txtSearch.ContainsFocus && grdSupplierList.Rows.Count > 0)
             {
                 grdSupplierList.Select();
@@ -112,6 +107,10 @@ namespace POS.Forms
             else if (e.KeyCode == Keys.F1)
             {
                 Init();
+            }
+            else if (e.KeyCode == Keys.Delete && grdSupplierList.ContainsFocus && grdSupplierList.Rows.Count > 0)
+            {
+                DeleteSupplier(grdSupplierList.CurrentCell.RowIndex);
             }
         }
 
@@ -128,6 +127,16 @@ namespace POS.Forms
             grdSupplierList.ClearSelection();
 
             grdSupplierList.CurrentCell = null;
+        }
+
+        private void DeleteSupplier(int row)
+        {
+            if (MessageBox.Show(this, "Are you sure to delete this supplier?", "Delete Supplier", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                supplierHelper.DeleteSupplier(Convert.ToInt32(grdSupplierList[1, row].Value.ToString()));
+                supplierHelper.LoadSupplier(grdSupplierList, "");
+                MessageBox.Show("Supplier Successfully Deleted", "Supplier Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
     }

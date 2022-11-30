@@ -11,6 +11,7 @@ using POS.Helpers;
 using POS.Classes;
 using System.Drawing;
 using BarcodeLib;
+using MetroFramework.Controls;
 
 namespace POS.Forms
 {
@@ -23,12 +24,22 @@ namespace POS.Forms
         bool isBarcodeExisting = false;
         bool isProductCodeExisting = false;
         bool isSkip = false;
+        bool fromInvoice = false;
         public FormCreateProduct(FormProduct formProduct, Product product)
         {
             InitializeComponent();
 
             form = formProduct;
             updateProduct = product;
+        }
+
+        public FormCreateProduct(User user, bool inv)
+        {
+            InitializeComponent();
+
+            currUser = user;
+            fromInvoice = inv;
+
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -42,7 +53,7 @@ namespace POS.Forms
 
             Barcode barcode = new Barcode();
             barcode.IncludeLabel = true;
-         
+
             barcode.Height = (int)(pictureBox1.Height * 0.8);
             barcode.Width = (int)(pictureBox1.Width * 0.8);
             if (txtBarcode.Text != null && txtBarcode.Text != String.Empty)
@@ -68,13 +79,12 @@ namespace POS.Forms
             if (txtMarkUp.Text != "" && txtSupplierPrice.Text != "")
             {
                 price = Convert.ToDecimal(txtSupplierPrice.Text) * (Convert.ToDecimal(txtMarkUp.Text) / 100);
-                txtSRP.Text = Decimal.Round(Convert.ToDecimal(txtSupplierPrice.Text) + price).ToString();
+                txtSRP.Text = Decimal.Ceiling(Convert.ToDecimal(txtSupplierPrice.Text) + price).ToString();
             }
             else
             {
                 txtSRP.Text = txtSupplierPrice.Text;
             }
-
         }
 
         private void txtSupplierPrice_Leave(object sender, EventArgs e)
@@ -113,7 +123,7 @@ namespace POS.Forms
             if (txtMarkUp.Text != "" && txtSupplierPrice.Text != "")
             {
                 price = Convert.ToDecimal(txtSupplierPrice.Text) * (Convert.ToDecimal(txtMarkUp.Text) / 100);
-                txtSRP.Text = Decimal.Round(Convert.ToDecimal(txtSupplierPrice.Text) + price).ToString();
+                txtSRP.Text = Decimal.Ceiling(Convert.ToDecimal(txtSupplierPrice.Text) + price).ToString();
             }
             else
             {
@@ -201,35 +211,49 @@ namespace POS.Forms
                 {
                     if (MessageBox.Show(this, "Add this Product?", "Add Product", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                     {
-                        Product newProduct = new Product();
-                        newProduct.ProductBarcode = txtBarcode.Text;
-                        newProduct.ProductCode = txtProductCode.Text;
-                        newProduct.Description = txtDescription.Text;
-                        newProduct.BrandName = txtBrandName.Text;
-                        newProduct.GenericName = txtGeneric.Text;
-                        newProduct.Classification = txtClass.Text;
-                        newProduct.Formulation = txtFormulation.Text;
-                        newProduct.Category = cmbCategory.Text;
-                        newProduct.UOM = txtUOM.Text;
-                        newProduct.ReOrderQty = txtReOrderQty.Text != string.Empty ? Convert.ToInt32(txtReOrderQty.Text) : 0;
-                        newProduct.Qty = txtInitialQty.Text != string.Empty ? Convert.ToInt32(txtInitialQty.Text) : 0;
-                        newProduct.SupplierPrice = txtSupplierPrice.Text != string.Empty ? Convert.ToDecimal(txtSupplierPrice.Text) : 0;
-                        newProduct.FinalPrice = txtFinalPrice.Text != string.Empty ? Convert.ToDecimal(txtFinalPrice.Text) : 0;
-                        newProduct.SRP = txtSRP.Text != string.Empty ? Convert.ToDecimal(txtSRP.Text) : 0;
-                        newProduct.MarkUp = txtMarkUp.Text != string.Empty ? Convert.ToInt32(txtMarkUp.Text) : 0;
-                        newProduct.CreatedByID = form.currUser.UserID;
-                        newProduct.CreatedDateTime = DateTime.Now;
-                        newProduct.LastModifiedByID = form.currUser.UserID;
-                        newProduct.LastModifiedDateTime = DateTime.Now;
+                        if (!string.IsNullOrEmpty(txtProductCode.Text))
+                        {
+                            Product newProduct = new Product();
+                            newProduct.ProductBarcode = txtBarcode.Text;
+                            newProduct.ProductCode = txtProductCode.Text;
+                            newProduct.Description = txtDescription.Text;
+                            newProduct.BrandName = txtBrandName.Text;
+                            newProduct.GenericName = txtGeneric.Text;
+                            newProduct.Classification = txtClass.Text;
+                            newProduct.Formulation = txtFormulation.Text;
+                            newProduct.Category = cmbCategory.Text;
+                            newProduct.UOM = txtUOM.Text;
+                            newProduct.ReOrderQty = txtReOrderQty.Text != string.Empty ? Convert.ToInt32(txtReOrderQty.Text) : 0;
+                            newProduct.Qty = txtInitialQty.Text != string.Empty ? Convert.ToInt32(txtInitialQty.Text) : 0;
+                            newProduct.SupplierPrice = txtSupplierPrice.Text != string.Empty ? Convert.ToDecimal(txtSupplierPrice.Text) : 0;
+                            newProduct.FinalPrice = txtFinalPrice.Text != string.Empty ? Convert.ToDecimal(txtFinalPrice.Text) : 0;
+                            newProduct.SRP = txtSRP.Text != string.Empty ? Convert.ToDecimal(txtSRP.Text) : 0;
+                            newProduct.MarkUp = txtMarkUp.Text != string.Empty ? Convert.ToInt32(txtMarkUp.Text) : 0;
+                            newProduct.ExpirationDate = dtExpirationDate.Value;
+                            newProduct.CreatedByID = fromInvoice == false ? form.currUser.UserID : currUser.UserID;
+                            newProduct.CreatedDateTime = DateTime.Now;
+                            newProduct.LastModifiedByID = fromInvoice == false ? form.currUser.UserID : currUser.UserID;
+                            newProduct.LastModifiedDateTime = DateTime.Now;
 
-                        productHelper.CreateProduct(newProduct);
+                            productHelper.CreateProduct(newProduct);
 
-                        MessageBox.Show(this, "New Product Added", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show(this, "New Product Added", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                        Clear();
+                            Clear();
+                            if (fromInvoice == false)
+                            {
+                                form.Init();
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("No Product Code Entered", "Empty Product Code", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            txtProductCode.Select();
+                        }
 
-                        form.Init();
+                      
                     }
+                        
                 }
                 else if (btnSave.Text == "UPDATE")
                 {
@@ -252,7 +276,8 @@ namespace POS.Forms
                         updateProduct.SRP = txtSRP.Text != string.Empty ? Convert.ToDecimal(txtSRP.Text) : 0;
                         updateProduct.MarkUp = txtMarkUp.Text != string.Empty ? Convert.ToInt32(txtMarkUp.Text) : 0;
                         updateProduct.LastModifiedDateTime = DateTime.Now;
-
+                        updateProduct.LastModifiedByID = currUser.UserID;
+                        updateProduct.ExpirationDate = dtExpirationDate.Value;
                         productHelper.UpdateProduct(updateProduct);
 
                         MessageBox.Show(this, "Product successfully updated!", "Updated Successfully", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -292,16 +317,18 @@ namespace POS.Forms
             txtProductCode.Focus();
             isBarcodeExisting = false;
             isProductCodeExisting = false;
+            dtExpirationDate.Value = DateTime.Now;
         }
 
         private void Init()
         {
+
             productHelper.LoadCategories(cmbCategory);
             cmbCategory.Text = null;
             txtInitialQty.Enabled = btnSave.Text == "SAVE" ? true : false;
             txtProductCode.Enabled = btnSave.Text == "SAVE" ? true : false;
 
-            if (updateProduct != null)
+            if (updateProduct != null && updateProduct.ProductCode != null)
             {
                 txtProductCode.Text = updateProduct.ProductCode;
                 txtBarcode.Text = updateProduct.ProductBarcode;
@@ -318,6 +345,7 @@ namespace POS.Forms
                 txtFinalPrice.Text = updateProduct.FinalPrice.ToString();
                 txtSRP.Text = updateProduct.SRP.ToString();
                 txtMarkUp.Text = updateProduct.MarkUp.ToString();
+                dtExpirationDate.Value = updateProduct.ExpirationDate;
             }
 
         }

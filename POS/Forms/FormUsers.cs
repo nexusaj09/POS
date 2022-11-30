@@ -31,7 +31,7 @@ namespace POS.Forms
                 createUser.ShowDialog(this);
                 createUser.Dispose();
                 Init();
-            }             
+            }
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
@@ -65,15 +65,47 @@ namespace POS.Forms
             }
             else if (grdUserList.Columns[e.ColumnIndex].Name == "DELETE")
             {
-                if (MessageBox.Show(this, "Are you sure to delete this user?", "Delete User", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    userHelper.DeleteUser(Convert.ToInt32(grdUserList[1, e.RowIndex].Value.ToString()));
-                    userHelper.LoadUsers(grdUserList, txtSearch.Text);
-                    MessageBox.Show("User Successfully Deleted", "User Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                DeleteUser(e.RowIndex);
             }
         }
+        public void DeleteUser(int row)
+        {
+            int countAdmin = 0;
 
+            if (MessageBox.Show(this, "Are you sure to delete this user?", "Delete User", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+
+                foreach (DataGridViewRow r in grdUserList.Rows)
+                {
+                    if (r.Cells["ROLE"].Value.ToString() == "System Administrator")
+                    {
+                        countAdmin++;
+                    }
+                }
+
+                if (grdUserList.CurrentRow.Cells["ROLE"].Value.ToString() == "System Administrator")
+                {
+                    if (countAdmin == 1)
+                    {
+                        MessageBox.Show(this, "1 Admin account must remain!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        userHelper.DeleteUser(Convert.ToInt32(grdUserList[1, row].Value.ToString()));
+                        userHelper.LoadUsers(grdUserList, txtSearch.Text);
+                        MessageBox.Show("User Successfully Deleted", "User Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                else
+                {
+                    userHelper.DeleteUser(Convert.ToInt32(grdUserList[1, row].Value.ToString()));
+                    userHelper.LoadUsers(grdUserList, txtSearch.Text);
+                    MessageBox.Show("User Successfully Deleted", "User Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+            }
+
+        }
         private void FormUsers_Load(object sender, EventArgs e)
         {
             userHelper.LoadUsers(grdUserList, txtSearch.Text);
@@ -124,6 +156,10 @@ namespace POS.Forms
             else if (e.KeyCode == Keys.Escape)
             {
                 this.Close();
+            }
+            else if (grdUserList.ContainsFocus && e.KeyCode == Keys.Delete && grdUserList.Rows.Count > 0)
+            {
+                DeleteUser(grdUserList.CurrentCell.RowIndex);
             }
         }
     }

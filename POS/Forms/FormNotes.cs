@@ -27,7 +27,7 @@ namespace POS.Forms
         }
 
         private void FormNotes_Load(object sender, EventArgs e)
-        {            
+        {
 
             notesHelper.LoadNotes(grdNoteList, "");
 
@@ -48,12 +48,7 @@ namespace POS.Forms
         {
             if (grdNoteList.Columns[e.ColumnIndex].Name == "DELETE")
             {
-                if (MessageBox.Show(this, "Are you sure to delete this note?", "Delete Note", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    notesHelper.DeleteNotes(Convert.ToInt32(grdNoteList[1, e.RowIndex].Value.ToString()));
-                    notesHelper.LoadNotes(grdNoteList, "");
-                    MessageBox.Show("Note Successfully Deleted", "Note Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                DeleteNotes(e.RowIndex);
             }
             else if (grdNoteList.Columns[e.ColumnIndex].Name == "EDIT")
             {
@@ -90,7 +85,7 @@ namespace POS.Forms
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            notesHelper.LoadNotes(grdNoteList, "");
+            notesHelper.LoadNotes(grdNoteList, txtSearch.Text);
 
             if (grdNoteList.Rows.Count > 0)
             {
@@ -126,6 +121,20 @@ namespace POS.Forms
             else if (e.KeyCode == Keys.Escape)
             {
                 this.Close();
+            }
+            else if (e.KeyCode == Keys.Delete && grdNoteList.Rows.Count > 0 && grdNoteList.ContainsFocus)
+            {
+                DeleteNotes(grdNoteList.CurrentCell.RowIndex);
+            }
+        }
+
+        private void DeleteNotes(int row)
+        {
+            if (MessageBox.Show(this, "Are you sure to delete this note?", "Delete Note", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                notesHelper.DeleteNotes(Convert.ToInt32(grdNoteList[1, row].Value.ToString()));
+                notesHelper.LoadNotes(grdNoteList, "");
+                MessageBox.Show("Note Successfully Deleted", "Note Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }

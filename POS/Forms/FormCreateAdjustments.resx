@@ -126,75 +126,29 @@
   <metadata name="BARCODE.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="Description.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="BRAND.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="GENERIC.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="CLASS.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="FORM.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="CATEGORY.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="UOM.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="DESCR.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <metadata name="QTY.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="REORDERLVL.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="SUPPLIERPRC.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="SRP.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="FINALPRICE.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="MARKUP.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="EXPIRATIONDATE.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="EDIT.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="SELECT.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="EDIT.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="SELECT.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
-        bQAAAG0BjlwfygAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAFHSURBVDhPldCx
-        SwJhHMbxU6Kp1f+ioYSm4HCI1qI5UOdahJJMzSsRa4jAMJqCoCGTtpa0UiGHguCyGuquMWirwV4T4326
-        91K5k59xDl94X+75cNxJAAaquZtNNDPZt2ZmL2XcXeSoT67W8ZZqYIjYehosmqxSQzL+HFRbuWgX10Or
-        +FqK/ZDj3rgWUKH7cHs+h9eNhIlFLJYsk8BaB98UZuHxLeMwLoOthdFIRRriOYm6aUEbPohPAnkPUJxg
-        UBS32NBQpAfuSXzpZdadHXVyiEW2i5keqDnFIsvF+Cbd/0DiC6/5w6jaB8XNdf/joFj0d9AXSjQe/xeL
-        JDydDHPtqK5eBW2YF8e+KdCbhJfTKa7l8V5JI7cpt98ssG+IAr1Ji4n9Su1sG/x6Bbwa4ijLH06xSBqd
-        Udj0fOQTdzthlLIj1Kh/kH4B1mLhVIcszsIAAAAASUVORK5CYII=
-</value>
-  </data>
-  <metadata name="DELETE.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="DELETE.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
-        VAAAAFQBo63EFQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAADMSURBVDhPlY89
-        CsJAEEZzRy2sBRshASsrUSF2VoKthTfwDOJJFLP+gaRQQ9RxRybJ6Ixx8+Ardvd9s7veL5qDMfDQtju8
-        5DSgO52tbMAxS6oVKFJpqFagSWWh2idRUAeXkC7RZC2kSzRZC+kSLqVmA6dJH3a9FqTRGg6hX20Alh/x
-        Ge5HA/Finu9jSJdwCW/G8vN6eQ/jZ6RLuITPxpuzl+yH7WoD+J+xbDqNfE26JBP+hXSJPUy+ZSU30iVb
-        vz6yQtmQxAS1kHSL570Aj/qd9NRexO4AAAAASUVORK5CYII=
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
+        gwAAAIMBYu+7WgAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAHqSURBVEhLrZa7
+        TsMwFIbzEAxc1SYgBjY2JsTAQEXhERADA9eH4ZKEVCAhgRBi5LrDBmLlNoEQG0NiOykEkDkncasmMUlK
+        +KVPSu3j/zjHjl0lTf2616eadFk1yLmq0zvVYCwAnjWDnKkGXRpY83pFeH71ml4PDLaAT4Bn8A0cqhv1
+        khieLpjtNAwgLQZ5IapOpoSNXBC0AuCMZAZ5+MaSCruoSoZbgYCv2IC/ABMk08I2lKj5X8ryG07JcruE
+        PZaGbUmCimIF5sFWLFCawU3KKwdM1veJlWksrCwgk6Ea5ZfP79z3fT5z5Cb6NZ0uKuKDSXRm0Wr+Yvt8
+        ZEcWx07wDR6THemg+cVTaP5qf/DxfWmJkHtMQGONAdVDxt/oB1+78iLt8ZmP7f1qjlBMIN2emMB99wMj
+        /TpM0qY54mCCh1hjk7lTt5nEuqm3a47cZi7y7LHLWT1MgmTUPEa4yEvJjiiNN2lj5gFlg84reJ7Dj8xj
+        eXSX8eHt/OZA+KGh4ASsSQIKoRnUDMxRfetuNzT+52Fnl3XWKexDQcMEdPzLca2ZpCpsowrv34IXDmwa
+        YScXZocgp2VQXmzNcCaFTboGLdIB/xxWYVCeSx9jrMgFk1e4zTSTLpR1cgomtwCeWwg8sxPsa25FqRTl
+        B9O5C9tCi1clAAAAAElFTkSuQmCC
 </value>
   </data>
   <data name="txtSearch.Icon" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

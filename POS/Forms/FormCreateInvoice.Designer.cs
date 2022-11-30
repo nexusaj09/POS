@@ -64,6 +64,7 @@
             this.QTY = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TOTALINVOICE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DELETE = new System.Windows.Forms.DataGridViewImageColumn();
+            this.btnCreate = new MetroFramework.Controls.MetroButton();
             this.panel1.SuspendLayout();
             this.metroPanel3.SuspendLayout();
             this.metroPanel4.SuspendLayout();
@@ -73,6 +74,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnCreate);
             this.panel1.Controls.Add(this.btnSearchProduct);
             this.panel1.Controls.Add(this.metroPanel3);
             this.panel1.Controls.Add(this.metroPanel4);
@@ -300,7 +302,7 @@
             this.label5.Location = new System.Drawing.Point(671, 53);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(136, 20);
+            this.label5.Size = new System.Drawing.Size(110, 15);
             this.label5.TabIndex = 8;
             this.label5.Text = "CONTACT PERSON:";
             // 
@@ -311,7 +313,7 @@
             this.label6.Location = new System.Drawing.Point(671, 17);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(74, 20);
+            this.label6.Size = new System.Drawing.Size(60, 15);
             this.label6.TabIndex = 6;
             this.label6.Text = "SUPPLIER:";
             // 
@@ -320,7 +322,7 @@
             this.dtTranDate.CalendarFont = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtTranDate.Location = new System.Drawing.Point(180, 84);
             this.dtTranDate.Margin = new System.Windows.Forms.Padding(4);
-            this.dtTranDate.MinimumSize = new System.Drawing.Size(0, 30);
+            this.dtTranDate.MinimumSize = new System.Drawing.Size(0, 29);
             this.dtTranDate.Name = "dtTranDate";
             this.dtTranDate.Size = new System.Drawing.Size(408, 30);
             this.dtTranDate.TabIndex = 5;
@@ -332,7 +334,7 @@
             this.label3.Location = new System.Drawing.Point(16, 95);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(151, 20);
+            this.label3.Size = new System.Drawing.Size(119, 15);
             this.label3.TabIndex = 4;
             this.label3.Text = "TRANSACTION DATE:";
             // 
@@ -376,7 +378,7 @@
             this.label2.Location = new System.Drawing.Point(16, 53);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(95, 20);
+            this.label2.Size = new System.Drawing.Size(75, 15);
             this.label2.TabIndex = 2;
             this.label2.Text = "CREATED BY:";
             // 
@@ -420,7 +422,7 @@
             this.label1.Location = new System.Drawing.Point(16, 17);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(122, 20);
+            this.label1.Size = new System.Drawing.Size(97, 15);
             this.label1.TabIndex = 0;
             this.label1.Text = "REFERENCE NBR:";
             // 
@@ -536,7 +538,7 @@
             this.Count.MinimumWidth = 6;
             this.Count.Name = "Count";
             this.Count.ReadOnly = true;
-            this.Count.Width = 47;
+            this.Count.Width = 39;
             // 
             // ID
             // 
@@ -568,7 +570,7 @@
             this.SUPPLIERPRICE.HeaderText = "SUPPLIER PRICE";
             this.SUPPLIERPRICE.MinimumWidth = 6;
             this.SUPPLIERPRICE.Name = "SUPPLIERPRICE";
-            this.SUPPLIERPRICE.Width = 160;
+            this.SUPPLIERPRICE.Width = 112;
             // 
             // QTY
             // 
@@ -576,7 +578,7 @@
             this.QTY.HeaderText = "QTY";
             this.QTY.MinimumWidth = 6;
             this.QTY.Name = "QTY";
-            this.QTY.Width = 67;
+            this.QTY.Width = 54;
             // 
             // TOTALINVOICE
             // 
@@ -585,7 +587,7 @@
             this.TOTALINVOICE.MinimumWidth = 6;
             this.TOTALINVOICE.Name = "TOTALINVOICE";
             this.TOTALINVOICE.ReadOnly = true;
-            this.TOTALINVOICE.Width = 161;
+            this.TOTALINVOICE.Width = 88;
             // 
             // DELETE
             // 
@@ -596,10 +598,24 @@
             this.DELETE.Name = "DELETE";
             this.DELETE.Width = 6;
             // 
+            // btnCreate
+            // 
+            this.btnCreate.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.btnCreate.ForeColor = System.Drawing.Color.White;
+            this.btnCreate.Location = new System.Drawing.Point(401, 127);
+            this.btnCreate.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCreate.Name = "btnCreate";
+            this.btnCreate.Size = new System.Drawing.Size(188, 30);
+            this.btnCreate.TabIndex = 20;
+            this.btnCreate.Text = "CREATE PRODUCT";
+            this.btnCreate.UseCustomBackColor = true;
+            this.btnCreate.UseCustomForeColor = true;
+            this.btnCreate.UseSelectable = true;
+            this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
+            // 
             // FormCreateInvoice
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
             this.ClientSize = new System.Drawing.Size(1812, 999);
             this.ControlBox = false;
@@ -657,5 +673,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn QTY;
         private System.Windows.Forms.DataGridViewTextBoxColumn TOTALINVOICE;
         private System.Windows.Forms.DataGridViewImageColumn DELETE;
+        private MetroFramework.Controls.MetroButton btnCreate;
     }
 }

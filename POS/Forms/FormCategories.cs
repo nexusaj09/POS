@@ -60,12 +60,7 @@ namespace POS.Forms
         {
             if (grdCategoryList.Columns[e.ColumnIndex].Name == "DELETE")
             {
-                if (MessageBox.Show(this, "Are you sure to delete this category?", "Delete Category", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    cateroryHelper.DeleteCategory(Convert.ToInt32(grdCategoryList[1, e.RowIndex].Value.ToString()));
-                    cateroryHelper.LoadCategories(grdCategoryList, "");
-                    MessageBox.Show("Category Successfully Deleted", "Category Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                DeleteCategory(e.RowIndex);
             }
             else if (grdCategoryList.Columns[e.ColumnIndex].Name == "EDIT")
             {
@@ -107,6 +102,10 @@ namespace POS.Forms
             {
                 this.Close();
             }
+            else if (e.KeyCode == Keys.Delete && grdCategoryList.ContainsFocus && grdCategoryList.Rows.Count > 0)
+            {
+                DeleteCategory(grdCategoryList.CurrentCell.RowIndex);
+            }
         }
 
         private void grdCategoryList_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -128,6 +127,17 @@ namespace POS.Forms
             grdCategoryList.ClearSelection();
 
             grdCategoryList.CurrentCell = null;
+        }
+
+        public void DeleteCategory(int row)
+        {
+            if (MessageBox.Show(this, "Are you sure to delete this category?", "Delete Category", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                cateroryHelper.DeleteCategory(Convert.ToInt32(grdCategoryList[1, row].Value.ToString()));
+                cateroryHelper.LoadCategories(grdCategoryList, "");
+                MessageBox.Show("Category Successfully Deleted", "Category Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
         }
 
     }

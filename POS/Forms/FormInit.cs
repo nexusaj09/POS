@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,8 @@ using MetroFramework.Forms;
 using POS.Classes;
 using POS.Helpers;
 using POS.Panels;
+using POS.Properties;
+
 namespace POS.Forms
 {
     public partial class FormInit : MetroForm
@@ -18,6 +21,8 @@ namespace POS.Forms
         public User currentUser = new User();
         public UserHelper userHelper = new UserHelper();
         public bool isEstablished = false;
+
+
         public FormInit()
         {
             InitializeComponent();
@@ -25,7 +30,7 @@ namespace POS.Forms
 
         private void metroButton2_Click(object sender, EventArgs e)
         {
-            this.Dispose();
+            Application.Exit();
         }
 
         private void metroLink1_Click(object sender, EventArgs e)
@@ -51,6 +56,10 @@ namespace POS.Forms
                         MessageBox.Show(this, "Welcome " + currentUser.Fullname.ToString(), "Access Granted!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         if (currentUser.Role == "System Administrator")
                         {
+
+                            promptWarning();
+
+
                             FormMainMenu mainMenu = new FormMainMenu(currentUser);
                             mainMenu.Show();
                         }
@@ -67,6 +76,8 @@ namespace POS.Forms
                         //    frmTransaction transaction = new frmTransaction(login);
                         //    transaction.Show();
                         //}
+                       
+
                     }
                     else
                         MessageBox.Show(this, "User is inactive. ", "Inactive User!", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -121,6 +132,11 @@ namespace POS.Forms
 
                 InitialSetup();
             }
+            else
+            {
+                FormDatabaseConnection formDatabaseConnection = new FormDatabaseConnection(this);
+                formDatabaseConnection.ShowDialog();
+            }
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -145,5 +161,36 @@ namespace POS.Forms
             }
         }
 
+        public void promptWarning()
+        {
+            var t = new Timer();
+            t.Interval = 10000;
+
+            ProductHelper helper = new ProductHelper();
+
+            int lowQty = helper.CountTotalReStockQty();
+            int outOfStock = helper.CountTotalOutofStock();
+            int expired = helper.CountTotalExpiredStock();
+
+
+            if (lowQty > 0 || expired > 0 || outOfStock > 0)
+            {
+                notifyIcon1.Icon = Resources.pos_terminal;
+                notifyIcon1.Text = "POS NOTIFICATION";
+                notifyIcon1.Visible = true;
+                notifyIcon1.BalloonTipTitle = "POS NOTIFICATION";
+                notifyIcon1.BalloonTipText = string.Format("LOW QUANTITY: {0}\nOUT OF STOCK: {1}\nEXPIRED PRODUCTS {2}", lowQty.ToString(), outOfStock.ToString(), expired.ToString());
+                notifyIcon1.ShowBalloonTip(100);
+
+                t.Tick += (s, a) =>
+                {
+                    notifyIcon1.Dispose();
+                    t.Stop();
+                };
+
+                t.Start();
+            }
+
+        }
     }
 }

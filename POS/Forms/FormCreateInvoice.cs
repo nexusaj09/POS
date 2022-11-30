@@ -123,7 +123,10 @@ namespace POS.Forms
             {
                 grdInvoiceList.Rows[e.RowIndex].Cells["SUPPLIERPRICE"].Value = string.Format("{0:#,##0.00}", double.Parse(grdInvoiceList.Rows[e.RowIndex].Cells["SUPPLIERPRICE"].Value.ToString()));
             }
-
+            else if (e.ColumnIndex == 5)
+            {
+                grdInvoiceList.Rows[e.RowIndex].Cells["QTY"].Value = string.Format("{0:#,###}", int.Parse(grdInvoiceList.Rows[e.RowIndex].Cells["QTY"].Value.ToString()));
+            }
             ComputeTotalPerItem();
 
         }
@@ -136,11 +139,11 @@ namespace POS.Forms
             foreach (DataGridViewRow r in grdInvoiceList.Rows)
             {
                 grdInvoiceList.Rows[r.Index].Cells["TOTALINVOICE"].Value =
-                Convert.ToDecimal(grdInvoiceList.Rows[r.Index].Cells["SUPPLIERPRICE"].Value.ToString()) * Convert.ToInt32(grdInvoiceList.Rows[r.Index].Cells["Qty"].Value);
+                Convert.ToDecimal(grdInvoiceList.Rows[r.Index].Cells["SUPPLIERPRICE"].Value.ToString()) * Convert.ToInt32(grdInvoiceList.Rows[r.Index].Cells["Qty"].Value.ToString().Replace(",",""));
                 grdInvoiceList.Rows[r.Index].Cells["TOTALINVOICE"].Value = string.Format("{0:#,##0.00}", double.Parse(grdInvoiceList.Rows[r.Index].Cells["TOTALINVOICE"].Value.ToString()));
                 totalAmt += Convert.ToDecimal(grdInvoiceList.Rows[r.Index].Cells["TOTALINVOICE"].Value);
 
-                totalQty += Convert.ToInt32(grdInvoiceList.Rows[r.Index].Cells["QTY"].Value);
+                totalQty += Convert.ToInt32(grdInvoiceList.Rows[r.Index].Cells["QTY"].Value.ToString().Replace(",",""));
 
             }
             lblTotalInvoice.Text = string.Format("{0:#,##0.00}", double.Parse(totalAmt.ToString()));
@@ -277,6 +280,20 @@ namespace POS.Forms
             if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
             {
                 e.Handled = true;
+            }
+        }
+
+        private void btnCreate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FormCreateProduct createProduct = new FormCreateProduct(formInvoice.currUser,true);
+                createProduct.ShowDialog();
+
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     }

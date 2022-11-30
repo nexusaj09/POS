@@ -84,7 +84,8 @@ namespace POS.Helpers
                                                             CreatedDateTime,
                                                             LastModifiedByID,
                                                             LastModifiedDateTime,
-                                                            MarkUp
+                                                            MarkUp,
+                                                            ExpirationDate
                                                            )
                                                     VALUES
                                                            (
@@ -106,7 +107,8 @@ namespace POS.Helpers
                                                             @CreatedDateTime,
                                                             @LastModifiedByID,
                                                             @LastModifiedDateTime,
-                                                            @MarkUp                                       
+                                                            @MarkUp,
+                                                            @ExpirationDate
                                                             )";
                     cmd.Parameters.AddWithValue(@"ProductCode", product.ProductCode);
                     cmd.Parameters.AddWithValue(@"Barcode", product.ProductBarcode);
@@ -127,6 +129,7 @@ namespace POS.Helpers
                     cmd.Parameters.AddWithValue(@"LastModifiedByID", product.LastModifiedByID);
                     cmd.Parameters.AddWithValue(@"LastModifiedDateTime", product.LastModifiedDateTime);
                     cmd.Parameters.AddWithValue(@"MarkUp", product.MarkUp);
+                    cmd.Parameters.AddWithValue(@"ExpirationDate", product.ExpirationDate);
                     cmd.ExecuteNonQuery();
                 }
 
@@ -161,15 +164,16 @@ namespace POS.Helpers
                     cmd.CommandType = CommandType.Text;
                     cmd.CommandText = @"SELECT ProductCode,Barcode,Description,
                                 BrandName,GenericName,Classification,Formulation,
-                                Category, UOM,QTY,ReOrderQty,SupplierPrice,SRP,FinalPrice,MarkUp 
-                                FROM Products WHERE ProductCode LIKE '%" + search + "%' OR Barcode LIKE '%" + search + "%' OR Description LIKE '%" + search + "%' ORDER BY ProductCode";
+                                Category, UOM,QTY,ReOrderQty,SupplierPrice,SRP,FinalPrice,MarkUp,ExpirationDate 
+                                FROM Products WHERE ProductCode LIKE '%" + search + "%' OR Barcode LIKE '%" + search + "%' OR Description LIKE '%" + search + "%' OR Category LIKE '%" + search + "%' ORDER BY ProductCode";
                     dr = cmd.ExecuteReader();
                     while (dr.Read())
                     {
                         count++;
+
                         formProduct.grdProductList.Rows.Add(count, dr["ProductCode"].ToString(), dr["Barcode"].ToString(), dr["Description"].ToString(),
                                 dr["BrandName"].ToString(), dr["GenericName"].ToString(), dr["Classification"].ToString(), dr["Formulation"].ToString(), dr["Category"].ToString(),
-                                dr["UOM"].ToString(), dr["QTY"].ToString(), dr["ReOrderQty"].ToString(), dr["SupplierPrice"].ToString(), dr["SRP"].ToString(), dr["FinalPrice"].ToString(), dr["MarkUp"].ToString());
+                                dr["UOM"].ToString(), dr["QTY"].ToString(), dr["ReOrderQty"].ToString(), dr["SupplierPrice"].ToString(), dr["SRP"].ToString(), dr["FinalPrice"].ToString(), dr["MarkUp"].ToString(), Convert.ToDateTime(dr["ExpirationDate"]).ToString("dd/MM/yyyy"));
                     }
 
                 }
@@ -180,6 +184,7 @@ namespace POS.Helpers
             }
             finally
             {
+                dr.Close();
                 conn.Close();
                 conn.Dispose();
             }
@@ -218,6 +223,7 @@ namespace POS.Helpers
             }
             finally
             {
+                dr.Close();
                 conn.Close();
                 conn.Dispose();
             }
@@ -296,6 +302,7 @@ namespace POS.Helpers
             }
             finally
             {
+                dr.Close();
                 conn.Close();
                 conn.Dispose();
             }
@@ -333,12 +340,53 @@ namespace POS.Helpers
             }
             finally
             {
+                dr.Close();
                 conn.Close();
                 conn.Dispose();
             }
         }
 
-        public void DeleteProdut(string productCode)
+        public int CountTotalExpiredStock()
+        {
+            int count = 0;
+
+            try
+            {
+                conn.Close();
+                conn.Dispose();
+
+                connection();
+
+                using (cmd = new SqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = @"SELECT Count(*) as Expired FROM PRODUCTS WHERE CAST(ExpirationDate as DATE) < GETDATE()";
+                    dr = cmd.ExecuteReader();
+                    if (dr.Read())
+                    {
+                        count = Convert.ToInt32(dr["Expired"].ToString());
+                    }
+                }
+
+                return count;
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+                return count;
+            }
+            finally
+            {
+                dr.Close();
+                conn.Close();
+                conn.Dispose();
+            }
+        }
+
+
+        public void DeleteProduct(string productCode)
         {
             try
             {
@@ -385,7 +433,7 @@ namespace POS.Helpers
                                         Formulation = @Formulation, Category = @Category, UOM = @UOM,
                                         ReOrderQty = @ReOrderQty, Qty = @Qty, SupplierPrice = @SupplierPrice,
                                         FinalPrice = @FinalPrice, SRP = @SRP, LastModifiedDateTime = @LastModifiedDateTime,
-                                        MarkUp = @MarkUp, LastModifiedByID = @LastModifiedByID WHERE ProductCode = @ProductCode";
+                                        MarkUp = @MarkUp, LastModifiedByID = @LastModifiedByID, ExpirationDate = @ExpirationDate WHERE ProductCode = @ProductCode";
                     cmd.Parameters.AddWithValue(@"ProductCode", product.ProductCode);
                     cmd.Parameters.AddWithValue(@"Barcode", product.ProductBarcode);
                     cmd.Parameters.AddWithValue(@"Description", product.Description);
@@ -403,6 +451,7 @@ namespace POS.Helpers
                     cmd.Parameters.AddWithValue(@"LastModifiedByID", product.LastModifiedByID);
                     cmd.Parameters.AddWithValue(@"LastModifiedDateTime", product.LastModifiedDateTime);
                     cmd.Parameters.AddWithValue(@"MarkUp", product.MarkUp);
+                    cmd.Parameters.AddWithValue(@"ExpirationDate", product.ExpirationDate);
                     cmd.ExecuteNonQuery();
 
                 }
@@ -524,6 +573,7 @@ namespace POS.Helpers
             }
             finally
             {
+                dr.Close();
                 conn.Close();
                 conn.Dispose();
             }
