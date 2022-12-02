@@ -1,5 +1,6 @@
 ﻿using POS.Classes;
 using POS.Forms;
+using POS.Panels;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -287,8 +288,8 @@ namespace POS.Helpers
                                     FROM InvoiceDetails A INNER JOIN Products B
                                     ON A.ProductCode = B.ProductCode
                                     WHERE RefNbr = @RefNbr ORDER BY A.InvoiceDetailID";
-                    cmd.Parameters.AddWithValue(@"RefNbr",RefNbr);
-                        dr = cmd.ExecuteReader();
+                    cmd.Parameters.AddWithValue(@"RefNbr", RefNbr);
+                    dr = cmd.ExecuteReader();
                     while (dr.Read())
                     {
                         count++;
@@ -307,6 +308,77 @@ namespace POS.Helpers
                 conn.Close();
                 conn.Dispose();
 
+            }
+        }
+
+
+        public void LoadProductSupplierInvoice(PanelSupplierPrice supplierPrice, string productCode, string search)
+        {
+            try
+            {
+                List<ProductSupplier> productSuppliers = new List<ProductSupplier>();
+                int count = 0;
+                List<ProductSupplier> finalList = new List<ProductSupplier>();
+                ProductSupplier temp = new ProductSupplier();
+
+                conn.Close();
+                conn.Dispose();
+
+                connection();
+
+                supplierPrice.grdSupplierList.Rows.Clear();
+
+                using (cmd = new SqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandType = System.Data.CommandType.Text;
+                    cmd.CommandText = @"SELECT A.RefNbr,C.Supplier,A.SupplierPrice, B.TransactionDate FROM InvoiceDetails A
+                                    INNER JOIN Invoice B
+                                    ON A.RefNbr = B.RefNbr
+                                    INNER JOIN Suppliers C
+                                    ON B.SupplierID = C.ID
+                                    WHERE A.ProductCode = @ProductCode AND Supplier LIKE '%" + search + "%'";
+                    cmd.Parameters.AddWithValue(@"ProductCode", productCode);
+                    dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        ProductSupplier productSupplier = new ProductSupplier();
+                        productSupplier.RefNbr = dr["RefNbr"].ToString();
+                        productSupplier.SupplierName = dr["Supplier"].ToString();
+                        productSupplier.Price = Convert.ToDecimal(dr["SupplierPrice"].ToString());
+                        productSupplier.TransactionDate = Convert.ToDateTime(dr["TransactionDate"]);
+
+
+                      //  supplierPrice.grdSupplierList.Rows.Add(count, dr["RefNbr"].ToString(), dr["Supplier"].ToString(), dr["SupplierPrice"].ToString(), Convert.ToDateTime(dr["TransactionDate"]).ToString("dd/MM/yyyy"));
+                        productSuppliers.Add(productSupplier);
+                    }
+                    ProductSupplier prev = new ProductSupplier();
+
+                    foreach (ProductSupplier item in productSuppliers.OrderByDescending(x => x.SupplierName).ThenByDescending(y => y.TransactionDate))
+                    {
+                        if (prev.SupplierName != item.SupplierName)
+                        {
+                            finalList.Add(item);
+                            prev = item;
+                        }
+
+                    }
+                    foreach (var row in finalList.OrderBy(x => x.Price))
+                    {
+                        count++;
+                        supplierPrice.grdSupplierList.Rows.Add(count, row.RefNbr, row.SupplierName,row.Price, Convert.ToDateTime(row.TransactionDate).ToString("dd/MM/yyyy"));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                dr.Close();
+                conn.Close();
+                conn.Dispose();
             }
         }
 

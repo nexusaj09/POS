@@ -154,6 +154,7 @@
             this.grdProductList.Size = new System.Drawing.Size(1326, 585);
             this.grdProductList.TabIndex = 8;
             this.grdProductList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdProductList_CellContentClick);
+            this.grdProductList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdProductList_CellDoubleClick);
             this.grdProductList.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.grdProductList_CellFormatting);
             // 
             // Count

@@ -153,5 +153,16 @@ namespace POS.Forms
                 MessageBox.Show("Product Successfully Deleted", "Product Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
+        private void grdProductList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string productCode = grdProductList[1,e.RowIndex].Value.ToString();
+            using (PanelSupplierPrice form = new PanelSupplierPrice(productCode))
+            {
+                form.ShowDialog(this);
+                form.Dispose();
+                txtSearch.Select();
+            }
+        }
     }
 }

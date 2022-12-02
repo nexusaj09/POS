@@ -328,7 +328,7 @@ namespace POS.Forms
             txtInitialQty.Enabled = btnSave.Text == "SAVE" ? true : false;
             txtProductCode.Enabled = btnSave.Text == "SAVE" ? true : false;
 
-            if (updateProduct != null && updateProduct.ProductCode != null)
+            if (updateProduct != null && updateProduct.ProductCode != null && btnSave.Visible == true)
             {
                 txtProductCode.Text = updateProduct.ProductCode;
                 txtBarcode.Text = updateProduct.ProductBarcode;

@@ -48,6 +48,7 @@
             this.ACTION = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.REASON = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CREATEDBY = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.VIEW = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdAdjustment)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -82,7 +83,8 @@
             this.PREVQTY,
             this.ACTION,
             this.REASON,
-            this.CREATEDBY});
+            this.CREATEDBY,
+            this.VIEW});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -232,7 +234,7 @@
             this.QTYONHAND.HeaderText = "QTY ON HAND";
             this.QTYONHAND.Name = "QTYONHAND";
             this.QTYONHAND.ReadOnly = true;
-            this.QTYONHAND.Width = 108;
+            this.QTYONHAND.Width = 118;
             // 
             // ADJUSTEDQTY
             // 
@@ -240,7 +242,7 @@
             this.ADJUSTEDQTY.HeaderText = "ADJUSTED QTY";
             this.ADJUSTEDQTY.Name = "ADJUSTEDQTY";
             this.ADJUSTEDQTY.ReadOnly = true;
-            this.ADJUSTEDQTY.Width = 109;
+            this.ADJUSTEDQTY.Width = 119;
             // 
             // PREVQTY
             // 
@@ -248,7 +250,7 @@
             this.PREVQTY.HeaderText = "PREVIOUS QTY";
             this.PREVQTY.Name = "PREVQTY";
             this.PREVQTY.ReadOnly = true;
-            this.PREVQTY.Width = 107;
+            this.PREVQTY.Width = 117;
             // 
             // ACTION
             // 
@@ -270,6 +272,15 @@
             this.CREATEDBY.HeaderText = "CREATED BY";
             this.CREATEDBY.Name = "CREATEDBY";
             this.CREATEDBY.ReadOnly = true;
+            // 
+            // VIEW
+            // 
+            this.VIEW.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.VIEW.HeaderText = "";
+            this.VIEW.Image = ((System.Drawing.Image)(resources.GetObject("VIEW.Image")));
+            this.VIEW.Name = "VIEW";
+            this.VIEW.ReadOnly = true;
+            this.VIEW.Width = 5;
             // 
             // FormStockAdjustments
             // 
@@ -312,5 +323,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ACTION;
         private System.Windows.Forms.DataGridViewTextBoxColumn REASON;
         private System.Windows.Forms.DataGridViewTextBoxColumn CREATEDBY;
+        private System.Windows.Forms.DataGridViewImageColumn VIEW;
     }
 }

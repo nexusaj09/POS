@@ -48,13 +48,9 @@ namespace POS.Forms
 
                 if (dbcon.SaveConnectionStringRegistry() == true)
                 {
-
-
                     MessageBox.Show("Connection Successful", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    txtDatabaseName.Text = null;
-                    txtPassword.Text = null;
-                    txtServerName.Text = null;
-                    txtUsername.Text = null;
+
+                    Clear();
 
                     formInit.isEstablished = true;
 
@@ -65,9 +61,18 @@ namespace POS.Forms
                     MessageBox.Show("Connection Error", "Unsuccessful", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                     formInit.isEstablished = false;
+
+                    Clear();
                 }
             }
 
+        }
+        private void Clear()
+        {
+            txtDatabaseName.Clear();
+            txtPassword.Clear();
+            txtServerName.Clear();
+            txtUsername.Clear();
         }
     }
 }

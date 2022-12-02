@@ -24,6 +24,7 @@ namespace POS.Helpers
         public SqlConnection conn = new SqlConnection();
         public SqlCommand cmd = new SqlCommand();
         public SqlDataReader dr;
+        bool isUpdated = false;
         public bool SaveConnectionStringRegistry()
         {
             try
@@ -35,18 +36,26 @@ namespace POS.Helpers
                     sqlbuilder.UserID = user;
                     sqlbuilder.Password = password;
                     ConnectionString = sqlbuilder.ConnectionString;
+
                     if (Registry.CurrentUser.OpenSubKey("Software\\POS\\System") == null)
                     {
                         Key = Registry.CurrentUser.CreateSubKey("Software\\POS\\System");
                     }
-                    Registry.SetValue("HKEY_CURRENT_USER\\Software\\POS\\System\\Settings", "POS", ConnectionString);
 
+                    if (IsConnected())
+                    {
+                        Registry.SetValue("HKEY_CURRENT_USER\\Software\\POS\\System\\Settings", "POS", ConnectionString);
+                        isUpdated = true;
+                    }
                 }
                 finally
                 {
                     Registry.CurrentUser.Close();
                 }
-                KeyValue = Conversions.ToString(Registry.GetValue("HKEY_CURRENT_USER\\Software\\POS\\System\\Settings", "POS", "Default Value"));
+                if (isUpdated)
+                {
+                    KeyValue = Conversions.ToString(Registry.GetValue("HKEY_CURRENT_USER\\Software\\POS\\System\\Settings", "POS", "Default Value"));
+                }
 
                 if (KeyValue == null)
                 {
@@ -80,11 +89,15 @@ namespace POS.Helpers
             {
                 MessageBox.Show(ex.ToString());
             }
+
+
         }
 
         public bool DisplayConnSetup()
         {
             KeyValue = Conversions.ToString(Registry.GetValue("HKEY_CURRENT_USER\\Software\\POS\\System\\Settings", "POS", "Default Value"));
+
+
             if (Strings.Trim(KeyValue) == "")
             {
                 MessageBox.Show("Please Set Up Server Connection", "Server not set up", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -92,6 +105,7 @@ namespace POS.Helpers
             }
             else
             {
+
                 SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder(KeyValue.ToString());
                 user = builder.UserID;
                 password = builder.Password;
@@ -100,7 +114,25 @@ namespace POS.Helpers
                 return true;
             }
         }
+        public bool IsConnected()
+        {
+            try
+            {
+                conn.ConnectionString = ConnectionString;
+                if (conn.State == System.Data.ConnectionState.Closed)
+                {
+                    conn.Open();
+                    return true;
+                }
+                else return false;
+            }
+            catch (Exception ex)
+            {
 
+                // MessageBox.Show(ex.Message);
+                return false;
+            }
+        }
     }
 }
 
