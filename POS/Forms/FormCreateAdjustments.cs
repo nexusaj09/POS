@@ -30,8 +30,7 @@ namespace POS.Forms
 
         private void FormCreateAdjustments_Load(object sender, EventArgs e)
         {
-            adjustmentHelper.LoadProduct(grdProductList, "");
-
+      
             txtUser.Text = formStockAdjustments.currUser.Fullname;
 
             Init();
@@ -73,6 +72,8 @@ namespace POS.Forms
 
         public void Init()
         {
+            adjustmentHelper.LoadProduct(grdProductList, "");
+
             if (stockAdjustment != null)
             {
                 btnSave.Visible = false;

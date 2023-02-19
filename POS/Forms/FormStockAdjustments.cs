@@ -32,7 +32,7 @@ namespace POS.Forms
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
-            using (FormCreateAdjustments formAdjust = new FormCreateAdjustments(this,stockAdjustment))
+            using (FormCreateAdjustments formAdjust = new FormCreateAdjustments(this,null))
             {
                 formAdjust.ShowDialog(this);
                 formAdjust.Dispose();

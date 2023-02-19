@@ -20,6 +20,7 @@ namespace POS.Forms
         public SupplierHelper supplierHelper = new SupplierHelper();
         public DataGridView dataGrid = new DataGridView();
         public Suppliers updateSupplier = new Suppliers();
+        public bool _enabled = true;
         public FormCreateSupplier(User currUser, DataGridView gridView, Suppliers suppliers)
         {
             InitializeComponent();
@@ -27,6 +28,14 @@ namespace POS.Forms
             this.currUser = currUser;
             this.dataGrid = gridView;
             this.updateSupplier = suppliers;
+        }
+
+        public FormCreateSupplier(Suppliers suppliers,bool enabled)
+        {
+            InitializeComponent();
+
+            this.updateSupplier = suppliers;
+            this._enabled = enabled;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -116,6 +125,18 @@ namespace POS.Forms
 
         }
 
+        private void DisableFields(bool enabled)
+        {
+            txtSupplierName.Enabled = enabled;
+            txtAddress.Enabled = enabled;
+            txtContactPerson.Enabled = enabled;
+            txtContactNbr.Enabled = enabled;
+            txtEmail.Enabled = enabled;
+            btnSave.Enabled = enabled;
+        }
+
+
+
         private void FormCreateSupplier_Load(object sender, EventArgs e)
         {
             if (updateSupplier != null)
@@ -127,6 +148,9 @@ namespace POS.Forms
                 txtEmail.Text = updateSupplier.Email;
                 txtSupplierName.Select();
             }
+
+            DisableFields(_enabled);
+
         }
 
         private void txtContactPerson_KeyPress(object sender, KeyPressEventArgs e)

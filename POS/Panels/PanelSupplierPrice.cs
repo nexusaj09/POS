@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MetroFramework.Forms;
+using POS.Classes;
+using POS.Forms;
 using POS.Helpers;
 
 namespace POS.Panels
@@ -37,6 +39,13 @@ namespace POS.Panels
             else if (e.KeyCode == Keys.F1)
             {
                 Init();
+            }
+            else if (e.KeyCode == Keys.Enter && grdSupplierList.ContainsFocus)
+            {
+                if (grdSupplierList.CurrentCell == null) return;
+
+                ViewSupplier(grdSupplierList.CurrentCell.RowIndex);
+                e.Handled = true;
             }
         }
 
@@ -71,6 +80,35 @@ namespace POS.Panels
                 //   edit: to change the background color:
                 e.CellStyle.SelectionBackColor = Color.Coral;
                 e.CellStyle.SelectionForeColor = Color.White;
+            }
+        }
+
+        private void grdSupplierList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            ViewSupplier(e.RowIndex);
+        }
+
+        private void ViewSupplier(int row)
+        {
+            if (grdSupplierList.Rows.Count > 0)
+            {
+
+                int rowID = Convert.ToInt32(grdSupplierList[2, row].Value);
+
+                Suppliers supplier = new Suppliers();
+
+                supplier = invoiceHelper.LoadSupplierDetails(rowID);
+
+                if (supplier == null) return;
+
+                using (FormCreateSupplier form = new FormCreateSupplier(supplier, false))
+                {
+                    form.ShowDialog();
+                    form.Dispose();
+                    txtFocus();
+                }
             }
         }
     }

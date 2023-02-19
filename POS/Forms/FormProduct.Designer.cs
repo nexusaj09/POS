@@ -29,29 +29,16 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormProduct));
             this.grdProductList = new MetroFramework.Controls.MetroGrid();
-            this.Count = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PRODUCTCODE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BARCODE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BRAND = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GENERIC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CLASS = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FORM = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CATEGORY = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UOM = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.QTY = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.REORDERLVL = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SUPPLIERPRC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SRP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FINALPRICE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MARKUP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EXPIRATIONDATE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EDIT = new System.Windows.Forms.DataGridViewImageColumn();
-            this.DELETE = new System.Windows.Forms.DataGridViewImageColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.metroPanel5 = new MetroFramework.Controls.MetroPanel();
             this.lblExpired = new System.Windows.Forms.Label();
@@ -75,6 +62,27 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.btnCreate = new MetroFramework.Controls.MetroButton();
+            this.Count = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PRODUCTCODE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BARCODE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LOCATION = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BRAND = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GENERIC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CLASS = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FORM = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CATEGORY = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UOM = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QTY = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.REORDERLVL = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SUPPLIERPRC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SRP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FINALPRICE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MARKUP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EXPIRATIONDATE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ISEXPIRING = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.EDIT = new System.Windows.Forms.DataGridViewImageColumn();
+            this.DELETE = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdProductList)).BeginInit();
             this.panel1.SuspendLayout();
             this.metroPanel5.SuspendLayout();
@@ -107,6 +115,7 @@
             this.PRODUCTCODE,
             this.BARCODE,
             this.Description,
+            this.LOCATION,
             this.BRAND,
             this.GENERIC,
             this.CLASS,
@@ -120,16 +129,17 @@
             this.FINALPRICE,
             this.MARKUP,
             this.EXPIRATIONDATE,
+            this.ISEXPIRING,
             this.EDIT,
             this.DELETE});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdProductList.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdProductList.DefaultCellStyle = dataGridViewCellStyle8;
             this.grdProductList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grdProductList.EnableHeadersVisualStyles = false;
             this.grdProductList.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
@@ -139,14 +149,14 @@
             this.grdProductList.Name = "grdProductList";
             this.grdProductList.ReadOnly = true;
             this.grdProductList.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Coral;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdProductList.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.Coral;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdProductList.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.grdProductList.RowHeadersWidth = 51;
             this.grdProductList.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.grdProductList.RowTemplate.Height = 26;
@@ -156,173 +166,6 @@
             this.grdProductList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdProductList_CellContentClick);
             this.grdProductList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdProductList_CellDoubleClick);
             this.grdProductList.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.grdProductList_CellFormatting);
-            // 
-            // Count
-            // 
-            this.Count.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Count.HeaderText = "#";
-            this.Count.MinimumWidth = 6;
-            this.Count.Name = "Count";
-            this.Count.ReadOnly = true;
-            this.Count.Width = 39;
-            // 
-            // PRODUCTCODE
-            // 
-            this.PRODUCTCODE.HeaderText = "PRODUCT CODE";
-            this.PRODUCTCODE.MinimumWidth = 6;
-            this.PRODUCTCODE.Name = "PRODUCTCODE";
-            this.PRODUCTCODE.ReadOnly = true;
-            this.PRODUCTCODE.Width = 125;
-            // 
-            // BARCODE
-            // 
-            this.BARCODE.HeaderText = "BARCODE";
-            this.BARCODE.MinimumWidth = 6;
-            this.BARCODE.Name = "BARCODE";
-            this.BARCODE.ReadOnly = true;
-            this.BARCODE.Width = 125;
-            // 
-            // Description
-            // 
-            this.Description.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Description.HeaderText = "DESCRIPTION";
-            this.Description.MinimumWidth = 6;
-            this.Description.Name = "Description";
-            this.Description.ReadOnly = true;
-            // 
-            // BRAND
-            // 
-            this.BRAND.HeaderText = "BRAND";
-            this.BRAND.MinimumWidth = 6;
-            this.BRAND.Name = "BRAND";
-            this.BRAND.ReadOnly = true;
-            this.BRAND.Visible = false;
-            this.BRAND.Width = 125;
-            // 
-            // GENERIC
-            // 
-            this.GENERIC.HeaderText = "GENERIC";
-            this.GENERIC.MinimumWidth = 6;
-            this.GENERIC.Name = "GENERIC";
-            this.GENERIC.ReadOnly = true;
-            this.GENERIC.Visible = false;
-            this.GENERIC.Width = 125;
-            // 
-            // CLASS
-            // 
-            this.CLASS.HeaderText = "CLASS";
-            this.CLASS.MinimumWidth = 6;
-            this.CLASS.Name = "CLASS";
-            this.CLASS.ReadOnly = true;
-            this.CLASS.Visible = false;
-            this.CLASS.Width = 125;
-            // 
-            // FORM
-            // 
-            this.FORM.HeaderText = "FORM";
-            this.FORM.MinimumWidth = 6;
-            this.FORM.Name = "FORM";
-            this.FORM.ReadOnly = true;
-            this.FORM.Visible = false;
-            this.FORM.Width = 125;
-            // 
-            // CATEGORY
-            // 
-            this.CATEGORY.HeaderText = "CATEGORY";
-            this.CATEGORY.MinimumWidth = 6;
-            this.CATEGORY.Name = "CATEGORY";
-            this.CATEGORY.ReadOnly = true;
-            this.CATEGORY.Width = 125;
-            // 
-            // UOM
-            // 
-            this.UOM.HeaderText = "UOM";
-            this.UOM.MinimumWidth = 6;
-            this.UOM.Name = "UOM";
-            this.UOM.ReadOnly = true;
-            this.UOM.Visible = false;
-            this.UOM.Width = 125;
-            // 
-            // QTY
-            // 
-            this.QTY.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.QTY.HeaderText = "QTY";
-            this.QTY.MinimumWidth = 6;
-            this.QTY.Name = "QTY";
-            this.QTY.ReadOnly = true;
-            this.QTY.Width = 54;
-            // 
-            // REORDERLVL
-            // 
-            this.REORDERLVL.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.REORDERLVL.HeaderText = "RE-ORDER";
-            this.REORDERLVL.MinimumWidth = 6;
-            this.REORDERLVL.Name = "REORDERLVL";
-            this.REORDERLVL.ReadOnly = true;
-            this.REORDERLVL.Width = 93;
-            // 
-            // SUPPLIERPRC
-            // 
-            this.SUPPLIERPRC.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.SUPPLIERPRC.HeaderText = "SUP PRICE";
-            this.SUPPLIERPRC.MinimumWidth = 6;
-            this.SUPPLIERPRC.Name = "SUPPLIERPRC";
-            this.SUPPLIERPRC.ReadOnly = true;
-            this.SUPPLIERPRC.Width = 84;
-            // 
-            // SRP
-            // 
-            this.SRP.HeaderText = "SRP";
-            this.SRP.MinimumWidth = 6;
-            this.SRP.Name = "SRP";
-            this.SRP.ReadOnly = true;
-            this.SRP.Width = 125;
-            // 
-            // FINALPRICE
-            // 
-            this.FINALPRICE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.FINALPRICE.HeaderText = "FINAL PRICE";
-            this.FINALPRICE.MinimumWidth = 6;
-            this.FINALPRICE.Name = "FINALPRICE";
-            this.FINALPRICE.ReadOnly = true;
-            this.FINALPRICE.Width = 93;
-            // 
-            // MARKUP
-            // 
-            this.MARKUP.HeaderText = "MARKUP";
-            this.MARKUP.MinimumWidth = 6;
-            this.MARKUP.Name = "MARKUP";
-            this.MARKUP.ReadOnly = true;
-            this.MARKUP.Visible = false;
-            this.MARKUP.Width = 125;
-            // 
-            // EXPIRATIONDATE
-            // 
-            this.EXPIRATIONDATE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.EXPIRATIONDATE.HeaderText = "EXPIRATION DATE";
-            this.EXPIRATIONDATE.Name = "EXPIRATIONDATE";
-            this.EXPIRATIONDATE.ReadOnly = true;
-            this.EXPIRATIONDATE.Width = 123;
-            // 
-            // EDIT
-            // 
-            this.EDIT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.EDIT.HeaderText = "";
-            this.EDIT.Image = ((System.Drawing.Image)(resources.GetObject("EDIT.Image")));
-            this.EDIT.MinimumWidth = 6;
-            this.EDIT.Name = "EDIT";
-            this.EDIT.ReadOnly = true;
-            this.EDIT.Width = 6;
-            // 
-            // DELETE
-            // 
-            this.DELETE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.DELETE.HeaderText = "";
-            this.DELETE.Image = ((System.Drawing.Image)(resources.GetObject("DELETE.Image")));
-            this.DELETE.MinimumWidth = 6;
-            this.DELETE.Name = "DELETE";
-            this.DELETE.ReadOnly = true;
-            this.DELETE.Width = 6;
             // 
             // panel1
             // 
@@ -670,6 +513,202 @@
             this.btnCreate.UseSelectable = true;
             this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
             // 
+            // Count
+            // 
+            this.Count.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Count.HeaderText = "#";
+            this.Count.MinimumWidth = 6;
+            this.Count.Name = "Count";
+            this.Count.ReadOnly = true;
+            this.Count.Width = 39;
+            // 
+            // PRODUCTCODE
+            // 
+            this.PRODUCTCODE.HeaderText = "PRODUCT CODE";
+            this.PRODUCTCODE.MinimumWidth = 6;
+            this.PRODUCTCODE.Name = "PRODUCTCODE";
+            this.PRODUCTCODE.ReadOnly = true;
+            this.PRODUCTCODE.Width = 125;
+            // 
+            // BARCODE
+            // 
+            this.BARCODE.HeaderText = "BARCODE";
+            this.BARCODE.MinimumWidth = 6;
+            this.BARCODE.Name = "BARCODE";
+            this.BARCODE.ReadOnly = true;
+            this.BARCODE.Width = 125;
+            // 
+            // Description
+            // 
+            this.Description.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Description.HeaderText = "DESCRIPTION";
+            this.Description.MinimumWidth = 6;
+            this.Description.Name = "Description";
+            this.Description.ReadOnly = true;
+            // 
+            // LOCATION
+            // 
+            this.LOCATION.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.LOCATION.HeaderText = "LOCATION";
+            this.LOCATION.Name = "LOCATION";
+            this.LOCATION.ReadOnly = true;
+            this.LOCATION.Width = 92;
+            // 
+            // BRAND
+            // 
+            this.BRAND.HeaderText = "BRAND";
+            this.BRAND.MinimumWidth = 6;
+            this.BRAND.Name = "BRAND";
+            this.BRAND.ReadOnly = true;
+            this.BRAND.Visible = false;
+            this.BRAND.Width = 125;
+            // 
+            // GENERIC
+            // 
+            this.GENERIC.HeaderText = "GENERIC";
+            this.GENERIC.MinimumWidth = 6;
+            this.GENERIC.Name = "GENERIC";
+            this.GENERIC.ReadOnly = true;
+            this.GENERIC.Visible = false;
+            this.GENERIC.Width = 125;
+            // 
+            // CLASS
+            // 
+            this.CLASS.HeaderText = "CLASS";
+            this.CLASS.MinimumWidth = 6;
+            this.CLASS.Name = "CLASS";
+            this.CLASS.ReadOnly = true;
+            this.CLASS.Visible = false;
+            this.CLASS.Width = 125;
+            // 
+            // FORM
+            // 
+            this.FORM.HeaderText = "FORM";
+            this.FORM.MinimumWidth = 6;
+            this.FORM.Name = "FORM";
+            this.FORM.ReadOnly = true;
+            this.FORM.Visible = false;
+            this.FORM.Width = 125;
+            // 
+            // CATEGORY
+            // 
+            this.CATEGORY.HeaderText = "CATEGORY";
+            this.CATEGORY.MinimumWidth = 6;
+            this.CATEGORY.Name = "CATEGORY";
+            this.CATEGORY.ReadOnly = true;
+            this.CATEGORY.Width = 125;
+            // 
+            // UOM
+            // 
+            this.UOM.HeaderText = "UOM";
+            this.UOM.MinimumWidth = 6;
+            this.UOM.Name = "UOM";
+            this.UOM.ReadOnly = true;
+            this.UOM.Visible = false;
+            this.UOM.Width = 125;
+            // 
+            // QTY
+            // 
+            dataGridViewCellStyle2.Format = "N0";
+            dataGridViewCellStyle2.NullValue = null;
+            this.QTY.DefaultCellStyle = dataGridViewCellStyle2;
+            this.QTY.HeaderText = "QTY";
+            this.QTY.MinimumWidth = 6;
+            this.QTY.Name = "QTY";
+            this.QTY.ReadOnly = true;
+            this.QTY.Width = 70;
+            // 
+            // REORDERLVL
+            // 
+            dataGridViewCellStyle3.Format = "N0";
+            dataGridViewCellStyle3.NullValue = null;
+            this.REORDERLVL.DefaultCellStyle = dataGridViewCellStyle3;
+            this.REORDERLVL.HeaderText = "RE-ORDER";
+            this.REORDERLVL.MinimumWidth = 6;
+            this.REORDERLVL.Name = "REORDERLVL";
+            this.REORDERLVL.ReadOnly = true;
+            this.REORDERLVL.Width = 70;
+            // 
+            // SUPPLIERPRC
+            // 
+            dataGridViewCellStyle4.Format = "C2";
+            dataGridViewCellStyle4.NullValue = null;
+            this.SUPPLIERPRC.DefaultCellStyle = dataGridViewCellStyle4;
+            this.SUPPLIERPRC.HeaderText = "SUP PRICE";
+            this.SUPPLIERPRC.MinimumWidth = 6;
+            this.SUPPLIERPRC.Name = "SUPPLIERPRC";
+            this.SUPPLIERPRC.ReadOnly = true;
+            this.SUPPLIERPRC.Width = 125;
+            // 
+            // SRP
+            // 
+            dataGridViewCellStyle5.Format = "C2";
+            dataGridViewCellStyle5.NullValue = null;
+            this.SRP.DefaultCellStyle = dataGridViewCellStyle5;
+            this.SRP.HeaderText = "SRP";
+            this.SRP.MinimumWidth = 6;
+            this.SRP.Name = "SRP";
+            this.SRP.ReadOnly = true;
+            this.SRP.Width = 125;
+            // 
+            // FINALPRICE
+            // 
+            dataGridViewCellStyle6.Format = "C2";
+            dataGridViewCellStyle6.NullValue = null;
+            this.FINALPRICE.DefaultCellStyle = dataGridViewCellStyle6;
+            this.FINALPRICE.HeaderText = "FINAL PRICE";
+            this.FINALPRICE.MinimumWidth = 6;
+            this.FINALPRICE.Name = "FINALPRICE";
+            this.FINALPRICE.ReadOnly = true;
+            this.FINALPRICE.Width = 125;
+            // 
+            // MARKUP
+            // 
+            this.MARKUP.HeaderText = "MARKUP";
+            this.MARKUP.MinimumWidth = 6;
+            this.MARKUP.Name = "MARKUP";
+            this.MARKUP.ReadOnly = true;
+            this.MARKUP.Visible = false;
+            this.MARKUP.Width = 125;
+            // 
+            // EXPIRATIONDATE
+            // 
+            this.EXPIRATIONDATE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            dataGridViewCellStyle7.Format = "d";
+            dataGridViewCellStyle7.NullValue = null;
+            this.EXPIRATIONDATE.DefaultCellStyle = dataGridViewCellStyle7;
+            this.EXPIRATIONDATE.HeaderText = "EXPIRATION DATE";
+            this.EXPIRATIONDATE.Name = "EXPIRATIONDATE";
+            this.EXPIRATIONDATE.ReadOnly = true;
+            this.EXPIRATIONDATE.Width = 123;
+            // 
+            // ISEXPIRING
+            // 
+            this.ISEXPIRING.HeaderText = "IS EXPRING";
+            this.ISEXPIRING.Name = "ISEXPIRING";
+            this.ISEXPIRING.ReadOnly = true;
+            this.ISEXPIRING.Visible = false;
+            // 
+            // EDIT
+            // 
+            this.EDIT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.EDIT.HeaderText = "";
+            this.EDIT.Image = ((System.Drawing.Image)(resources.GetObject("EDIT.Image")));
+            this.EDIT.MinimumWidth = 6;
+            this.EDIT.Name = "EDIT";
+            this.EDIT.ReadOnly = true;
+            this.EDIT.Width = 6;
+            // 
+            // DELETE
+            // 
+            this.DELETE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.DELETE.HeaderText = "";
+            this.DELETE.Image = ((System.Drawing.Image)(resources.GetObject("DELETE.Image")));
+            this.DELETE.MinimumWidth = 6;
+            this.DELETE.Name = "DELETE";
+            this.DELETE.ReadOnly = true;
+            this.DELETE.Width = 6;
+            // 
             // FormProduct
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -720,10 +759,15 @@
         private System.Windows.Forms.Label label4;
         private MetroFramework.Controls.MetroButton btnImport;
         private MetroFramework.Controls.MetroTextBox txtSearch;
+        private MetroFramework.Controls.MetroPanel metroPanel5;
+        private System.Windows.Forms.Label lblExpired;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.DataGridViewTextBoxColumn Count;
         private System.Windows.Forms.DataGridViewTextBoxColumn PRODUCTCODE;
         private System.Windows.Forms.DataGridViewTextBoxColumn BARCODE;
         private System.Windows.Forms.DataGridViewTextBoxColumn Description;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LOCATION;
         private System.Windows.Forms.DataGridViewTextBoxColumn BRAND;
         private System.Windows.Forms.DataGridViewTextBoxColumn GENERIC;
         private System.Windows.Forms.DataGridViewTextBoxColumn CLASS;
@@ -737,11 +781,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn FINALPRICE;
         private System.Windows.Forms.DataGridViewTextBoxColumn MARKUP;
         private System.Windows.Forms.DataGridViewTextBoxColumn EXPIRATIONDATE;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn ISEXPIRING;
         private System.Windows.Forms.DataGridViewImageColumn EDIT;
         private System.Windows.Forms.DataGridViewImageColumn DELETE;
-        private MetroFramework.Controls.MetroPanel metroPanel5;
-        private System.Windows.Forms.Label lblExpired;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
     }
 }

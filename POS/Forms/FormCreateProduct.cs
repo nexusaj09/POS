@@ -230,6 +230,8 @@ namespace POS.Forms
                             newProduct.SRP = txtSRP.Text != string.Empty ? Convert.ToDecimal(txtSRP.Text) : 0;
                             newProduct.MarkUp = txtMarkUp.Text != string.Empty ? Convert.ToInt32(txtMarkUp.Text) : 0;
                             newProduct.ExpirationDate = dtExpirationDate.Value;
+                            newProduct.IsExpiring = chckWithExpiry.Checked;
+                            newProduct.Location = txtLocation.Text;
                             newProduct.CreatedByID = fromInvoice == false ? form.currUser.UserID : currUser.UserID;
                             newProduct.CreatedDateTime = DateTime.Now;
                             newProduct.LastModifiedByID = fromInvoice == false ? form.currUser.UserID : currUser.UserID;
@@ -278,6 +280,8 @@ namespace POS.Forms
                         updateProduct.LastModifiedDateTime = DateTime.Now;
                         updateProduct.LastModifiedByID = currUser.UserID;
                         updateProduct.ExpirationDate = dtExpirationDate.Value;
+                        updateProduct.IsExpiring = chckWithExpiry.Checked;
+                        updateProduct.Location = txtLocation.Text;
                         productHelper.UpdateProduct(updateProduct);
 
                         MessageBox.Show(this, "Product successfully updated!", "Updated Successfully", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -318,6 +322,8 @@ namespace POS.Forms
             isBarcodeExisting = false;
             isProductCodeExisting = false;
             dtExpirationDate.Value = DateTime.Now;
+            chckWithExpiry.Checked = false;
+            txtLocation.Clear();
         }
 
         private void Init()
@@ -327,6 +333,7 @@ namespace POS.Forms
             cmbCategory.Text = null;
             txtInitialQty.Enabled = btnSave.Text == "SAVE" ? true : false;
             txtProductCode.Enabled = btnSave.Text == "SAVE" ? true : false;
+            dtExpirationDate.Enabled = false;
 
             if (updateProduct != null && updateProduct.ProductCode != null && btnSave.Visible == true)
             {
@@ -346,6 +353,9 @@ namespace POS.Forms
                 txtSRP.Text = updateProduct.SRP.ToString();
                 txtMarkUp.Text = updateProduct.MarkUp.ToString();
                 dtExpirationDate.Value = updateProduct.ExpirationDate;
+                txtLocation.Text = updateProduct.Location.ToString();
+                chckWithExpiry.Checked = updateProduct.IsExpiring;
+                dtExpirationDate.Enabled = updateProduct.IsExpiring;
             }
 
         }
@@ -423,6 +433,11 @@ namespace POS.Forms
                     txtProductCode.Select();
                 }
             }
+        }
+
+        private void chckWithExpiry_CheckedChanged(object sender, EventArgs e)
+        {
+            dtExpirationDate.Enabled = chckWithExpiry.Checked == true ? true : false;
         }
     }
 }

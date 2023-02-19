@@ -36,7 +36,7 @@ namespace POS.Helpers
                     while (dr.Read())
                     {
                         count++;
-                        grd.Rows.Add(count, dr["ProductCode"].ToString(), dr["Barcode"].ToString(), dr["Description"].ToString(), dr["QTY"].ToString());
+                        grd.Rows.Add(count, dr["ProductCode"].ToString(), dr["Barcode"].ToString(), dr["Description"].ToString(), dr["QTY"]);
                     }
 
                 }
@@ -81,7 +81,7 @@ namespace POS.Helpers
                     {
                         count++;
                         grd.Rows.Add(count,dr["AdjustmentID"].ToString(),dr["AdjustmentNbr"].ToString(), dr["ProductCode"].ToString(), dr["Barcode"].ToString(), dr["Description"].ToString()
-                                        , dr["QtyOnHand"].ToString(), dr["QtyAdjusted"].ToString(), dr["PrevQty"].ToString(), dr["Action"].ToString(), dr["Reasons"].ToString(), dr["FullName"].ToString());
+                                        , dr["QtyOnHand"], dr["QtyAdjusted"], dr["PrevQty"], dr["Action"].ToString(), dr["Reasons"].ToString(), dr["FullName"].ToString());
                     }
 
                 }

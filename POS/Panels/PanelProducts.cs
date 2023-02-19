@@ -17,6 +17,7 @@ namespace POS.Panels
     public partial class PanelProducts : MetroForm
     {
         ProductHelper productHelper = new ProductHelper();
+        TransactionHelper transactionHelper = new TransactionHelper();
         FormCreateInvoice formCreateInvoice;
         FormTransaction formTransaction;
         bool isFromTransaction;
@@ -30,7 +31,7 @@ namespace POS.Panels
             this.grdProductList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
         }
 
-        public PanelProducts(FormTransaction fromTran,bool isTran)
+        public PanelProducts(FormTransaction fromTran, bool isTran)
         {
             InitializeComponent();
 
@@ -62,7 +63,15 @@ namespace POS.Panels
 
         private void grdProductList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            SelectProduct(e.RowIndex);
+            if (!isFromTransaction)
+            {
+                SelectProduct(e.RowIndex);
+            }
+            else
+            {
+                if (e.RowIndex < 0) return;
+                SelectProductToTran(e.RowIndex);
+            }
         }
 
         private void SelectProduct(int row)
@@ -121,10 +130,30 @@ namespace POS.Panels
 
             detail.TotalPerItem = detail?.SupplierPrice != null && detail?.Qty != null ? detail.SupplierPrice * detail.Qty : 0;
 
-            formCreateInvoice.grdInvoiceList.Rows.Add(index += 1, "", detail.ProductCode,
-                  detail.Descr, string.Format("{0:#,##0.00}",detail.SupplierPrice), string.Format("{0:#,###}", detail.Qty), string.Format("{0:#,##0.00}", detail.TotalPerItem));
+            if (detail.Qty != 0 || detail.SupplierPrice != 0)
+            {
+                formCreateInvoice.grdInvoiceList.Rows.Add(index += 1, "", detail.ProductCode,
+                      detail.Descr, detail.SupplierPrice, detail.Qty, detail.TotalPerItem);
 
-            MessageBox.Show("Product Added", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //    MessageBox.Show("Product Added", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                formCreateInvoice.ComputeTotalPerItem();
+            }
+        }
+
+        private void SelectProductToTran(int row)
+        {
+
+            string barcode = grdProductList[2, row].Value.ToString();
+
+            Product product = new Product();
+
+            product = transactionHelper.InsertProductToGrid(barcode);
+
+            if (product == null) return;
+
+            formTransaction.AddProduct(product);
+
         }
 
 
@@ -137,7 +166,14 @@ namespace POS.Panels
             }
             else if (e.KeyCode == Keys.Enter)
             {
-                SelectProduct(grdProductList.CurrentCell.RowIndex);
+                if (!isFromTransaction)
+                {
+                    SelectProduct(grdProductList.CurrentCell.RowIndex);
+                }
+                else
+                {
+                    SelectProductToTran(grdProductList.CurrentCell.RowIndex);
+                }
                 e.Handled = true;
             }
             else if (e.KeyCode == Keys.Down && txtSearch.ContainsFocus && grdProductList.Rows.Count > 0)
@@ -178,7 +214,6 @@ namespace POS.Panels
 
             grdProductList.CurrentCell = null;
         }
-
 
     }
 }

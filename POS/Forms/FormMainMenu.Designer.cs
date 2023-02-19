@@ -188,6 +188,7 @@
             this.btnUserRoles.TabIndex = 10;
             this.btnUserRoles.Text = "User Roles";
             this.btnUserRoles.UseVisualStyleBackColor = true;
+            this.btnUserRoles.Visible = false;
             this.btnUserRoles.Click += new System.EventHandler(this.btnUserRoles_Click);
             // 
             // button2

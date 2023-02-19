@@ -66,5 +66,18 @@ namespace POS.Panels
                 txtQty.Text = string.Format("{0:#,###}", int.Parse(txtQty.Text));
             }
         }
+
+        private void PanelSupplierPriceAndQty_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter && txtQty.ContainsFocus)
+            {
+                btnSave.PerformClick();
+            }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

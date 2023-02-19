@@ -100,6 +100,7 @@
     <Compile Include="Classes\Audit.cs" />
     <Compile Include="Classes\Categories.cs" />
     <Compile Include="Classes\Discount.cs" />
+    <Compile Include="Classes\GCashTransaction.cs" />
     <Compile Include="Classes\Invoice.cs" />
     <Compile Include="Classes\InvoiceDetail.cs" />
     <Compile Include="Classes\Notes.cs" />
@@ -107,6 +108,8 @@
     <Compile Include="Classes\ProductSupplier.cs" />
     <Compile Include="Classes\StockAdjustment.cs" />
     <Compile Include="Classes\Suppliers.cs" />
+    <Compile Include="Classes\Transaction.cs" />
+    <Compile Include="Classes\TransactionDetail.cs" />
     <Compile Include="Classes\User.cs" />
     <Compile Include="Forms\FormCategories.cs">
       <SubType>Form</SubType>
@@ -250,11 +253,29 @@
     <Compile Include="Helpers\SupplierHelper.cs" />
     <Compile Include="Helpers\TransactionHelper.cs" />
     <Compile Include="Helpers\UserHelper.cs" />
+    <Compile Include="Panels\PanelAdjustQty.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Panels\PanelAdjustQty.Designer.cs">
+      <DependentUpon>PanelAdjustQty.cs</DependentUpon>
+    </Compile>
     <Compile Include="Panels\PanelCreateAdmin.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Panels\PanelCreateAdmin.Designer.cs">
       <DependentUpon>PanelCreateAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Panels\PanelCreateGCashTransaction.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Panels\PanelCreateGCashTransaction.Designer.cs">
+      <DependentUpon>PanelCreateGCashTransaction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Panels\PanelGcash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Panels\PanelGcash.Designer.cs">
+      <DependentUpon>PanelGcash.cs</DependentUpon>
     </Compile>
     <Compile Include="Panels\PanelImportProduct.cs">
       <SubType>Form</SubType>
@@ -274,6 +295,12 @@
     <Compile Include="Panels\PanelSearchSupplier.Designer.cs">
       <DependentUpon>PanelSearchSupplier.cs</DependentUpon>
     </Compile>
+    <Compile Include="Panels\PanelSettlePayments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Panels\PanelSettlePayments.Designer.cs">
+      <DependentUpon>PanelSettlePayments.cs</DependentUpon>
+    </Compile>
     <Compile Include="Panels\PanelSupplierPrice.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -285,6 +312,12 @@
     </Compile>
     <Compile Include="Panels\PanelSupplierPriceAndQty.Designer.cs">
       <DependentUpon>PanelSupplierPriceAndQty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Panels\PanelViewCart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Panels\PanelViewCart.Designer.cs">
+      <DependentUpon>PanelViewCart.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -354,8 +387,17 @@
     <EmbeddedResource Include="Forms\FormUsers.resx">
       <DependentUpon>FormUsers.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Panels\PanelAdjustQty.resx">
+      <DependentUpon>PanelAdjustQty.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Panels\PanelCreateAdmin.resx">
       <DependentUpon>PanelCreateAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panels\PanelCreateGCashTransaction.resx">
+      <DependentUpon>PanelCreateGCashTransaction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panels\PanelGcash.resx">
+      <DependentUpon>PanelGcash.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Panels\PanelImportProduct.resx">
       <DependentUpon>PanelImportProduct.cs</DependentUpon>
@@ -366,11 +408,17 @@
     <EmbeddedResource Include="Panels\PanelSearchSupplier.resx">
       <DependentUpon>PanelSearchSupplier.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Panels\PanelSettlePayments.resx">
+      <DependentUpon>PanelSettlePayments.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Panels\PanelSupplierPrice.resx">
       <DependentUpon>PanelSupplierPrice.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Panels\PanelSupplierPriceAndQty.resx">
       <DependentUpon>PanelSupplierPriceAndQty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panels\PanelViewCart.resx">
+      <DependentUpon>PanelViewCart.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

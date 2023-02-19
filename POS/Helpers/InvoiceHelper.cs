@@ -42,7 +42,7 @@ namespace POS.Helpers
                     {
                         count += 1; ;
 
-                        form.grdInvoiceList.Rows.Add(count, dr["RefNbr"].ToString(), dr["Supplier"].ToString(), dr["SupplierContact"].ToString(), dr["FullName"].ToString(), Convert.ToDateTime(dr["TransactionDate"].ToString()).ToShortDateString(), dr["TotalQty"].ToString(), dr["TotalAmt"].ToString());
+                        form.grdInvoiceList.Rows.Add(count, dr["RefNbr"].ToString(), dr["Supplier"].ToString(), dr["SupplierContact"].ToString(), dr["FullName"].ToString(), Convert.ToDateTime(dr["TransactionDate"].ToString()).ToShortDateString(), dr["TotalQty"], dr["TotalAmt"]);
                     }
 
                 }
@@ -294,7 +294,7 @@ namespace POS.Helpers
                     {
                         count++;
                         form.grdInvoiceList.Rows.Add(count, dr["InvoiceDetailID"].ToString(), dr["ProductCode"].ToString()
-                            , dr["Description"].ToString(), dr["SupplierPrice"].ToString(), dr["Qty"].ToString(), dr["TotalPerItem"].ToString());
+                            , dr["Description"].ToString(), dr["SupplierPrice"].ToString(), string.Format("{0:#,###}", int.Parse(dr["Qty"].ToString())), string.Format("{0:#,##0.00}",decimal.Parse( dr["TotalPerItem"].ToString())));
                     }
                 }
             }
@@ -311,6 +311,53 @@ namespace POS.Helpers
             }
         }
 
+        public Suppliers LoadSupplierDetails(int SupplierID)
+        {
+            try
+            {
+                Suppliers supplier = new Suppliers();
+
+                conn.Close();
+                conn.Dispose();
+
+                connection();
+
+                using (cmd = new SqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandType = System.Data.CommandType.Text;
+                    cmd.CommandText = @"SELECT Supplier,Address,ContactPerson,ContactNbr,EMail FROM Suppliers WHERE ID = @ID";
+                    cmd.Parameters.AddWithValue(@"ID", SupplierID);
+                    dr = cmd.ExecuteReader();
+                    if (dr.Read())
+                    {
+                        supplier.Supplier = dr["Supplier"].ToString();
+                        supplier.Address = dr["Address"].ToString();
+                        supplier.ContactPerson = dr["ContactPerson"].ToString();
+                        supplier.ContactNbr = dr["ContactNbr"].ToString();
+                        supplier.Email = dr["EMail"].ToString();
+
+                        return supplier;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return null;
+            }
+            finally
+            {
+                dr.Close();
+                conn.Close();
+                conn.Dispose();
+            }
+        }
 
         public void LoadProductSupplierInvoice(PanelSupplierPrice supplierPrice, string productCode, string search)
         {
@@ -332,7 +379,7 @@ namespace POS.Helpers
                 {
                     cmd.Connection = conn;
                     cmd.CommandType = System.Data.CommandType.Text;
-                    cmd.CommandText = @"SELECT A.RefNbr,C.Supplier,A.SupplierPrice, B.TransactionDate FROM InvoiceDetails A
+                    cmd.CommandText = @"SELECT A.RefNbr,C.ID,C.Supplier,A.SupplierPrice, B.TransactionDate FROM InvoiceDetails A
                                     INNER JOIN Invoice B
                                     ON A.RefNbr = B.RefNbr
                                     INNER JOIN Suppliers C
@@ -344,6 +391,7 @@ namespace POS.Helpers
                     {
                         ProductSupplier productSupplier = new ProductSupplier();
                         productSupplier.RefNbr = dr["RefNbr"].ToString();
+                        productSupplier.SupplierID = Convert.ToInt32(dr["ID"].ToString());
                         productSupplier.SupplierName = dr["Supplier"].ToString();
                         productSupplier.Price = Convert.ToDecimal(dr["SupplierPrice"].ToString());
                         productSupplier.TransactionDate = Convert.ToDateTime(dr["TransactionDate"]);
@@ -366,7 +414,7 @@ namespace POS.Helpers
                     foreach (var row in finalList.OrderBy(x => x.Price))
                     {
                         count++;
-                        supplierPrice.grdSupplierList.Rows.Add(count, row.RefNbr, row.SupplierName,row.Price, Convert.ToDateTime(row.TransactionDate).ToString("dd/MM/yyyy"));
+                        supplierPrice.grdSupplierList.Rows.Add(count, row.RefNbr,row.SupplierID, row.SupplierName,row.Price, Convert.ToDateTime(row.TransactionDate).ToString("dd/MM/yyyy"));
                     }
                 }
             }

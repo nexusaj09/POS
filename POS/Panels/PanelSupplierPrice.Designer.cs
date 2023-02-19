@@ -31,17 +31,18 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PanelSupplierPrice));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PanelSupplierPrice));
             this.grdSupplierList = new MetroFramework.Controls.MetroGrid();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.txtSearch = new MetroFramework.Controls.MetroTextBox();
             this.Count = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.REFNBR = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SUPPLIERID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Supplier = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PRICE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TRANSACTIONDATE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.txtSearch = new MetroFramework.Controls.MetroTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.grdSupplierList)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -68,6 +69,7 @@
             this.grdSupplierList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Count,
             this.REFNBR,
+            this.SUPPLIERID,
             this.Supplier,
             this.PRICE,
             this.TRANSACTIONDATE});
@@ -101,7 +103,59 @@
             this.grdSupplierList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdSupplierList.Size = new System.Drawing.Size(1061, 427);
             this.grdSupplierList.TabIndex = 8;
+            this.grdSupplierList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdSupplierList_CellDoubleClick);
             this.grdSupplierList.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.grdSupplierList_CellFormatting);
+            // 
+            // Count
+            // 
+            this.Count.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Count.HeaderText = "#";
+            this.Count.MinimumWidth = 6;
+            this.Count.Name = "Count";
+            this.Count.ReadOnly = true;
+            this.Count.Width = 39;
+            // 
+            // REFNBR
+            // 
+            this.REFNBR.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.REFNBR.HeaderText = "REFERENCE NBR";
+            this.REFNBR.MinimumWidth = 6;
+            this.REFNBR.Name = "REFNBR";
+            this.REFNBR.ReadOnly = true;
+            // 
+            // SUPPLIERID
+            // 
+            this.SUPPLIERID.HeaderText = "SUPPLIERID";
+            this.SUPPLIERID.Name = "SUPPLIERID";
+            this.SUPPLIERID.ReadOnly = true;
+            this.SUPPLIERID.Visible = false;
+            // 
+            // Supplier
+            // 
+            this.Supplier.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Supplier.HeaderText = "SUPPLIER NAME";
+            this.Supplier.MinimumWidth = 6;
+            this.Supplier.Name = "Supplier";
+            this.Supplier.ReadOnly = true;
+            // 
+            // PRICE
+            // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.PRICE.DefaultCellStyle = dataGridViewCellStyle2;
+            this.PRICE.HeaderText = "PRICE";
+            this.PRICE.Name = "PRICE";
+            this.PRICE.ReadOnly = true;
+            // 
+            // TRANSACTIONDATE
+            // 
+            this.TRANSACTIONDATE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            dataGridViewCellStyle3.Format = "D";
+            dataGridViewCellStyle3.NullValue = null;
+            this.TRANSACTIONDATE.DefaultCellStyle = dataGridViewCellStyle3;
+            this.TRANSACTIONDATE.HeaderText = "TRANSACTION DATE";
+            this.TRANSACTIONDATE.Name = "TRANSACTIONDATE";
+            this.TRANSACTIONDATE.ReadOnly = true;
+            this.TRANSACTIONDATE.Width = 151;
             // 
             // panel1
             // 
@@ -148,50 +202,6 @@
             this.txtSearch.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtSearch.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
-            // Count
-            // 
-            this.Count.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Count.HeaderText = "#";
-            this.Count.MinimumWidth = 6;
-            this.Count.Name = "Count";
-            this.Count.ReadOnly = true;
-            this.Count.Width = 39;
-            // 
-            // REFNBR
-            // 
-            this.REFNBR.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.REFNBR.HeaderText = "REFERENCE NBR";
-            this.REFNBR.MinimumWidth = 6;
-            this.REFNBR.Name = "REFNBR";
-            this.REFNBR.ReadOnly = true;
-            // 
-            // Supplier
-            // 
-            this.Supplier.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Supplier.HeaderText = "SUPPLIER NAME";
-            this.Supplier.MinimumWidth = 6;
-            this.Supplier.Name = "Supplier";
-            this.Supplier.ReadOnly = true;
-            // 
-            // PRICE
-            // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.PRICE.DefaultCellStyle = dataGridViewCellStyle2;
-            this.PRICE.HeaderText = "PRICE";
-            this.PRICE.Name = "PRICE";
-            this.PRICE.ReadOnly = true;
-            // 
-            // TRANSACTIONDATE
-            // 
-            this.TRANSACTIONDATE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            dataGridViewCellStyle3.Format = "D";
-            dataGridViewCellStyle3.NullValue = null;
-            this.TRANSACTIONDATE.DefaultCellStyle = dataGridViewCellStyle3;
-            this.TRANSACTIONDATE.HeaderText = "TRANSACTION DATE";
-            this.TRANSACTIONDATE.Name = "TRANSACTIONDATE";
-            this.TRANSACTIONDATE.ReadOnly = true;
-            this.TRANSACTIONDATE.Width = 151;
-            // 
             // PanelSupplierPrice
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -219,6 +229,7 @@
         private MetroFramework.Controls.MetroTextBox txtSearch;
         private System.Windows.Forms.DataGridViewTextBoxColumn Count;
         private System.Windows.Forms.DataGridViewTextBoxColumn REFNBR;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SUPPLIERID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Supplier;
         private System.Windows.Forms.DataGridViewTextBoxColumn PRICE;
         private System.Windows.Forms.DataGridViewTextBoxColumn TRANSACTIONDATE;

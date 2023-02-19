@@ -33,13 +33,14 @@
             this.txtSupplierPrice = new MetroFramework.Controls.MetroTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnCancel = new MetroFramework.Controls.MetroButton();
             this.SuspendLayout();
             // 
             // btnSave
             // 
             this.btnSave.BackColor = System.Drawing.Color.SeaGreen;
             this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(312, 125);
+            this.btnSave.Location = new System.Drawing.Point(197, 125);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(109, 30);
             this.btnSave.TabIndex = 14;
@@ -135,23 +136,40 @@
             this.label1.TabIndex = 12;
             this.label1.Text = "SUPPLIER PRICE:";
             // 
+            // btnCancel
+            // 
+            this.btnCancel.BackColor = System.Drawing.Color.IndianRed;
+            this.btnCancel.ForeColor = System.Drawing.Color.White;
+            this.btnCancel.Location = new System.Drawing.Point(313, 125);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(109, 30);
+            this.btnCancel.TabIndex = 15;
+            this.btnCancel.Text = "CANCEL";
+            this.btnCancel.UseCustomBackColor = true;
+            this.btnCancel.UseCustomForeColor = true;
+            this.btnCancel.UseSelectable = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
             // PanelSupplierPriceAndQty
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
-            this.ClientSize = new System.Drawing.Size(444, 177);
+            this.ClientSize = new System.Drawing.Size(445, 187);
             this.ControlBox = false;
+            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.txtQty);
             this.Controls.Add(this.txtSupplierPrice);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.KeyPreview = true;
             this.Movable = false;
             this.Name = "PanelSupplierPriceAndQty";
             this.Resizable = false;
             this.ShadowType = MetroFramework.Forms.MetroFormShadowType.None;
             this.Text = "Enter Supplier Price and Qty";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PanelSupplierPriceAndQty_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -163,5 +181,6 @@
         public MetroFramework.Controls.MetroTextBox txtSupplierPrice;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private MetroFramework.Controls.MetroButton btnCancel;
     }
 }

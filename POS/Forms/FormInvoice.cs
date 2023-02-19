@@ -38,6 +38,11 @@ namespace POS.Forms
             invoiceHelper.LoadInvoices(this, "");
 
             Init();
+
+
+            //grdInvoiceList.Columns[6].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            //grdInvoiceList.Columns[7].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
         }
 
         private void btnCreate_Click(object sender, EventArgs e)

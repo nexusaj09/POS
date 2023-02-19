@@ -28,9 +28,9 @@ namespace POS.Classes
         public virtual int MarkUp { get; set; }
         public virtual DateTime ExpirationDate { get; set; }
 
+        public virtual string Location { get; set; }
 
-
-
+        public virtual bool IsExpiring { get; set; }
 
 
     }

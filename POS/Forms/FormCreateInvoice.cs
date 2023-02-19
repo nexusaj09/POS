@@ -76,8 +76,8 @@ namespace POS.Forms
                 txtSupplier.Text = invoice.Supplier.ToString();
                 dtTranDate.Value = invoice.TransactionDate;
 
-                lblTotalInvoice.Text = invoice.TotalAmt.ToString();
-                lblTotalQTY.Text = invoice.TotalQty.ToString();
+                lblTotalInvoice.Text = string.Format("{0:#,##0.00}", invoice.TotalAmt);
+                lblTotalQTY.Text = string.Format("{0:#,###}", invoice.TotalQty);
 
                 dtTranDate.Enabled = false;
                 txtContactPerson.Enabled = false;
@@ -113,8 +113,6 @@ namespace POS.Forms
             }
 
             grdInvoiceList.Select();
-
-
         }
 
         private void grdProductList_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -131,7 +129,7 @@ namespace POS.Forms
 
         }
 
-        private void ComputeTotalPerItem()
+        public void ComputeTotalPerItem()
         {
             decimal totalAmt = 0M;
             int totalQty = 0;

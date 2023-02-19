@@ -29,10 +29,14 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCreateInvoice));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnCreate = new MetroFramework.Controls.MetroButton();
             this.btnSearchProduct = new MetroFramework.Controls.MetroButton();
             this.metroPanel3 = new MetroFramework.Controls.MetroPanel();
             this.lblTotalInvoice = new System.Windows.Forms.Label();
@@ -64,7 +68,6 @@
             this.QTY = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TOTALINVOICE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DELETE = new System.Windows.Forms.DataGridViewImageColumn();
-            this.btnCreate = new MetroFramework.Controls.MetroButton();
             this.panel1.SuspendLayout();
             this.metroPanel3.SuspendLayout();
             this.metroPanel4.SuspendLayout();
@@ -95,6 +98,21 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1758, 175);
             this.panel1.TabIndex = 0;
+            // 
+            // btnCreate
+            // 
+            this.btnCreate.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.btnCreate.ForeColor = System.Drawing.Color.White;
+            this.btnCreate.Location = new System.Drawing.Point(401, 127);
+            this.btnCreate.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCreate.Name = "btnCreate";
+            this.btnCreate.Size = new System.Drawing.Size(188, 30);
+            this.btnCreate.TabIndex = 20;
+            this.btnCreate.Text = "CREATE PRODUCT";
+            this.btnCreate.UseCustomBackColor = true;
+            this.btnCreate.UseCustomForeColor = true;
+            this.btnCreate.UseSelectable = true;
+            this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
             // 
             // btnSearchProduct
             // 
@@ -324,7 +342,7 @@
             this.dtTranDate.Margin = new System.Windows.Forms.Padding(4);
             this.dtTranDate.MinimumSize = new System.Drawing.Size(0, 29);
             this.dtTranDate.Name = "dtTranDate";
-            this.dtTranDate.Size = new System.Drawing.Size(408, 30);
+            this.dtTranDate.Size = new System.Drawing.Size(408, 29);
             this.dtTranDate.TabIndex = 5;
             // 
             // label3
@@ -494,14 +512,14 @@
             this.QTY,
             this.TOTALINVOICE,
             this.DELETE});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdInvoiceList.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdInvoiceList.DefaultCellStyle = dataGridViewCellStyle5;
             this.grdInvoiceList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grdInvoiceList.EnableHeadersVisualStyles = false;
             this.grdInvoiceList.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
@@ -511,14 +529,14 @@
             this.grdInvoiceList.MultiSelect = false;
             this.grdInvoiceList.Name = "grdInvoiceList";
             this.grdInvoiceList.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdInvoiceList.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdInvoiceList.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.grdInvoiceList.RowHeadersWidth = 51;
             this.grdInvoiceList.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.grdInvoiceList.RowTemplate.Height = 26;
@@ -567,14 +585,20 @@
             // SUPPLIERPRICE
             // 
             this.SUPPLIERPRICE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle2.Format = "N2";
+            dataGridViewCellStyle2.NullValue = null;
+            this.SUPPLIERPRICE.DefaultCellStyle = dataGridViewCellStyle2;
             this.SUPPLIERPRICE.HeaderText = "SUPPLIER PRICE";
             this.SUPPLIERPRICE.MinimumWidth = 6;
             this.SUPPLIERPRICE.Name = "SUPPLIERPRICE";
-            this.SUPPLIERPRICE.Width = 112;
+            this.SUPPLIERPRICE.Width = 122;
             // 
             // QTY
             // 
             this.QTY.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle3.Format = "N0";
+            dataGridViewCellStyle3.NullValue = null;
+            this.QTY.DefaultCellStyle = dataGridViewCellStyle3;
             this.QTY.HeaderText = "QTY";
             this.QTY.MinimumWidth = 6;
             this.QTY.Name = "QTY";
@@ -583,6 +607,9 @@
             // TOTALINVOICE
             // 
             this.TOTALINVOICE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle4.Format = "C2";
+            dataGridViewCellStyle4.NullValue = null;
+            this.TOTALINVOICE.DefaultCellStyle = dataGridViewCellStyle4;
             this.TOTALINVOICE.HeaderText = "TOTAL PER ITEM";
             this.TOTALINVOICE.MinimumWidth = 6;
             this.TOTALINVOICE.Name = "TOTALINVOICE";
@@ -597,21 +624,6 @@
             this.DELETE.MinimumWidth = 6;
             this.DELETE.Name = "DELETE";
             this.DELETE.Width = 6;
-            // 
-            // btnCreate
-            // 
-            this.btnCreate.BackColor = System.Drawing.Color.MediumSeaGreen;
-            this.btnCreate.ForeColor = System.Drawing.Color.White;
-            this.btnCreate.Location = new System.Drawing.Point(401, 127);
-            this.btnCreate.Margin = new System.Windows.Forms.Padding(4);
-            this.btnCreate.Name = "btnCreate";
-            this.btnCreate.Size = new System.Drawing.Size(188, 30);
-            this.btnCreate.TabIndex = 20;
-            this.btnCreate.Text = "CREATE PRODUCT";
-            this.btnCreate.UseCustomBackColor = true;
-            this.btnCreate.UseCustomForeColor = true;
-            this.btnCreate.UseSelectable = true;
-            this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
             // 
             // FormCreateInvoice
             // 
@@ -665,6 +677,7 @@
         public MetroFramework.Controls.MetroButton btnSave;
         public MetroFramework.Controls.MetroGrid grdInvoiceList;
         private MetroFramework.Controls.MetroButton btnSearchProduct;
+        private MetroFramework.Controls.MetroButton btnCreate;
         private System.Windows.Forms.DataGridViewTextBoxColumn Count;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn PRODUCTCODE;
@@ -673,6 +686,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn QTY;
         private System.Windows.Forms.DataGridViewTextBoxColumn TOTALINVOICE;
         private System.Windows.Forms.DataGridViewImageColumn DELETE;
-        private MetroFramework.Controls.MetroButton btnCreate;
     }
 }

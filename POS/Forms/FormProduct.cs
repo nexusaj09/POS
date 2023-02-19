@@ -68,20 +68,24 @@ namespace POS.Forms
                 updateProduct.ProductCode = grdProductList[1, e.RowIndex].Value.ToString();
                 updateProduct.ProductBarcode = grdProductList[2, e.RowIndex].Value.ToString();
                 updateProduct.Description = grdProductList[3, e.RowIndex].Value.ToString();
-                updateProduct.BrandName = grdProductList[4, e.RowIndex].Value.ToString();
-                updateProduct.GenericName = grdProductList[5, e.RowIndex].Value.ToString();
-                updateProduct.Classification = grdProductList[6, e.RowIndex].Value.ToString();
-                updateProduct.Formulation = grdProductList[7, e.RowIndex].Value.ToString();
-                updateProduct.Category = grdProductList[8, e.RowIndex].Value.ToString();
-                updateProduct.UOM = grdProductList[9, e.RowIndex].Value.ToString();
-                updateProduct.Qty = Convert.ToInt32(grdProductList[10, e.RowIndex].Value.ToString());
-                updateProduct.ReOrderQty = Convert.ToInt32(grdProductList[11, e.RowIndex].Value.ToString());
-                updateProduct.SupplierPrice = Convert.ToDecimal(grdProductList[12, e.RowIndex].Value.ToString());
-                updateProduct.SRP = Convert.ToDecimal(grdProductList[13, e.RowIndex].Value.ToString());
-                updateProduct.FinalPrice = Convert.ToDecimal(grdProductList[14, e.RowIndex].Value.ToString());
-                updateProduct.MarkUp = Convert.ToInt32(grdProductList[15, e.RowIndex].Value.ToString());
+                updateProduct.Location = grdProductList[4, e.RowIndex].Value.ToString();
+                updateProduct.BrandName = grdProductList[5, e.RowIndex].Value.ToString();
+                updateProduct.GenericName = grdProductList[6, e.RowIndex].Value.ToString();
+                updateProduct.Classification = grdProductList[7, e.RowIndex].Value.ToString();
+                updateProduct.Formulation = grdProductList[8, e.RowIndex].Value.ToString();
+                updateProduct.Category = grdProductList[9, e.RowIndex].Value.ToString();
+                updateProduct.UOM = grdProductList[10, e.RowIndex].Value.ToString();
+                updateProduct.Qty = Convert.ToInt32(grdProductList[11, e.RowIndex].Value.ToString());
+                updateProduct.ReOrderQty = Convert.ToInt32(grdProductList[12, e.RowIndex].Value.ToString());
+                updateProduct.SupplierPrice = Convert.ToDecimal(grdProductList[13, e.RowIndex].Value.ToString());
+                updateProduct.SRP = Convert.ToDecimal(grdProductList[14, e.RowIndex].Value.ToString());
+                updateProduct.FinalPrice = Convert.ToDecimal(grdProductList[15, e.RowIndex].Value.ToString());
+                updateProduct.MarkUp = Convert.ToInt32(grdProductList[16, e.RowIndex].Value.ToString());
                 updateProduct.LastModifiedByID = currUser.UserID;
-                updateProduct.ExpirationDate = DateTime.ParseExact(grdProductList[16, e.RowIndex].Value.ToString(), @"dd/MM/yyyy", CultureInfo.InvariantCulture);
+                DateTime expDate = Convert.ToDateTime(grdProductList[17, e.RowIndex].Value.ToString());
+                var finalExpDate = expDate.ToShortDateString();
+                updateProduct.ExpirationDate = DateTime.ParseExact(finalExpDate.ToString(), @"dd/MM/yyyy",CultureInfo.CreateSpecificCulture("en-GB")) ;
+                updateProduct.IsExpiring = Convert.ToBoolean(grdProductList[18, e.RowIndex].Value);
                 FormCreateProduct form = new FormCreateProduct(this, updateProduct);
                 form.btnSave.Text = "UPDATE";
                 form.ShowDialog(this);
@@ -132,6 +136,14 @@ namespace POS.Forms
             {
                 DeleteProduct(grdProductList.CurrentCell.RowIndex);
             }
+            else if (e.KeyCode == Keys.Enter && grdProductList.ContainsFocus)
+            {
+                if (grdProductList.CurrentCell == null) return;
+
+                ViewInvoicePrices(grdProductList.CurrentCell.RowIndex);
+                
+                e.Handled = true;
+            }
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
@@ -156,12 +168,22 @@ namespace POS.Forms
 
         private void grdProductList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            string productCode = grdProductList[1,e.RowIndex].Value.ToString();
+
+
+            if (e.RowIndex < 0) return;
+
+            ViewInvoicePrices(e.RowIndex);
+
+        }
+
+        private void ViewInvoicePrices(int row)
+        {
+            string productCode = grdProductList[1, row].Value.ToString();
             using (PanelSupplierPrice form = new PanelSupplierPrice(productCode))
             {
                 form.ShowDialog(this);
                 form.Dispose();
-                txtSearch.Select();
+                Init();
             }
         }
     }

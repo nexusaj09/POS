@@ -30,9 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormTransaction));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.lblRole = new System.Windows.Forms.Label();
@@ -70,23 +72,26 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.metroPanel3 = new MetroFramework.Controls.MetroPanel();
             this.metroPanel4 = new MetroFramework.Controls.MetroPanel();
-            this.button11 = new System.Windows.Forms.Button();
+            this.btnSettlePayment = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
+            this.btnAdjustQty = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnDiscount = new System.Windows.Forms.Button();
+            this.btnViewCart = new System.Windows.Forms.Button();
+            this.btnHoldTransaction = new System.Windows.Forms.Button();
             this.btnProductSearch = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.lblTransactionNbr = new System.Windows.Forms.Label();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.btnGcash = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.lblNbrOfItems = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.metroPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.metroPanel2.SuspendLayout();
@@ -97,7 +102,7 @@
             this.panel2.SuspendLayout();
             this.metroPanel3.SuspendLayout();
             this.metroPanel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnGcash)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
@@ -225,6 +230,7 @@
             this.txtSearch.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtSearch.WaterMarkFont = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearch_KeyDown);
+            this.txtSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSearch_KeyPress);
             // 
             // metroPanel2
             // 
@@ -322,25 +328,25 @@
             // 
             // lblVatExempt
             // 
-            this.lblVatExempt.AutoSize = true;
             this.lblVatExempt.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblVatExempt.ForeColor = System.Drawing.Color.Black;
-            this.lblVatExempt.Location = new System.Drawing.Point(671, 74);
+            this.lblVatExempt.Location = new System.Drawing.Point(610, 74);
             this.lblVatExempt.Name = "lblVatExempt";
-            this.lblVatExempt.Size = new System.Drawing.Size(50, 25);
+            this.lblVatExempt.Size = new System.Drawing.Size(111, 25);
             this.lblVatExempt.TabIndex = 11;
-            this.lblVatExempt.Text = "0.00";
+            this.lblVatExempt.Text = "P10,000.00";
+            this.lblVatExempt.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblVat
             // 
-            this.lblVat.AutoSize = true;
             this.lblVat.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblVat.ForeColor = System.Drawing.Color.Black;
-            this.lblVat.Location = new System.Drawing.Point(671, 45);
+            this.lblVat.Location = new System.Drawing.Point(610, 45);
             this.lblVat.Name = "lblVat";
-            this.lblVat.Size = new System.Drawing.Size(50, 25);
+            this.lblVat.Size = new System.Drawing.Size(111, 25);
             this.lblVat.TabIndex = 10;
-            this.lblVat.Text = "0.00";
+            this.lblVat.Text = "P10,000.00";
+            this.lblVat.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label1
             // 
@@ -355,25 +361,25 @@
             // 
             // lblTotal
             // 
-            this.lblTotal.AutoSize = true;
             this.lblTotal.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotal.ForeColor = System.Drawing.Color.Black;
-            this.lblTotal.Location = new System.Drawing.Point(645, 128);
+            this.lblTotal.Location = new System.Drawing.Point(451, 128);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(76, 40);
+            this.lblTotal.Size = new System.Drawing.Size(270, 40);
             this.lblTotal.TabIndex = 8;
-            this.lblTotal.Text = "0.00";
+            this.lblTotal.Text = "P10,000.00";
+            this.lblTotal.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblDiscount
             // 
-            this.lblDiscount.AutoSize = true;
             this.lblDiscount.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDiscount.ForeColor = System.Drawing.Color.Black;
-            this.lblDiscount.Location = new System.Drawing.Point(671, 14);
+            this.lblDiscount.Location = new System.Drawing.Point(610, 14);
             this.lblDiscount.Name = "lblDiscount";
-            this.lblDiscount.Size = new System.Drawing.Size(50, 25);
+            this.lblDiscount.Size = new System.Drawing.Size(111, 25);
             this.lblDiscount.TabIndex = 9;
-            this.lblDiscount.Text = "0.00";
+            this.lblDiscount.Text = "P10,000.00";
+            this.lblDiscount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label7
             // 
@@ -410,14 +416,14 @@
             // 
             // lblTotalDue
             // 
-            this.lblTotalDue.AutoSize = true;
             this.lblTotalDue.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalDue.ForeColor = System.Drawing.Color.Black;
-            this.lblTotalDue.Location = new System.Drawing.Point(638, 11);
+            this.lblTotalDue.Location = new System.Drawing.Point(537, 11);
             this.lblTotalDue.Name = "lblTotalDue";
-            this.lblTotalDue.Size = new System.Drawing.Size(83, 45);
+            this.lblTotalDue.Size = new System.Drawing.Size(184, 45);
             this.lblTotalDue.TabIndex = 12;
-            this.lblTotalDue.Text = "0.00";
+            this.lblTotalDue.Text = "P10,000.00";
+            this.lblTotalDue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label8
             // 
@@ -451,14 +457,14 @@
             this.grdProductList.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.grdProductList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.grdProductList.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(114)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(114)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdProductList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(114)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(114)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdProductList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
             this.grdProductList.ColumnHeadersHeight = 30;
             this.grdProductList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdProductList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -470,14 +476,14 @@
             this.QTY,
             this.LESS,
             this.TOTAL});
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdProductList.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle19.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdProductList.DefaultCellStyle = dataGridViewCellStyle19;
             this.grdProductList.EnableHeadersVisualStyles = false;
             this.grdProductList.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.grdProductList.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
@@ -486,14 +492,14 @@
             this.grdProductList.Name = "grdProductList";
             this.grdProductList.ReadOnly = true;
             this.grdProductList.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdProductList.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle20.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdProductList.RowHeadersDefaultCellStyle = dataGridViewCellStyle20;
             this.grdProductList.RowHeadersWidth = 51;
             this.grdProductList.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.grdProductList.RowTemplate.Height = 26;
@@ -534,6 +540,9 @@
             // 
             // PRICE
             // 
+            dataGridViewCellStyle17.Format = "C2";
+            dataGridViewCellStyle17.NullValue = null;
+            this.PRICE.DefaultCellStyle = dataGridViewCellStyle17;
             this.PRICE.HeaderText = "PRICE";
             this.PRICE.Name = "PRICE";
             this.PRICE.ReadOnly = true;
@@ -556,6 +565,9 @@
             // 
             // TOTAL
             // 
+            dataGridViewCellStyle18.Format = "C2";
+            dataGridViewCellStyle18.NullValue = null;
+            this.TOTAL.DefaultCellStyle = dataGridViewCellStyle18;
             this.TOTAL.HeaderText = "TOTAL";
             this.TOTAL.Name = "TOTAL";
             this.TOTAL.ReadOnly = true;
@@ -588,15 +600,16 @@
             // 
             // metroPanel4
             // 
-            this.metroPanel4.Controls.Add(this.button11);
+            this.metroPanel4.Controls.Add(this.btnSettlePayment);
+            this.metroPanel4.Controls.Add(this.btnClose);
             this.metroPanel4.Controls.Add(this.button10);
             this.metroPanel4.Controls.Add(this.button9);
             this.metroPanel4.Controls.Add(this.button8);
-            this.metroPanel4.Controls.Add(this.button7);
+            this.metroPanel4.Controls.Add(this.btnAdjustQty);
             this.metroPanel4.Controls.Add(this.button6);
-            this.metroPanel4.Controls.Add(this.button5);
-            this.metroPanel4.Controls.Add(this.button4);
-            this.metroPanel4.Controls.Add(this.button3);
+            this.metroPanel4.Controls.Add(this.btnDiscount);
+            this.metroPanel4.Controls.Add(this.btnViewCart);
+            this.metroPanel4.Controls.Add(this.btnHoldTransaction);
             this.metroPanel4.Controls.Add(this.btnProductSearch);
             this.metroPanel4.Controls.Add(this.button1);
             this.metroPanel4.HorizontalScrollbarBarColor = true;
@@ -610,19 +623,34 @@
             this.metroPanel4.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel4.VerticalScrollbarSize = 10;
             // 
-            // button11
+            // btnSettlePayment
             // 
-            this.button11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button11.Image = ((System.Drawing.Image)(resources.GetObject("button11.Image")));
-            this.button11.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button11.Location = new System.Drawing.Point(1480, 0);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(142, 79);
-            this.button11.TabIndex = 12;
-            this.button11.Text = "NEW TRANSACTION";
-            this.button11.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.button11.UseVisualStyleBackColor = true;
+            this.btnSettlePayment.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnSettlePayment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSettlePayment.Image = ((System.Drawing.Image)(resources.GetObject("btnSettlePayment.Image")));
+            this.btnSettlePayment.Location = new System.Drawing.Point(1628, 0);
+            this.btnSettlePayment.Name = "btnSettlePayment";
+            this.btnSettlePayment.Size = new System.Drawing.Size(266, 79);
+            this.btnSettlePayment.TabIndex = 13;
+            this.btnSettlePayment.Text = "SETTLE PAYMENTS";
+            this.btnSettlePayment.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnSettlePayment.UseVisualStyleBackColor = true;
+            this.btnSettlePayment.Click += new System.EventHandler(this.btnSettlePayment_Click);
+            // 
+            // btnClose
+            // 
+            this.btnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Image")));
+            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnClose.Location = new System.Drawing.Point(1480, 0);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(142, 79);
+            this.btnClose.TabIndex = 12;
+            this.btnClose.Text = "CLOSE";
+            this.btnClose.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // button10
             // 
@@ -634,7 +662,7 @@
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(142, 79);
             this.button10.TabIndex = 11;
-            this.button10.Text = "NEW TRANSACTION";
+            this.button10.Text = "START SHIFT";
             this.button10.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button10.UseVisualStyleBackColor = true;
             // 
@@ -665,19 +693,20 @@
             this.button8.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button8.UseVisualStyleBackColor = true;
             // 
-            // button7
+            // btnAdjustQty
             // 
-            this.button7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button7.Image = ((System.Drawing.Image)(resources.GetObject("button7.Image")));
-            this.button7.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button7.Location = new System.Drawing.Point(888, 0);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(142, 79);
-            this.button7.TabIndex = 8;
-            this.button7.Text = "NEW TRANSACTION";
-            this.button7.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.button7.UseVisualStyleBackColor = true;
+            this.btnAdjustQty.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnAdjustQty.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAdjustQty.Image = ((System.Drawing.Image)(resources.GetObject("btnAdjustQty.Image")));
+            this.btnAdjustQty.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnAdjustQty.Location = new System.Drawing.Point(888, 0);
+            this.btnAdjustQty.Name = "btnAdjustQty";
+            this.btnAdjustQty.Size = new System.Drawing.Size(142, 79);
+            this.btnAdjustQty.TabIndex = 8;
+            this.btnAdjustQty.Text = "ADJUST QTY";
+            this.btnAdjustQty.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnAdjustQty.UseVisualStyleBackColor = true;
+            this.btnAdjustQty.Click += new System.EventHandler(this.btnAdjustQty_Click);
             // 
             // button6
             // 
@@ -693,47 +722,50 @@
             this.button6.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button6.UseVisualStyleBackColor = true;
             // 
-            // button5
+            // btnDiscount
             // 
-            this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Image = ((System.Drawing.Image)(resources.GetObject("button5.Image")));
-            this.button5.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button5.Location = new System.Drawing.Point(592, 0);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(142, 79);
-            this.button5.TabIndex = 6;
-            this.button5.Text = "SETTLE PAYMENT";
-            this.button5.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.button5.UseVisualStyleBackColor = true;
+            this.btnDiscount.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnDiscount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDiscount.Image = ((System.Drawing.Image)(resources.GetObject("btnDiscount.Image")));
+            this.btnDiscount.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnDiscount.Location = new System.Drawing.Point(592, 0);
+            this.btnDiscount.Name = "btnDiscount";
+            this.btnDiscount.Size = new System.Drawing.Size(142, 79);
+            this.btnDiscount.TabIndex = 6;
+            this.btnDiscount.Text = "ADD DISCOUNT";
+            this.btnDiscount.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnDiscount.UseVisualStyleBackColor = true;
+            this.btnDiscount.Click += new System.EventHandler(this.btnSettlePayments_Click);
             // 
-            // button4
+            // btnViewCart
             // 
-            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
-            this.button4.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button4.Location = new System.Drawing.Point(444, 0);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(142, 79);
-            this.button4.TabIndex = 5;
-            this.button4.Text = "VIEW CART";
-            this.button4.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnViewCart.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnViewCart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnViewCart.Image = ((System.Drawing.Image)(resources.GetObject("btnViewCart.Image")));
+            this.btnViewCart.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnViewCart.Location = new System.Drawing.Point(444, 0);
+            this.btnViewCart.Name = "btnViewCart";
+            this.btnViewCart.Size = new System.Drawing.Size(142, 79);
+            this.btnViewCart.TabIndex = 5;
+            this.btnViewCart.Text = "VIEW CART";
+            this.btnViewCart.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnViewCart.UseVisualStyleBackColor = true;
+            this.btnViewCart.Click += new System.EventHandler(this.btnViewCart_Click);
             // 
-            // button3
+            // btnHoldTransaction
             // 
-            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
-            this.button3.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button3.Location = new System.Drawing.Point(296, 0);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(142, 79);
-            this.button3.TabIndex = 4;
-            this.button3.Text = "HOLD";
-            this.button3.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnHoldTransaction.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnHoldTransaction.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHoldTransaction.Image = ((System.Drawing.Image)(resources.GetObject("btnHoldTransaction.Image")));
+            this.btnHoldTransaction.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnHoldTransaction.Location = new System.Drawing.Point(296, 0);
+            this.btnHoldTransaction.Name = "btnHoldTransaction";
+            this.btnHoldTransaction.Size = new System.Drawing.Size(142, 79);
+            this.btnHoldTransaction.TabIndex = 4;
+            this.btnHoldTransaction.Text = "HOLD";
+            this.btnHoldTransaction.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnHoldTransaction.UseVisualStyleBackColor = true;
+            this.btnHoldTransaction.Click += new System.EventHandler(this.btnHoldTransaction_Click);
             // 
             // btnProductSearch
             // 
@@ -770,34 +802,37 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.ForestGreen;
-            this.label9.Location = new System.Drawing.Point(1170, 609);
+            this.label9.Location = new System.Drawing.Point(1165, 609);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(194, 25);
             this.label9.TabIndex = 23;
             this.label9.Text = "TRANSACTION NBR:";
+            this.label9.Visible = false;
             // 
             // lblTransactionNbr
             // 
             this.lblTransactionNbr.AutoSize = true;
             this.lblTransactionNbr.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTransactionNbr.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(114)))), ((int)(((byte)(192)))));
-            this.lblTransactionNbr.Location = new System.Drawing.Point(1370, 609);
+            this.lblTransactionNbr.Location = new System.Drawing.Point(1365, 609);
             this.lblTransactionNbr.Name = "lblTransactionNbr";
             this.lblTransactionNbr.Size = new System.Drawing.Size(194, 25);
             this.lblTransactionNbr.TabIndex = 25;
             this.lblTransactionNbr.Text = "TRANSACTION NBR:";
             this.lblTransactionNbr.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblTransactionNbr.Visible = false;
             // 
-            // pictureBox3
+            // btnGcash
             // 
-            this.pictureBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(12, 650);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(523, 77);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox3.TabIndex = 26;
-            this.pictureBox3.TabStop = false;
+            this.btnGcash.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.btnGcash.Image = ((System.Drawing.Image)(resources.GetObject("btnGcash.Image")));
+            this.btnGcash.Location = new System.Drawing.Point(12, 650);
+            this.btnGcash.Name = "btnGcash";
+            this.btnGcash.Size = new System.Drawing.Size(523, 77);
+            this.btnGcash.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnGcash.TabIndex = 26;
+            this.btnGcash.TabStop = false;
+            this.btnGcash.Click += new System.EventHandler(this.btnGcash_Click);
             // 
             // pictureBox4
             // 
@@ -831,16 +866,41 @@
             this.pictureBox6.TabIndex = 29;
             this.pictureBox6.TabStop = false;
             // 
+            // lblNbrOfItems
+            // 
+            this.lblNbrOfItems.AutoSize = true;
+            this.lblNbrOfItems.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNbrOfItems.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(114)))), ((int)(((byte)(192)))));
+            this.lblNbrOfItems.Location = new System.Drawing.Point(1821, 609);
+            this.lblNbrOfItems.Name = "lblNbrOfItems";
+            this.lblNbrOfItems.Size = new System.Drawing.Size(23, 25);
+            this.lblNbrOfItems.TabIndex = 31;
+            this.lblNbrOfItems.Text = "0";
+            this.lblNbrOfItems.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.ForestGreen;
+            this.label11.Location = new System.Drawing.Point(1627, 609);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(188, 25);
+            this.label11.TabIndex = 30;
+            this.label11.Text = "NUMBER OF ITEMS:";
+            // 
             // FormTransaction
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1920, 1032);
             this.ControlBox = false;
+            this.Controls.Add(this.lblNbrOfItems);
+            this.Controls.Add(this.label11);
             this.Controls.Add(this.pictureBox6);
             this.Controls.Add(this.pictureBox5);
             this.Controls.Add(this.pictureBox4);
-            this.Controls.Add(this.pictureBox3);
+            this.Controls.Add(this.btnGcash);
             this.Controls.Add(this.lblTransactionNbr);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.metroPanel4);
@@ -872,7 +932,7 @@
             this.metroPanel3.ResumeLayout(false);
             this.metroPanel3.PerformLayout();
             this.metroPanel4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnGcash)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
@@ -905,14 +965,6 @@
         private MetroFramework.Controls.MetroTextBox txtSearch;
         private System.Windows.Forms.Panel panel1;
         public MetroFramework.Controls.MetroGrid grdProductList;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ROW;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PRODUCTCODE;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Description;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UNIT;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PRICE;
-        private System.Windows.Forms.DataGridViewTextBoxColumn QTY;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LESS;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TOTAL;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
@@ -923,19 +975,30 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnProductSearch;
         private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button btnAdjustQty;
         private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnDiscount;
+        private System.Windows.Forms.Button btnViewCart;
+        private System.Windows.Forms.Button btnHoldTransaction;
         private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label lblTransactionNbr;
-        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox btnGcash;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.PictureBox pictureBox6;
+        private System.Windows.Forms.Label lblNbrOfItems;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Button btnSettlePayment;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ROW;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PRODUCTCODE;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Description;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UNIT;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PRICE;
+        private System.Windows.Forms.DataGridViewTextBoxColumn QTY;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LESS;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TOTAL;
     }
 }
