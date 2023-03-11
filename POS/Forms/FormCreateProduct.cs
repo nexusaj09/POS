@@ -352,7 +352,8 @@ namespace POS.Forms
                 txtFinalPrice.Text = updateProduct.FinalPrice.ToString();
                 txtSRP.Text = updateProduct.SRP.ToString();
                 txtMarkUp.Text = updateProduct.MarkUp.ToString();
-                dtExpirationDate.Value = updateProduct.ExpirationDate;
+
+                dtExpirationDate.Value = dtExpirationDate.Value == null  ? updateProduct.ExpirationDate: DateTime.Now;
                 txtLocation.Text = updateProduct.Location.ToString();
                 chckWithExpiry.Checked = updateProduct.IsExpiring;
                 dtExpirationDate.Enabled = updateProduct.IsExpiring;

@@ -100,10 +100,12 @@
     <Compile Include="Classes\Audit.cs" />
     <Compile Include="Classes\Categories.cs" />
     <Compile Include="Classes\Discount.cs" />
+    <Compile Include="Classes\EmployeeShift.cs" />
     <Compile Include="Classes\GCashTransaction.cs" />
     <Compile Include="Classes\Invoice.cs" />
     <Compile Include="Classes\InvoiceDetail.cs" />
     <Compile Include="Classes\Notes.cs" />
+    <Compile Include="Classes\PettyCash.cs" />
     <Compile Include="Classes\Product.cs" />
     <Compile Include="Classes\ProductSupplier.cs" />
     <Compile Include="Classes\StockAdjustment.cs" />
@@ -283,6 +285,12 @@
     <Compile Include="Panels\PanelImportProduct.Designer.cs">
       <DependentUpon>PanelImportProduct.cs</DependentUpon>
     </Compile>
+    <Compile Include="Panels\PanelPettyCash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Panels\PanelPettyCash.Designer.cs">
+      <DependentUpon>PanelPettyCash.cs</DependentUpon>
+    </Compile>
     <Compile Include="Panels\PanelProducts.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -401,6 +409,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Panels\PanelImportProduct.resx">
       <DependentUpon>PanelImportProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panels\PanelPettyCash.resx">
+      <DependentUpon>PanelPettyCash.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Panels\PanelProducts.resx">
       <DependentUpon>PanelProducts.cs</DependentUpon>

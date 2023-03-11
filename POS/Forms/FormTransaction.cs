@@ -18,6 +18,8 @@ namespace POS.Forms
     {
         public User currUser = new User();
         TransactionHelper transactionHelper = new TransactionHelper();
+        UserHelper userHelper = new UserHelper();
+
         int count = 0;
         decimal _discount = 0;
         decimal _vat = 0;
@@ -32,6 +34,10 @@ namespace POS.Forms
         Product product = new Product();
         Transaction transaction = new Transaction();
         TransactionDetail transactionDetail = new TransactionDetail();
+        string shiftID = null;
+
+        bool shifted = false;
+
         public FormTransaction(User user)
         {
             InitializeComponent();
@@ -57,10 +63,36 @@ namespace POS.Forms
             {
                 column.SortMode = DataGridViewColumnSortMode.NotSortable;
             }
-
+            EnableDisableShift(false);
             NewTransaction();
 
         }
+
+        private void EnableDisableShift(bool enable)
+        {
+            txtSearch.Enabled = enable;
+            btnGcash.Enabled = enable;
+            btnNewTransaction.Enabled = enable;
+            btnProductSearch.Enabled = enable;
+            btnHoldTransaction.Enabled = enable;
+            btnViewCart.Enabled = enable;
+            btnDiscount.Enabled = enable;
+            btnAdjustQty.Enabled = enable;
+            btnVoid.Enabled = enable;
+            btnXReading.Enabled = enable;
+            btnSettlePayment.Enabled = enable;
+            button9.Enabled = enable;
+
+            btnShift.Text = enable == false ? "START SHIFT" : "END SHIFT";
+
+
+        }
+
+        private void StartShift()
+        {
+
+        }
+
         private void Clock()
         {
             System.Timers.Timer timer = new System.Timers.Timer();
@@ -160,7 +192,7 @@ namespace POS.Forms
             }
             else if (e.KeyCode == Keys.F2)
             {
-                btnProductSearch.PerformClick();
+                btnNewTransaction.PerformClick();
             }
             else if (e.KeyCode == Keys.F3)
             {
@@ -185,6 +217,10 @@ namespace POS.Forms
             else if (e.KeyCode == Keys.F12)
             {
                 btnClose.PerformClick();
+            }
+            else if (e.KeyCode == Keys.F11)
+            {
+                btnShift.PerformClick();
             }
 
         }
@@ -439,6 +475,20 @@ namespace POS.Forms
 
         private void btnClose_Click(object sender, EventArgs e)
         {
+            if (currUser.Role.Equals("Cashier"))
+            {
+                if (MessageBox.Show("Are you sure to Logout?", "Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    userHelper.CreateLogoutLog(currUser.UserID);
+                    MessageBox.Show("Logout Successfully", "Logged Out", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    FormInit login = new FormInit();
+                    login.Show();
+
+
+                }
+            }
+
             isClosing = true;
             this.Close();
         }
@@ -450,6 +500,37 @@ namespace POS.Forms
                 cart.ShowDialog();
                 cart.Dispose();
                 txtSearch.Select();
+            }
+        }
+
+        private void btnNewTransaction_Click(object sender, EventArgs e)
+        {
+            NewTransaction();
+        }
+
+        private void btnShift_Click(object sender, EventArgs e)
+        {
+            if (btnShift.Text.Equals("START SHIFT") && shifted == false)
+            {
+                shifted = true;
+
+                EnableDisableShift(true);
+
+                using (PanelPettyCash panelPettyCash = new PanelPettyCash(currUser))
+                {
+                    panelPettyCash.ShowDialog();
+                    panelPettyCash.Dispose();
+
+                }
+
+            }
+            else if (btnShift.Text.Equals("END SHIFT") && shifted == true)
+            {
+                EnableDisableShift(false);
+            }
+            else
+            {
+                MessageBox.Show("You Already Shifted Today!", "Already Shifted", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

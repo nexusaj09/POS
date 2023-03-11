@@ -82,9 +82,12 @@ namespace POS.Forms
                 updateProduct.FinalPrice = Convert.ToDecimal(grdProductList[15, e.RowIndex].Value.ToString());
                 updateProduct.MarkUp = Convert.ToInt32(grdProductList[16, e.RowIndex].Value.ToString());
                 updateProduct.LastModifiedByID = currUser.UserID;
-                DateTime expDate = Convert.ToDateTime(grdProductList[17, e.RowIndex].Value.ToString());
-                var finalExpDate = expDate.ToShortDateString();
-                updateProduct.ExpirationDate = DateTime.ParseExact(finalExpDate.ToString(), @"dd/MM/yyyy",CultureInfo.CreateSpecificCulture("en-GB")) ;
+                if (!string.IsNullOrEmpty(grdProductList[17, e.RowIndex].Value.ToString()))
+                {
+                    DateTime expDate = Convert.ToDateTime(grdProductList[17, e.RowIndex].Value.ToString());
+                    var finalExpDate = expDate.ToShortDateString();
+                    updateProduct.ExpirationDate = DateTime.ParseExact(finalExpDate, @"dd/MM/yyyy", CultureInfo.CreateSpecificCulture("en-GB"));
+                }
                 updateProduct.IsExpiring = Convert.ToBoolean(grdProductList[18, e.RowIndex].Value);
                 FormCreateProduct form = new FormCreateProduct(this, updateProduct);
                 form.btnSave.Text = "UPDATE";
@@ -141,7 +144,7 @@ namespace POS.Forms
                 if (grdProductList.CurrentCell == null) return;
 
                 ViewInvoicePrices(grdProductList.CurrentCell.RowIndex);
-                
+
                 e.Handled = true;
             }
         }

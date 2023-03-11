@@ -63,21 +63,15 @@ namespace POS.Forms
                             FormMainMenu mainMenu = new FormMainMenu(currentUser);
                             mainMenu.Show();
                         }
-                        userHelper.CreateLoginLog(currentUser.UserID);
-                        //else if (login.Role == "Cashier")
-                        //{
-                        //    if (!helperPetty.IsPettyCashEntered())
-                        //    {
-                        //        pettyCash.CreatedByID = login.ID;
-                        //        pettyCash.CreatedDateTime = DateTime.Now;
-                        //        panelPettyCash panelPettyCash = new panelPettyCash(pettyCash);
-                        //        panelPettyCash.ShowDialog();
-                        //    }
-                        //    frmTransaction transaction = new frmTransaction(login);
-                        //    transaction.Show();
-                        //}
-                       
+               
+                        else if (currentUser.Role == "Cashier")
+                        {
+                          
+                            FormTransaction transaction = new FormTransaction(currentUser);
+                            transaction.Show();
+                        }
 
+                        userHelper.CreateLoginLog(currentUser.UserID);
                     }
                     else
                         MessageBox.Show(this, "User is inactive. ", "Inactive User!", MessageBoxButtons.OK, MessageBoxIcon.Error);

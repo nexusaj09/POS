@@ -30,11 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormTransaction));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.lblRole = new System.Windows.Forms.Label();
@@ -74,16 +74,16 @@
             this.metroPanel4 = new MetroFramework.Controls.MetroPanel();
             this.btnSettlePayment = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
+            this.btnShift = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
+            this.btnXReading = new System.Windows.Forms.Button();
             this.btnAdjustQty = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            this.btnVoid = new System.Windows.Forms.Button();
             this.btnDiscount = new System.Windows.Forms.Button();
             this.btnViewCart = new System.Windows.Forms.Button();
             this.btnHoldTransaction = new System.Windows.Forms.Button();
             this.btnProductSearch = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnNewTransaction = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.lblTransactionNbr = new System.Windows.Forms.Label();
             this.btnGcash = new System.Windows.Forms.PictureBox();
@@ -457,14 +457,14 @@
             this.grdProductList.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.grdProductList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.grdProductList.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(114)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(114)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdProductList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(114)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(114)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdProductList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.grdProductList.ColumnHeadersHeight = 30;
             this.grdProductList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdProductList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -476,14 +476,14 @@
             this.QTY,
             this.LESS,
             this.TOTAL});
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle19.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle19.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdProductList.DefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdProductList.DefaultCellStyle = dataGridViewCellStyle4;
             this.grdProductList.EnableHeadersVisualStyles = false;
             this.grdProductList.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.grdProductList.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
@@ -492,14 +492,14 @@
             this.grdProductList.Name = "grdProductList";
             this.grdProductList.ReadOnly = true;
             this.grdProductList.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle20.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdProductList.RowHeadersDefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdProductList.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.grdProductList.RowHeadersWidth = 51;
             this.grdProductList.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.grdProductList.RowTemplate.Height = 26;
@@ -540,9 +540,9 @@
             // 
             // PRICE
             // 
-            dataGridViewCellStyle17.Format = "C2";
-            dataGridViewCellStyle17.NullValue = null;
-            this.PRICE.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle2.Format = "C2";
+            dataGridViewCellStyle2.NullValue = null;
+            this.PRICE.DefaultCellStyle = dataGridViewCellStyle2;
             this.PRICE.HeaderText = "PRICE";
             this.PRICE.Name = "PRICE";
             this.PRICE.ReadOnly = true;
@@ -565,9 +565,9 @@
             // 
             // TOTAL
             // 
-            dataGridViewCellStyle18.Format = "C2";
-            dataGridViewCellStyle18.NullValue = null;
-            this.TOTAL.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle3.Format = "C2";
+            dataGridViewCellStyle3.NullValue = null;
+            this.TOTAL.DefaultCellStyle = dataGridViewCellStyle3;
             this.TOTAL.HeaderText = "TOTAL";
             this.TOTAL.Name = "TOTAL";
             this.TOTAL.ReadOnly = true;
@@ -602,16 +602,16 @@
             // 
             this.metroPanel4.Controls.Add(this.btnSettlePayment);
             this.metroPanel4.Controls.Add(this.btnClose);
-            this.metroPanel4.Controls.Add(this.button10);
+            this.metroPanel4.Controls.Add(this.btnShift);
             this.metroPanel4.Controls.Add(this.button9);
-            this.metroPanel4.Controls.Add(this.button8);
+            this.metroPanel4.Controls.Add(this.btnXReading);
             this.metroPanel4.Controls.Add(this.btnAdjustQty);
-            this.metroPanel4.Controls.Add(this.button6);
+            this.metroPanel4.Controls.Add(this.btnVoid);
             this.metroPanel4.Controls.Add(this.btnDiscount);
             this.metroPanel4.Controls.Add(this.btnViewCart);
             this.metroPanel4.Controls.Add(this.btnHoldTransaction);
             this.metroPanel4.Controls.Add(this.btnProductSearch);
-            this.metroPanel4.Controls.Add(this.button1);
+            this.metroPanel4.Controls.Add(this.btnNewTransaction);
             this.metroPanel4.HorizontalScrollbarBarColor = true;
             this.metroPanel4.HorizontalScrollbarHighlightOnWheel = false;
             this.metroPanel4.HorizontalScrollbarSize = 10;
@@ -652,19 +652,20 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // button10
+            // btnShift
             // 
-            this.button10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button10.Image = ((System.Drawing.Image)(resources.GetObject("button10.Image")));
-            this.button10.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button10.Location = new System.Drawing.Point(1332, 0);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(142, 79);
-            this.button10.TabIndex = 11;
-            this.button10.Text = "START SHIFT";
-            this.button10.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.button10.UseVisualStyleBackColor = true;
+            this.btnShift.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnShift.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnShift.Image = ((System.Drawing.Image)(resources.GetObject("btnShift.Image")));
+            this.btnShift.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnShift.Location = new System.Drawing.Point(1332, 0);
+            this.btnShift.Name = "btnShift";
+            this.btnShift.Size = new System.Drawing.Size(142, 79);
+            this.btnShift.TabIndex = 11;
+            this.btnShift.Text = "START SHIFT";
+            this.btnShift.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnShift.UseVisualStyleBackColor = true;
+            this.btnShift.Click += new System.EventHandler(this.btnShift_Click);
             // 
             // button9
             // 
@@ -680,18 +681,19 @@
             this.button9.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button9.UseVisualStyleBackColor = true;
             // 
-            // button8
+            // btnXReading
             // 
-            this.button8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button8.Image = ((System.Drawing.Image)(resources.GetObject("button8.Image")));
-            this.button8.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button8.Location = new System.Drawing.Point(1036, 0);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(142, 79);
-            this.button8.TabIndex = 9;
-            this.button8.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.button8.UseVisualStyleBackColor = true;
+            this.btnXReading.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnXReading.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnXReading.Image = ((System.Drawing.Image)(resources.GetObject("btnXReading.Image")));
+            this.btnXReading.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnXReading.Location = new System.Drawing.Point(1036, 0);
+            this.btnXReading.Name = "btnXReading";
+            this.btnXReading.Size = new System.Drawing.Size(142, 79);
+            this.btnXReading.TabIndex = 9;
+            this.btnXReading.Text = "X-READING";
+            this.btnXReading.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnXReading.UseVisualStyleBackColor = true;
             // 
             // btnAdjustQty
             // 
@@ -708,19 +710,19 @@
             this.btnAdjustQty.UseVisualStyleBackColor = true;
             this.btnAdjustQty.Click += new System.EventHandler(this.btnAdjustQty_Click);
             // 
-            // button6
+            // btnVoid
             // 
-            this.button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.Image = ((System.Drawing.Image)(resources.GetObject("button6.Image")));
-            this.button6.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button6.Location = new System.Drawing.Point(740, 0);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(142, 79);
-            this.button6.TabIndex = 7;
-            this.button6.Text = "VOID";
-            this.button6.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.button6.UseVisualStyleBackColor = true;
+            this.btnVoid.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnVoid.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVoid.Image = ((System.Drawing.Image)(resources.GetObject("btnVoid.Image")));
+            this.btnVoid.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnVoid.Location = new System.Drawing.Point(740, 0);
+            this.btnVoid.Name = "btnVoid";
+            this.btnVoid.Size = new System.Drawing.Size(142, 79);
+            this.btnVoid.TabIndex = 7;
+            this.btnVoid.Text = "VOID";
+            this.btnVoid.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnVoid.UseVisualStyleBackColor = true;
             // 
             // btnDiscount
             // 
@@ -782,20 +784,21 @@
             this.btnProductSearch.UseVisualStyleBackColor = true;
             this.btnProductSearch.Click += new System.EventHandler(this.btnProductSearch_Click);
             // 
-            // button1
+            // btnNewTransaction
             // 
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.button1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button1.Location = new System.Drawing.Point(0, 0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(142, 79);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "NEW TRANSACTION";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnNewTransaction.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnNewTransaction.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnNewTransaction.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNewTransaction.Image = ((System.Drawing.Image)(resources.GetObject("btnNewTransaction.Image")));
+            this.btnNewTransaction.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnNewTransaction.Location = new System.Drawing.Point(0, 0);
+            this.btnNewTransaction.Name = "btnNewTransaction";
+            this.btnNewTransaction.Size = new System.Drawing.Size(142, 79);
+            this.btnNewTransaction.TabIndex = 2;
+            this.btnNewTransaction.Text = "NEW TRANSACTION";
+            this.btnNewTransaction.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnNewTransaction.UseVisualStyleBackColor = true;
+            this.btnNewTransaction.Click += new System.EventHandler(this.btnNewTransaction_Click);
             // 
             // label9
             // 
@@ -972,17 +975,17 @@
         private MetroFramework.Controls.MetroPanel metroPanel3;
         private System.Windows.Forms.Label label4;
         private MetroFramework.Controls.MetroPanel metroPanel4;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnNewTransaction;
         private System.Windows.Forms.Button btnProductSearch;
-        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button btnXReading;
         private System.Windows.Forms.Button btnAdjustQty;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button btnVoid;
         private System.Windows.Forms.Button btnDiscount;
         private System.Windows.Forms.Button btnViewCart;
         private System.Windows.Forms.Button btnHoldTransaction;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button btnClose;
-        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button btnShift;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label lblTransactionNbr;
         private System.Windows.Forms.PictureBox btnGcash;
