@@ -89,8 +89,22 @@ namespace POS.Helpers
             {
                 MessageBox.Show(ex.ToString());
             }
+        }
 
+        public string GetConnectionString
+        {
+            get
+            {
+                DisplayConnSetup();
 
+                sqlbuilder.DataSource = dataSource;
+                sqlbuilder.InitialCatalog = initialCatalog;
+                sqlbuilder.UserID = user;
+                sqlbuilder.Password = password;
+                sqlbuilder.IntegratedSecurity = false;
+
+                return sqlbuilder.ConnectionString;
+            }
         }
 
         public bool DisplayConnSetup()

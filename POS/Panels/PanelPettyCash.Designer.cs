@@ -32,7 +32,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtGCashPettyCash = new System.Windows.Forms.TextBox();
-            this.btnProcess = new System.Windows.Forms.Button();
+            this.btnProceed = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtPettyCash
@@ -85,19 +85,20 @@
             this.txtGCashPettyCash.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtGCashPettyCash_KeyPress);
             this.txtGCashPettyCash.Leave += new System.EventHandler(this.txtGCashPettyCash_Leave);
             // 
-            // btnProcess
+            // btnProceed
             // 
-            this.btnProcess.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnProcess.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(125)))), ((int)(((byte)(254)))));
-            this.btnProcess.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnProcess.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnProcess.ForeColor = System.Drawing.Color.White;
-            this.btnProcess.Location = new System.Drawing.Point(410, 172);
-            this.btnProcess.Name = "btnProcess";
-            this.btnProcess.Size = new System.Drawing.Size(118, 34);
-            this.btnProcess.TabIndex = 11;
-            this.btnProcess.Text = "PROCEED";
-            this.btnProcess.UseVisualStyleBackColor = false;
+            this.btnProceed.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnProceed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(125)))), ((int)(((byte)(254)))));
+            this.btnProceed.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnProceed.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnProceed.ForeColor = System.Drawing.Color.White;
+            this.btnProceed.Location = new System.Drawing.Point(410, 172);
+            this.btnProceed.Name = "btnProceed";
+            this.btnProceed.Size = new System.Drawing.Size(118, 34);
+            this.btnProceed.TabIndex = 11;
+            this.btnProceed.Text = "PROCEED";
+            this.btnProceed.UseVisualStyleBackColor = false;
+            this.btnProceed.Click += new System.EventHandler(this.btnProceed_Click);
             // 
             // PanelPettyCash
             // 
@@ -106,7 +107,7 @@
             this.BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
             this.ClientSize = new System.Drawing.Size(543, 229);
             this.ControlBox = false;
-            this.Controls.Add(this.btnProcess);
+            this.Controls.Add(this.btnProceed);
             this.Controls.Add(this.txtGCashPettyCash);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtPettyCash);
@@ -127,6 +128,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtGCashPettyCash;
-        private System.Windows.Forms.Button btnProcess;
+        private System.Windows.Forms.Button btnProceed;
     }
 }
