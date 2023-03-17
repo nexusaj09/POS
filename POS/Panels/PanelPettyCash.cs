@@ -24,6 +24,11 @@ namespace POS.Panels
 
         }
 
+        private void PanelPettyCash_Load(object sender, EventArgs e)
+        {
+
+        }
+
         private void txtPettyCash_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != '.';
@@ -42,11 +47,6 @@ namespace POS.Panels
             {
                 e.Handled = true;
             }
-        }
-
-        private void PanelPettyCash_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void txtPettyCash_Enter(object sender, EventArgs e)
