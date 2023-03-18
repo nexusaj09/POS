@@ -89,18 +89,41 @@ namespace POS.Panels
 
         private async void btnProceed_Click(object sender, EventArgs e)
         {
-            var shift = new EmployeeShift
+            try
             {
-                EmployeeID = _currentUser.UserID,
-                StartTime = DateTime.Now,
-                TotalCashSalesShift = Convert.ToDecimal(txtPettyCash.Text),
-                TotalGcashSalesShift = Convert.ToDecimal(txtGCashPettyCash.Text),                
-                CreatedByID = _currentUser.UserID
-            };
+                if (Convert.ToDecimal(txtPettyCash.Text) == 0)
+                {
+                    MessageBox.Show("Please input your starting petty cash.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtPettyCash.Focus();
 
-            await _shiftHelper.StartShiftAsync(shift);
-            
-            Close();            
+                    return;
+                }
+
+                if (Convert.ToDecimal(txtGCashPettyCash.Text) == 0)
+                {
+                    MessageBox.Show("Please input your starting GCash petty cash", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtGCashPettyCash.Focus();
+
+                    return;
+                }
+               
+                var shift = new EmployeeShift
+                {
+                    EmployeeID = _currentUser.UserID,
+                    StartTime = DateTime.Now,
+                    TotalCashSalesShift = Convert.ToDecimal(txtPettyCash.Text),
+                    TotalGcashSalesShift = Convert.ToDecimal(txtGCashPettyCash.Text),
+                    CreatedByID = _currentUser.UserID
+                };
+
+                await _shiftHelper.StartShiftAsync(shift);
+
+                Close();
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
     }
 }

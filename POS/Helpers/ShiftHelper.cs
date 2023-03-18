@@ -10,7 +10,7 @@ namespace POS.Helpers
         public async Task StartShiftAsync(EmployeeShift employee)
         {
 			try
-			{
+			{                
                 using (var conn = new SqlConnection(GetConnectionString))
                 {
                     var sql = @"
@@ -34,7 +34,7 @@ namespace POS.Helpers
                         cmd.Parameters.AddWithValue("CreatedByID", employee.CreatedByID);
                         await cmd.ExecuteNonQueryAsync();
                     }
-                }
+                }                
             }
 			catch (Exception ex)
 			{
