@@ -263,7 +263,7 @@ namespace POS.Helpers
                                                         )";
                     cmd.Parameters.AddWithValue(@"UserID", currUserID);
                     cmd.Parameters.AddWithValue(@"WorkStation",workStation);
-                    cmd.Parameters.AddWithValue(@"SDate", DateTime.Now.ToString("MM/dd/yyyy"));
+                    cmd.Parameters.AddWithValue(@"SDate", DateTime.Now);
                     cmd.Parameters.AddWithValue(@"TimeIn", string.Format("{0:hh:mm:ss tt}", DateTime.Now));
                     cmd.ExecuteNonQuery();
                 }

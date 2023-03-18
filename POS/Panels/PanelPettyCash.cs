@@ -1,26 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using MetroFramework.Forms;
-using MetroFramework;
 using POS.Classes;
+using POS.Helpers;
 
 namespace POS.Panels
 {
     public partial class PanelPettyCash : MetroForm
     {
-        User currUser = new User();
+        private readonly User _currentUser;
+        private readonly ShiftHelper _shiftHelper;
 
         public PanelPettyCash(User user)
         {
-            this.currUser = user;
+            _currentUser = user;
+            _shiftHelper = new ShiftHelper();
+
             InitializeComponent();
+        }
+
+        private void PanelPettyCash_Load(object sender, EventArgs e)
+        {
 
         }
 
@@ -42,11 +42,6 @@ namespace POS.Panels
             {
                 e.Handled = true;
             }
-        }
-
-        private void PanelPettyCash_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void txtPettyCash_Enter(object sender, EventArgs e)
@@ -87,7 +82,45 @@ namespace POS.Panels
             {
                 txtGCashPettyCash.Text = "0.00";
             }
+        }
 
+        private async void btnProceed_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToDecimal(txtPettyCash.Text) == 0)
+                {
+                    MessageBox.Show("Please input your starting petty cash.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtPettyCash.Focus();
+
+                    return;
+                }
+
+                if (Convert.ToDecimal(txtGCashPettyCash.Text) == 0)
+                {
+                    MessageBox.Show("Please input your starting GCash petty cash", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtGCashPettyCash.Focus();
+
+                    return;
+                }
+               
+                var shift = new EmployeeShift
+                {
+                    EmployeeID = _currentUser.UserID,
+                    StartTime = DateTime.Now,
+                    TotalCashSalesShift = Convert.ToDecimal(txtPettyCash.Text),
+                    TotalGcashSalesShift = Convert.ToDecimal(txtGCashPettyCash.Text),
+                    CreatedByID = _currentUser.UserID
+                };
+
+                await _shiftHelper.StartShiftAsync(shift);
+
+                Close();
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
     }
 }
