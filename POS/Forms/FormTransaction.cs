@@ -65,7 +65,6 @@ namespace POS.Forms
             }
             EnableDisableShift(false);
             NewTransaction();
-
         }
 
         private void EnableDisableShift(bool enable)
@@ -84,8 +83,6 @@ namespace POS.Forms
             button9.Enabled = enable;
 
             btnShift.Text = enable == false ? "START SHIFT" : "END SHIFT";
-
-
         }
 
         private void StartShift()
@@ -119,19 +116,13 @@ namespace POS.Forms
 
         private void txtSearch_KeyDown(object sender, KeyEventArgs e)
         {
-
-
             if (e.KeyCode == Keys.Enter && !string.IsNullOrEmpty(txtSearch.Text))
             {
-
                 product = transactionHelper.InsertProductToGrid(txtSearch.Text);
 
                 AddProduct(product);
-
             }
-
         }
-
 
         private void grdProductList_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
@@ -160,7 +151,6 @@ namespace POS.Forms
                 _vatExempt = 0;
                 _total = 0;
                 _totaldue = 0;
-
 
                 foreach (DataGridViewRow item in grdProductList.Rows)
                 {
@@ -222,7 +212,6 @@ namespace POS.Forms
             {
                 btnShift.PerformClick();
             }
-
         }
 
         private void btnProductSearch_Click(object sender, EventArgs e)
@@ -234,7 +223,6 @@ namespace POS.Forms
                 txtSearch.Select();
             }
         }
-
 
         private void btnAdjustQty_Click(object sender, EventArgs e)
         {
@@ -255,7 +243,6 @@ namespace POS.Forms
                 panelAdjust.Dispose();
                 txtSearch.Select();
             }
-
 
             productQty = transactionHelper.CheckQtyProduct(grdProductList[1, currRow.Value].Value.ToString());
 
@@ -279,7 +266,6 @@ namespace POS.Forms
 
         public void AddProduct(Product product)
         {
-
             bool IsFound = false;
             int row = 0;
             int productQty = 0; ;
@@ -291,7 +277,6 @@ namespace POS.Forms
             }
             else
             {
-
                 productQty = transactionHelper.CheckQtyProduct(product.ProductCode);
 
                 if (productQty > 0)
@@ -319,14 +304,12 @@ namespace POS.Forms
                         {
                             count++;
                             grdProductList.Rows.Add(count, product.ProductCode, product.Description, product.UOM, product.FinalPrice, 1, 0.00M, product.FinalPrice);
-
                         }
                     }
                     else
                     {
                         count++;
                         grdProductList.Rows.Add(count, product.ProductCode, product.Description, product.UOM, product.FinalPrice, 1, 0.00M, product.FinalPrice);
-
                     }
 
                     GetTransactionTotal();
@@ -392,7 +375,6 @@ namespace POS.Forms
 
         private void SaveTransaction(string Status, bool isSettlePayment)
         {
-
             bool _isProcessed = false;
 
             if (grdProductList.Rows.Count == 0) return;
@@ -429,12 +411,10 @@ namespace POS.Forms
                 transactionDetail.LastModifiedDateTime = DateTime.Now;
                 transactionDetail.Status = Status;
                 transactionDetailList.Add(transactionDetail);
-
             }
 
             if (isSettlePayment)
             {
-
                 using (PanelSettlePayments payments = new PanelSettlePayments(transaction, transactionDetailList))
                 {
                     payments.ShowDialog();
@@ -453,8 +433,6 @@ namespace POS.Forms
 
                 if (_isProcessed)
                 {
-
-
                     foreach (TransactionDetail row in transactionDetailList)
                     {
                         transactionHelper.SaveTransactionDetails(row);
@@ -484,8 +462,6 @@ namespace POS.Forms
 
                     FormInit login = new FormInit();
                     login.Show();
-
-
                 }
             }
 
@@ -520,9 +496,7 @@ namespace POS.Forms
                 {
                     panelPettyCash.ShowDialog();
                     panelPettyCash.Dispose();
-
                 }
-
             }
             else if (btnShift.Text.Equals("END SHIFT") && shifted == true)
             {
