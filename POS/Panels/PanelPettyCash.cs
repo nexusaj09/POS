@@ -8,14 +8,11 @@ namespace POS.Panels
 {
     public partial class PanelPettyCash : MetroForm
     {
-        //User currUser = new User();
-
         private readonly User _currentUser;
         private readonly ShiftHelper _shiftHelper;
 
         public PanelPettyCash(User user)
         {
-            //this.currUser = user;s
             _currentUser = user;
             _shiftHelper = new ShiftHelper();
 
