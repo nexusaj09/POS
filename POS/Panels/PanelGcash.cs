@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using MetroFramework.Forms;
 
@@ -18,16 +11,23 @@ namespace POS.Panels
             InitializeComponent();
         }
 
-        private void metroButton1_Click(object sender, EventArgs e)
+        private void PanelGcash_KeyDown(object sender, KeyEventArgs e)
         {
-
+            if (e.KeyCode == Keys.Escape)
+            {
+                Close();
+            }
         }
 
         private void btnCashIN_Click(object sender, EventArgs e)
         {
             GCashTransaction("CASH IN");
-        }
+        }        
 
+        private void btnCashOut_Click(object sender, EventArgs e)
+        {
+            GCashTransaction("CASH OUT");
+        }
 
         private void GCashTransaction(string mode)
         {
@@ -38,21 +38,8 @@ namespace POS.Panels
                 gCashTransaction.IsCashIn = mode.Equals("CASH IN") ? true : false;
                 gCashTransaction.ShowDialog();
                 gCashTransaction.Dispose();
-                this.Close();
+                Close();
             }
-        }
-
-        private void PanelGcash_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Escape)
-            {
-                this.Close();
-            }
-        }
-
-        private void btnCashOut_Click(object sender, EventArgs e)
-        {
-            GCashTransaction("CASH OUT");
         }
     }
 }
