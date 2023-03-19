@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using MetroFramework.Forms;
+using POS.Enumerators;
 
 namespace POS.Panels
 {
@@ -21,21 +22,20 @@ namespace POS.Panels
 
         private void btnCashIN_Click(object sender, EventArgs e)
         {
-            GCashTransaction("CASH IN");
+            GCashTransaction(GCashTransactionType.CashIn);
         }        
 
         private void btnCashOut_Click(object sender, EventArgs e)
         {
-            GCashTransaction("CASH OUT");
+            GCashTransaction(GCashTransactionType.CashOut);
         }
 
-        private void GCashTransaction(string mode)
+        private void GCashTransaction(GCashTransactionType transactionType)
         {
             using (PanelCreateGCashTransaction gCashTransaction = new PanelCreateGCashTransaction())
             {
-
-                gCashTransaction.Text = mode.Equals("CASH IN") ? "GCASH CASH IN" : "GCASH CASH OUT";
-                gCashTransaction.IsCashIn = mode.Equals("CASH IN") ? true : false;
+                gCashTransaction.Text = transactionType == GCashTransactionType.CashIn ? "GCASH CASH IN" : "GCASH CASH OUT";
+                gCashTransaction.IsCashIn = transactionType == GCashTransactionType.CashIn;
                 gCashTransaction.ShowDialog();
                 gCashTransaction.Dispose();
                 Close();
