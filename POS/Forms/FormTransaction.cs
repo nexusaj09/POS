@@ -359,7 +359,6 @@ namespace POS.Forms
             using (PanelGcash panelGcash = new PanelGcash())
             {
                 panelGcash.ShowDialog();
-                panelGcash.Dispose();
                 txtSearch.Select();
             }
         }
