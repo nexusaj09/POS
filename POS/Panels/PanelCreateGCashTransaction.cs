@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using MetroFramework.Forms;
 using POS.Classes;
@@ -34,13 +27,97 @@ namespace POS.Panels
             InitializeComponent();
         }
 
+        private void PanelCreateGCashTransaction_Load(object sender, EventArgs e)
+        {
+            Init();
+        }
+
+        private void txtAmt_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtAmt.Text))
+            {
+                Init();
+                txtAmtTendered.Enabled = !string.IsNullOrEmpty(txtAmt.Text) && IsCashIn;
+
+                return;
+            }
+
+            amt = Convert.ToDecimal(txtAmt.Text);
+
+            fee = GetTransactionCashInFee(amt);
+            txtFee.Text = string.Format("{0:C2}", fee);
+
+            total = amt + fee;
+            lblTotal.Text = string.Format("{0:C2}", total);
+
+            txtAmtTendered.Enabled = !string.IsNullOrEmpty(txtAmt.Text) && IsCashIn;
+        }
+
+        private void txtAmt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != '.';
+
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void PanelCreateGCashTransaction_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                Close();
+            }
+        }
+
+        private void txtAmtTendered_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != '.';
+
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtAmtTendered_TextChanged(object sender, EventArgs e)
+        {
+            string _amtTendered = txtAmtTendered.Text;
+
+            if (!string.IsNullOrEmpty(txtAmtTendered.Text) && !_amtTendered.Substring(0, 1).Equals("."))
+            {
+                change = Convert.ToDecimal(txtAmtTendered.Text) - total;
+            }
+            else if (string.IsNullOrEmpty(txtAmtTendered.Text))
+            {
+                change = 0.00M;
+            }
+
+            lblChange.Text = String.Format("{0:C2}", change);
+
+            amtTendered = !string.IsNullOrEmpty(txtAmtTendered.Text) ? Convert.ToDecimal(txtAmtTendered.Text) : 0.00M;
+        }
+
+        private void Init()
+        {
+            fee = 0;
+            amt = 0;
+            total = 0;
+            change = 0;
+
+            txtAmt.Select();
+            lblTotal.Text = string.Format("{0:C2}", total);
+            txtFee.Text = string.Format("{0:C2}", fee);
+            lblChange.Text = string.Format("{0:C2}", change);
+        }
+
         private decimal GetTransactionCashInFee(decimal amount)
         {
             decimal fee = 0;
 
             if (IsCashIn)
             {
-
                 if (amount >= 10 && amount <= 1000)
                 {
                     fee = 10;
@@ -130,7 +207,6 @@ namespace POS.Panels
                     fee = 0;
                 }
             }
-
             else
             {
                 if (amount >= 1 && amount <= 1000)
@@ -146,102 +222,9 @@ namespace POS.Panels
                     fee = (amount * 0.025M);
                 }
             }
-
             fee = decimal.Round(fee, 2);
 
             return fee;
-        }
-
-        private void txtAmt_TextChanged(object sender, EventArgs e)
-        {
-
-            if (string.IsNullOrEmpty(txtAmt.Text))
-            {
-                Init();
-                txtAmtTendered.Enabled = !string.IsNullOrEmpty(txtAmt.Text) && IsCashIn;
-                return;
-            }
-
-            amt = Convert.ToDecimal(txtAmt.Text);
-
-            fee = GetTransactionCashInFee(amt);
-
-            txtFee.Text = string.Format("{0:C2}", fee);
-
-            total = amt + fee;
-
-            lblTotal.Text = string.Format("{0:C2}", total);
-
-            txtAmtTendered.Enabled = !string.IsNullOrEmpty(txtAmt.Text) && IsCashIn;
-
-        }
-
-        private void txtAmt_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != '.';
-
-            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void Init()
-        {
-
-            fee = 0;
-            amt = 0;
-            total = 0;
-            change = 0;
-
-            txtAmt.Select();
-            lblTotal.Text = string.Format("{0:C2}", total);
-            txtFee.Text = string.Format("{0:C2}", fee);
-            lblChange.Text = string.Format("{0:C2}", change);
-
-
-        }
-
-        private void PanelCreateGCashTransaction_Load(object sender, EventArgs e)
-        {
-            Init();
-        }
-
-        private void PanelCreateGCashTransaction_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Escape)
-            {
-                this.Close();
-            }
-        }
-
-        private void txtAmtTendered_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != '.';
-
-            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void txtAmtTendered_TextChanged(object sender, EventArgs e)
-        {
-
-            string _amtTendered = txtAmtTendered.Text;
-
-            if (!string.IsNullOrEmpty(txtAmtTendered.Text) && !_amtTendered.Substring(0, 1).Equals("."))
-            {
-                change = Convert.ToDecimal(txtAmtTendered.Text) - total;
-            }
-            else if (string.IsNullOrEmpty(txtAmtTendered.Text))
-            {
-                change = 0.00M;
-            }
-
-            lblChange.Text = String.Format("{0:C2}", change);
-
-            amtTendered = !string.IsNullOrEmpty(txtAmtTendered.Text) ? Convert.ToDecimal(txtAmtTendered.Text) : 0.00M;
         }
     }
 }
