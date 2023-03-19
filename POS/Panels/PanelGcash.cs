@@ -37,7 +37,6 @@ namespace POS.Panels
                 gCashTransaction.Text = transactionType == GCashTransactionType.CashIn ? "GCASH CASH IN" : "GCASH CASH OUT";
                 gCashTransaction.IsCashIn = transactionType == GCashTransactionType.CashIn;
                 gCashTransaction.ShowDialog();
-                gCashTransaction.Dispose();
                 Close();
             }
         }
