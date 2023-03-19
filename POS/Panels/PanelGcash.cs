@@ -1,15 +1,20 @@
 ﻿using System;
 using System.Windows.Forms;
 using MetroFramework.Forms;
+using POS.Classes;
 using POS.Enumerators;
 
 namespace POS.Panels
 {
     public partial class PanelGcash : MetroForm
     {
-        public PanelGcash()
+        private readonly EmployeeShift _employeeShift;
+
+        public PanelGcash(EmployeeShift employeeShift)
         {
             InitializeComponent();
+
+            _employeeShift = employeeShift;
         }
 
         private void PanelGcash_KeyDown(object sender, KeyEventArgs e)
@@ -36,6 +41,7 @@ namespace POS.Panels
             {
                 gCashTransaction.Text = transactionType == GCashTransactionType.CashIn ? "GCASH CASH IN" : "GCASH CASH OUT";
                 gCashTransaction.IsCashIn = transactionType == GCashTransactionType.CashIn;
+                gCashTransaction.EmployeeShift = _employeeShift;
                 gCashTransaction.ShowDialog();
                 Close();
             }

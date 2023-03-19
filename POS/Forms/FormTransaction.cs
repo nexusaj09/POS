@@ -356,7 +356,7 @@ namespace POS.Forms
 
         private void btnGcash_Click(object sender, EventArgs e)
         {
-            using (PanelGcash panelGcash = new PanelGcash())
+            using (PanelGcash panelGcash = new PanelGcash(EmployeeShift))
             {
                 panelGcash.ShowDialog();
                 txtSearch.Select();

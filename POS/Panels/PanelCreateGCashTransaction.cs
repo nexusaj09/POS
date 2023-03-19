@@ -13,14 +13,10 @@ namespace POS.Panels
         decimal amt = 0;
         decimal total = 0;
         decimal change = 0;
-        decimal amtTendered = 0;
+        decimal amtTendered = 0;        
 
-        private bool _isCashIn = false;
-        public virtual bool IsCashIn
-        {
-            get { return _isCashIn; }
-            set { _isCashIn = value; }
-        }
+        public bool IsCashIn { get; set; }
+        public EmployeeShift EmployeeShift { get; set; }
 
         public PanelCreateGCashTransaction()
         {
@@ -30,6 +26,8 @@ namespace POS.Panels
         private void PanelCreateGCashTransaction_Load(object sender, EventArgs e)
         {
             Init();
+
+            lblGCashBalance.Text = EmployeeShift.TotalGcashSalesShift.ToString("#,##0.00");
         }
 
         private void txtAmt_TextChanged(object sender, EventArgs e)
