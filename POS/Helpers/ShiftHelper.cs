@@ -7,7 +7,7 @@ namespace POS.Helpers
 {
     public class ShiftHelper : DatabaseConnection
     {
-        public async Task StartShiftAsync(EmployeeShift employee)
+        public async Task<EmployeeShift> StartShiftAsync(EmployeeShift employee)
         {
 			try
 			{                
@@ -21,6 +21,8 @@ namespace POS.Helpers
                             @EmployeeID, @StartTime, @TotalCashSalesShift,
                             @TotalGcashSalesShift, @CreatedByID
                         )
+
+                        SELECT SCOPE_IDENTITY();
                     ";
 
                     conn.Open();
@@ -32,7 +34,11 @@ namespace POS.Helpers
                         cmd.Parameters.AddWithValue("TotalCashSalesShift", employee.TotalCashSalesShift);
                         cmd.Parameters.AddWithValue("TotalGcashSalesShift", employee.TotalGcashSalesShift);
                         cmd.Parameters.AddWithValue("CreatedByID", employee.CreatedByID);
-                        await cmd.ExecuteNonQueryAsync();
+                        var id = Convert.ToInt32(await cmd.ExecuteScalarAsync());
+
+                        employee.ID = id;
+
+                        return employee;
                     }
                 }                
             }
