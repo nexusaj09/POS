@@ -262,14 +262,16 @@
             // 
             // lblGCashBalance
             // 
+            this.lblGCashBalance.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblGCashBalance.AutoSize = true;
             this.lblGCashBalance.Font = new System.Drawing.Font("Segoe UI", 39.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGCashBalance.ForeColor = System.Drawing.Color.White;
             this.lblGCashBalance.Location = new System.Drawing.Point(253, 53);
+            this.lblGCashBalance.MinimumSize = new System.Drawing.Size(268, 71);
             this.lblGCashBalance.Name = "lblGCashBalance";
             this.lblGCashBalance.Size = new System.Drawing.Size(268, 71);
             this.lblGCashBalance.TabIndex = 4;
-            this.lblGCashBalance.Text = "10,000.00";
+            this.lblGCashBalance.Text = "0.00";
             this.lblGCashBalance.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label8
