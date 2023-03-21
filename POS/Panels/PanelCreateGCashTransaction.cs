@@ -2,25 +2,34 @@
 using System.Windows.Forms;
 using MetroFramework.Forms;
 using POS.Classes;
+using POS.Enumerators;
+using POS.Helpers;
 
 namespace POS.Panels
 {
     public partial class PanelCreateGCashTransaction : MetroForm
     {
-        GCashTransaction gCashTransaction = new GCashTransaction();
+        private readonly GCashTransactionHelper _gcashTransactionHelper;
+        private readonly User _currentUser;
+        private readonly bool _isCashIn;
 
         decimal fee = 0;
         decimal amt = 0;
         decimal total = 0;
         decimal change = 0;
-        decimal amtTendered = 0;        
+        decimal amtTendered = 0;
 
-        public bool IsCashIn { get; set; }
+        public GCashTransactionType TransactionType { get; set; }
         public EmployeeShift EmployeeShift { get; set; }
-
-        public PanelCreateGCashTransaction()
+        
+        public PanelCreateGCashTransaction(User currentUser)
         {
             InitializeComponent();
+            
+            _currentUser = currentUser;
+            _isCashIn = TransactionType == GCashTransactionType.CashIn;
+
+            _gcashTransactionHelper = new GCashTransactionHelper();
         }
 
         private void PanelCreateGCashTransaction_Load(object sender, EventArgs e)
@@ -35,7 +44,7 @@ namespace POS.Panels
             if (string.IsNullOrEmpty(txtAmt.Text))
             {
                 Init();
-                txtAmtTendered.Enabled = !string.IsNullOrEmpty(txtAmt.Text) && IsCashIn;
+                txtAmtTendered.Enabled = !string.IsNullOrEmpty(txtAmt.Text) && _isCashIn;
 
                 return;
             }
@@ -48,7 +57,7 @@ namespace POS.Panels
             total = amt + fee;
             lblTotal.Text = string.Format("{0:C2}", total);
 
-            txtAmtTendered.Enabled = !string.IsNullOrEmpty(txtAmt.Text) && IsCashIn;
+            txtAmtTendered.Enabled = !string.IsNullOrEmpty(txtAmt.Text) && _isCashIn;
         }
 
         private void txtAmt_KeyPress(object sender, KeyPressEventArgs e)
@@ -97,6 +106,34 @@ namespace POS.Panels
             amtTendered = !string.IsNullOrEmpty(txtAmtTendered.Text) ? Convert.ToDecimal(txtAmtTendered.Text) : 0.00M;
         }
 
+        private async void btnProcess_Click(object sender, EventArgs e)
+        {
+            var transactionNbr = await _gcashTransactionHelper.GetNextTransactionNbrAsync();
+
+            var gCashTransaction = new GCashTransaction
+            {
+                TransactionNbr = transactionNbr,
+                Amt = amt,
+                TransactionFee = fee,
+                RefNbr = txtRefNbr.Text,
+                TotalAmt = total,
+                ChangeAmt = change,
+                TenderedAmt = amtTendered,
+                ShiftID = EmployeeShift.ID,
+                TransactionType = (int)TransactionType,
+                CreatedByID = _currentUser.UserID,
+                CreatedDateTime = DateTime.Now,
+            };
+
+            var isSuccessfullySaved = await _gcashTransactionHelper.SaveGCashTransactionAsync(gCashTransaction);
+            if (isSuccessfullySaved)
+            {
+                DialogResult = DialogResult.OK;
+                Close();
+            }
+                
+        }
+
         private void Init()
         {
             fee = 0;
@@ -114,7 +151,7 @@ namespace POS.Panels
         {
             decimal fee = 0;
 
-            if (IsCashIn)
+            if (_isCashIn)
             {
                 if (amount >= 10 && amount <= 1000)
                 {
@@ -223,6 +260,6 @@ namespace POS.Panels
             fee = decimal.Round(fee, 2);
 
             return fee;
-        }
+        }        
     }
 }

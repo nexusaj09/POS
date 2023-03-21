@@ -9,12 +9,14 @@ namespace POS.Panels
     public partial class PanelGcash : MetroForm
     {
         private readonly EmployeeShift _employeeShift;
+        private readonly User _currentUser;
 
-        public PanelGcash(EmployeeShift employeeShift)
+        public PanelGcash(User currentUser, EmployeeShift employeeShift)
         {
             InitializeComponent();
 
             _employeeShift = employeeShift;
+            _currentUser = currentUser;
         }
 
         private void PanelGcash_KeyDown(object sender, KeyEventArgs e)
@@ -37,13 +39,15 @@ namespace POS.Panels
 
         private void GCashTransaction(GCashTransactionType transactionType)
         {
-            using (PanelCreateGCashTransaction gCashTransaction = new PanelCreateGCashTransaction())
+            using (PanelCreateGCashTransaction gCashTransaction = new PanelCreateGCashTransaction(_currentUser))
             {
                 gCashTransaction.Text = transactionType == GCashTransactionType.CashIn ? "GCASH CASH IN" : "GCASH CASH OUT";
-                gCashTransaction.IsCashIn = transactionType == GCashTransactionType.CashIn;
                 gCashTransaction.EmployeeShift = _employeeShift;
-                gCashTransaction.ShowDialog();
-                Close();
+                gCashTransaction.TransactionType = transactionType;
+                
+                var result = gCashTransaction.ShowDialog();
+                if (result == DialogResult.OK)
+                    Close();
             }
         }
     }

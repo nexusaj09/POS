@@ -265,6 +265,7 @@
     <Compile Include="Helpers\CategoryHelper.cs" />
     <Compile Include="Helpers\DatabaseConnection.cs" />
     <Compile Include="Helpers\DiscountHelper.cs" />
+    <Compile Include="Helpers\GCashTransactionHelper.cs" />
     <Compile Include="Helpers\InvoiceHelper.cs" />
     <Compile Include="Helpers\NotesHelper.cs" />
     <Compile Include="Helpers\ProductHelper.cs" />
