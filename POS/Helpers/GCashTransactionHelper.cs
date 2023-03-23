@@ -31,13 +31,13 @@ namespace POS.Helpers
                         {
                             if (!reader.HasRows)
                                 return $"{dateStr}1001";
-                                                        
-                            var currentRefNbr = reader[0].ToString();
+
+                            var currentRefNbr = reader["TransactionNbr"].ToString();
                             var count = int.Parse(currentRefNbr.Substring(8, 4));
                             return $"{dateStr}{(count + 1)}";
                         }
 
-                        return string.Empty;
+                        return $"{dateStr}1001";
                     }
                 }
             }
