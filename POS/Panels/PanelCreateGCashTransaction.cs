@@ -175,7 +175,9 @@ namespace POS.Panels
             if (string.IsNullOrEmpty(txtAmtTendered.Text))
             {
                 validations.Add("• Please input the tendered amount.");
-            }
+
+            if (change < 0)
+                validations.Add("• Please review the amount tendered.");
 
             return validations;
         }
