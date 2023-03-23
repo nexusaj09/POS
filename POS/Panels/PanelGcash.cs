@@ -39,11 +39,10 @@ namespace POS.Panels
 
         private void GCashTransaction(GCashTransactionType transactionType)
         {
-            using (PanelCreateGCashTransaction gCashTransaction = new PanelCreateGCashTransaction(_currentUser))
+            using (PanelCreateGCashTransaction gCashTransaction = new PanelCreateGCashTransaction(_currentUser, transactionType))
             {
                 gCashTransaction.Text = transactionType == GCashTransactionType.CashIn ? "GCASH CASH IN" : "GCASH CASH OUT";
                 gCashTransaction.EmployeeShift = _employeeShift;
-                gCashTransaction.TransactionType = transactionType;
                 
                 var result = gCashTransaction.ShowDialog();
                 if (result == DialogResult.OK)

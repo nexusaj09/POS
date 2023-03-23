@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using MetroFramework.Forms;
 using POS.Classes;
@@ -10,6 +12,7 @@ namespace POS.Panels
     public partial class PanelCreateGCashTransaction : MetroForm
     {
         private readonly GCashTransactionHelper _gcashTransactionHelper;
+        private readonly GCashTransactionType _transactionType;
         private readonly User _currentUser;
         private readonly bool _isCashIn;
 
@@ -18,16 +21,16 @@ namespace POS.Panels
         decimal total = 0;
         decimal change = 0;
         decimal amtTendered = 0;
-
-        public GCashTransactionType TransactionType { get; set; }
+        
         public EmployeeShift EmployeeShift { get; set; }
         
-        public PanelCreateGCashTransaction(User currentUser)
+        public PanelCreateGCashTransaction(User currentUser, GCashTransactionType transactionType)
         {
             InitializeComponent();
             
             _currentUser = currentUser;
-            _isCashIn = TransactionType == GCashTransactionType.CashIn;
+            _transactionType = transactionType;
+            _isCashIn = transactionType == GCashTransactionType.CashIn;
 
             _gcashTransactionHelper = new GCashTransactionHelper();
         }
@@ -44,6 +47,7 @@ namespace POS.Panels
             if (string.IsNullOrEmpty(txtAmt.Text))
             {
                 Init();
+                txtAmtTendered.Clear();
                 txtAmtTendered.Enabled = !string.IsNullOrEmpty(txtAmt.Text) && _isCashIn;
 
                 return;
@@ -108,6 +112,13 @@ namespace POS.Panels
 
         private async void btnProcess_Click(object sender, EventArgs e)
         {
+            var validations = ValidateTransaction();
+            if (validations.Any())
+            {
+                MessageBox.Show(string.Join("\n", validations),"Validation Errors...", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             var transactionNbr = await _gcashTransactionHelper.GetNextTransactionNbrAsync();
 
             var gCashTransaction = new GCashTransaction
@@ -120,7 +131,7 @@ namespace POS.Panels
                 ChangeAmt = change,
                 TenderedAmt = amtTendered,
                 ShiftID = EmployeeShift.ID,
-                TransactionType = (int)TransactionType,
+                TransactionType = (int)_transactionType,
                 CreatedByID = _currentUser.UserID,
                 CreatedDateTime = DateTime.Now,
             };
@@ -145,6 +156,28 @@ namespace POS.Panels
             lblTotal.Text = string.Format("{0:C2}", total);
             txtFee.Text = string.Format("{0:C2}", fee);
             lblChange.Text = string.Format("{0:C2}", change);
+        }
+
+        private IList<string> ValidateTransaction()
+        {
+            IList<string> validations = new List<string>();
+
+            if (string.IsNullOrEmpty(txtAmt.Text))
+            {
+                validations.Add("• Please input an amount.");
+            }
+
+            if (string.IsNullOrEmpty(txtRefNbr.Text))
+            {
+                validations.Add("• Please the input GCash reference number.");
+            }
+
+            if (string.IsNullOrEmpty(txtAmtTendered.Text))
+            {
+                validations.Add("• Please input the tendered amount.");
+            }
+
+            return validations;
         }
 
         private decimal GetTransactionCashInFee(decimal amount)
