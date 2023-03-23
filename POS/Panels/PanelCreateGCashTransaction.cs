@@ -61,6 +61,9 @@ namespace POS.Panels
             total = amt + fee;
             lblTotal.Text = string.Format("{0:C2}", total);
 
+            if (!string.IsNullOrEmpty(txtAmtTendered.Text))
+                txtAmtTendered.Clear();
+
             txtAmtTendered.Enabled = !string.IsNullOrEmpty(txtAmt.Text) && _isCashIn;
         }
 
