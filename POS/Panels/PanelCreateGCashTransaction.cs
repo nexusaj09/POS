@@ -16,6 +16,7 @@ namespace POS.Panels
         private readonly User _currentUser;
         private readonly bool _isCashIn;
 
+        private protected decimal _availableBalance = 0;
         decimal fee = 0;
         decimal amt = 0;
         decimal total = 0;
@@ -35,11 +36,14 @@ namespace POS.Panels
             _gcashTransactionHelper = new GCashTransactionHelper();
         }
 
-        private void PanelCreateGCashTransaction_Load(object sender, EventArgs e)
+        private async void PanelCreateGCashTransaction_Load(object sender, EventArgs e)
         {
             Init();
 
-            lblGCashBalance.Text = EmployeeShift.TotalGcashSalesShift.ToString("#,##0.00");
+            var gcashBalance = await _gcashTransactionHelper.GetGCashAvailableBalanceAsync(EmployeeShift.ID);
+            _availableBalance = EmployeeShift.TotalGcashSalesShift + gcashBalance;
+
+            lblGCashBalance.Text = _availableBalance.ToString("#,##0.00");
         }
 
         private void txtAmt_TextChanged(object sender, EventArgs e)

@@ -7,6 +7,41 @@ namespace POS.Helpers
 {
     public class GCashTransactionHelper : DatabaseConnection
     {
+        public async Task<decimal> GetGCashAvailableBalanceAsync(int employeeShiftID)
+        {
+            using (var conn = new SqlConnection(GetConnectionString))
+            {
+                const string sql = @"
+                    SELECT COALESCE(SUM(Amount), 0) AS GCashAvailableBalance FROM (
+	                    -- Cash In amount
+	                    SELECT
+		                    -SUM(Amt) AS Amount
+	                    FROM [dbo].[GCashTransactions]
+	                    WHERE ShiftID = @ShiftID
+		                    AND TransactionType = 1
+
+	                    UNION
+
+	                    -- Cash Out amount
+	                    SELECT
+		                    SUM(Amt) AS Amount
+	                    FROM [dbo].[GCashTransactions]
+	                    WHERE ShiftID = @ShiftID
+		                    AND TransactionType = 2
+                    ) AS GCash
+                ";
+
+                conn.Open();
+                using (var cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("ShiftID", employeeShiftID);
+                    
+                    var availableBalance = Convert.ToDecimal(await cmd.ExecuteScalarAsync());
+                    return availableBalance;
+                }
+            }
+        }
+
         public async Task<string> GetNextTransactionNbrAsync()
         {
             string dateStr = DateTime.Now.ToString("yyyyMMdd");
