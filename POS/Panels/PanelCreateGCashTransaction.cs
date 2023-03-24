@@ -172,11 +172,14 @@ namespace POS.Panels
             if (string.IsNullOrEmpty(txtRefNbr.Text))
                 validations.Add("• Please the input GCash reference number.");
 
-            if (string.IsNullOrEmpty(txtAmtTendered.Text))
-                validations.Add("• Please input the tendered amount.");
+            if (_isCashIn)
+            {
+                if (string.IsNullOrEmpty(txtAmtTendered.Text))
+                    validations.Add("• Please input the tendered amount.");
 
-            if (change < 0)
-                validations.Add("• Please review the amount tendered.");
+                if (change < 0)
+                    validations.Add("• Please review the amount tendered.");
+            }
             
             return validations;
         }
