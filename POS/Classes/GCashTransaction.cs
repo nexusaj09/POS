@@ -12,5 +12,6 @@
         public decimal TenderedAmt { get; set; }
         public int TransactionType { get; set; }
         public int ShiftID { get; set; }
+        public bool IsNegative { get; set; }
     }
 }

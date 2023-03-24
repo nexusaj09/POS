@@ -50,11 +50,11 @@ namespace POS.Helpers
                 var sql = @"
                     INSERT INTO [dbo].[GCashTransactions] (
 	                    TransactionNbr, Amt, TransactionFee, RefNbr, TotalAmt,
-	                    ChangeAmt, TenderedAmt, ShiftID, TransactionType,
+	                    ChangeAmt, TenderedAmt, ShiftID, TransactionType, IsNegative
 	                    CreatedByID, CreatedDateTime
                     ) VALUES (
 	                    @TransactionNbr, @Amt, @TransactionFee, @RefNbr, @TotalAmt,
-	                    @ChangeAmt, @TenderedAmt, @ShiftID, @TransactionType,
+	                    @ChangeAmt, @TenderedAmt, @ShiftID, @TransactionType, @IsNegative,
 	                    @CreatedByID, @CreatedDateTime
                     )
                 ";
@@ -71,6 +71,7 @@ namespace POS.Helpers
                     cmd.Parameters.AddWithValue("TenderedAmt", gcashTransaction.TenderedAmt);
                     cmd.Parameters.AddWithValue("ShiftID", gcashTransaction.ShiftID);
                     cmd.Parameters.AddWithValue("TransactionType", gcashTransaction.TransactionType);
+                    cmd.Parameters.AddWithValue("IsNegative", gcashTransaction.IsNegative);
                     cmd.Parameters.AddWithValue("CreatedByID", gcashTransaction.CreatedByID);
                     cmd.Parameters.AddWithValue("CreatedDateTime", gcashTransaction.CreatedDateTime);
 

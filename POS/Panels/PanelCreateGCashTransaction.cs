@@ -135,6 +135,7 @@ namespace POS.Panels
                 TenderedAmt = amtTendered,
                 ShiftID = EmployeeShift.ID,
                 TransactionType = (int)_transactionType,
+                IsNegative = _transactionType == GCashTransactionType.CashIn,
                 CreatedByID = _currentUser.UserID,
                 CreatedDateTime = DateTime.Now,
             };
