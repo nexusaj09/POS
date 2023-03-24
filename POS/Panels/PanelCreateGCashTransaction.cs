@@ -178,6 +178,9 @@ namespace POS.Panels
 
             if (_isCashIn)
             {
+                if ((_availableBalance - amt) < 0)
+                    validations.Add("• You have insufficient funds in your gcash account.");
+
                 if (string.IsNullOrEmpty(txtAmtTendered.Text))
                     validations.Add("• Please input the tendered amount.");
 
