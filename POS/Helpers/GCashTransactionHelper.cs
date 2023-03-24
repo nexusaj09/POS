@@ -50,7 +50,7 @@ namespace POS.Helpers
                 var sql = @"
                     INSERT INTO [dbo].[GCashTransactions] (
 	                    TransactionNbr, Amt, TransactionFee, RefNbr, TotalAmt,
-	                    ChangeAmt, TenderedAmt, ShiftID, TransactionType, IsNegative
+	                    ChangeAmt, TenderedAmt, ShiftID, TransactionType, IsNegative,
 	                    CreatedByID, CreatedDateTime
                     ) VALUES (
 	                    @TransactionNbr, @Amt, @TransactionFee, @RefNbr, @TotalAmt,
