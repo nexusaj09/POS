@@ -8,6 +8,8 @@ namespace POS.Panels
 {
     public partial class PanelPettyCash : MetroForm
     {
+        public EmployeeShift EmployeeShift { get; private set; }
+
         private readonly User _currentUser;
         private readonly ShiftHelper _shiftHelper;
 
@@ -113,7 +115,9 @@ namespace POS.Panels
                     CreatedByID = _currentUser.UserID
                 };
 
-                await _shiftHelper.StartShiftAsync(shift);
+                EmployeeShift = await _shiftHelper.StartShiftAsync(shift);                
+
+                DialogResult = DialogResult.OK;
 
                 Close();
             }
@@ -121,6 +125,6 @@ namespace POS.Panels
             {
 
             }
-        }
+        }        
     }
 }

@@ -1,58 +1,53 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using MetroFramework.Forms;
+using POS.Classes;
+using POS.Enumerators;
 
 namespace POS.Panels
 {
     public partial class PanelGcash : MetroForm
     {
-        public PanelGcash()
+        private readonly EmployeeShift _employeeShift;
+        private readonly User _currentUser;
+
+        public PanelGcash(User currentUser, EmployeeShift employeeShift)
         {
             InitializeComponent();
-        }
 
-        private void metroButton1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnCashIN_Click(object sender, EventArgs e)
-        {
-            GCashTransaction("CASH IN");
-        }
-
-
-        private void GCashTransaction(string mode)
-        {
-            using (PanelCreateGCashTransaction gCashTransaction = new PanelCreateGCashTransaction())
-            {
-
-                gCashTransaction.Text = mode.Equals("CASH IN") ? "GCASH CASH IN" : "GCASH CASH OUT";
-                gCashTransaction.IsCashIn = mode.Equals("CASH IN") ? true : false;
-                gCashTransaction.ShowDialog();
-                gCashTransaction.Dispose();
-                this.Close();
-            }
+            _employeeShift = employeeShift;
+            _currentUser = currentUser;
         }
 
         private void PanelGcash_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
             {
-                this.Close();
+                Close();
             }
         }
 
+        private void btnCashIN_Click(object sender, EventArgs e)
+        {
+            GCashTransaction(GCashTransactionType.CashIn);
+        }        
+
         private void btnCashOut_Click(object sender, EventArgs e)
         {
-            GCashTransaction("CASH OUT");
+            GCashTransaction(GCashTransactionType.CashOut);
+        }
+
+        private void GCashTransaction(GCashTransactionType transactionType)
+        {
+            using (PanelCreateGCashTransaction gCashTransaction = new PanelCreateGCashTransaction(_currentUser, transactionType))
+            {
+                gCashTransaction.Text = transactionType == GCashTransactionType.CashIn ? "GCASH CASH IN" : "GCASH CASH OUT";
+                gCashTransaction.EmployeeShift = _employeeShift;
+                
+                var result = gCashTransaction.ShowDialog();
+                if (result == DialogResult.OK)
+                    Close();
+            }
         }
     }
 }

@@ -1,22 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace POS.Classes
+﻿namespace POS.Classes
 {
     public class GCashTransaction: Audit
     {
-        public virtual int ShiftID { get; set; }
-        public virtual string TransactionNbr { get; set; }
-        public virtual decimal Amt { get; set; }
-        public virtual decimal TransactionFee { get; set; }
-        public virtual string RefNbr { get; set; }
-        public virtual decimal TotalAmt { get; set; }
-        public virtual decimal ChangeAmt { get; set; }
-        public virtual decimal TenderedAmt { get; set; }
-        public virtual string Type { get; set; }
-
+        public int ID { get; set; }
+        public string TransactionNbr { get; set; }
+        public decimal Amt { get; set; }
+        public decimal TransactionFee { get; set; }
+        public string RefNbr { get; set; }
+        public decimal TotalAmt { get; set; }
+        public decimal ChangeAmt { get; set; }
+        public decimal TenderedAmt { get; set; }
+        public int TransactionType { get; set; }
+        public int ShiftID { get; set; }
+        public bool IsNegative { get; set; }
     }
 }

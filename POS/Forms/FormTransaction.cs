@@ -3,12 +3,7 @@ using POS.Helpers;
 using POS.Panels;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Forms;
 
@@ -34,9 +29,10 @@ namespace POS.Forms
         Product product = new Product();
         Transaction transaction = new Transaction();
         TransactionDetail transactionDetail = new TransactionDetail();
-        string shiftID = null;
 
         bool shifted = false;
+
+        public EmployeeShift EmployeeShift { get; private set; }
 
         public FormTransaction(User user)
         {
@@ -360,10 +356,9 @@ namespace POS.Forms
 
         private void btnGcash_Click(object sender, EventArgs e)
         {
-            using (PanelGcash panelGcash = new PanelGcash())
+            using (PanelGcash panelGcash = new PanelGcash(currUser, EmployeeShift))
             {
                 panelGcash.ShowDialog();
-                panelGcash.Dispose();
                 txtSearch.Select();
             }
         }
@@ -494,8 +489,11 @@ namespace POS.Forms
 
                 using (PanelPettyCash panelPettyCash = new PanelPettyCash(currUser))
                 {
-                    panelPettyCash.ShowDialog();
-                    panelPettyCash.Dispose();
+                    var result = panelPettyCash.ShowDialog();
+                    if (result == DialogResult.OK)
+                    {
+                        EmployeeShift = panelPettyCash.EmployeeShift;
+                    }
                 }
             }
             else if (btnShift.Text.Equals("END SHIFT") && shifted == true)

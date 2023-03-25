@@ -46,9 +46,9 @@
             this.txtAmtTendered = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblGCashBalance = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -143,6 +143,7 @@
             this.btnProcess.TabIndex = 7;
             this.btnProcess.Text = "PROCESS";
             this.btnProcess.UseVisualStyleBackColor = false;
+            this.btnProcess.Click += new System.EventHandler(this.btnProcess_Click);
             // 
             // panel2
             // 
@@ -243,7 +244,7 @@
             // metroPanel1
             // 
             this.metroPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(125)))), ((int)(((byte)(254)))));
-            this.metroPanel1.Controls.Add(this.label9);
+            this.metroPanel1.Controls.Add(this.lblGCashBalance);
             this.metroPanel1.Controls.Add(this.label8);
             this.metroPanel1.Controls.Add(this.label5);
             this.metroPanel1.HorizontalScrollbarBarColor = true;
@@ -260,16 +261,19 @@
             this.metroPanel1.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel1.VerticalScrollbarSize = 10;
             // 
-            // label5
+            // lblGCashBalance
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(16, 16);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(200, 25);
-            this.label5.TabIndex = 2;
-            this.label5.Text = "AVAILABLE BALANCE";
+            this.lblGCashBalance.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblGCashBalance.AutoSize = true;
+            this.lblGCashBalance.Font = new System.Drawing.Font("Segoe UI", 39.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGCashBalance.ForeColor = System.Drawing.Color.White;
+            this.lblGCashBalance.Location = new System.Drawing.Point(253, 53);
+            this.lblGCashBalance.MinimumSize = new System.Drawing.Size(268, 71);
+            this.lblGCashBalance.Name = "lblGCashBalance";
+            this.lblGCashBalance.Size = new System.Drawing.Size(268, 71);
+            this.lblGCashBalance.TabIndex = 4;
+            this.lblGCashBalance.Text = "0.00";
+            this.lblGCashBalance.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label8
             // 
@@ -282,17 +286,16 @@
             this.label8.TabIndex = 3;
             this.label8.Text = "₱";
             // 
-            // label9
+            // label5
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Segoe UI", 39.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(253, 53);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(268, 71);
-            this.label9.TabIndex = 4;
-            this.label9.Text = "10,000.00";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.White;
+            this.label5.Location = new System.Drawing.Point(16, 16);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(200, 25);
+            this.label5.TabIndex = 2;
+            this.label5.Text = "AVAILABLE BALANCE";
             // 
             // PanelCreateGCashTransaction
             // 
@@ -350,6 +353,6 @@
         private MetroFramework.Controls.MetroPanel metroPanel1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label lblGCashBalance;
     }
 }
