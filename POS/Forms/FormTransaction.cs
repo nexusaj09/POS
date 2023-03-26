@@ -47,53 +47,8 @@ namespace POS.Forms
         private void FormTransaction_Load(object sender, EventArgs e)
         {
             Init();
-        }
-
-        private void Init()
-        {
-            this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
-            this.WindowState = FormWindowState.Maximized;
-            Clock();
-
-            foreach (DataGridViewColumn column in grdProductList.Columns)
-            {
-                column.SortMode = DataGridViewColumnSortMode.NotSortable;
-            }
-            EnableDisableShift(false);
-            NewTransaction();
-        }
-
-        private void EnableDisableShift(bool enable)
-        {
-            txtSearch.Enabled = enable;
-            btnGcash.Enabled = enable;
-            btnNewTransaction.Enabled = enable;
-            btnProductSearch.Enabled = enable;
-            btnHoldTransaction.Enabled = enable;
-            btnViewCart.Enabled = enable;
-            btnDiscount.Enabled = enable;
-            btnAdjustQty.Enabled = enable;
-            btnVoid.Enabled = enable;
-            btnXReading.Enabled = enable;
-            btnSettlePayment.Enabled = enable;
-            button9.Enabled = enable;
-
-            btnShift.Text = enable == false ? "START SHIFT" : "END SHIFT";
-        }
-
-        private void StartShift()
-        {
-
-        }
-
-        private void Clock()
-        {
-            System.Timers.Timer timer = new System.Timers.Timer();
-            timer.Interval = 1000;
-            timer.Elapsed += Timer_Elapsed;
-            timer.Start();
-        }
-
+        }        
+        
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
             if (isClosing == false)
@@ -131,44 +86,6 @@ namespace POS.Forms
                 e.CellStyle.SelectionForeColor = Color.White;
             }
         }
-
-        public decimal GetTotalPerRow(int row)
-        {
-            return Convert.ToDecimal(grdProductList.Rows[row].Cells[4].Value.ToString()) * Convert.ToInt32(grdProductList.Rows[row].Cells[5].Value.ToString());
-        }
-
-        public void GetTransactionTotal()
-        {
-            if (grdProductList.Rows.Count > 0)
-            {
-                _qtyCount = 0;
-                _discount = 0;
-                _vat = 0;
-                _vatExempt = 0;
-                _total = 0;
-                _totaldue = 0;
-
-                foreach (DataGridViewRow item in grdProductList.Rows)
-                {
-                    _rowTotal = GetTotalPerRow(item.Index);
-                    grdProductList.Rows[item.Index].Cells[7].Value = _rowTotal;
-                    _qtyCount += Convert.ToInt32(grdProductList.Rows[item.Index].Cells[5].Value);
-                    _total += _rowTotal;
-                    _discount += Convert.ToDecimal(grdProductList.Rows[item.Index].Cells[6].Value);
-                }
-                _vatExempt = _total / _vatPct;
-                _vat = (_vatExempt * _vatPct) - _vatExempt;
-                _totaldue = _total - _discount;
-
-                lblVatExempt.Text = string.Format("{0:C2}", _vatExempt);
-                lblVat.Text = string.Format("{0:C2}", _vat);
-                lblNbrOfItems.Text = string.Format("{0:#,###}", _qtyCount);
-                lblTotal.Text = string.Format("{0:C2}", _total);
-                lblTotalDue.Text = string.Format("{0:C2}", _totaldue);
-            }
-        }
-
-        // public 
 
         private void FormTransaction_KeyDown(object sender, KeyEventArgs e)
         {
@@ -255,6 +172,136 @@ namespace POS.Forms
             }
         }
 
+        private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar);
+        }
+
+        private void btnGcash_Click(object sender, EventArgs e)
+        {
+            using (PanelGcash panelGcash = new PanelGcash(currUser, EmployeeShift))
+            {
+                panelGcash.ShowDialog();
+                txtSearch.Select();
+            }
+        }
+
+        private void btnSettlePayment_Click(object sender, EventArgs e)
+        {
+            SaveTransaction("Pending", true);
+        }
+
+        private void btnHoldTransaction_Click(object sender, EventArgs e)
+        {
+            if (grdProductList.Rows.Count > 0)
+            {
+                SaveTransaction("Hold", false);
+            }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            if (currUser.Role.Equals("Cashier"))
+            {
+                if (MessageBox.Show("Are you sure to Logout?", "Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    userHelper.CreateLogoutLog(currUser.UserID);
+                    MessageBox.Show("Logout Successfully", "Logged Out", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    FormInit login = new FormInit();
+                    login.Show();
+                }
+            }
+
+            isClosing = true;
+            this.Close();
+        }
+
+        private void btnViewCart_Click(object sender, EventArgs e)
+        {
+            using (PanelViewCart cart = new PanelViewCart())
+            {
+                cart.ShowDialog();
+                cart.Dispose();
+                txtSearch.Select();
+            }
+        }
+
+        private void btnNewTransaction_Click(object sender, EventArgs e)
+        {
+            NewTransaction();
+        }
+
+        private void btnShift_Click(object sender, EventArgs e)
+        {
+            if (btnShift.Text.Equals("START SHIFT") && shifted == false)
+            {
+                shifted = true;
+
+                EnableDisableShift(true);
+
+                using (PanelPettyCash panelPettyCash = new PanelPettyCash(currUser))
+                {
+                    var result = panelPettyCash.ShowDialog();
+                    if (result == DialogResult.OK)
+                    {
+                        EmployeeShift = panelPettyCash.EmployeeShift;
+                    }
+                }
+            }
+            else if (btnShift.Text.Equals("END SHIFT") && shifted == true)
+            {
+                EnableDisableShift(false);
+            }
+            else
+            {
+                MessageBox.Show("You Already Shifted Today!", "Already Shifted", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnDiscount_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Init()
+        {
+            this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
+            this.WindowState = FormWindowState.Maximized;
+            Clock();
+
+            foreach (DataGridViewColumn column in grdProductList.Columns)
+            {
+                column.SortMode = DataGridViewColumnSortMode.NotSortable;
+            }
+            EnableDisableShift(false);
+            NewTransaction();
+        }
+
+        public void NewTransaction()
+        {
+            _qtyCount = 0;
+            _discount = 0;
+            _vat = 0;
+            _vatExempt = 0;
+            _total = 0;
+            _totaldue = 0;
+            count = 0;
+
+            lblTotal.Text = String.Format("{0:C}", _total);
+            lblDiscount.Text = String.Format("{0:C}", _discount);
+            lblTotalDue.Text = String.Format("{0:C}", _totaldue);
+            lblVatExempt.Text = String.Format("{0:C}", _vatExempt);
+            lblVat.Text = String.Format("{0:C}", _vat);
+            lblNbrOfItems.Text = "0";
+
+            lblTransactionNbr.Text = transactionHelper.GetRefNbr();
+
+            grdProductList.Rows.Clear();
+
+            txtSearch.Select();
+        }
+
         public void AdjustedRowQty(int? row, int value)
         {
             grdProductList[5, row.Value].Value = value;
@@ -320,52 +367,40 @@ namespace POS.Forms
             txtSearch.Clear();
         }
 
-        public void NewTransaction()
+        public decimal GetTotalPerRow(int row)
         {
-            _qtyCount = 0;
-            _discount = 0;
-            _vat = 0;
-            _vatExempt = 0;
-            _total = 0;
-            _totaldue = 0;
-            count = 0;
-
-            lblTotal.Text = String.Format("{0:C}", _total);
-            lblDiscount.Text = String.Format("{0:C}", _discount);
-            lblTotalDue.Text = String.Format("{0:C}", _totaldue);
-            lblVatExempt.Text = String.Format("{0:C}", _vatExempt);
-            lblVat.Text = String.Format("{0:C}", _vat);
-            lblNbrOfItems.Text = "0";
-
-            lblTransactionNbr.Text = transactionHelper.GetRefNbr();
-
-            grdProductList.Rows.Clear();
-
-            txtSearch.Select();
+            return Convert.ToDecimal(grdProductList.Rows[row].Cells[4].Value.ToString()) * Convert.ToInt32(grdProductList.Rows[row].Cells[5].Value.ToString());
         }
 
-        private void btnSettlePayments_Click(object sender, EventArgs e)
+        public void GetTransactionTotal()
         {
-
-        }
-
-        private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = !char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar);
-        }
-
-        private void btnGcash_Click(object sender, EventArgs e)
-        {
-            using (PanelGcash panelGcash = new PanelGcash(currUser, EmployeeShift))
+            if (grdProductList.Rows.Count > 0)
             {
-                panelGcash.ShowDialog();
-                txtSearch.Select();
-            }
-        }
+                _qtyCount = 0;
+                _discount = 0;
+                _vat = 0;
+                _vatExempt = 0;
+                _total = 0;
+                _totaldue = 0;
 
-        private void btnSettlePayment_Click(object sender, EventArgs e)
-        {
-            SaveTransaction("Pending", true);
+                foreach (DataGridViewRow item in grdProductList.Rows)
+                {
+                    _rowTotal = GetTotalPerRow(item.Index);
+                    grdProductList.Rows[item.Index].Cells[7].Value = _rowTotal;
+                    _qtyCount += Convert.ToInt32(grdProductList.Rows[item.Index].Cells[5].Value);
+                    _total += _rowTotal;
+                    _discount += Convert.ToDecimal(grdProductList.Rows[item.Index].Cells[6].Value);
+                }
+                _vatExempt = _total / _vatPct;
+                _vat = (_vatExempt * _vatPct) - _vatExempt;
+                _totaldue = _total - _discount;
+
+                lblVatExempt.Text = string.Format("{0:C2}", _vatExempt);
+                lblVat.Text = string.Format("{0:C2}", _vat);
+                lblNbrOfItems.Text = string.Format("{0:#,###}", _qtyCount);
+                lblTotal.Text = string.Format("{0:C2}", _total);
+                lblTotalDue.Text = string.Format("{0:C2}", _totaldue);
+            }
         }
 
         private void SaveTransaction(string Status, bool isSettlePayment)
@@ -438,72 +473,30 @@ namespace POS.Forms
             }
         }
 
-        private void btnHoldTransaction_Click(object sender, EventArgs e)
+        private void Clock()
         {
-            if (grdProductList.Rows.Count > 0)
-            {
-                SaveTransaction("Hold", false);
-            }
+            System.Timers.Timer timer = new System.Timers.Timer();
+            timer.Interval = 1000;
+            timer.Elapsed += Timer_Elapsed;
+            timer.Start();
         }
 
-        private void btnClose_Click(object sender, EventArgs e)
+        private void EnableDisableShift(bool enable)
         {
-            if (currUser.Role.Equals("Cashier"))
-            {
-                if (MessageBox.Show("Are you sure to Logout?", "Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    userHelper.CreateLogoutLog(currUser.UserID);
-                    MessageBox.Show("Logout Successfully", "Logged Out", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            txtSearch.Enabled = enable;
+            btnGcash.Enabled = enable;
+            btnNewTransaction.Enabled = enable;
+            btnProductSearch.Enabled = enable;
+            btnHoldTransaction.Enabled = enable;
+            btnViewCart.Enabled = enable;
+            btnDiscount.Enabled = enable;
+            btnAdjustQty.Enabled = enable;
+            btnVoid.Enabled = enable;
+            btnXReading.Enabled = enable;
+            btnSettlePayment.Enabled = enable;
+            button9.Enabled = enable;
 
-                    FormInit login = new FormInit();
-                    login.Show();
-                }
-            }
-
-            isClosing = true;
-            this.Close();
-        }
-
-        private void btnViewCart_Click(object sender, EventArgs e)
-        {
-            using (PanelViewCart cart = new PanelViewCart())
-            {
-                cart.ShowDialog();
-                cart.Dispose();
-                txtSearch.Select();
-            }
-        }
-
-        private void btnNewTransaction_Click(object sender, EventArgs e)
-        {
-            NewTransaction();
-        }
-
-        private void btnShift_Click(object sender, EventArgs e)
-        {
-            if (btnShift.Text.Equals("START SHIFT") && shifted == false)
-            {
-                shifted = true;
-
-                EnableDisableShift(true);
-
-                using (PanelPettyCash panelPettyCash = new PanelPettyCash(currUser))
-                {
-                    var result = panelPettyCash.ShowDialog();
-                    if (result == DialogResult.OK)
-                    {
-                        EmployeeShift = panelPettyCash.EmployeeShift;
-                    }
-                }
-            }
-            else if (btnShift.Text.Equals("END SHIFT") && shifted == true)
-            {
-                EnableDisableShift(false);
-            }
-            else
-            {
-                MessageBox.Show("You Already Shifted Today!", "Already Shifted", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            btnShift.Text = enable == false ? "START SHIFT" : "END SHIFT";
         }
     }
 }

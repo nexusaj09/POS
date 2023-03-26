@@ -737,7 +737,7 @@
             this.btnDiscount.Text = "ADD DISCOUNT";
             this.btnDiscount.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnDiscount.UseVisualStyleBackColor = true;
-            this.btnDiscount.Click += new System.EventHandler(this.btnSettlePayments_Click);
+            this.btnDiscount.Click += new System.EventHandler(this.btnDiscount_Click);
             // 
             // btnViewCart
             // 
