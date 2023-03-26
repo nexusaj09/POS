@@ -79,7 +79,9 @@
             this.gridDiscount.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.gridDiscount.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.gridDiscount.Location = new System.Drawing.Point(20, 96);
+            this.gridDiscount.MultiSelect = false;
             this.gridDiscount.Name = "gridDiscount";
+            this.gridDiscount.ReadOnly = true;
             this.gridDiscount.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
@@ -99,12 +101,14 @@
             this.RowNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.RowNo.HeaderText = "#";
             this.RowNo.Name = "RowNo";
+            this.RowNo.ReadOnly = true;
             this.RowNo.Width = 39;
             // 
             // ID
             // 
             this.ID.HeaderText = "ID";
             this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
             this.ID.Visible = false;
             // 
             // Description
@@ -112,12 +116,14 @@
             this.Description.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Description.HeaderText = "DESCRIPTION";
             this.Description.Name = "Description";
+            this.Description.ReadOnly = true;
             // 
             // DescountPercent
             // 
             this.DescountPercent.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.DescountPercent.HeaderText = "DISCOUNT PERCENTAGE";
             this.DescountPercent.Name = "DescountPercent";
+            this.DescountPercent.ReadOnly = true;
             // 
             // panel1
             // 
