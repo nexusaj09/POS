@@ -1,6 +1,8 @@
 ﻿using MetroFramework.Forms;
 using POS.Forms;
 using POS.Helpers;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace POS.Panels
 {
@@ -34,6 +36,16 @@ namespace POS.Panels
         {
             txtSearch.Select();
             txtSearch.Focus();
+        }
+
+        private void gridDiscount_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            var dataGridView = sender as DataGridView;
+            if (dataGridView.Rows[e.RowIndex].Selected)
+            {
+                e.CellStyle.Font = new Font(e.CellStyle.Font, FontStyle.Bold);
+                e.CellStyle.SelectionBackColor = Color.Coral;
+            }
         }
     }
 }

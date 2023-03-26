@@ -95,6 +95,7 @@
             this.gridDiscount.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridDiscount.Size = new System.Drawing.Size(1025, 617);
             this.gridDiscount.TabIndex = 0;
+            this.gridDiscount.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.gridDiscount_CellFormatting);
             // 
             // RowNo
             // 
