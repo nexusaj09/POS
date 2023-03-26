@@ -261,7 +261,11 @@ namespace POS.Forms
 
         private void btnDiscount_Click(object sender, EventArgs e)
         {
-
+            using (var discount = new PanelDiscounts(this))
+            {
+                discount.ShowDialog();
+                txtSearch.Select();
+            }
         }
 
         private void Init()
