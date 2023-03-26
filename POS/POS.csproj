@@ -292,6 +292,12 @@
     <Compile Include="Panels\PanelCreateGCashTransaction.Designer.cs">
       <DependentUpon>PanelCreateGCashTransaction.cs</DependentUpon>
     </Compile>
+    <Compile Include="Panels\PanelDiscounts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Panels\PanelDiscounts.Designer.cs">
+      <DependentUpon>PanelDiscounts.cs</DependentUpon>
+    </Compile>
     <Compile Include="Panels\PanelGcash.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -422,6 +428,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Panels\PanelCreateGCashTransaction.resx">
       <DependentUpon>PanelCreateGCashTransaction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panels\PanelDiscounts.resx">
+      <DependentUpon>PanelDiscounts.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Panels\PanelGcash.resx">
       <DependentUpon>PanelGcash.cs</DependentUpon>
