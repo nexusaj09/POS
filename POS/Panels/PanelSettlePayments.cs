@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MetroFramework.Forms;
 using POS.Classes;
+using POS.Enumerators;
 using POS.Helpers;
 
 namespace POS.Panels
@@ -20,6 +21,7 @@ namespace POS.Panels
         TransactionHelper transactionHelper = new TransactionHelper();
         private bool isProcessed = false;
         public List<TransactionDetail> transactionDetails = new List<TransactionDetail>();
+
         public virtual bool IsProcessed
         {
             get { return isProcessed; }
@@ -31,15 +33,23 @@ namespace POS.Panels
             InitializeComponent();
 
             transaction = _transaction;
-            
             transactionDetails = _transactionDetails;
+        }
+
+        private void PanelSettlePayments_Load(object sender, EventArgs e)
+        {
+            if (transaction == null)
+                return;
+
+            lblTotalDue.Text = string.Format("{0:C}", transaction.TotalDueAmt);
+
+            cmbPaymentType.DataSource = Enum.GetValues(typeof(PaymentType));
+            cmbPaymentType.SelectedItem = PaymentType.Cash;
         }
 
         private void txtTenderedAmt_TextChanged(object sender, EventArgs e)
         {
-
             string _tenderedAmt = txtTenderedAmt.Text;
-
 
             if (!string.IsNullOrEmpty(txtTenderedAmt.Text) && !_tenderedAmt.Substring(0, 1).Equals("."))
             {
@@ -67,7 +77,6 @@ namespace POS.Panels
         {
             if (e.KeyCode == Keys.Enter)
             {
-
                 if (change < 0)
                 {
                     MessageBox.Show("Tendered Amount is Insufficient!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -78,21 +87,10 @@ namespace POS.Panels
                 }
                 else
                 {
-                    transaction.ChangeAmt = change;
-                    transaction.TenderedAmt = Convert.ToDecimal(txtTenderedAmt.Text);
+                    SaveTransaction();
 
-                    isProcessed = transactionHelper.SaveTransaction(transaction);
-
-                    foreach(TransactionDetail item in transactionDetails)
-                    {
-                        transactionHelper.SaveTransactionDetails(item);
-                        transactionHelper.DeductProductQtyFromTransaction(item);
-                    }
-                    
                     this.Close();
                 }
-
-
             }
             else if (e.KeyCode == Keys.Escape)
             {
@@ -100,12 +98,66 @@ namespace POS.Panels
             }
         }
 
-        private void PanelSettlePayments_Load(object sender, EventArgs e)
+        private void cmbPaymentType_SelectedValueChanged(object sender, EventArgs e)
         {
-            if (transaction == null) return;
+            var paymentType = (PaymentType)((MetroFramework.Controls.MetroComboBox)sender).SelectedItem;
 
-            lblTotalDue.Text = string.Format("{0:C}", transaction.TotalDueAmt);
+            switch (paymentType)
+            {
+                case PaymentType.Cash:
+                    txtTenderedAmt.Enabled = true;
+                    txtTenderedAmt.Focus();
 
+                    txtGCashReferenceNo.Clear();
+                    txtGCashReferenceNo.Enabled = false;
+                    break;
+
+                case PaymentType.GCash:
+                    txtTenderedAmt.Clear();
+                    txtTenderedAmt.Text = string.Format("{0:#,##0.00}", transaction.TotalDueAmt);
+                    txtTenderedAmt.Enabled = false;
+
+                    txtGCashReferenceNo.Enabled = true;
+                    txtGCashReferenceNo.Focus();                    
+                    break;
+            }
+        }
+
+        private void txtGCashReferenceNo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (string.IsNullOrEmpty(txtGCashReferenceNo.Text))
+                {
+                    MessageBox.Show("Please input the GCash Reference No. for this transaction before proceeding.", "GCash Reference Number...", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                var dialogResult = MessageBox.Show("Please double check the GCash Reference Number. It cannot be modified once you confirm this transactions.", "Transaction Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.OK)
+                {
+                    SaveTransaction();
+                    Close();
+                }
+            }
+        }
+
+        private void SaveTransaction()
+        {
+            var paymentType = (PaymentType)cmbPaymentType.SelectedItem;
+
+            transaction.PaymentType = (int)paymentType;
+            transaction.GCashReferenceNo = txtGCashReferenceNo.Text;
+            transaction.ChangeAmt = change;
+            transaction.TenderedAmt = Convert.ToDecimal(txtTenderedAmt.Text);
+
+            isProcessed = transactionHelper.SaveTransaction(transaction);
+
+            foreach (TransactionDetail item in transactionDetails)
+            {
+                transactionHelper.SaveTransactionDetails(item);
+                transactionHelper.DeductProductQtyFromTransaction(item);
+            }
         }
     }
 }

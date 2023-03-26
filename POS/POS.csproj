@@ -129,7 +129,7 @@
     <Compile Include="Classes\TransactionDetail.cs" />
     <Compile Include="Classes\User.cs" />
     <Compile Include="Enumerators\GCashTransactionType.cs" />
-    <Compile Include="Enumerators\TransactionType.cs" />
+    <Compile Include="Enumerators\PaymentType.cs" />
     <Compile Include="Extensions\DataReaderExtension.cs" />
     <Compile Include="Forms\FormCategories.cs">
       <SubType>Form</SubType>
@@ -393,6 +393,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormMainMenu.resx">
       <DependentUpon>FormMainMenu.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormNotes.resx">
       <DependentUpon>FormNotes.cs</DependentUpon>

@@ -169,6 +169,8 @@ namespace POS.Helpers
                                                                 VatExemptAmt,
                                                                 MachineName,
                                                                 Status,
+                                                                PaymentType,
+                                                                GCashReferenceNo,
                                                                 CreatedByID,
                                                                 CreatedDateTime,
                                                                 LastModifiedByID,
@@ -187,6 +189,8 @@ namespace POS.Helpers
                                                                 @VatExemptAmt,
                                                                 @MachineName,
                                                                 @Status,
+                                                                @PaymentType,
+                                                                @GCashReferenceNo,
                                                                 @CreatedByID,
                                                                 @CreatedDateTime,
                                                                 @LastModifiedByID,
@@ -203,6 +207,8 @@ namespace POS.Helpers
                     cmd.Parameters.AddWithValue(@"VatExemptAmt", transaction.VatExemptAmt);
                     cmd.Parameters.AddWithValue(@"MachineName", transaction.MachineName);
                     cmd.Parameters.AddWithValue(@"Status", transaction.Status);
+                    cmd.Parameters.AddWithValue(@"PaymentType", transaction.PaymentType);
+                    cmd.Parameters.AddWithValue(@"GCashReferenceNo", transaction.GCashReferenceNo);
                     cmd.Parameters.AddWithValue(@"CreatedByID", transaction.CreatedByID);
                     cmd.Parameters.AddWithValue(@"CreatedDateTime", transaction.CreatedDateTime);
                     cmd.Parameters.AddWithValue(@"LastModifiedByID", transaction.LastModifiedByID);

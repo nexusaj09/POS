@@ -14,5 +14,6 @@
         public virtual string MachineName { get; set; }
         public virtual string Status { get; set; }
         public virtual int PaymentType { get; set; }
+        public virtual string GCashReferenceNo { get; set;}
     }
 }
