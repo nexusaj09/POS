@@ -24,6 +24,43 @@ namespace POS.Panels
             Init();
         }
 
+        private void PanelDiscounts_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.F1:
+                    Init();
+                    break;
+
+                case Keys.Escape:
+                    Close();
+                    break;
+
+                case Keys.Enter:
+                    // TODO: Apply discount and close this Form
+                    e.Handled = true;
+                    break;
+
+                case Keys.Down:
+                    if (txtSearch.ContainsFocus && gridDiscount.Rows.Count > 0)
+                    {
+                        gridDiscount.Select();
+                        gridDiscount.Rows[0].Selected = true;
+                    }
+                    break;
+            }
+        }
+
+        private void gridDiscount_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            var dataGridView = sender as DataGridView;
+            if (dataGridView.Rows[e.RowIndex].Selected)
+            {
+                e.CellStyle.Font = new Font(e.CellStyle.Font, FontStyle.Bold);
+                e.CellStyle.SelectionBackColor = Color.Coral;
+            }
+        }
+
         private protected void Init()
         {
             FocusSearch();
@@ -36,16 +73,6 @@ namespace POS.Panels
         {
             txtSearch.Select();
             txtSearch.Focus();
-        }
-
-        private void gridDiscount_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            var dataGridView = sender as DataGridView;
-            if (dataGridView.Rows[e.RowIndex].Selected)
-            {
-                e.CellStyle.Font = new Font(e.CellStyle.Font, FontStyle.Bold);
-                e.CellStyle.SelectionBackColor = Color.Coral;
-            }
-        }
+        }        
     }
 }
