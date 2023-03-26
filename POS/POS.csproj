@@ -129,6 +129,7 @@
     <Compile Include="Classes\TransactionDetail.cs" />
     <Compile Include="Classes\User.cs" />
     <Compile Include="Enumerators\GCashTransactionType.cs" />
+    <Compile Include="Enumerators\TransactionType.cs" />
     <Compile Include="Extensions\DataReaderExtension.cs" />
     <Compile Include="Forms\FormCategories.cs">
       <SubType>Form</SubType>
