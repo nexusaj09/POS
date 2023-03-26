@@ -1,6 +1,6 @@
 ﻿namespace POS.Enumerators
 {
-    public enum TransactionType
+    public enum PaymentType
     {
         Cash = 1,
         GCash = 2,
