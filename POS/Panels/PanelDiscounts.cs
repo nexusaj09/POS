@@ -1,6 +1,7 @@
 ﻿using MetroFramework.Forms;
 using POS.Forms;
 using POS.Helpers;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -8,6 +9,8 @@ namespace POS.Panels
 {
     public partial class PanelDiscounts : MetroForm
     {
+        public decimal DiscountPercentage { get; set; }
+
         private readonly DiscountHelper _discountHelper;
 
         public PanelDiscounts(FormTransaction fromTran)
@@ -61,6 +64,12 @@ namespace POS.Panels
             }
         }
 
+        private void gridDiscount_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DiscountPercentage = Convert.ToDecimal(gridDiscount[3, e.RowIndex].Value);
+            DialogResult = DialogResult.OK;
+        }
+
         private protected void Init()
         {
             FocusSearch();
@@ -73,6 +82,6 @@ namespace POS.Panels
         {
             txtSearch.Select();
             txtSearch.Focus();
-        }        
+        }
     }
 }

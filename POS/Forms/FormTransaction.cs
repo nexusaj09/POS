@@ -3,6 +3,7 @@ using POS.Helpers;
 using POS.Panels;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Timers;
 using System.Windows.Forms;
@@ -263,8 +264,24 @@ namespace POS.Forms
         {
             using (var discount = new PanelDiscounts(this))
             {
-                discount.ShowDialog();
-                txtSearch.Select();
+                var result = discount.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    var discountPercentage = discount.DiscountPercentage / 100;
+
+                    foreach (DataGridViewRow item in grdProductList.Rows)
+                    {
+                        var qty = Convert.ToDecimal(grdProductList.Rows[item.Index].Cells[5].Value);
+                        var unitPrice = Convert.ToDecimal(grdProductList.Rows[item.Index].Cells[4].Value);                        
+                        var discountAmount = unitPrice * discountPercentage;
+                        var totalDiscountAmount = qty * discountAmount;
+
+                        grdProductList.Rows[item.Index].Cells[6].Value = Math.Round(totalDiscountAmount, 2); // => discount
+                    }
+
+                    GetTransactionTotal();
+                    txtSearch.Select();
+                }
             }
         }
 
@@ -397,11 +414,15 @@ namespace POS.Forms
                 }
                 _vatExempt = _total / _vatPct;
                 _vat = (_vatExempt * _vatPct) - _vatExempt;
-                _totaldue = _total - _discount;
+                _totaldue = _total - _discount;                
 
-                lblVatExempt.Text = string.Format("{0:C2}", _vatExempt);
-                lblVat.Text = string.Format("{0:C2}", _vat);
                 lblNbrOfItems.Text = string.Format("{0:#,###}", _qtyCount);
+
+                lblDiscount.Text = string.Format("{0:C2}", _discount);
+                
+                lblVat.Text = string.Format("{0:C2}", _vat);
+                lblVatExempt.Text = string.Format("{0:C2}", _vatExempt);
+
                 lblTotal.Text = string.Format("{0:C2}", _total);
                 lblTotalDue.Text = string.Format("{0:C2}", _totaldue);
             }
