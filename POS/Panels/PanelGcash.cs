@@ -37,6 +37,16 @@ namespace POS.Panels
             GCashTransaction(GCashTransactionType.CashOut);
         }
 
+        private void btnTopupGCash_Click(object sender, EventArgs e)
+        {
+            TopupTransaction(TopupType.TopupGCash);
+        }
+
+        private void btnTopupDrawer_Click(object sender, EventArgs e)
+        {
+            TopupTransaction(TopupType.TopupDrawer);
+        }
+
         private void GCashTransaction(GCashTransactionType transactionType)
         {
             using (PanelCreateGCashTransaction gCashTransaction = new PanelCreateGCashTransaction(_currentUser, transactionType))
@@ -47,6 +57,17 @@ namespace POS.Panels
                 var result = gCashTransaction.ShowDialog();
                 if (result == DialogResult.OK)
                     Close();
+            }
+        }
+
+        private void TopupTransaction(TopupType topupType)
+        {
+            using (var topupTransaction = new PanelTopupTransaction())
+            {
+                topupTransaction.CurrentUser = _currentUser;
+                topupTransaction.EmployeeShift = _employeeShift;
+                topupTransaction.TopupType = topupType;
+                var result = topupTransaction.ShowDialog();
             }
         }
     }
