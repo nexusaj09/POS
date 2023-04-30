@@ -125,12 +125,15 @@
     <Compile Include="Classes\ProductSupplier.cs" />
     <Compile Include="Classes\StockAdjustment.cs" />
     <Compile Include="Classes\Suppliers.cs" />
+    <Compile Include="Classes\TopupTransaction.cs" />
     <Compile Include="Classes\Transaction.cs" />
     <Compile Include="Classes\TransactionDetail.cs" />
     <Compile Include="Classes\User.cs" />
     <Compile Include="Enumerators\GCashTransactionType.cs" />
     <Compile Include="Enumerators\PaymentType.cs" />
+    <Compile Include="Enumerators\TopupType.cs" />
     <Compile Include="Extensions\DataReaderExtension.cs" />
+    <Compile Include="Extensions\EnumExtension.cs" />
     <Compile Include="Forms\FormCategories.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -287,6 +290,12 @@
     <Compile Include="Panels\PanelCreateAdmin.Designer.cs">
       <DependentUpon>PanelCreateAdmin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Panels\PanelTopupTransaction.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Panels\PanelTopupTransaction.Designer.cs">
+      <DependentUpon>PanelTopupTransaction.cs</DependentUpon>
+    </Compile>
     <Compile Include="Panels\PanelCreateGCashTransaction.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -355,6 +364,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\TopupTransactionRepository.cs" />
     <EmbeddedResource Include="Forms\FormCategories.resx">
       <DependentUpon>FormCategories.cs</DependentUpon>
     </EmbeddedResource>
@@ -427,6 +437,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Panels\PanelCreateAdmin.resx">
       <DependentUpon>PanelCreateAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panels\PanelTopupTransaction.resx">
+      <DependentUpon>PanelTopupTransaction.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Panels\PanelCreateGCashTransaction.resx">
       <DependentUpon>PanelCreateGCashTransaction.cs</DependentUpon>
