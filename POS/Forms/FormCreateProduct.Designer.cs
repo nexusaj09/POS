@@ -73,6 +73,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.grdProductDiscount = new MetroFramework.Controls.MetroGrid();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DiscountPercent = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.metroPanel1.SuspendLayout();
@@ -888,6 +889,7 @@
             this.grdProductDiscount.ColumnHeadersHeight = 30;
             this.grdProductDiscount.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdProductDiscount.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Id,
             this.Description,
             this.DiscountPercent});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -918,6 +920,12 @@
             this.grdProductDiscount.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdProductDiscount.Size = new System.Drawing.Size(897, 190);
             this.grdProductDiscount.TabIndex = 0;
+            // 
+            // Id
+            // 
+            this.Id.HeaderText = "ID";
+            this.Id.Name = "Id";
+            this.Id.Visible = false;
             // 
             // Description
             // 
@@ -997,6 +1005,7 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.GroupBox groupBox1;
         private MetroFramework.Controls.MetroGrid grdProductDiscount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn Description;
         private System.Windows.Forms.DataGridViewTextBoxColumn DiscountPercent;
     }
