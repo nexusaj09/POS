@@ -32,6 +32,8 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnCashIN = new System.Windows.Forms.Button();
             this.btnCashOut = new System.Windows.Forms.Button();
+            this.btnTopupDrawer = new System.Windows.Forms.Button();
+            this.btnTopupGCash = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,20 +67,50 @@
             this.btnCashOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCashOut.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCashOut.ForeColor = System.Drawing.Color.White;
-            this.btnCashOut.Location = new System.Drawing.Point(289, 185);
+            this.btnCashOut.Location = new System.Drawing.Point(7, 252);
             this.btnCashOut.Name = "btnCashOut";
-            this.btnCashOut.Size = new System.Drawing.Size(269, 61);
+            this.btnCashOut.Size = new System.Drawing.Size(276, 61);
             this.btnCashOut.TabIndex = 4;
             this.btnCashOut.Text = "CASH OUT";
             this.btnCashOut.UseVisualStyleBackColor = false;
             this.btnCashOut.Click += new System.EventHandler(this.btnCashOut_Click);
+            // 
+            // btnTopupDrawer
+            // 
+            this.btnTopupDrawer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(125)))), ((int)(((byte)(254)))));
+            this.btnTopupDrawer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTopupDrawer.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTopupDrawer.ForeColor = System.Drawing.Color.White;
+            this.btnTopupDrawer.Location = new System.Drawing.Point(289, 252);
+            this.btnTopupDrawer.Name = "btnTopupDrawer";
+            this.btnTopupDrawer.Size = new System.Drawing.Size(269, 61);
+            this.btnTopupDrawer.TabIndex = 6;
+            this.btnTopupDrawer.Text = "Top-up Drawer";
+            this.btnTopupDrawer.UseVisualStyleBackColor = false;
+            this.btnTopupDrawer.Click += new System.EventHandler(this.btnTopupDrawer_Click);
+            // 
+            // btnTopupGCash
+            // 
+            this.btnTopupGCash.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(125)))), ((int)(((byte)(254)))));
+            this.btnTopupGCash.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTopupGCash.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTopupGCash.ForeColor = System.Drawing.Color.White;
+            this.btnTopupGCash.Location = new System.Drawing.Point(289, 185);
+            this.btnTopupGCash.Name = "btnTopupGCash";
+            this.btnTopupGCash.Size = new System.Drawing.Size(269, 61);
+            this.btnTopupGCash.TabIndex = 7;
+            this.btnTopupGCash.Text = "Top-up GCash";
+            this.btnTopupGCash.UseVisualStyleBackColor = false;
+            this.btnTopupGCash.Click += new System.EventHandler(this.btnTopupGCash_Click);
             // 
             // PanelGcash
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
-            this.ClientSize = new System.Drawing.Size(566, 264);
+            this.ClientSize = new System.Drawing.Size(566, 322);
+            this.Controls.Add(this.btnTopupGCash);
+            this.Controls.Add(this.btnTopupDrawer);
             this.Controls.Add(this.btnCashOut);
             this.Controls.Add(this.btnCashIN);
             this.Controls.Add(this.pictureBox1);
@@ -98,5 +130,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnCashIN;
         private System.Windows.Forms.Button btnCashOut;
+        private System.Windows.Forms.Button btnTopupDrawer;
+        private System.Windows.Forms.Button btnTopupGCash;
     }
 }

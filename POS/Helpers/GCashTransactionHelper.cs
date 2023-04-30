@@ -12,7 +12,8 @@ namespace POS.Helpers
             using (var conn = new SqlConnection(GetConnectionString))
             {
                 const string sql = @"
-                    SELECT COALESCE(SUM(Amount), 0) AS GCashAvailableBalance FROM (
+                    SELECT COALESCE(SUM(Amount), 0) AS GCashAvailableBalance
+                    FROM (
 	                    -- Cash In amount
 	                    SELECT
 		                    -SUM(Amt) AS Amount
@@ -28,6 +29,19 @@ namespace POS.Helpers
 	                    FROM [dbo].[GCashTransactions]
 	                    WHERE ShiftID = @ShiftID
 		                    AND TransactionType = 2
+
+	                    UNION
+
+	                    /*
+		                    Topup GCash account
+		                    this topup only used if there are insufficient funds
+		                    for GCASH Cash In transaction
+	                    */
+	                    SELECT
+		                    SUM(Amount) AS Amount
+	                    FROM TopupTransactions
+	                    WHERE ShiftID = @ShiftID
+		                    AND TopupType = 1
                     ) AS GCash
                 ";
 
