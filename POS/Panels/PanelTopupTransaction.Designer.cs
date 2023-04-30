@@ -71,6 +71,7 @@
             this.txtAmt.TabIndex = 3;
             this.txtAmt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtAmt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAmt_KeyPress);
+            this.txtAmt.Leave += new System.EventHandler(this.txtAmt_Leave);
             // 
             // label3
             // 
