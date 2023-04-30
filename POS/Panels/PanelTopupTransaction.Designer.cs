@@ -61,7 +61,6 @@
             this.txtRefNbr.Name = "txtRefNbr";
             this.txtRefNbr.Size = new System.Drawing.Size(267, 29);
             this.txtRefNbr.TabIndex = 5;
-            this.txtRefNbr.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtAmt
             // 
@@ -71,6 +70,7 @@
             this.txtAmt.Size = new System.Drawing.Size(267, 29);
             this.txtAmt.TabIndex = 3;
             this.txtAmt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtAmt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAmt_KeyPress);
             // 
             // label3
             // 
