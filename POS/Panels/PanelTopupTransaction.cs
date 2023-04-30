@@ -89,6 +89,7 @@ namespace POS.Panels
             var isSaved = await _topupRepo.SaveTopupTransactionAsync(topupTransaction);
             if (isSaved)
             {
+                MessageBox.Show("You have successfully recorded your topup amount for GCash transaction.", "Topup successfully...", MessageBoxButtons.OK);
                 DialogResult = DialogResult.OK;
             }
         }
