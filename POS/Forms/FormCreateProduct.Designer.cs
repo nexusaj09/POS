@@ -130,7 +130,7 @@
             this.metroPanel1.HorizontalScrollbarSize = 10;
             this.metroPanel1.Location = new System.Drawing.Point(20, 60);
             this.metroPanel1.Name = "metroPanel1";
-            this.metroPanel1.Size = new System.Drawing.Size(954, 669);
+            this.metroPanel1.Size = new System.Drawing.Size(954, 737);
             this.metroPanel1.TabIndex = 2;
             this.metroPanel1.VerticalScrollbarBarColor = true;
             this.metroPanel1.VerticalScrollbarHighlightOnWheel = false;
@@ -142,7 +142,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(26, 388);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(909, 220);
+            this.groupBox1.Size = new System.Drawing.Size(909, 278);
             this.groupBox1.TabIndex = 35;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Product Discounts";
@@ -151,6 +151,7 @@
             // 
             this.grdProductDiscount.AllowUserToAddRows = false;
             this.grdProductDiscount.AllowUserToDeleteRows = false;
+            this.grdProductDiscount.AllowUserToResizeColumns = false;
             this.grdProductDiscount.AllowUserToResizeRows = false;
             this.grdProductDiscount.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.grdProductDiscount.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -181,7 +182,7 @@
             this.grdProductDiscount.EnableHeadersVisualStyles = false;
             this.grdProductDiscount.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.grdProductDiscount.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.grdProductDiscount.Location = new System.Drawing.Point(6, 24);
+            this.grdProductDiscount.Location = new System.Drawing.Point(6, 22);
             this.grdProductDiscount.MultiSelect = false;
             this.grdProductDiscount.Name = "grdProductDiscount";
             this.grdProductDiscount.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
@@ -196,7 +197,7 @@
             this.grdProductDiscount.RowHeadersWidth = 51;
             this.grdProductDiscount.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.grdProductDiscount.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdProductDiscount.Size = new System.Drawing.Size(897, 190);
+            this.grdProductDiscount.Size = new System.Drawing.Size(897, 250);
             this.grdProductDiscount.TabIndex = 0;
             // 
             // Id
@@ -737,7 +738,7 @@
             // 
             this.btnCancel.BackColor = System.Drawing.Color.IndianRed;
             this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Location = new System.Drawing.Point(826, 624);
+            this.btnCancel.Location = new System.Drawing.Point(826, 689);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(109, 30);
             this.btnCancel.TabIndex = 19;
@@ -751,7 +752,7 @@
             // 
             this.btnSave.BackColor = System.Drawing.Color.SeaGreen;
             this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(710, 624);
+            this.btnSave.Location = new System.Drawing.Point(710, 689);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(109, 30);
             this.btnSave.TabIndex = 18;
@@ -943,7 +944,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
-            this.ClientSize = new System.Drawing.Size(994, 749);
+            this.ClientSize = new System.Drawing.Size(994, 817);
             this.ControlBox = false;
             this.Controls.Add(this.metroPanel1);
             this.Name = "FormCreateProduct";
