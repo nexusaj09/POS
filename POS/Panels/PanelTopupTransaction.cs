@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using MetroFramework.Forms;
 using POS.Classes;
 using POS.Enumerators;
+using POS.Extensions;
 
 namespace POS.Panels
 {
@@ -20,12 +21,15 @@ namespace POS.Panels
        
         private void PanelTopupTransaction_Load(object sender, EventArgs e)
         {
+            this.Text = TopupType.GetDescription();
+
             Init();
         }
 
         private void PanelTopupTransaction_KeyDown(object sender, KeyEventArgs e)
         {
-
+            if (e.KeyCode == Keys.Escape)
+                DialogResult = DialogResult.Cancel;
         }
 
         private void btnTopup_Click(object sender, EventArgs e)
