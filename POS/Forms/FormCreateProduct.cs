@@ -25,6 +25,7 @@ namespace POS.Forms
         bool isProductCodeExisting = false;
         bool isSkip = false;
         bool fromInvoice = false;
+
         public FormCreateProduct(FormProduct formProduct, Product product)
         {
             InitializeComponent();
@@ -39,7 +40,27 @@ namespace POS.Forms
 
             currUser = user;
             fromInvoice = inv;
+        }
 
+        private void FormCreateProduct_Load(object sender, EventArgs e)
+        {
+            Init();
+        }
+
+        private void FormCreateProduct_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (txtProductCode.Text != String.Empty && isSkip == false)
+            {
+                if (MessageBox.Show("Are you sure to leave this form?", "Leaving", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    e.Cancel = false;
+                }
+                else
+                {
+                    e.Cancel = true;
+                    txtProductCode.Select();
+                }
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -49,8 +70,6 @@ namespace POS.Forms
 
         private void txtBarcode_TextChanged(object sender, EventArgs e)
         {
-
-
             Barcode barcode = new Barcode();
             barcode.IncludeLabel = true;
 
@@ -65,11 +84,6 @@ namespace POS.Forms
                 pictureBox1.Image = null;
 
             }
-        }
-
-        private void FormCreateProduct_Load(object sender, EventArgs e)
-        {
-            Init();
         }
 
         private void txtMarkUp_TextChanged(object sender, EventArgs e)
@@ -117,7 +131,6 @@ namespace POS.Forms
 
         private void txtSupplierPrice_TextChanged(object sender, EventArgs e)
         {
-
             decimal price = 0;
 
             if (txtMarkUp.Text != "" && txtSupplierPrice.Text != "")
@@ -129,7 +142,6 @@ namespace POS.Forms
             {
                 txtSRP.Text = txtSupplierPrice.Text;
             }
-
         }
 
         private void txtMarkUp_KeyPress(object sender, KeyPressEventArgs e)
@@ -206,7 +218,6 @@ namespace POS.Forms
         {
             try
             {
-
                 if (btnSave.Text == "SAVE")
                 {
                     if (MessageBox.Show(this, "Add this Product?", "Add Product", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
@@ -251,17 +262,13 @@ namespace POS.Forms
                         {
                             MessageBox.Show("No Product Code Entered", "Empty Product Code", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             txtProductCode.Select();
-                        }
-
-                      
-                    }
-                        
+                        }                   
+                    }                        
                 }
                 else if (btnSave.Text == "UPDATE")
                 {
                     if (MessageBox.Show(this, "Are you sure to update this product?", "Updating product", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-
                         updateProduct.ProductBarcode = txtBarcode.Text;
                         updateProduct.ProductCode = txtProductCode.Text;
                         updateProduct.Description = txtDescription.Text;
@@ -290,7 +297,6 @@ namespace POS.Forms
                         isSkip = true;
 
                         this.Close();
-
                     }
                 }
             }
@@ -328,7 +334,6 @@ namespace POS.Forms
 
         private void Init()
         {
-
             productHelper.LoadCategories(cmbCategory);
             cmbCategory.Text = null;
             txtInitialQty.Enabled = btnSave.Text == "SAVE" ? true : false;
@@ -358,16 +363,13 @@ namespace POS.Forms
                 chckWithExpiry.Checked = updateProduct.IsExpiring;
                 dtExpirationDate.Enabled = updateProduct.IsExpiring;
             }
-
         }
 
         private void txtProductCode_Leave(object sender, EventArgs e)
         {
             try
             {
-
                 isProductCodeExisting = productHelper.IsExisting(txtProductCode.Text);
-
 
                 if (isProductCodeExisting && btnSave.Text == "SAVE")
                 {
@@ -394,7 +396,6 @@ namespace POS.Forms
         {
             try
             {
-
                 isBarcodeExisting = productHelper.IsExistingBarcode(txtBarcode.Text);
 
                 if (txtBarcode.Text != "" && isBarcodeExisting && btnSave.Text == "SAVE")
@@ -418,27 +419,14 @@ namespace POS.Forms
             }
         }
 
-        private void FormCreateProduct_FormClosing(object sender, FormClosingEventArgs e)
-        {
-
-
-            if (txtProductCode.Text != String.Empty && isSkip == false)
-            {
-                if (MessageBox.Show("Are you sure to leave this form?", "Leaving", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    e.Cancel = false;
-                }
-                else
-                {
-                    e.Cancel = true;
-                    txtProductCode.Select();
-                }
-            }
-        }
-
         private void chckWithExpiry_CheckedChanged(object sender, EventArgs e)
         {
             dtExpirationDate.Enabled = chckWithExpiry.Checked == true ? true : false;
+        }
+
+        private void btnAddDiscount_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
