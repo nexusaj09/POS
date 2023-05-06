@@ -10,7 +10,7 @@ namespace POS.Repositories
     {
         public async Task<bool> SaveProductDiscountAsync(ProductDiscount productDiscount)
         {
-            using (var conn = new SqlConnection(ConnectionString))
+            using (var conn = new SqlConnection(GetConnectionString))
             {
                 const string sql = @"
                     INSERT INTO [dbo].[ProductDiscounts] (

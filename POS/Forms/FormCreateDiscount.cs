@@ -36,7 +36,7 @@ namespace POS.Forms
             if (discount != null)
             {
                 txtDescr.Text = discount.Description;
-                txtPercentage.Text = discount.DiscountPercentage;
+                txtPercentage.Text = discount.DiscountPercentage.ToString();
             }
             else
             {
@@ -82,7 +82,7 @@ namespace POS.Forms
                             Discount newDiscount = new Discount();
 
                             newDiscount.Description = txtDescr.Text;
-                            newDiscount.DiscountPercentage = txtPercentage.Text;
+                            newDiscount.DiscountPercentage = string.IsNullOrEmpty(txtPercentage.Text) ? 0 : decimal.Parse(txtPercentage.Text);
                             newDiscount.CreatedByID = currUser.UserID;
                             newDiscount.CreatedDateTime = DateTime.Now;
                             newDiscount.LastModifiedByID = currUser.UserID;
@@ -115,7 +115,7 @@ namespace POS.Forms
                     {
 
                         discount.Description = txtDescr.Text;
-                        discount.DiscountPercentage = txtPercentage.Text;
+                        discount.DiscountPercentage = string.IsNullOrEmpty(txtPercentage.Text) ? 0 : decimal.Parse(txtPercentage.Text);
                         discount.LastModifiedByID = currUser.UserID;
                         discount.LastModifiedDateTime = DateTime.Now;
 

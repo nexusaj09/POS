@@ -1,5 +1,7 @@
 ﻿using POS.Classes;
+using POS.Extensions;
 using POS.Forms;
+using POS.Models;
 using POS.Panels;
 using System;
 using System.Collections.Generic;
@@ -598,5 +600,45 @@ namespace POS.Helpers
             }
         }
 
+        public async Task<IEnumerable<ProductDiscount>> GetProductDiscountsAsync(string productCode)
+        {
+            try
+            {
+                var productDiscounts = new List<ProductDiscount>();
+
+                using (var conn = new SqlConnection(GetConnectionString))
+                {
+                    const string sql = @"
+                        SELECT
+	                        pd.Id,
+	                        pd.ProductCode,
+	                        pd.DiscountID,
+	                        d.[Description],
+	                        d.DiscountPercentage
+                        FROM ProductDiscounts pd
+	                        INNER JOIN Discounts d ON d.ID = pd.DiscountID
+                        WHERE pd.ProductCode = @ProductCode
+                    ";
+
+                    conn.Open();
+                    using (var cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("ProductCode", productCode);
+
+                        var reader = await cmd.ExecuteReaderAsync();
+                        productDiscounts = reader.ConvertToList<ProductDiscount>();
+                    }
+                }
+
+                if (!productDiscounts.Any())
+                    return Enumerable.Empty<ProductDiscount>();
+
+                return productDiscounts;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

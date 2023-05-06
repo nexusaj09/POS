@@ -54,7 +54,7 @@ namespace POS.Forms
                 Discount updateDiscount = new Discount();
                 updateDiscount.ID = Convert.ToInt32(grdDiscountList[1, e.RowIndex].Value.ToString());
                 updateDiscount.Description = grdDiscountList[2, e.RowIndex].Value.ToString();
-                updateDiscount.DiscountPercentage = grdDiscountList[3, e.RowIndex].Value.ToString();
+                updateDiscount.DiscountPercentage = decimal.Parse(grdDiscountList[3, e.RowIndex].Value.ToString());
 
                 using (FormCreateDiscount createDiscount = new FormCreateDiscount(currUser, grdDiscountList, updateDiscount))
                 {

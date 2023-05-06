@@ -278,6 +278,7 @@
     <Compile Include="Helpers\SupplierHelper.cs" />
     <Compile Include="Helpers\TransactionHelper.cs" />
     <Compile Include="Helpers\UserHelper.cs" />
+    <Compile Include="Models\KeyValue\DiscountKeyValue.cs" />
     <Compile Include="Models\ProductDiscount.cs" />
     <Compile Include="Panels\PanelAdjustQty.cs">
       <SubType>Form</SubType>
@@ -487,6 +488,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\POS.Models.ProductDiscount.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

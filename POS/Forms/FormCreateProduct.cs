@@ -12,6 +12,7 @@ using POS.Classes;
 using System.Drawing;
 using BarcodeLib;
 using MetroFramework.Controls;
+using POS.Models;
 
 namespace POS.Forms
 {
@@ -42,9 +43,9 @@ namespace POS.Forms
             fromInvoice = inv;
         }
 
-        private void FormCreateProduct_Load(object sender, EventArgs e)
+        private async void FormCreateProduct_Load(object sender, EventArgs e)
         {
-            Init();
+            await Init();
         }
 
         private void FormCreateProduct_FormClosing(object sender, FormClosingEventArgs e)
@@ -332,13 +333,16 @@ namespace POS.Forms
             txtLocation.Clear();
         }
 
-        private void Init()
+        private async Task Init()
         {
             productHelper.LoadCategories(cmbCategory);
             cmbCategory.Text = null;
             txtInitialQty.Enabled = btnSave.Text == "SAVE" ? true : false;
             txtProductCode.Enabled = btnSave.Text == "SAVE" ? true : false;
             dtExpirationDate.Enabled = false;
+
+            // Get list of available discounts
+            await GetAvailableDiscountsAsync();
 
             if (updateProduct != null && updateProduct.ProductCode != null && btnSave.Visible == true)
             {
@@ -362,7 +366,21 @@ namespace POS.Forms
                 txtLocation.Text = updateProduct.Location.ToString();
                 chckWithExpiry.Checked = updateProduct.IsExpiring;
                 dtExpirationDate.Enabled = updateProduct.IsExpiring;
+
+                var productDiscounts = await productHelper.GetProductDiscountsAsync(updateProduct.ProductCode);
+                if (productDiscounts.Any())
+                    productDiscountBindingSource.DataSource = productDiscounts;
             }
+        }
+
+        protected async Task GetAvailableDiscountsAsync()
+        {
+            var discountHelper = new DiscountHelper();
+            var dpDiscounts = await discountHelper.GetDiscountsAsync();
+            cmbDiscounts.DataSource = dpDiscounts;
+            cmbDiscounts.DisplayMember = "DisplayName";
+            cmbDiscounts.ValueMember = "ID";
+            cmbDiscounts.SelectedIndex = -1;
         }
 
         private void txtProductCode_Leave(object sender, EventArgs e)
@@ -424,9 +442,42 @@ namespace POS.Forms
             dtExpirationDate.Enabled = chckWithExpiry.Checked == true ? true : false;
         }
 
+        private void grdProductDiscount_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            var dataGridView = sender as DataGridView;
+            if (dataGridView.Rows[e.RowIndex].Selected)
+            {
+                e.CellStyle.Font = new Font(e.CellStyle.Font, FontStyle.Bold);
+                //   edit: to change the background color:
+                e.CellStyle.SelectionBackColor = Color.Coral;
+            }
+        }
+
         private void btnAddDiscount_Click(object sender, EventArgs e)
         {
+            if (cmbDiscounts.SelectedValue == null)
+            {
+                // show a message box
+                return;
+            }
 
-        }
+            var discounts = cmbDiscounts.DataSource as List<Discount>;
+            var selectedDiscount = discounts[cmbDiscounts.SelectedIndex];
+
+            var productDiscounts = productDiscountBindingSource.DataSource as IList<ProductDiscount>;
+            if (productDiscounts is null || !productDiscounts.Any())
+                productDiscounts = new List<ProductDiscount>();
+
+            productDiscounts = productDiscounts.ToList();
+            productDiscounts.Add(new ProductDiscount
+            {
+                ProductCode = updateProduct?.ProductCode ?? string.Empty,
+                DiscountDescription = selectedDiscount.Description,
+                DiscountPercentage = selectedDiscount.DiscountPercentage
+            });
+
+            productDiscountBindingSource.DataSource = productDiscounts;
+            grdProductDiscount.ClearSelection();
+        }        
     }
 }
