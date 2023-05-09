@@ -69,58 +69,24 @@ namespace POS.Helpers
 
                 using (cmd = new SqlCommand())
                 {
+                    const string sql = @"
+                        INSERT INTO Products (
+                            ProductCode, Barcode, Description, BrandName, GenericName, Classification,
+                            Formulation, Category, UOM, ReOrderQty, Qty, SupplierPrice,
+                            FinalPrice, SRP, CreatedByID, CreatedDateTime, LastModifiedByID,
+                            LastModifiedDateTime, MarkUp, ExpirationDate, IsExpiring, Location
+                        ) VALUES (
+                            @ProductCode, @Barcode, @Description, @BrandName, @GenericName, @Classification,
+                            @Formulation, @Category, @UOM, @ReOrderQty, @Qty, @SupplierPrice,
+                            @FinalPrice, @SRP, @CreatedByID, @CreatedDateTime, @LastModifiedByID,
+                            @LastModifiedDateTime, @MarkUp, @ExpirationDate, @IsExpiring, @Location
+                        )
+                    ";
+
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = @"INSERT INTO Products
-                                                           (
-                                                            ProductCode,
-                                                            Barcode,
-                                                            Description,
-                                                            BrandName,
-                                                            GenericName,
-                                                            Classification,
-                                                            Formulation,
-                                                            Category,
-                                                            UOM,
-                                                            ReOrderQty,
-                                                            Qty,
-                                                            SupplierPrice,
-                                                            FinalPrice,
-                                                            SRP,
-                                                            CreatedByID,
-                                                            CreatedDateTime,
-                                                            LastModifiedByID,
-                                                            LastModifiedDateTime,
-                                                            MarkUp,
-                                                            ExpirationDate,
-                                                            IsExpiring,
-                                                            Location
-                                                           )
-                                                    VALUES
-                                                           (
-                                                            @ProductCode,
-                                                            @Barcode,
-                                                            @Description,
-                                                            @BrandName,
-                                                            @GenericName,
-                                                            @Classification,
-                                                            @Formulation,
-                                                            @Category,
-                                                            @UOM,
-                                                            @ReOrderQty,
-                                                            @Qty,
-                                                            @SupplierPrice,
-                                                            @FinalPrice,
-                                                            @SRP,
-                                                            @CreatedByID,
-                                                            @CreatedDateTime,
-                                                            @LastModifiedByID,
-                                                            @LastModifiedDateTime,
-                                                            @MarkUp,
-                                                            @ExpirationDate,
-                                                            @IsExpiring,
-                                                            @Location
-                                                            )";
+                    cmd.CommandText = sql;
+
                     cmd.Parameters.AddWithValue(@"ProductCode", product.ProductCode);
                     cmd.Parameters.AddWithValue(@"Barcode", product.ProductBarcode);
                     cmd.Parameters.AddWithValue(@"Description", product.Description);
@@ -145,7 +111,6 @@ namespace POS.Helpers
                     cmd.Parameters.AddWithValue(@"Location", product.Location);
                     cmd.ExecuteNonQuery();
                 }
-
             }
             catch (Exception ex)
             {
