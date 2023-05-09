@@ -1,7 +1,10 @@
 ﻿using POS.Classes;
 using POS.Helpers;
 using POS.Models;
+using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace POS.Repositories
@@ -10,9 +13,11 @@ namespace POS.Repositories
     {
         public async Task<bool> SaveProductDiscountAsync(ProductDiscount productDiscount)
         {
-            using (var conn = new SqlConnection(GetConnectionString))
+            try
             {
-                const string sql = @"
+                using (var conn = new SqlConnection(GetConnectionString))
+                {
+                    const string sql = @"
                     INSERT INTO [dbo].[ProductDiscounts] (
 	                    ProductCode, DiscountID, CreatedByID
                     ) VALUES (
@@ -20,17 +25,40 @@ namespace POS.Repositories
                     )
                 ";
 
-                conn.Open();
-                using (var cmd = new SqlCommand(sql, conn))
-                {
-                    cmd.Parameters.AddWithValue("ProductCode", productDiscount.ProductCode);
-                    cmd.Parameters.AddWithValue("DiscountID", productDiscount.DiscountID);
-                    cmd.Parameters.AddWithValue("CreatedByID", productDiscount.CreatedByID);
+                    conn.Open();
+                    using (var cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("ProductCode", productDiscount.ProductCode);
+                        cmd.Parameters.AddWithValue("DiscountID", productDiscount.DiscountID);
+                        cmd.Parameters.AddWithValue("CreatedByID", productDiscount.CreatedByID);
 
-                    var result = await cmd.ExecuteNonQueryAsync();
-                    return result > 0;
+                        var result = await cmd.ExecuteNonQueryAsync();
+                        return result > 0;
+                    }
                 }
             }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public async Task BulkSaveProductDiscoutAsync(IEnumerable<ProductDiscount> productDiscounts)
+        {
+            try
+            {
+                if (productDiscounts == null || !productDiscounts.Any())
+                    return;
+
+                foreach (var productDiscount in productDiscounts)
+                {
+                    await SaveProductDiscountAsync(productDiscount);
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }            
         }
     }
 }

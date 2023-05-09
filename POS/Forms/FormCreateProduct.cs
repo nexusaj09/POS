@@ -13,6 +13,7 @@ using System.Drawing;
 using BarcodeLib;
 using MetroFramework.Controls;
 using POS.Models;
+using POS.Repositories;
 
 namespace POS.Forms
 {
@@ -27,12 +28,13 @@ namespace POS.Forms
         bool isSkip = false;
         bool fromInvoice = false;
 
-        public FormCreateProduct(FormProduct formProduct, Product product)
+        public FormCreateProduct(FormProduct formProduct, Product product, User user)
         {
             InitializeComponent();
 
             form = formProduct;
             updateProduct = product;
+            currUser = user;
         }
 
         public FormCreateProduct(User user, bool inv)
@@ -215,7 +217,7 @@ namespace POS.Forms
             }
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private async void btnSave_Click(object sender, EventArgs e)
         {
             try
             {
@@ -225,32 +227,12 @@ namespace POS.Forms
                     {
                         if (!string.IsNullOrEmpty(txtProductCode.Text))
                         {
-                            var newProduct = new Product
-                            {
-                                ProductBarcode = txtBarcode.Text,
-                                ProductCode = txtProductCode.Text,
-                                Description = txtDescription.Text,
-                                BrandName = txtBrandName.Text,
-                                GenericName = txtGeneric.Text,
-                                Classification = txtClass.Text,
-                                Formulation = txtFormulation.Text,
-                                Category = cmbCategory.Text,
-                                UOM = txtUOM.Text,
-                                ReOrderQty = txtReOrderQty.Text != string.Empty ? Convert.ToInt32(txtReOrderQty.Text) : 0,
-                                Qty = txtInitialQty.Text != string.Empty ? Convert.ToInt32(txtInitialQty.Text) : 0,
-                                SupplierPrice = txtSupplierPrice.Text != string.Empty ? Convert.ToDecimal(txtSupplierPrice.Text) : 0,
-                                FinalPrice = txtFinalPrice.Text != string.Empty ? Convert.ToDecimal(txtFinalPrice.Text) : 0,
-                                SRP = txtSRP.Text != string.Empty ? Convert.ToDecimal(txtSRP.Text) : 0,
-                                MarkUp = txtMarkUp.Text != string.Empty ? Convert.ToInt32(txtMarkUp.Text) : 0,
-                                ExpirationDate = dtExpirationDate.Value,
-                                IsExpiring = chckWithExpiry.Checked,
-                                Location = txtLocation.Text,
-                                CreatedByID = fromInvoice == false ? form.currUser.UserID : currUser.UserID,
-                                CreatedDateTime = DateTime.Now,
-                                LastModifiedByID = fromInvoice == false ? form.currUser.UserID : currUser.UserID,
-                                LastModifiedDateTime = DateTime.Now
-                            };
+                            var newProduct = GenerateNewProduct();
+                            var productDiscounts = productDiscountBindingSource.DataSource as IList<ProductDiscount>;
+                            
                             productHelper.CreateProduct(newProduct);
+                            var prodDiscountRepo = new ProductDiscountRepository();
+                            await prodDiscountRepo.BulkSaveProductDiscoutAsync(productDiscounts);
 
                             MessageBox.Show(this, "New Product Added", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -332,6 +314,9 @@ namespace POS.Forms
             dtExpirationDate.Value = DateTime.Now;
             chckWithExpiry.Checked = false;
             txtLocation.Clear();
+
+            cmbDiscounts.SelectedIndex = -1;
+            productDiscountBindingSource.Clear();
         }
 
         private async Task Init()
@@ -472,13 +457,46 @@ namespace POS.Forms
             productDiscounts = productDiscounts.ToList();
             productDiscounts.Add(new ProductDiscount
             {
-                ProductCode = updateProduct?.ProductCode ?? string.Empty,
+                ProductCode = txtProductCode.Text,
+                DiscountID = selectedDiscount.ID,
                 DiscountDescription = selectedDiscount.Description,
-                DiscountPercentage = selectedDiscount.DiscountPercentage
+                DiscountPercentage = selectedDiscount.DiscountPercentage,
+                CreatedByID = currUser.UserID
             });
 
             productDiscountBindingSource.DataSource = productDiscounts;
             grdProductDiscount.ClearSelection();
-        }        
+        }
+
+        private Product GenerateNewProduct()
+        {
+            var product = new Product
+            {
+                ProductBarcode = txtBarcode.Text,
+                ProductCode = txtProductCode.Text,
+                Description = txtDescription.Text,
+                BrandName = txtBrandName.Text,
+                GenericName = txtGeneric.Text,
+                Classification = txtClass.Text,
+                Formulation = txtFormulation.Text,
+                Category = cmbCategory.Text,
+                UOM = txtUOM.Text,
+                ReOrderQty = txtReOrderQty.Text != string.Empty ? Convert.ToInt32(txtReOrderQty.Text) : 0,
+                Qty = txtInitialQty.Text != string.Empty ? Convert.ToInt32(txtInitialQty.Text) : 0,
+                SupplierPrice = txtSupplierPrice.Text != string.Empty ? Convert.ToDecimal(txtSupplierPrice.Text) : 0,
+                FinalPrice = txtFinalPrice.Text != string.Empty ? Convert.ToDecimal(txtFinalPrice.Text) : 0,
+                SRP = txtSRP.Text != string.Empty ? Convert.ToDecimal(txtSRP.Text) : 0,
+                MarkUp = txtMarkUp.Text != string.Empty ? Convert.ToInt32(txtMarkUp.Text) : 0,
+                ExpirationDate = dtExpirationDate.Value,
+                IsExpiring = chckWithExpiry.Checked,
+                Location = txtLocation.Text,
+                CreatedByID = fromInvoice == false ? form.currUser.UserID : currUser.UserID,
+                CreatedDateTime = DateTime.Now,
+                LastModifiedByID = fromInvoice == false ? form.currUser.UserID : currUser.UserID,
+                LastModifiedDateTime = DateTime.Now
+            };
+
+            return product;
+        }
     }
 }
