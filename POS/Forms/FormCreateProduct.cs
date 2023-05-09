@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MetroFramework.Forms;
@@ -11,7 +8,6 @@ using POS.Helpers;
 using POS.Classes;
 using System.Drawing;
 using BarcodeLib;
-using MetroFramework.Controls;
 using POS.Models;
 using POS.Repositories;
 
