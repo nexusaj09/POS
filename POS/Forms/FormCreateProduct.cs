@@ -225,7 +225,7 @@ namespace POS.Forms
                     {
                         if (!string.IsNullOrEmpty(txtProductCode.Text))
                         {
-                            Product newProduct = new Product
+                            var newProduct = new Product
                             {
                                 ProductBarcode = txtBarcode.Text,
                                 ProductCode = txtProductCode.Text,
