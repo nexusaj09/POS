@@ -225,30 +225,31 @@ namespace POS.Forms
                     {
                         if (!string.IsNullOrEmpty(txtProductCode.Text))
                         {
-                            Product newProduct = new Product();
-                            newProduct.ProductBarcode = txtBarcode.Text;
-                            newProduct.ProductCode = txtProductCode.Text;
-                            newProduct.Description = txtDescription.Text;
-                            newProduct.BrandName = txtBrandName.Text;
-                            newProduct.GenericName = txtGeneric.Text;
-                            newProduct.Classification = txtClass.Text;
-                            newProduct.Formulation = txtFormulation.Text;
-                            newProduct.Category = cmbCategory.Text;
-                            newProduct.UOM = txtUOM.Text;
-                            newProduct.ReOrderQty = txtReOrderQty.Text != string.Empty ? Convert.ToInt32(txtReOrderQty.Text) : 0;
-                            newProduct.Qty = txtInitialQty.Text != string.Empty ? Convert.ToInt32(txtInitialQty.Text) : 0;
-                            newProduct.SupplierPrice = txtSupplierPrice.Text != string.Empty ? Convert.ToDecimal(txtSupplierPrice.Text) : 0;
-                            newProduct.FinalPrice = txtFinalPrice.Text != string.Empty ? Convert.ToDecimal(txtFinalPrice.Text) : 0;
-                            newProduct.SRP = txtSRP.Text != string.Empty ? Convert.ToDecimal(txtSRP.Text) : 0;
-                            newProduct.MarkUp = txtMarkUp.Text != string.Empty ? Convert.ToInt32(txtMarkUp.Text) : 0;
-                            newProduct.ExpirationDate = dtExpirationDate.Value;
-                            newProduct.IsExpiring = chckWithExpiry.Checked;
-                            newProduct.Location = txtLocation.Text;
-                            newProduct.CreatedByID = fromInvoice == false ? form.currUser.UserID : currUser.UserID;
-                            newProduct.CreatedDateTime = DateTime.Now;
-                            newProduct.LastModifiedByID = fromInvoice == false ? form.currUser.UserID : currUser.UserID;
-                            newProduct.LastModifiedDateTime = DateTime.Now;
-
+                            Product newProduct = new Product
+                            {
+                                ProductBarcode = txtBarcode.Text,
+                                ProductCode = txtProductCode.Text,
+                                Description = txtDescription.Text,
+                                BrandName = txtBrandName.Text,
+                                GenericName = txtGeneric.Text,
+                                Classification = txtClass.Text,
+                                Formulation = txtFormulation.Text,
+                                Category = cmbCategory.Text,
+                                UOM = txtUOM.Text,
+                                ReOrderQty = txtReOrderQty.Text != string.Empty ? Convert.ToInt32(txtReOrderQty.Text) : 0,
+                                Qty = txtInitialQty.Text != string.Empty ? Convert.ToInt32(txtInitialQty.Text) : 0,
+                                SupplierPrice = txtSupplierPrice.Text != string.Empty ? Convert.ToDecimal(txtSupplierPrice.Text) : 0,
+                                FinalPrice = txtFinalPrice.Text != string.Empty ? Convert.ToDecimal(txtFinalPrice.Text) : 0,
+                                SRP = txtSRP.Text != string.Empty ? Convert.ToDecimal(txtSRP.Text) : 0,
+                                MarkUp = txtMarkUp.Text != string.Empty ? Convert.ToInt32(txtMarkUp.Text) : 0,
+                                ExpirationDate = dtExpirationDate.Value,
+                                IsExpiring = chckWithExpiry.Checked,
+                                Location = txtLocation.Text,
+                                CreatedByID = fromInvoice == false ? form.currUser.UserID : currUser.UserID,
+                                CreatedDateTime = DateTime.Now,
+                                LastModifiedByID = fromInvoice == false ? form.currUser.UserID : currUser.UserID,
+                                LastModifiedDateTime = DateTime.Now
+                            };
                             productHelper.CreateProduct(newProduct);
 
                             MessageBox.Show(this, "New Product Added", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
