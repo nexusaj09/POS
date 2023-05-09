@@ -457,7 +457,7 @@ namespace POS.Forms
         {
             if (cmbDiscounts.SelectedValue == null)
             {
-                // show a message box
+                MessageBox.Show("Please select a discount to apply for this product.", "Select a discount...", MessageBoxButtons.OK);
                 return;
             }
 
