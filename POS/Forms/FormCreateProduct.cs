@@ -225,7 +225,7 @@ namespace POS.Forms
                         {
                             var newProduct = GenerateNewProduct();
                             var productDiscounts = productDiscountBindingSource.DataSource as IList<ProductDiscount>;
-                            
+
                             productHelper.CreateProduct(newProduct);
                             var prodDiscountRepo = new ProductDiscountRepository();
                             await prodDiscountRepo.BulkSaveProductDiscoutAsync(productDiscounts);
@@ -349,12 +349,17 @@ namespace POS.Forms
                 chckWithExpiry.Checked = updateProduct.IsExpiring;
                 dtExpirationDate.Enabled = updateProduct.IsExpiring;
 
-                var productDiscounts = await productHelper.GetProductDiscountsAsync(updateProduct.ProductCode);
-                if (productDiscounts.Any())
-                {
-                    productDiscountBindingSource.DataSource = productDiscounts;
-                    grdProductDiscount.ClearSelection();
-                }                    
+                await InitProductDiscountsAsync();
+            }
+        }
+
+        protected async Task InitProductDiscountsAsync()
+        {
+            var productDiscounts = await productHelper.GetProductDiscountsAsync(txtProductCode.Text);
+            if (productDiscounts.Any())
+            {
+                productDiscountBindingSource.DataSource = productDiscounts;
+                grdProductDiscount.ClearSelection();
             }
         }
 
@@ -438,7 +443,7 @@ namespace POS.Forms
             }
         }
 
-        private void btnAddDiscount_Click(object sender, EventArgs e)
+        private async void btnAddDiscount_Click(object sender, EventArgs e)
         {
             if (cmbDiscounts.SelectedValue == null)
             {
@@ -448,23 +453,47 @@ namespace POS.Forms
 
             var discounts = cmbDiscounts.DataSource as List<Discount>;
             var selectedDiscount = discounts[cmbDiscounts.SelectedIndex];
+            
+            var productDiscount = GenerateProductDiscount(selectedDiscount);
 
-            var productDiscounts = productDiscountBindingSource.DataSource as IList<ProductDiscount>;
-            if (productDiscounts is null || !productDiscounts.Any())
-                productDiscounts = new List<ProductDiscount>();
-
-            productDiscounts = productDiscounts.ToList();
-            productDiscounts.Add(new ProductDiscount
+            if (updateProduct != null)
             {
-                ProductCode = txtProductCode.Text,
-                DiscountID = selectedDiscount.ID,
-                DiscountDescription = selectedDiscount.Description,
-                DiscountPercentage = selectedDiscount.DiscountPercentage,
-                CreatedByID = currUser.UserID
-            });
+                // if product is being updated and want to add a discount,
+                // add it directly to db table
+                var prodDiscountRepo = new ProductDiscountRepository();
+                await prodDiscountRepo.SaveProductDiscountAsync(productDiscount);
 
-            productDiscountBindingSource.DataSource = productDiscounts;
-            grdProductDiscount.ClearSelection();
+                await InitProductDiscountsAsync();
+            }
+            else
+            {
+                var productDiscounts = GetProductDiscountDataSource();
+                productDiscounts.Add(productDiscount);
+
+                productDiscountBindingSource.DataSource = productDiscounts.ToList();
+                grdProductDiscount.ClearSelection();
+            }
+            
+            cmbDiscounts.SelectedIndex = -1;
+            cmbDiscounts.Focus();
+        }
+
+        private async void grdProductDiscount_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (grdProductDiscount.Columns[e.ColumnIndex].Name == "RemoveAction")
+            {
+                var productDiscounts = productDiscountBindingSource.DataSource as IList<ProductDiscount>;
+                var productDiscount = productDiscounts[e.RowIndex];
+
+                if (updateProduct != null)
+                {
+                    var prodDiscountRepo = new ProductDiscountRepository();
+                    await prodDiscountRepo.RemoveProductDiscountAsync(productDiscount.Id);
+                }
+
+                productDiscountBindingSource.Remove(productDiscount);
+                grdProductDiscount.ClearSelection();
+            }
         }
 
         private Product GenerateNewProduct()
@@ -498,20 +527,28 @@ namespace POS.Forms
             return product;
         }
 
-        private async void grdProductDiscount_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private ProductDiscount GenerateProductDiscount(Discount discount)
         {
-            if (grdProductDiscount.Columns[e.ColumnIndex].Name == "RemoveAction")
+            var productDiscount = new ProductDiscount
             {
-                if (updateProduct != null)
-                {
-                    var productDiscounts = productDiscountBindingSource.DataSource as IList<ProductDiscount>;
-                    var productDiscount = productDiscounts[e.RowIndex];
-                    productDiscountBindingSource.Remove(productDiscount);
+                ProductCode = txtProductCode.Text,
+                DiscountID = discount.ID,
+                DiscountDescription = discount.Description,
+                DiscountPercentage = discount.DiscountPercentage,
+                RemoveAction = "Remove",
+                CreatedByID = currUser.UserID
+            };
 
-                    var prodDiscountRepo = new ProductDiscountRepository();
-                    await prodDiscountRepo.RemoveProductDiscountAsync(productDiscount.Id);
-                }
-            }
+            return productDiscount;
+        }
+
+        private IList<ProductDiscount> GetProductDiscountDataSource()
+        {
+            var productDiscounts = productDiscountBindingSource.DataSource as IList<ProductDiscount>;
+            if (productDiscounts is null || !productDiscounts.Any())
+                productDiscounts = new List<ProductDiscount>();
+
+            return productDiscounts;
         }
     }
 }
