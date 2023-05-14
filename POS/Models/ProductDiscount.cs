@@ -9,5 +9,6 @@ namespace POS.Models
         public int DiscountID { get; set; }
         public string DiscountDescription { get; set; }
         public decimal DiscountPercentage { get; set; }
+        public string RemoveAction { get; set; }
     }
 }

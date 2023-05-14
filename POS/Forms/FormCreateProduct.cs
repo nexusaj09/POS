@@ -351,7 +351,10 @@ namespace POS.Forms
 
                 var productDiscounts = await productHelper.GetProductDiscountsAsync(updateProduct.ProductCode);
                 if (productDiscounts.Any())
+                {
                     productDiscountBindingSource.DataSource = productDiscounts;
+                    grdProductDiscount.ClearSelection();
+                }                    
             }
         }
 
@@ -493,6 +496,22 @@ namespace POS.Forms
             };
 
             return product;
+        }
+
+        private async void grdProductDiscount_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (grdProductDiscount.Columns[e.ColumnIndex].Name == "RemoveAction")
+            {
+                if (updateProduct != null)
+                {
+                    var productDiscounts = productDiscountBindingSource.DataSource as IList<ProductDiscount>;
+                    var productDiscount = productDiscounts[e.RowIndex];
+                    productDiscountBindingSource.Remove(productDiscount);
+
+                    var prodDiscountRepo = new ProductDiscountRepository();
+                    await prodDiscountRepo.RemoveProductDiscountAsync(productDiscount.Id);
+                }
+            }
         }
     }
 }

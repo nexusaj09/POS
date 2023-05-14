@@ -18,12 +18,12 @@ namespace POS.Repositories
                 using (var conn = new SqlConnection(GetConnectionString))
                 {
                     const string sql = @"
-                    INSERT INTO [dbo].[ProductDiscounts] (
-	                    ProductCode, DiscountID, CreatedByID
-                    ) VALUES (
-	                    @ProductCode, @DiscountID, @CreatedByID
-                    )
-                ";
+                        INSERT INTO [dbo].[ProductDiscounts] (
+	                        ProductCode, DiscountID, CreatedByID
+                        ) VALUES (
+	                        @ProductCode, @DiscountID, @CreatedByID
+                        )
+                    ";
 
                     conn.Open();
                     using (var cmd = new SqlCommand(sql, conn))
@@ -58,7 +58,31 @@ namespace POS.Repositories
             catch (Exception)
             {
                 throw;
-            }            
+            }
+        }
+
+        public async Task<bool> RemoveProductDiscountAsync(int productDiscountID)
+        {
+            try
+            {
+                using (var conn = new SqlConnection(GetConnectionString))
+                {
+                    const string sql = "DELETE FROM [dbo].[ProductDiscounts] WHERE Id = @ProductDiscountID";
+
+                    conn.Open();
+                    using (var cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("ProductDiscountID", productDiscountID);
+                        
+                        var result = await cmd.ExecuteNonQueryAsync();
+                        return result > 0;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

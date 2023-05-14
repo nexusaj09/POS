@@ -578,8 +578,13 @@ namespace POS.Helpers
 	                        pd.Id,
 	                        pd.ProductCode,
 	                        pd.DiscountID,
-	                        d.[Description],
-	                        d.DiscountPercentage
+	                        d.[Description] AS DiscountDescription,
+	                        d.DiscountPercentage,
+                            pd.CreatedByID,
+                            pd.CreatedDateTime,
+                            pd.LastModifiedByID,
+                            pd.LastModifiedDateTime,
+                            'Remove' AS RemoveAction
                         FROM ProductDiscounts pd
 	                        INNER JOIN Discounts d ON d.ID = pd.DiscountID
                         WHERE pd.ProductCode = @ProductCode
