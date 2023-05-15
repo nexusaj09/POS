@@ -28,7 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cmbDiscounts = new System.Windows.Forms.ComboBox();
+            this.btnAddDiscount = new MetroFramework.Controls.MetroButton();
+            this.grdProductDiscount = new MetroFramework.Controls.MetroGrid();
+            this.txtLocation = new MetroFramework.Controls.MetroTextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.chckWithExpiry = new MetroFramework.Controls.MetroCheckBox();
             this.label17 = new System.Windows.Forms.Label();
             this.dtExpirationDate = new MetroFramework.Controls.MetroDateTime();
             this.txtFinalPrice = new MetroFramework.Controls.MetroTextBox();
@@ -65,15 +77,20 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.chckWithExpiry = new MetroFramework.Controls.MetroCheckBox();
-            this.txtLocation = new MetroFramework.Controls.MetroTextBox();
-            this.label16 = new System.Windows.Forms.Label();
+            this.productDiscountBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.DiscountDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DiscountPercentage = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RemoveAction = new System.Windows.Forms.DataGridViewButtonColumn();
             this.metroPanel1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdProductDiscount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productDiscountBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // metroPanel1
             // 
+            this.metroPanel1.Controls.Add(this.groupBox1);
             this.metroPanel1.Controls.Add(this.txtLocation);
             this.metroPanel1.Controls.Add(this.label16);
             this.metroPanel1.Controls.Add(this.chckWithExpiry);
@@ -119,11 +136,158 @@
             this.metroPanel1.HorizontalScrollbarSize = 10;
             this.metroPanel1.Location = new System.Drawing.Point(20, 60);
             this.metroPanel1.Name = "metroPanel1";
-            this.metroPanel1.Size = new System.Drawing.Size(954, 420);
+            this.metroPanel1.Size = new System.Drawing.Size(954, 737);
             this.metroPanel1.TabIndex = 2;
             this.metroPanel1.VerticalScrollbarBarColor = true;
             this.metroPanel1.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel1.VerticalScrollbarSize = 10;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.cmbDiscounts);
+            this.groupBox1.Controls.Add(this.btnAddDiscount);
+            this.groupBox1.Controls.Add(this.grdProductDiscount);
+            this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(26, 388);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(909, 278);
+            this.groupBox1.TabIndex = 35;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Product Discounts";
+            // 
+            // cmbDiscounts
+            // 
+            this.cmbDiscounts.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmbDiscounts.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cmbDiscounts.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbDiscounts.FormattingEnabled = true;
+            this.cmbDiscounts.Location = new System.Drawing.Point(628, 21);
+            this.cmbDiscounts.Name = "cmbDiscounts";
+            this.cmbDiscounts.Size = new System.Drawing.Size(219, 28);
+            this.cmbDiscounts.TabIndex = 20;
+            // 
+            // btnAddDiscount
+            // 
+            this.btnAddDiscount.BackColor = System.Drawing.Color.SeaGreen;
+            this.btnAddDiscount.ForeColor = System.Drawing.Color.White;
+            this.btnAddDiscount.Location = new System.Drawing.Point(853, 21);
+            this.btnAddDiscount.Name = "btnAddDiscount";
+            this.btnAddDiscount.Size = new System.Drawing.Size(50, 29);
+            this.btnAddDiscount.TabIndex = 19;
+            this.btnAddDiscount.Text = "Add";
+            this.btnAddDiscount.UseCustomBackColor = true;
+            this.btnAddDiscount.UseCustomForeColor = true;
+            this.btnAddDiscount.UseSelectable = true;
+            this.btnAddDiscount.Click += new System.EventHandler(this.btnAddDiscount_Click);
+            // 
+            // grdProductDiscount
+            // 
+            this.grdProductDiscount.AllowUserToAddRows = false;
+            this.grdProductDiscount.AllowUserToDeleteRows = false;
+            this.grdProductDiscount.AllowUserToResizeColumns = false;
+            this.grdProductDiscount.AllowUserToResizeRows = false;
+            this.grdProductDiscount.AutoGenerateColumns = false;
+            this.grdProductDiscount.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.grdProductDiscount.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.grdProductDiscount.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.grdProductDiscount.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(114)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(114)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdProductDiscount.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.grdProductDiscount.ColumnHeadersHeight = 36;
+            this.grdProductDiscount.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.grdProductDiscount.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.DiscountDescription,
+            this.DiscountPercentage,
+            this.RemoveAction});
+            this.grdProductDiscount.DataSource = this.productDiscountBindingSource;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 14.25F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdProductDiscount.DefaultCellStyle = dataGridViewCellStyle3;
+            this.grdProductDiscount.EnableHeadersVisualStyles = false;
+            this.grdProductDiscount.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.grdProductDiscount.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.grdProductDiscount.Location = new System.Drawing.Point(6, 62);
+            this.grdProductDiscount.MultiSelect = false;
+            this.grdProductDiscount.Name = "grdProductDiscount";
+            this.grdProductDiscount.ReadOnly = true;
+            this.grdProductDiscount.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Coral;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdProductDiscount.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.grdProductDiscount.RowHeadersWidth = 51;
+            this.grdProductDiscount.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.grdProductDiscount.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdProductDiscount.Size = new System.Drawing.Size(897, 210);
+            this.grdProductDiscount.TabIndex = 0;
+            this.grdProductDiscount.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdProductDiscount_CellContentClick);
+            this.grdProductDiscount.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.grdProductDiscount_CellFormatting);
+            // 
+            // txtLocation
+            // 
+            // 
+            // 
+            // 
+            this.txtLocation.CustomButton.Image = null;
+            this.txtLocation.CustomButton.Location = new System.Drawing.Point(275, 1);
+            this.txtLocation.CustomButton.Name = "";
+            this.txtLocation.CustomButton.Size = new System.Drawing.Size(21, 21);
+            this.txtLocation.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.txtLocation.CustomButton.TabIndex = 1;
+            this.txtLocation.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.txtLocation.CustomButton.UseSelectable = true;
+            this.txtLocation.CustomButton.Visible = false;
+            this.txtLocation.Lines = new string[0];
+            this.txtLocation.Location = new System.Drawing.Point(638, 14);
+            this.txtLocation.MaxLength = 15;
+            this.txtLocation.Name = "txtLocation";
+            this.txtLocation.PasswordChar = '\0';
+            this.txtLocation.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.txtLocation.SelectedText = "";
+            this.txtLocation.SelectionLength = 0;
+            this.txtLocation.SelectionStart = 0;
+            this.txtLocation.ShortcutsEnabled = true;
+            this.txtLocation.Size = new System.Drawing.Size(297, 23);
+            this.txtLocation.TabIndex = 8;
+            this.txtLocation.UseSelectable = true;
+            this.txtLocation.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.txtLocation.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(528, 22);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(67, 15);
+            this.label16.TabIndex = 34;
+            this.label16.Text = "LOCATION:";
+            // 
+            // chckWithExpiry
+            // 
+            this.chckWithExpiry.AutoSize = true;
+            this.chckWithExpiry.Location = new System.Drawing.Point(531, 142);
+            this.chckWithExpiry.Name = "chckWithExpiry";
+            this.chckWithExpiry.Size = new System.Drawing.Size(92, 15);
+            this.chckWithExpiry.TabIndex = 12;
+            this.chckWithExpiry.Text = "WITH EXPIRY";
+            this.chckWithExpiry.UseSelectable = true;
+            this.chckWithExpiry.CheckedChanged += new System.EventHandler(this.chckWithExpiry_CheckedChanged);
             // 
             // label17
             // 
@@ -595,7 +759,7 @@
             // 
             this.btnCancel.BackColor = System.Drawing.Color.IndianRed;
             this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Location = new System.Drawing.Point(826, 373);
+            this.btnCancel.Location = new System.Drawing.Point(826, 689);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(109, 30);
             this.btnCancel.TabIndex = 19;
@@ -609,7 +773,7 @@
             // 
             this.btnSave.BackColor = System.Drawing.Color.SeaGreen;
             this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(710, 373);
+            this.btnSave.Location = new System.Drawing.Point(710, 689);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(109, 30);
             this.btnSave.TabIndex = 18;
@@ -796,63 +960,48 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "PRODUCT CODE:";
             // 
-            // chckWithExpiry
+            // productDiscountBindingSource
             // 
-            this.chckWithExpiry.AutoSize = true;
-            this.chckWithExpiry.Location = new System.Drawing.Point(531, 142);
-            this.chckWithExpiry.Name = "chckWithExpiry";
-            this.chckWithExpiry.Size = new System.Drawing.Size(92, 15);
-            this.chckWithExpiry.TabIndex = 12;
-            this.chckWithExpiry.Text = "WITH EXPIRY";
-            this.chckWithExpiry.UseSelectable = true;
-            this.chckWithExpiry.CheckedChanged += new System.EventHandler(this.chckWithExpiry_CheckedChanged);
+            this.productDiscountBindingSource.DataSource = typeof(POS.Models.ProductDiscount);
             // 
-            // txtLocation
+            // DiscountDescription
             // 
+            this.DiscountDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.DiscountDescription.DataPropertyName = "DiscountDescription";
+            this.DiscountDescription.HeaderText = "Description";
+            this.DiscountDescription.Name = "DiscountDescription";
+            this.DiscountDescription.ReadOnly = true;
             // 
+            // DiscountPercentage
             // 
+            this.DiscountPercentage.DataPropertyName = "DiscountPercentage";
+            this.DiscountPercentage.HeaderText = "Percentage";
+            this.DiscountPercentage.Name = "DiscountPercentage";
+            this.DiscountPercentage.ReadOnly = true;
+            this.DiscountPercentage.Width = 150;
             // 
-            this.txtLocation.CustomButton.Image = null;
-            this.txtLocation.CustomButton.Location = new System.Drawing.Point(275, 1);
-            this.txtLocation.CustomButton.Name = "";
-            this.txtLocation.CustomButton.Size = new System.Drawing.Size(21, 21);
-            this.txtLocation.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.txtLocation.CustomButton.TabIndex = 1;
-            this.txtLocation.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.txtLocation.CustomButton.UseSelectable = true;
-            this.txtLocation.CustomButton.Visible = false;
-            this.txtLocation.Lines = new string[0];
-            this.txtLocation.Location = new System.Drawing.Point(638, 14);
-            this.txtLocation.MaxLength = 15;
-            this.txtLocation.Name = "txtLocation";
-            this.txtLocation.PasswordChar = '\0';
-            this.txtLocation.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.txtLocation.SelectedText = "";
-            this.txtLocation.SelectionLength = 0;
-            this.txtLocation.SelectionStart = 0;
-            this.txtLocation.ShortcutsEnabled = true;
-            this.txtLocation.Size = new System.Drawing.Size(297, 23);
-            this.txtLocation.TabIndex = 8;
-            this.txtLocation.UseSelectable = true;
-            this.txtLocation.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.txtLocation.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            // RemoveAction
             // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(528, 22);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(67, 15);
-            this.label16.TabIndex = 34;
-            this.label16.Text = "LOCATION:";
+            this.RemoveAction.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.RemoveAction.DataPropertyName = "RemoveAction";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Red;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Transparent;
+            this.RemoveAction.DefaultCellStyle = dataGridViewCellStyle2;
+            this.RemoveAction.HeaderText = "";
+            this.RemoveAction.Name = "RemoveAction";
+            this.RemoveAction.ReadOnly = true;
+            this.RemoveAction.Text = "Remove";
+            this.RemoveAction.Width = 5;
             // 
             // FormCreateProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
-            this.ClientSize = new System.Drawing.Size(994, 500);
+            this.ClientSize = new System.Drawing.Size(994, 817);
             this.ControlBox = false;
             this.Controls.Add(this.metroPanel1);
             this.Name = "FormCreateProduct";
@@ -863,7 +1012,10 @@
             this.Load += new System.EventHandler(this.FormCreateProduct_Load);
             this.metroPanel1.ResumeLayout(false);
             this.metroPanel1.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grdProductDiscount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productDiscountBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -910,5 +1062,13 @@
         private MetroFramework.Controls.MetroCheckBox chckWithExpiry;
         private MetroFramework.Controls.MetroTextBox txtLocation;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private MetroFramework.Controls.MetroGrid grdProductDiscount;
+        public MetroFramework.Controls.MetroButton btnAddDiscount;
+        private System.Windows.Forms.ComboBox cmbDiscounts;
+        private System.Windows.Forms.BindingSource productDiscountBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DiscountDescription;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DiscountPercentage;
+        private System.Windows.Forms.DataGridViewButtonColumn RemoveAction;
     }
 }

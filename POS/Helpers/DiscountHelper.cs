@@ -1,9 +1,8 @@
 ﻿using POS.Classes;
+using POS.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -11,6 +10,36 @@ namespace POS.Helpers
 {
     public class DiscountHelper : DatabaseConnection
     {
+        public async Task<IEnumerable<Discount>> GetDiscountsAsync()
+        {
+            try
+            {
+                var discounts = new List<Discount>();
+
+                using (var conn = new SqlConnection(GetConnectionString))
+                {
+                    const string sql = @"
+                        SELECT
+	                        *,
+                            CONCAT([Description], ' - ', FORMAT((DiscountPercentage), 'g18'), '%') AS DisplayName
+                        FROM [dbo].[Discounts]
+                    ";
+
+                    conn.Open();
+                    using (var cmd = new SqlCommand(sql, conn))
+                    {
+                        var reader = await cmd.ExecuteReaderAsync();
+                        discounts = reader.ConvertToList<Discount>();
+                    }
+                }
+
+                return discounts;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 
         public void CreateDiscount(Discount currDiscount)
         {

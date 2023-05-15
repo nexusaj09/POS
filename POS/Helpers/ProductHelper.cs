@@ -1,5 +1,7 @@
 ﻿using POS.Classes;
+using POS.Extensions;
 using POS.Forms;
+using POS.Models;
 using POS.Panels;
 using System;
 using System.Collections.Generic;
@@ -67,58 +69,24 @@ namespace POS.Helpers
 
                 using (cmd = new SqlCommand())
                 {
+                    const string sql = @"
+                        INSERT INTO Products (
+                            ProductCode, Barcode, Description, BrandName, GenericName, Classification,
+                            Formulation, Category, UOM, ReOrderQty, Qty, SupplierPrice,
+                            FinalPrice, SRP, CreatedByID, CreatedDateTime, LastModifiedByID,
+                            LastModifiedDateTime, MarkUp, ExpirationDate, IsExpiring, Location
+                        ) VALUES (
+                            @ProductCode, @Barcode, @Description, @BrandName, @GenericName, @Classification,
+                            @Formulation, @Category, @UOM, @ReOrderQty, @Qty, @SupplierPrice,
+                            @FinalPrice, @SRP, @CreatedByID, @CreatedDateTime, @LastModifiedByID,
+                            @LastModifiedDateTime, @MarkUp, @ExpirationDate, @IsExpiring, @Location
+                        )
+                    ";
+
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = @"INSERT INTO Products
-                                                           (
-                                                            ProductCode,
-                                                            Barcode,
-                                                            Description,
-                                                            BrandName,
-                                                            GenericName,
-                                                            Classification,
-                                                            Formulation,
-                                                            Category,
-                                                            UOM,
-                                                            ReOrderQty,
-                                                            Qty,
-                                                            SupplierPrice,
-                                                            FinalPrice,
-                                                            SRP,
-                                                            CreatedByID,
-                                                            CreatedDateTime,
-                                                            LastModifiedByID,
-                                                            LastModifiedDateTime,
-                                                            MarkUp,
-                                                            ExpirationDate,
-                                                            IsExpiring,
-                                                            Location
-                                                           )
-                                                    VALUES
-                                                           (
-                                                            @ProductCode,
-                                                            @Barcode,
-                                                            @Description,
-                                                            @BrandName,
-                                                            @GenericName,
-                                                            @Classification,
-                                                            @Formulation,
-                                                            @Category,
-                                                            @UOM,
-                                                            @ReOrderQty,
-                                                            @Qty,
-                                                            @SupplierPrice,
-                                                            @FinalPrice,
-                                                            @SRP,
-                                                            @CreatedByID,
-                                                            @CreatedDateTime,
-                                                            @LastModifiedByID,
-                                                            @LastModifiedDateTime,
-                                                            @MarkUp,
-                                                            @ExpirationDate,
-                                                            @IsExpiring,
-                                                            @Location
-                                                            )";
+                    cmd.CommandText = sql;
+
                     cmd.Parameters.AddWithValue(@"ProductCode", product.ProductCode);
                     cmd.Parameters.AddWithValue(@"Barcode", product.ProductBarcode);
                     cmd.Parameters.AddWithValue(@"Description", product.Description);
@@ -143,7 +111,6 @@ namespace POS.Helpers
                     cmd.Parameters.AddWithValue(@"Location", product.Location);
                     cmd.ExecuteNonQuery();
                 }
-
             }
             catch (Exception ex)
             {
@@ -598,5 +565,50 @@ namespace POS.Helpers
             }
         }
 
+        public async Task<IEnumerable<ProductDiscount>> GetProductDiscountsAsync(string productCode)
+        {
+            try
+            {
+                var productDiscounts = new List<ProductDiscount>();
+
+                using (var conn = new SqlConnection(GetConnectionString))
+                {
+                    const string sql = @"
+                        SELECT
+	                        pd.Id,
+	                        pd.ProductCode,
+	                        pd.DiscountID,
+	                        d.[Description] AS DiscountDescription,
+	                        d.DiscountPercentage,
+                            pd.CreatedByID,
+                            pd.CreatedDateTime,
+                            pd.LastModifiedByID,
+                            pd.LastModifiedDateTime,
+                            'Remove' AS RemoveAction
+                        FROM ProductDiscounts pd
+	                        INNER JOIN Discounts d ON d.ID = pd.DiscountID
+                        WHERE pd.ProductCode = @ProductCode
+                    ";
+
+                    conn.Open();
+                    using (var cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("ProductCode", productCode);
+
+                        var reader = await cmd.ExecuteReaderAsync();
+                        productDiscounts = reader.ConvertToList<ProductDiscount>();
+                    }
+                }
+
+                if (!productDiscounts.Any())
+                    return Enumerable.Empty<ProductDiscount>();
+
+                return productDiscounts;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

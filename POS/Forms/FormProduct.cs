@@ -32,7 +32,7 @@ namespace POS.Forms
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
-            using (FormCreateProduct formCreateProduct = new FormCreateProduct(this, null))
+            using (FormCreateProduct formCreateProduct = new FormCreateProduct(this, null, currUser))
             {
                 formCreateProduct.ShowDialog(this);
                 formCreateProduct.Dispose();
@@ -85,11 +85,12 @@ namespace POS.Forms
                 if (!string.IsNullOrEmpty(grdProductList[17, e.RowIndex].Value.ToString()))
                 {
                     DateTime expDate = Convert.ToDateTime(grdProductList[17, e.RowIndex].Value.ToString());
-                    var finalExpDate = expDate.ToShortDateString();
-                    updateProduct.ExpirationDate = DateTime.ParseExact(finalExpDate, @"dd/MM/yyyy", CultureInfo.CreateSpecificCulture("en-GB"));
+                    //var finalExpDate = expDate.ToShortDateString();
+                    //updateProduct.ExpirationDate = DateTime.ParseExact(finalExpDate, @"dd/MM/yyyy", CultureInfo.CreateSpecificCulture("en-GB"));
+                    updateProduct.ExpirationDate = expDate;
                 }
                 updateProduct.IsExpiring = Convert.ToBoolean(grdProductList[18, e.RowIndex].Value);
-                FormCreateProduct form = new FormCreateProduct(this, updateProduct);
+                FormCreateProduct form = new FormCreateProduct(this, updateProduct, currUser);
                 form.btnSave.Text = "UPDATE";
                 form.ShowDialog(this);
                 form.Dispose();

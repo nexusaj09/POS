@@ -278,6 +278,8 @@
     <Compile Include="Helpers\SupplierHelper.cs" />
     <Compile Include="Helpers\TransactionHelper.cs" />
     <Compile Include="Helpers\UserHelper.cs" />
+    <Compile Include="Models\KeyValue\DiscountKeyValue.cs" />
+    <Compile Include="Models\ProductDiscount.cs" />
     <Compile Include="Panels\PanelAdjustQty.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -301,6 +303,12 @@
     </Compile>
     <Compile Include="Panels\PanelCreateGCashTransaction.Designer.cs">
       <DependentUpon>PanelCreateGCashTransaction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Panels\PanelDiscounts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Panels\PanelDiscounts.Designer.cs">
+      <DependentUpon>PanelDiscounts.cs</DependentUpon>
     </Compile>
     <Compile Include="Panels\PanelGcash.cs">
       <SubType>Form</SubType>
@@ -358,6 +366,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ProductDiscountRepository.cs" />
     <Compile Include="Repositories\TopupTransactionRepository.cs" />
     <EmbeddedResource Include="Forms\FormCategories.resx">
       <DependentUpon>FormCategories.cs</DependentUpon>
@@ -438,6 +447,9 @@
     <EmbeddedResource Include="Panels\PanelCreateGCashTransaction.resx">
       <DependentUpon>PanelCreateGCashTransaction.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Panels\PanelDiscounts.resx">
+      <DependentUpon>PanelDiscounts.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Panels\PanelGcash.resx">
       <DependentUpon>PanelGcash.cs</DependentUpon>
     </EmbeddedResource>
@@ -476,6 +488,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\POS.Models.ProductDiscount.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -506,5 +519,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
