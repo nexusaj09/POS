@@ -1,10 +1,12 @@
 ﻿using POS.Classes;
 using POS.Helpers;
+using POS.Models;
 using POS.Panels;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Drawing;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Forms;
 
@@ -34,6 +36,7 @@ namespace POS.Forms
         bool shifted = false;
 
         public EmployeeShift EmployeeShift { get; private set; }
+        public List<ProductDiscount> ProductDiscounts { get; private set; }
 
         public FormTransaction(User user)
         {
@@ -267,15 +270,24 @@ namespace POS.Forms
                 var result = discount.ShowDialog();
                 if (result == DialogResult.OK)
                 {
-                    var discountPercentage = discount.DiscountPercentage / 100;
-
                     foreach (DataGridViewRow item in grdProductList.Rows)
                     {
-                        var qty = Convert.ToDecimal(grdProductList.Rows[item.Index].Cells[5].Value);
-                        var unitPrice = Convert.ToDecimal(grdProductList.Rows[item.Index].Cells[4].Value);                        
-                        var discountAmount = unitPrice * discountPercentage;
-                        var totalDiscountAmount = qty * discountAmount;
+                        var discountAmount = 0M;
+                        var discountPercentage = 0M;
 
+                        var qty = Convert.ToDecimal(grdProductList.Rows[item.Index].Cells[5].Value);
+                        var unitPrice = Convert.ToDecimal(grdProductList.Rows[item.Index].Cells[4].Value);
+
+                        var productCode = grdProductList.Rows[item.Index].Cells[1].Value.ToString();
+
+                        var productDiscount = ProductDiscounts.FirstOrDefault(x => x.DiscountID == discount.DiscountID && x.ProductCode == productCode);
+                        if (productDiscount != null)
+                        {
+                            discountPercentage = discount.DiscountPercentage / 100;
+                            discountAmount = unitPrice * discountPercentage;
+                        }
+                                               
+                        var totalDiscountAmount = qty * discountAmount;
                         grdProductList.Rows[item.Index].Cells[6].Value = Math.Round(totalDiscountAmount, 2); // => discount
                     }
 
@@ -522,6 +534,25 @@ namespace POS.Forms
             button9.Enabled = enable;
 
             btnShift.Text = enable == false ? "START SHIFT" : "END SHIFT";
+        }
+
+        public async Task AddProductDiscountsAsync(string productCode)
+        {
+            // Get the product discounts here
+            var productHelper = new ProductHelper();
+            if (ProductDiscounts is null || !ProductDiscounts.Any())
+            {
+                ProductDiscounts = (await productHelper.GetProductDiscountsAsync(productCode)).ToList();
+                return;
+            }
+                
+            var productDiscounts = ProductDiscounts.Where(x => x.ProductCode == productCode).ToList();
+            if (productDiscounts is null || !productDiscounts.Any())
+            {
+                var discounts = (await productHelper.GetProductDiscountsAsync(productCode)).ToList();   
+                if (discounts.Any())
+                    ProductDiscounts.AddRange(discounts);
+            }
         }
     }
 }

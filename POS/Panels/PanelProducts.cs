@@ -21,7 +21,7 @@ namespace POS.Panels
         FormCreateInvoice formCreateInvoice;
         FormTransaction formTransaction;
         bool isFromTransaction;
-        int index = 0;
+        int index = 0;        
         public PanelProducts(FormCreateInvoice form)
         {
             InitializeComponent();
@@ -138,10 +138,10 @@ namespace POS.Panels
                 //    MessageBox.Show("Product Added", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 formCreateInvoice.ComputeTotalPerItem();
-            }
+            }            
         }
 
-        private void SelectProductToTran(int row)
+        private async void SelectProductToTran(int row)
         {
 
             string barcode = grdProductList[2, row].Value.ToString();
@@ -154,9 +154,9 @@ namespace POS.Panels
 
             formTransaction.AddProduct(product);
 
+            // Add the product discounts here
+            await formTransaction.AddProductDiscountsAsync(product.ProductCode);
         }
-
-
 
         private void PanelProducts_KeyDown(object sender, KeyEventArgs e)
         {

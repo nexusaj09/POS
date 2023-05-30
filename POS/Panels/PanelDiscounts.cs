@@ -10,6 +10,7 @@ namespace POS.Panels
     public partial class PanelDiscounts : MetroForm
     {
         public decimal DiscountPercentage { get; set; }
+        public int DiscountID { get; set; }
 
         private readonly DiscountHelper _discountHelper;
 
@@ -67,6 +68,7 @@ namespace POS.Panels
         private void gridDiscount_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             DiscountPercentage = Convert.ToDecimal(gridDiscount[3, e.RowIndex].Value);
+            DiscountID = Convert.ToInt32(gridDiscount[1, e.RowIndex].Value);
             DialogResult = DialogResult.OK;
         }
 
