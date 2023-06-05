@@ -1,10 +1,14 @@
 ﻿using POS.Classes;
 using POS.Helpers;
+using POS.Models;
+using POS.Models.Product;
 using POS.Panels;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Drawing;
+using System.Linq;
+using System.Net;
+using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Forms;
 
@@ -34,6 +38,7 @@ namespace POS.Forms
         bool shifted = false;
 
         public EmployeeShift EmployeeShift { get; private set; }
+        public List<ProductDiscount> ProductDiscounts { get; private set; }
 
         public FormTransaction(User user)
         {
@@ -267,20 +272,30 @@ namespace POS.Forms
                 var result = discount.ShowDialog();
                 if (result == DialogResult.OK)
                 {
-                    var discountPercentage = discount.DiscountPercentage / 100;
+                    // Get products that are eligible for the discount
+                    var eligibleProductDiscounts = GetEligibleProductDiscounts(discount.DiscountID, discount.DiscountPercentage);
+                    var pnlProductDiscountSelection = new PanelProductDiscountSelection(discount.DiscountPercentage, eligibleProductDiscounts);
 
-                    foreach (DataGridViewRow item in grdProductList.Rows)
+                    var selectedResult = pnlProductDiscountSelection.ShowDialog();
+                    if (selectedResult == DialogResult.OK)
                     {
-                        var qty = Convert.ToDecimal(grdProductList.Rows[item.Index].Cells[5].Value);
-                        var unitPrice = Convert.ToDecimal(grdProductList.Rows[item.Index].Cells[4].Value);                        
-                        var discountAmount = unitPrice * discountPercentage;
-                        var totalDiscountAmount = qty * discountAmount;
+                        // Apply the discount on the selected eligible discount product
+                        var selectedEligibleProductDiscounts = eligibleProductDiscounts.Where(x => x.IsSelected);
+                        foreach (var selectedDiscount in selectedEligibleProductDiscounts)
+                        {
+                            var productCode = selectedDiscount.ProductCode;
+                            foreach (DataGridViewRow product in grdProductList.Rows)
+                            {
+                                if (grdProductList.Rows[product.Index].Cells[1].Value.ToString() != productCode)
+                                    continue;
 
-                        grdProductList.Rows[item.Index].Cells[6].Value = Math.Round(totalDiscountAmount, 2); // => discount
+                                grdProductList.Rows[product.Index].Cells[6].Value = selectedDiscount.DiscountAmount;
+                            }
+                        }
+
+                        GetTransactionTotal();
+                        txtSearch.Select();
                     }
-
-                    GetTransactionTotal();
-                    txtSearch.Select();
                 }
             }
         }
@@ -390,7 +405,12 @@ namespace POS.Forms
 
         public decimal GetTotalPerRow(int row)
         {
-            return Convert.ToDecimal(grdProductList.Rows[row].Cells[4].Value.ToString()) * Convert.ToInt32(grdProductList.Rows[row].Cells[5].Value.ToString());
+            var qty = Convert.ToDecimal(grdProductList.Rows[row].Cells[5].Value);
+            var unitAmount = Convert.ToDecimal(grdProductList.Rows[row].Cells[4].Value);
+            var discountAmount = Convert.ToDecimal(grdProductList.Rows[row].Cells[6].Value);
+
+            var lineAmount = (qty * unitAmount) - discountAmount;
+            return lineAmount;
         }
 
         public void GetTransactionTotal()
@@ -522,6 +542,62 @@ namespace POS.Forms
             button9.Enabled = enable;
 
             btnShift.Text = enable == false ? "START SHIFT" : "END SHIFT";
+        }
+
+        public async Task AddProductDiscountsAsync(string productCode)
+        {
+            // Get the product discounts here
+            var productHelper = new ProductHelper();
+            if (ProductDiscounts is null || !ProductDiscounts.Any())
+            {
+                ProductDiscounts = (await productHelper.GetProductDiscountsAsync(productCode)).ToList();
+                return;
+            }
+                
+            var productDiscounts = ProductDiscounts.Where(x => x.ProductCode == productCode).ToList();
+            if (productDiscounts is null || !productDiscounts.Any())
+            {
+                var discounts = (await productHelper.GetProductDiscountsAsync(productCode)).ToList();   
+                if (discounts.Any())
+                    ProductDiscounts.AddRange(discounts);
+            }
+        }
+
+        private IEnumerable<EligibleProductDiscount> GetEligibleProductDiscounts(int discountId, decimal discountPercent)
+        {
+            var discountPercentage = discountPercent / 100;
+            var productDiscounts = ProductDiscounts.Where(x => x.DiscountID == discountId);
+
+            var eligibleProductDiscounts = new List<EligibleProductDiscount>();
+
+            foreach (var item in productDiscounts)
+            {
+                var productCode = item.ProductCode;
+                foreach (DataGridViewRow product in grdProductList.Rows)
+                {
+                    if (grdProductList.Rows[product.Index].Cells[1].Value.ToString() != productCode)
+                        continue;
+
+                    var productDescription = grdProductList.Rows[product.Index].Cells[1].Value.ToString();
+                    var qty = Convert.ToDecimal(grdProductList.Rows[product.Index].Cells[5].Value);
+                    var unitPrice = Convert.ToDecimal(grdProductList.Rows[product.Index].Cells[4].Value);
+                    var discountAmount = qty * (unitPrice * discountPercentage);
+                    var lineAmount = (qty * unitPrice) - discountAmount;
+
+                    eligibleProductDiscounts.Add(new EligibleProductDiscount
+                    {
+                        IsSelected = true,
+                        ProductCode = productCode,
+                        Description = productDescription,
+                        Qty = qty,
+                        UnitAmount = unitPrice,
+                        DiscountAmount = discountAmount,
+                        LineAmount = lineAmount,
+                    });
+                }
+            }
+
+            return eligibleProductDiscounts;
         }
     }
 }
