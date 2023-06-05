@@ -236,6 +236,13 @@
     <Compile Include="Forms\FormProduct.Designer.cs">
       <DependentUpon>FormProduct.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Product\EligibleProductDiscount.cs" />
+    <Compile Include="Panels\PanelProductDiscountSelection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Panels\PanelProductDiscountSelection.Designer.cs">
+      <DependentUpon>PanelProductDiscountSelection.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormStockAdjustments.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -441,6 +448,9 @@
     <EmbeddedResource Include="Panels\PanelCreateAdmin.resx">
       <DependentUpon>PanelCreateAdmin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Panels\PanelProductDiscountSelection.resx">
+      <DependentUpon>PanelProductDiscountSelection.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Panels\PanelTopupTransaction.resx">
       <DependentUpon>PanelTopupTransaction.cs</DependentUpon>
     </EmbeddedResource>
@@ -488,6 +498,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\POS.Models.Product.ProductDiscountSelection.datasource" />
     <None Include="Properties\DataSources\POS.Models.ProductDiscount.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

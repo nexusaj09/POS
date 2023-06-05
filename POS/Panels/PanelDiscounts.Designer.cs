@@ -170,7 +170,7 @@
             // DescountPercent
             // 
             this.DescountPercent.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle2.Format = "N2";
+            dataGridViewCellStyle2.Format = "N0";
             dataGridViewCellStyle2.NullValue = "0";
             this.DescountPercent.DefaultCellStyle = dataGridViewCellStyle2;
             this.DescountPercent.HeaderText = "Descount Percentage";

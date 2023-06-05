@@ -118,11 +118,9 @@ namespace POS.Helpers
 
                     while (dr.Read())
                     {
-                        count += 1;
-                        grid.Rows.Add(count, dr["ID"].ToString(), dr["Description"].ToString(), dr["DiscountPercentage"].ToString());
+                        count += 1;                        
+                        grid.Rows.Add(count, dr["ID"].ToString(), dr["Description"].ToString(), dr["DiscountPercentage"]);
                     }
-
-
                 }
             }
             catch (Exception ex)

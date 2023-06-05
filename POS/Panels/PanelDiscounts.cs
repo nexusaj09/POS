@@ -62,6 +62,7 @@ namespace POS.Panels
             {
                 e.CellStyle.Font = new Font(e.CellStyle.Font, FontStyle.Bold);
                 e.CellStyle.SelectionBackColor = Color.Coral;
+                
             }
         }
 
