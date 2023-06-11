@@ -1,4 +1,5 @@
 ﻿using POS.Classes;
+using POS.Entities;
 using System;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
@@ -14,34 +15,34 @@ namespace POS.Helpers
                 const string sql = @"
                     SELECT COALESCE(SUM(Amount), 0) AS GCashAvailableBalance
                     FROM (
-	                    -- Cash In amount
-	                    SELECT
-		                    -SUM(Amt) AS Amount
-	                    FROM [dbo].[GCashTransactions]
-	                    WHERE ShiftID = @ShiftID
-		                    AND TransactionType = 1
+                        -- Cash In amount
+                        SELECT
+                            -SUM(Amt) AS Amount
+                        FROM [dbo].[GCashTransactions]
+                        WHERE ShiftID = @ShiftID
+                            AND TransactionType = 1
 
-	                    UNION
+                        UNION
 
-	                    -- Cash Out amount
-	                    SELECT
-		                    SUM(Amt) AS Amount
-	                    FROM [dbo].[GCashTransactions]
-	                    WHERE ShiftID = @ShiftID
-		                    AND TransactionType = 2
+                        -- Cash Out amount
+                        SELECT
+                            SUM(Amt) AS Amount
+                        FROM [dbo].[GCashTransactions]
+                        WHERE ShiftID = @ShiftID
+                            AND TransactionType = 2
 
-	                    UNION
+                        UNION
 
-	                    /*
-		                    Topup GCash account
-		                    this topup only used if there are insufficient funds
-		                    for GCASH Cash In transaction
-	                    */
-	                    SELECT
-		                    SUM(Amount) AS Amount
-	                    FROM TopupTransactions
-	                    WHERE ShiftID = @ShiftID
-		                    AND TopupType = 1
+                        /*
+                            Topup GCash account
+                            this topup only used if there are insufficient funds
+                            for GCASH Cash In transaction
+                        */
+                        SELECT
+                            SUM(Amount) AS Amount
+                        FROM TopupTransactions
+                        WHERE ShiftID = @ShiftID
+                            AND TopupType = 1
                     ) AS GCash
                 ";
 
@@ -98,13 +99,13 @@ namespace POS.Helpers
             {
                 var sql = @"
                     INSERT INTO [dbo].[GCashTransactions] (
-	                    TransactionNbr, Amt, TransactionFee, RefNbr, TotalAmt,
-	                    ChangeAmt, TenderedAmt, ShiftID, TransactionType, IsNegative,
-	                    CreatedByID, CreatedDateTime
+                        TransactionNbr, Amt, TransactionFee, RefNbr, TotalAmt,
+                        ChangeAmt, TenderedAmt, ShiftID, TransactionType, IsNegative,
+                        CreatedByID, CreatedDateTime
                     ) VALUES (
-	                    @TransactionNbr, @Amt, @TransactionFee, @RefNbr, @TotalAmt,
-	                    @ChangeAmt, @TenderedAmt, @ShiftID, @TransactionType, @IsNegative,
-	                    @CreatedByID, @CreatedDateTime
+                        @TransactionNbr, @Amt, @TransactionFee, @RefNbr, @TotalAmt,
+                        @ChangeAmt, @TenderedAmt, @ShiftID, @TransactionType, @IsNegative,
+                        @CreatedByID, @CreatedDateTime
                     )
                 ";
 
@@ -123,6 +124,41 @@ namespace POS.Helpers
                     cmd.Parameters.AddWithValue("IsNegative", gcashTransaction.IsNegative);
                     cmd.Parameters.AddWithValue("CreatedByID", gcashTransaction.CreatedByID);
                     cmd.Parameters.AddWithValue("CreatedDateTime", gcashTransaction.CreatedDateTime);
+
+                    var result = await cmd.ExecuteNonQueryAsync();
+                    return result > 0;
+                }
+            }
+        }
+
+        public async Task<bool> SaveCashOutAsync(GCashCashOut cashOut)
+        {
+            using (var conn = new SqlConnection(GetConnectionString))
+            {
+                var sql = @"
+                    INSERT INTO [dbo].[GCashCashOuts] (
+                        ReferenceNumber, Amount, Fee, IsFeePaySeparately,
+                        IsAmountIncludesFee, IsFeeDeductedOnCashOutAmount,
+                        ShiftID, CreatedByID, CreatedDateTime
+                    ) VALUES (
+                        @ReferenceNumber, @Amount, @Fee, @IsFeePaySeparately,
+                        @IsAmountIncludesFee, @IsFeeDeductedOnCashOutAmount,
+                        @ShiftID, @CreatedByID, @CreatedDateTime
+                    )
+                ";
+
+                conn.Open();
+                using (var cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("ReferenceNumber", cashOut.ReferenceNumber);
+                    cmd.Parameters.AddWithValue("Amount", cashOut.Amount);
+                    cmd.Parameters.AddWithValue("Fee", cashOut.Fee);
+                    cmd.Parameters.AddWithValue("IsFeePaySeparately", cashOut.IsFeePaySeparately);
+                    cmd.Parameters.AddWithValue("IsAmountIncludesFee", cashOut.IsAmountIncludesFee);
+                    cmd.Parameters.AddWithValue("IsFeeDeductedOnCashOutAmount", cashOut.IsFeeDeductedOnCashOutAmount);
+                    cmd.Parameters.AddWithValue("ShiftID", cashOut.ShiftID);
+                    cmd.Parameters.AddWithValue("CreatedByID", cashOut.CreatedByID);
+                    cmd.Parameters.AddWithValue("CreatedDateTime", cashOut.CreatedDateTime);
 
                     var result = await cmd.ExecuteNonQueryAsync();
                     return result > 0;

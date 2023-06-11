@@ -1,6 +1,7 @@
 ﻿using MetroFramework.Controls;
 using MetroFramework.Forms;
 using POS.Classes;
+using POS.Entities;
 using POS.Enumerators;
 using POS.Helpers;
 using System;
@@ -77,7 +78,7 @@ namespace POS.Panels.GCashPanels
             if (!(sender as MetroRadioButton).Checked)
                 return;
 
-            txtAmt.Text = string.Format("{0:#,##0.00}", (_amount - _fee));
+            txtAmt.Text = string.Format("{0:#,##0.00}", _amount);
             txtFee.Text = string.Format("{0:#,##0.00}", _fee);
             lblTotalCashOutAmount.Text = string.Format("{0:#,##0.00}", (_amount - _fee));
         }
@@ -89,26 +90,22 @@ namespace POS.Panels.GCashPanels
             {
                 MessageBox.Show(string.Join("\n", validations), "Validation Errors...", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
-            }
+            }            
 
-            var transactionNbr = await _gcashTransactionHelper.GetNextTransactionNbrAsync();
-            var gCashTransaction = new GCashTransaction
+            var cahOut = new GCashCashOut
             {
-                TransactionNbr = transactionNbr,
-                Amt = _amount,
-                TransactionFee = _fee,
-                RefNbr = txtRefNbr.Text,
-                TotalAmt = _totalCashOutAmount,
-                ChangeAmt = 0,
-                TenderedAmt = 0,
+                ReferenceNumber = txtRefNbr.Text,
+                Amount = _amount,
+                Fee = _fee,
+                IsFeePaySeparately = chkSeparateFee.Checked,
+                IsAmountIncludesFee = chkAmountIncludeFee.Checked,
+                IsFeeDeductedOnCashOutAmount = chkDeductFeeOnAmount.Checked,
                 ShiftID = EmployeeShift.ID,
-                TransactionType = (int)GCashTransactionType.CashOut,
-                IsNegative = false,
                 CreatedByID = _currentUser.UserID,
-                CreatedDateTime = DateTime.Now,
+                CreatedDateTime = DateTime.Now
             };
 
-            var isSuccessfullySaved = await _gcashTransactionHelper.SaveGCashTransactionAsync(gCashTransaction);
+            var isSuccessfullySaved = await _gcashTransactionHelper.SaveCashOutAsync(cahOut);
             if (isSuccessfullySaved)
             {
                 DialogResult = DialogResult.OK;
