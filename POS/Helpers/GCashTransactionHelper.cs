@@ -13,37 +13,57 @@ namespace POS.Helpers
             using (var conn = new SqlConnection(GetConnectionString))
             {
                 const string sql = @"
+                    SET NOCOUNT ON;
+
+                    IF OBJECT_ID('tempdb..#CashOut') IS NOT NULL
+                    BEGIN
+	                    DROP TABLE #CashOut
+                    END
+
+                    CREATE TABLE #CashOut (
+	                    CashOutAmount DECIMAL(18, 4)
+                    )
+
+                    INSERT INTO #CashOut
+                    SELECT
+	                    CASE
+		                    WHEN IsAmountIncludesFee = 1 THEN Amount
+		                    WHEN IsFeeDeductedOnCashOutAmount = 1 THEN (Amount - Fee)
+		                    ELSE Amount
+	                    END AS Amount
+                    FROM [dbo].[GCashCashOuts]
+                    WHERE ShiftID = @ShiftID
+
                     SELECT COALESCE(SUM(Amount), 0) AS GCashAvailableBalance
                     FROM (
-                        -- Cash In amount
-                        SELECT
-                            -SUM(Amt) AS Amount
-                        FROM [dbo].[GCashTransactions]
-                        WHERE ShiftID = @ShiftID
-                            AND TransactionType = 1
+	                    -- Cash In amount
+	                    SELECT
+		                    -SUM(Amt) AS Amount
+	                    FROM [dbo].[GCashTransactions]
+	                    WHERE ShiftID = @ShiftID
+		                    AND TransactionType = 1
 
-                        UNION
+	                    UNION
 
-                        -- Cash Out amount
-                        SELECT
-                            SUM(Amt) AS Amount
-                        FROM [dbo].[GCashTransactions]
-                        WHERE ShiftID = @ShiftID
-                            AND TransactionType = 2
+	                    -- START: Cash Out amount
+	                    SELECT SUM(CashOutAmount) AS Amount FROM #CashOut
+	                    -- END: Cash Out amount
 
-                        UNION
+	                    UNION
 
-                        /*
-                            Topup GCash account
-                            this topup only used if there are insufficient funds
-                            for GCASH Cash In transaction
-                        */
-                        SELECT
-                            SUM(Amount) AS Amount
-                        FROM TopupTransactions
-                        WHERE ShiftID = @ShiftID
-                            AND TopupType = 1
+	                    /*
+		                    Topup GCash account
+		                    this topup only used if there are insufficient funds
+		                    for GCASH Cash In transaction
+	                    */
+	                    SELECT
+		                    SUM(Amount) AS Amount
+	                    FROM TopupTransactions
+	                    WHERE ShiftID = @ShiftID
+		                    AND TopupType = 1
                     ) AS GCash
+
+                    DROP TABLE #CashOut
                 ";
 
                 conn.Open();
