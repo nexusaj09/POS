@@ -129,6 +129,7 @@
     <Compile Include="Classes\Transaction.cs" />
     <Compile Include="Classes\TransactionDetail.cs" />
     <Compile Include="Classes\User.cs" />
+    <Compile Include="Entities\GCashCashOut.cs" />
     <Compile Include="Enumerators\GCashTransactionType.cs" />
     <Compile Include="Enumerators\PaymentType.cs" />
     <Compile Include="Enumerators\TopupType.cs" />
