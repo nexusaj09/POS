@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using MetroFramework.Forms;
 using POS.Classes;
 using POS.Enumerators;
+using POS.Panels.GCashPanels;
 
 namespace POS.Panels
 {
@@ -34,7 +35,12 @@ namespace POS.Panels
 
         private void btnCashOut_Click(object sender, EventArgs e)
         {
-            GCashTransaction(GCashTransactionType.CashOut);
+            //GCashTransaction(GCashTransactionType.CashOut);
+            using (var cashOut = new PanelCashOut(_currentUser))
+            {
+                cashOut.EmployeeShift = _employeeShift;
+                cashOut.ShowDialog();
+            }
         }
 
         private void btnTopupGCash_Click(object sender, EventArgs e)

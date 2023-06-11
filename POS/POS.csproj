@@ -237,6 +237,12 @@
       <DependentUpon>FormProduct.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Product\EligibleProductDiscount.cs" />
+    <Compile Include="Panels\GCashPanels\PanelCashOut.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Panels\GCashPanels\PanelCashOut.Designer.cs">
+      <DependentUpon>PanelCashOut.cs</DependentUpon>
+    </Compile>
     <Compile Include="Panels\PanelProductDiscountSelection.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -441,6 +447,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormUsers.resx">
       <DependentUpon>FormUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panels\GCashPanels\PanelCashOut.resx">
+      <DependentUpon>PanelCashOut.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Panels\PanelAdjustQty.resx">
       <DependentUpon>PanelAdjustQty.cs</DependentUpon>
