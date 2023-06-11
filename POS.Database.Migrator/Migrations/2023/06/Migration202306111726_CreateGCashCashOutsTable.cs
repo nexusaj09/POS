@@ -17,6 +17,7 @@ public class Migration202306111726_CreateGCashCashOutsTable : BaseDbMigration
             .WithColumn("IsFeePaySeparately").AsBoolean().WithDefaultValue(true)
             .WithColumn("IsAmountIncludesFee").AsBoolean().WithDefaultValue(false)
             .WithColumn("IsFeeDeductedOnCashOutAmount").AsBoolean().WithDefaultValue(false)
+            .WithColumn("ShiftID").AsInt32()
             .WithAuditableColumns();
     }
 }
