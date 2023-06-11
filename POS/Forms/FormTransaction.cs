@@ -95,41 +95,44 @@ namespace POS.Forms
 
         private void FormTransaction_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.F1)
+            switch (e.KeyCode)
             {
-                txtSearch.Select();
-            }
-            else if (e.KeyCode == Keys.F2)
-            {
-                btnNewTransaction.PerformClick();
-            }
-            else if (e.KeyCode == Keys.F3)
-            {
-                btnProductSearch.PerformClick();
-            }
-            else if (e.KeyCode == Keys.Space)
-            {
-                btnSettlePayment.PerformClick();
-            }
-            else if (e.KeyCode == Keys.F8)
-            {
-                btnAdjustQty.PerformClick();
-            }
-            else if (e.KeyCode == Keys.Up && txtSearch.ContainsFocus)
-            {
-                grdProductList.Select();
-            }
-            else if (e.KeyCode == Keys.F4)
-            {
-                btnHoldTransaction.PerformClick();
-            }
-            else if (e.KeyCode == Keys.F12)
-            {
-                btnClose.PerformClick();
-            }
-            else if (e.KeyCode == Keys.F11)
-            {
-                btnShift.PerformClick();
+                case Keys.Space:
+                    btnSettlePayment.PerformClick();
+                    break;
+                case Keys.F1:
+                    txtSearch.Select();
+                    break;
+                case Keys.F2:
+                    btnNewTransaction.PerformClick();
+                    break;
+                case Keys.F3:
+                    btnProductSearch.PerformClick();
+                    break;
+                case Keys.F4:
+                    btnHoldTransaction.PerformClick();
+                    break;
+                case Keys.F6:
+                    btnDiscount.PerformClick();
+                    break;
+                case Keys.F8:
+                    btnAdjustQty.PerformClick();
+                    break;
+                case Keys.F11:
+                    btnShift.PerformClick();
+                    break;
+                case Keys.F12:
+                    btnClose.PerformClick();
+                    break;
+                case Keys.Up:
+                    if (txtSearch.ContainsFocus)
+                    {
+                        grdProductList.Select();
+                        break;
+                    }
+                    break;
+                default:
+                    break;
             }
         }
 
