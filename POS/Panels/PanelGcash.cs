@@ -35,7 +35,6 @@ namespace POS.Panels
 
         private void btnCashOut_Click(object sender, EventArgs e)
         {
-            //GCashTransaction(GCashTransactionType.CashOut);
             using (var cashOut = new PanelCashOut(_currentUser))
             {
                 cashOut.EmployeeShift = _employeeShift;
